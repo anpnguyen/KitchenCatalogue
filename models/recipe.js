@@ -5,29 +5,24 @@ const RecipeSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
     },
-
-    headers:{
-
-        title: {
-            type: String,
-            required: true
-        },
-        imageUrl: {
-            type: String
-        },
-        url: {
-            type: String
-        },
-        servings:{
-            type: String
-        },
-        time:{
-            type: String
-        },
-        keywords:[String]
-
+    title: {
+        type: String,
+        required: true
     },
-       
+    imageUrl: {
+        type: String
+    },
+    url: {
+        type: String
+    },
+    servings:{
+        type: String
+    },
+    time:{
+        type: String
+    },    
+    keywords:[String],
+    instructions: [String],            
     ingredients: [{
         quantity:{
             type: String
@@ -38,10 +33,8 @@ const RecipeSchema = new mongoose.Schema({
         ingredientName: {
             type : String
         }
-    } ],
+    }],
 
-    instructions: [String]
-    
   }
 );
 
