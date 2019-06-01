@@ -1,32 +1,11 @@
 const express = require('express');
 const router = express.Router();
-
-
 const Cookbook = require('../../models/Cookbook');
-
 const authMiddleware = require('../../middleware/authMiddleware');
 const { check, validationResult } = require('express-validator/check');
 
-// router.get ('/', (req,res)=> res.send('cookbooks Route'))
-
-
-
-// get to get all cook books
-
-// post to create a cook book 
-// this will just make an empty cook book,
-
-// or will enable you to make a cook book on the fly from a recipe
-
-// PUT to ediit waht is in a cook book
-
-// delete a cook bok
-
 
 // *** Create a new cookbook ***  working
-
-
-
 router.post('/',
     [
         authMiddleware,
@@ -52,7 +31,7 @@ router.post('/',
                               
         } = req.body;
 
-        // Build recipe object
+        // Build cookbook object
         const cookbookFields = {};
         cookbookFields.user = req.user.id;
         if (cookbookTitle) cookbookFields.cookbookTitle = cookbookTitle;
@@ -89,20 +68,6 @@ router.get('/', authMiddleware, async (req, res) => {
     }
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
  // ** get an individual cookbook *** working
 
 router.get('/:cookbook_id', authMiddleware, async (req, res) => {
@@ -117,7 +82,7 @@ router.get('/:cookbook_id', authMiddleware, async (req, res) => {
         if (!cookbook) {
             return res.status(400).json({ msg: 'cookbook not found - from try' });
         }
-               
+             
 
       
         // cookbook is the returned user from the database
@@ -164,7 +129,7 @@ router.put('/:cookbook_id',
                               
         } = req.body;
 
-        // Build recipe object
+        // Build cookbook object
         const cookbookFields = {};
         cookbookFields.user = req.user.id;
         if (cookbookTitle) cookbookFields.cookbookTitle = cookbookTitle;
