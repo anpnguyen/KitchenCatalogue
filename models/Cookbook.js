@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+// const Recipe = require('')
+// const RecipeObjectId = mongoose.Schema.Types.ObjectId
 
 const CookbookSchema = new mongoose.Schema({
     user: {
@@ -15,15 +17,16 @@ const CookbookSchema = new mongoose.Schema({
     cookbookImage:{
         type: String
     },
-
-    savedRecipes:[{
-        recipe:{
+    savedRecipes: [
+        
+        {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'recipe'
         }
-
-    }]
+    ]
 })
+
+
 
 Cookbook = mongoose.model('cookbook', CookbookSchema);
 
