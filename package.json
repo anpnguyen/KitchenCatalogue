@@ -1,0 +1,25 @@
+{
+  "name": "kitchen_catalogue",
+  "version": "1.0.0",
+  "description": "A online database for all your custom cooking recipes",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PleatherShaman/KitchenCatalogue.git"
+  },
+  "keywords": [
+    "recipes",
+    "database",
+    "cooking"
+  ],
+  "author": "An Nguyen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PleatherShaman/KitchenCatalogue/issues"
+  },
+  "homepage": "https://github.com/PleatherShaman/KitchenCatalogue#readme"
+}
