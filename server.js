@@ -27,6 +27,15 @@ app.use((req,res,next)=>{
 
 app.get('/', (req,res)=> res.send('API is running'))
 
+
+
+// Define Routes
+app.use('/api/registerUser', require('./routes/api/registerUser.js'));
+app.use('/api/authUser', require('./routes/api/authUser'));
+app.use('/api/recipe', require('./routes/api/recipe'));
+app.use('/api/cookbook', require('./routes/api/cookbook'));
+
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, ()=>{console.log(`server started on ${PORT}`)})
