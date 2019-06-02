@@ -1,17 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const config = require('config');
 const authMiddleware = require('../../middleware/authMiddleware');
 const { check, validationResult } = require('express-validator/check');
-
 const Recipe = require('../../models/Recipe');
-const User = require('../../models/User');
-const Cookbook = require('../../models/Cookbook');
-
 
 
 // *** Create a new recipe *** working
-
 router.post('/',
     [
         authMiddleware,
@@ -34,16 +28,12 @@ router.post('/',
                 url,
                 servings,
                 time,
-                // this is an array of strings
                 keywords,
-                // this is an array of objects
                 ingredients,
-                // this is a array of strings
                 instructions
                 
         } = req.body;
 
-        // Build recipe object
         const recipeFields = {};
         recipeFields.user = req.user.id;
         if (title) recipeFields.title = title;
@@ -58,7 +48,6 @@ router.post('/',
 
 
         try {
-              // Create a new Recipe working
         recipe = new Recipe(recipeFields);
         await recipe.save();
         res.json(recipe);
@@ -83,18 +72,15 @@ router.get('/', authMiddleware, async (req, res) => {
 
 
 // *** get individual recipe *** working
-
 router.get('/:recipe_id', authMiddleware, async (req, res) => {
     try {
         console.log(req.params.recipe_id)
         const recipe = await Recipe.findOne({
             _id: req.params.recipe_id
         }).populate('user', ['id', 'username']);
-
         if (!recipe) {
             return res.status(400).json({ msg: 'recipe not found - from try' });
         }
-
         if (recipe.user.id !== req.user.id) {
             return res.status(400).json({ msg: 'You are not authorised to access this recipe' });
         }
@@ -109,10 +95,7 @@ router.get('/:recipe_id', authMiddleware, async (req, res) => {
     }
 });
 
-// 
-
 // *** Edit a recipe *** working
-
 router.put('/:recipe_id',
     [
         authMiddleware,
@@ -135,18 +118,13 @@ router.put('/:recipe_id',
                 url,
                 servings,
                 time,
-                // this is an array of strings
                 keywords,
-                // this is an array of objects
                 ingredients,
-                // this is a array of strings
                 instructions
                 
         } = req.body;
 
-        // Build recipe object / remove the userId
         const recipeFields = {};
-        // recipeFields.user = req.user.id;
         if (title) recipeFields.title = title;
         if (imageUrl) recipeFields.imageUrl = imageUrl;
         if (url) recipeFields.url = url;
@@ -158,13 +136,9 @@ router.put('/:recipe_id',
         
 
 
-        try {
-         
-        await Recipe.findOneAndUpdate({_id: req.params.recipe_id}, recipeFields );
-        res.json({ msg: 'recipe updated' });
-        
-        
-        // res.json(recipe);
+        try {         
+            await Recipe.findOneAndUpdate({_id: req.params.recipe_id}, recipeFields );
+            res.json({ msg: 'recipe updated' });
         } catch (err) {
             console.error(err.message);
             res.status(500).send('Server Error - cannot create a new recipe');
@@ -173,15 +147,10 @@ router.put('/:recipe_id',
 );
 
 
-//  *** Delete Route - working ** need to do client side checking
+//  *** Delete Route - working ** 
 
 router.delete('/:recipe_id', authMiddleware, async (req, res) => {
     try {
-        // console.log(recipe)
-        // if (recipe.user._id !== req.user.id) {
-        //     return res.status(400).json({ msg: 'You are not authorised to access this recipe' });
-        // }
-
         await Recipe.deleteOne({ _id: req.params.recipe_id });
         res.json({ msg: 'Recipe  deleted' });
 
@@ -190,7 +159,4 @@ router.delete('/:recipe_id', authMiddleware, async (req, res) => {
         res.status(500).send('Server Error - cannot delete recipe');
     }
 });
-
-
-
 module.exports = router;

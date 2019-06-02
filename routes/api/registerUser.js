@@ -7,10 +7,6 @@ const { check, validationResult } = require('express-validator/check');
 
 const User = require('../../models/User');
 
-// *** This is a test Route ***
-router.get('/', (req,res)=> res.send('user route'))
-
-
 // *** Register a new user ***
 router.post('/',
     [
@@ -39,7 +35,6 @@ router.post('/',
                 .status(400)
                 .json({ errors: [{ msg: 'A user with that email has already been registered - please use a different email' }] });
         }
-
         user = new User({
             username,
             email,
@@ -72,5 +67,4 @@ router.post('/',
         }
     }
 );
-
 module.exports = router;
