@@ -1,0 +1,259 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+.login{
+    
+    height:100%;
+    width: 100%;
+    
+    display: flex;
+	justify-content: center;
+	align-items: center;
+    font-family: 'Montserrat', sans-serif;
+    background: rgba(246,247,249,1);
+    overflow-x: hidden
+
+
+}
+
+.login img {
+    height:100%;
+    z-index: 0;
+    position: absolute;
+    left:0
+}
+/* Layout */
+
+/* makes the ocerall container*/
+
+.loginContainer {
+	background-color: #fff;
+	border-radius: 10px;
+  	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+			0 10px 10px rgba(0,0,0,0.22);
+	position: relative;
+	overflow: hidden;
+	width: 768px;
+	max-width: 100%;
+	min-height: 480px;
+	
+}
+/* this make the container for the form in the container LoginContainer class */
+.loginForm-container {
+	position: absolute;
+	top: 0;
+	height: 100%;
+	transition: all 0.6s ease-in-out;
+}
+
+ /* position left 0 and width 50% and zindex 1 */
+ /* form */
+ .loginSign-up-container {
+	left: 0;
+	width: 50%;
+	opacity: 0;
+    z-index: 1;
+       
+}
+/* position left, this is on top of the left side */
+/* form */
+.loginSign-in-container {
+	left: 0;
+	width: 50%;
+	z-index: 2;
+}
+
+/*  this is the right side this is on top this is the contianer*/
+.loginOverlay-container {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 50%;
+	height: 100%;
+	overflow: hidden;
+	transition: transform 0.6s ease-in-out;
+	z-index: 100;
+}
+
+.loginOverlay {
+	/* background: #FF416C; */
+	background: -webkit-linear-gradient(to right, #bdc3c7, #2c3e50);
+	background: linear-gradient(to right, #bdc3c7, #2c3e50);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 0 0;
+	color: #FFFFFF;
+	position: relative;
+	left: -100%;
+	height: 100%;
+	width: 200%;
+  	transform: translateX(0);
+	transition: transform 0.6s ease-in-out;
+}
+
+.loginOverlay-panel {
+    position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	/* padding: 0 40px; */
+	text-align: center;
+	top: 0;
+	height: 100%;
+	width: 50%;
+	transform: translateX(0);
+	transition: transform 0.6s ease-in-out;
+}
+
+.loginOverlay-left {
+	transform: translateX(-20%);
+}
+
+.loginOverlay-right {
+	right: 0;
+	transform: translateX(0);
+}
+
+/* overlay movement */
+
+.loginContainer.right-panel-active .loginSign-up-container {
+	transform: translateX(100%);
+	opacity: 1;
+	z-index: 5;
+	animation: show 0.6s;
+}
+
+.loginContainer.right-panel-active .loginOverlay-container{
+	transform: translateX(-100%);
+}
+
+.loginContainer.right-panel-active .loginOverlay {
+    transform: translateX(50%);
+}
+
+.loginContainer.right-panel-active .loginOverlay-left {
+	transform: translateX(0);
+}
+
+.loginContainer.right-panel-active .loginOverlay-right {
+	transform: translateX(20%);
+} 
+
+form {
+	background-color: #FFFFFF;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 50px;
+	height: 100%;
+	text-align: center;
+}
+ 
+ input {
+	background-color: #eee;
+	border: none;
+	padding: 12px 15px;
+	margin: 8px 0;
+	width: 100%;
+}
+
+ button {
+	border-radius: 20px;
+	border: 1px solid #DC3545;
+	background-color: #DC3545;
+	color: #FFFFFF;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    margin-top: 10px
+}
+
+button:active {
+	transform: scale(0.95);
+}
+
+button:hover {
+	border: 1px solid rgb(218, 26, 45);
+	background-color: rgb(218, 26, 45);
+}
+
+p {
+	font-size: 14px;
+	font-weight: 100;
+	line-height: 20px;
+	letter-spacing: 0.5px;
+	margin: 20px 0 30px;
+}
+
+.LoginLogo{
+    display: none
+}
+
+.blue{
+    color: blue
+}
+
+@media only screen and (max-width: 680px) {
+    .loginOverlay{
+        display:none
+    }
+    /* .loginSign-in-container{
+        display:none
+    } */
+    .loginOverlay-container{
+        display: none
+    }
+    .loginContainer{
+        width: 480px;
+        margin: 0 10px
+    }
+
+    .loginSign-up-container{
+        width:70%
+    }
+    .loginSign-in-container{
+        width:70%
+    }
+    .loginContainer.right-panel-active .loginSign-up-container {
+        transform: translateX(0%);
+        opacity: 1;
+        z-index: 5;
+        animation: show 0.6s;
+        display:flex;
+        justify-content: center
+    }
+
+    /* .loginContainer.right-panel-active .loginSign-in-container {
+        transform: translateX(0%);
+        opacity: 1;
+        z-index: 5;
+        animation: show 0.6s;
+        display:flex;
+        justify-content: center
+    } */
+
+    .loginForm-container{
+        width:100%;
+        transition: none;
+        transition: opacity 1s ease-in-out
+    
+    }
+    .LoginLogo{
+        display:block
+    }
+    
+    .register{
+        padding-top: 0;
+        margin: 5px 0
+    }
+    
+.opacity{
+    opacity: 0;
+}
+  }
+  
+
