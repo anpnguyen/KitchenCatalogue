@@ -1,9 +1,9 @@
 import React from 'react';
-import Index from './index'
+import Home from './home'
 
 function IndexContainer(){
     return(
-        <Index/>
+        <Home/>
     )
 }
 
