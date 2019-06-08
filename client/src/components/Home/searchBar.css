@@ -1,0 +1,31 @@
+/* .searchBarContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 22rem;
+    
+}
+
+.searchBarForm{
+    background-color: transparent;
+    width:80%;
+    padding: 0;
+    flex-direction: row
+    
+}
+
+
+
+.searchBarForm input{
+    width:80%;
+    display: inline;
+    
+}
+
+.searchBarForm button{
+    display: inline;
+    width: 100px;
+    text-align: center;
+    margin: 0 !important
+} */

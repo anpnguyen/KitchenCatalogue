@@ -1,12 +1,13 @@
-import React from 'react'
+import React , {Fragment}from 'react'
 import NavBar from './navBar'
+import SearchBar from './searchBar'
 
 function Home(){
     return(
-        <div>
+        <Fragment>
             <NavBar/>
-            <h1>Index page</h1>
-        </div>
+           <SearchBar/>
+        </Fragment>
 
 
     )

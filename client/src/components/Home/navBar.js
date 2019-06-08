@@ -1,63 +1,40 @@
-import React, {useState} from 'react';
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem } from 'reactstrap';
-
-  import './navBar.css'
+import React ,{useState}from 'react'
+import './navBar.css'
 
 function NavBar(){
 
-    const [isOpen, setIsOpen] = useState(false)
-
+    const [toggle, setToggle ] = useState(false)
+    
     function handleToggle(){
-        setIsOpen(!isOpen)
+        setToggle(!toggle)
     }
-
     return(
-        <div>
-        <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">reactstrap</NavbarBrand>
-          <NavbarToggler onClick={handleToggle} />
-          <Collapse isOpen={isOpen} navbar>
-            <Nav className="ml-auto" navbar>
-              <NavItem>
-                <NavLink href="/components/">Components</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
-              </NavItem>
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                  Options
-                </DropdownToggle>
-                <DropdownMenu right>
-                  <DropdownItem>
-                    Option 1
-                  </DropdownItem>
-                  <DropdownItem>
-                    Option 2
-                  </DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem>
-                    Reset
-                  </DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
-            </Nav>
-          </Collapse>
-        </Navbar>
-      </div>
+        <div className="navBar">
+        
 
+            <div className="navBarLogo">
+                <span className="navBarLogoText">Kitchen Catalogue</span>
+            </div>
 
+            <div className="navBarButton " onClick={handleToggle}>
+                
+                 <div className="burgerButton"></div>
+                 <div className="burgerButton"></div>
+                 <div className="burgerButton"></div>
+            </div>
+
+            <div className={`navBarContainer `}>
+                <ul className={`navBarList ${toggle? 'display': ""}`}>
+                    
+                    <li className="navBarListItem">Create A Recipe</li>
+                    <li className="navBarListItem">My Recipes</li>
+                    <li className="navBarListItem">My Cookbooks</li>
+                
+                    
+                </ul>
+            </div>
+        
+        </div>
     )
 }
 
