@@ -9,11 +9,11 @@ function NavBar(){
         setToggle(!toggle)
     }
     return(
-        <div className="navBar border">
+        <div className="navBar">
         
 
             <div className="navBarLogo">
-                <span className="navBarLogoText">Kitchen Catalogue</span>
+                <p className="navBarLogoText">Kitchen Catalogue</p>
             </div>
 
             <div className="navBarButton " onClick={handleToggle}>
@@ -23,7 +23,7 @@ function NavBar(){
                  <div className="burgerButton"></div>
             </div>
 
-            <div className={`navBarContainer `}>
+            <div className='navBarContainer'>
                 <ul className={`navBarList ${toggle? 'display': ""}`}>
                     
                     <li className="navBarListItem">Create A Recipe</li>

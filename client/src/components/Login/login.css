@@ -95,7 +95,7 @@
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-	padding: 0 40px;
+	/* padding: 0 40px; */
 	text-align: center;
 	top: 0;
 	height: 100%;
@@ -176,7 +176,7 @@ button:active {
 }
 
 button:hover {
-	border: 1px solid rgb(218, 26, 45);
+	/* border: 1px solid rgb(218, 26, 45); */
 	background-color: rgb(218, 26, 45);
 }
 
@@ -185,7 +185,7 @@ button:hover {
 	font-weight: 100;
 	line-height: 20px;
 	letter-spacing: 0.5px;
-	margin: 20px 0 30px;
+	margin: 20px 0 0px;
 }
 
 .LoginLogo{

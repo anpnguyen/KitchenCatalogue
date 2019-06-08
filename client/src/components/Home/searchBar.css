@@ -6,6 +6,7 @@
     align-items: center;
     height: 26rem;
     overflow: hidden;
+    z-index: 0
     
 }
 
@@ -35,18 +36,27 @@
 .SearchBarInput{
     
     width:400px;
-    height:30px;
+    height:40px;
     border:none;
-    margin-right: 10px;
-    border-radius: 5px;
-    padding-left: 10px
+    margin: 0 10px;
+    border-radius: 20px;
+    padding-left: 20px
        
 }
 
 .SearchBarButton{
     
-    height:30px;
+    height:40px;
     border:none;
+    margin-right:10px;
+    border-radius: 20px;
+    background: rgb(218, 26, 45);
+    width: 100px;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px
    
        
 }

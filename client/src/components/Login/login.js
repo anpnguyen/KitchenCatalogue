@@ -18,39 +18,40 @@ function Login(){
            
             <div className={`loginContainer ${login ? 'right-panel-active': ""}`} id="container">
 
-                <div class="loginForm-container loginSign-up-container">
+                <div className="loginForm-container loginSign-up-container">
                     <form className='loginForm'action="#">
-                         <h1 class="LoginLogo">Kitchen Catalogue</h1>
+                         <h1 className="LoginLogo ">Kitchen Catalogue</h1>
                          <h2>Sign in</h2> 
                         
                         <input className="loginInput" type="email" placeholder="Email" />
                         <input className="loginInput" type="password" placeholder="Password" />
                         
                         <button className="loginButton">Sign In</button>
-                        <p className="loginP">Not a member? Press <span onClick={handleClick} class=' blue' id="span_register"> here</span>  to register</p>
+                        <p className="loginP">Not a member? Press <span onClick={handleClick} className=' blue' id="span_register"> here</span>  to register</p>
                     </form>
                 </div>
 
-                <div class={`loginForm-container loginSign-in-container ${login ? 'opacity': ""}`}>
+                <div className={`loginForm-container loginSign-in-container ${login ? 'opacity': ""}`}>
                     <form action="#" className="loginForm">
-                        <h1 class="LoginLogo register">Kitchen Catalogue</h1>
-                        <h2 class="register">Create Account</h2>
+                        <h1 className="LoginLogo register">Kitchen Catalogue</h1>
+                        <h2 className="register">Create Account</h2>
                         <input className="loginInput" type="text" placeholder="Name" />
                         <input className="loginInput" type="email" placeholder="Email" />
                         <input className="loginInput" type="password" placeholder="Password" />
                         <input className="loginInput" type="password" placeholder="Please re-enter password" />
                         <button className="loginButton">Sign Up</button>
-                        <p class="register loginP">Already a member? Press <span onClick={handleClick}  class=' blue'id="span_login"> here </span>to login</p>
+                        <p className="register loginP">Already a member? Press <span onClick={handleClick}  className=' blue'id="span_login"> here </span>to login</p>
                     </form>
                 
                 </div>
 
             
-                <div class="loginOverlay-container">
-                    <div class="loginOverlay">
-                        <div class="loginOverlay-panel loginOverlay-left">
+                <div className="loginOverlay-container">
+                    <div className="loginOverlay">
+                        <div className="loginOverlay-panel loginOverlay-left">
                             <h1>Kitchen Catalogue</h1>
-                            <p className="loginP">Welcome to Kitchen Catalogue! Please enter your details to login</p>
+                            <p className="loginP">Welcome to Kitchen Catalogue!</p>
+                            <p className="loginP">Please enter your details to login</p>
                                                 
                         </div>
                         <div className={`loginOverlay-panel loginOverlay-right ${login ? 'right-panel-active':""} `}>

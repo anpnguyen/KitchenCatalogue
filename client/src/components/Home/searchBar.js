@@ -1,11 +1,18 @@
 import React from 'react'
-import SearchBack from '../../images/searchback_crop3.jpg'
+import SearchBack from '../../images/searchback_crop.jpg'
 import './searchBar.css'
 
 function SearchBar(){
+
+    let styles= {
+        backgroundImage: `url(${SearchBack})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
+    }
+
     return(
         
-        <div className="searchBar ">
+        <div className="searchBar " style={styles}>
             {/* <img className='SearchBarImg' src={SearchBack} alt=""/> */}
             <div className='SeachBarFormContainer'>
                 <form className='SeachBarForm'action="">
