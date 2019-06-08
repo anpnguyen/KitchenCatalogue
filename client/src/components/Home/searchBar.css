@@ -1,31 +1,52 @@
-/* .searchBarContainer {
+.searchBar {
+    /* position: relative; */
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 22rem;
+    height: 26rem;
+    overflow: hidden;
     
 }
 
-.searchBarForm{
+.SearchBarImg{
+    position: absolute;
+    height: 26rem;
+    
+    position: center;
+    z-index:-1;
+    
+
+
+}
+.SeachBarFormContainer{
+    display:flex;
+    justify-content: center;
+    width:100%;
+}
+
+.SeachBarForm{
     background-color: transparent;
-    width:80%;
-    padding: 0;
-    flex-direction: row
+    width:480px;
+    display:flex
     
 }
 
-
-
-.searchBarForm input{
-    width:80%;
-    display: inline;
+.SearchBarInput{
     
+    width:400px;
+    height:30px;
+    border:none;
+    margin-right: 10px;
+    border-radius: 5px;
+    padding-left: 10px
+       
 }
 
-.searchBarForm button{
-    display: inline;
-    width: 100px;
-    text-align: center;
-    margin: 0 !important
-} */
+.SearchBarButton{
+    
+    height:30px;
+    border:none;
+   
+       
+}

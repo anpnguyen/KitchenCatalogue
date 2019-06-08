@@ -9,9 +9,10 @@
     display:flex;
     justify-content: flex-start;
     align-items: center;
-    font-family: 'Montserrat', sans-serif;
+    /* font-family: 'Montserrat', sans-serif; */
     font-size: 1rem;
-    font-weight: bold
+    font-weight: bold;
+    
 }
 
 .navBarLogo{

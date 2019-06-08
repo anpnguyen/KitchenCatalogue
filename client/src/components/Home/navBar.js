@@ -9,7 +9,7 @@ function NavBar(){
         setToggle(!toggle)
     }
     return(
-        <div className="navBar">
+        <div className="navBar border">
         
 
             <div className="navBarLogo">

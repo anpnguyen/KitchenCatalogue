@@ -1,0 +1,31 @@
+.contentBox{
+    width:100%;
+    display:flex;
+    
+}
+
+.contentBoxSide{
+    flex-grow: 1
+}
+
+.contentBoxContent{
+    flex-basis: 1000px;
+    background: white
+    /* margin: 0 10px */
+}
+
+.contentBoxCard{
+    display: flex;
+    width:100%;
+    flex-wrap: wrap;
+    justify-content: space-around
+    
+
+}
+
+@media only screen and (max-width: 768px) {
+    .contentBoxContent{
+        flex-basis: 650px;
+        /* margin: 0 10px */
+    }
+  }

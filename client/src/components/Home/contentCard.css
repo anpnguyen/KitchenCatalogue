@@ -1,0 +1,57 @@
+.contentCard{
+    width: 23%;
+    /* height:100px; */
+    margin: 0 5px;
+    overflow: hidden
+    
+}
+
+.contentCardImage{
+    text-align:center
+}
+
+
+
+.recipeText{
+    margin: 10px 0;
+    font-size:0.8rem;
+    padding-left: 10px
+}
+
+.contentCardTitleContainer{
+    height: 70px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center
+    
+    
+}
+.contentCardTitle{
+    /* vertical-align: middle;
+    margin: auto 0;
+    height:100% */
+}
+
+
+.iconSpacer{
+    width: 100%;
+    display:flex;
+    justify-content: flex-start;
+
+}
+
+.iconSpacer2{
+    width: 300px;
+    display:flex;
+    justify-content: space-around;
+    margin-left: 20px;
+    margin-right: 50px
+}
+@media only screen and (max-width: 768px) {
+    .contentCard{
+        width: 40%;
+        /* height:100px; */
+        /* padding: 0 5px */
+    }
+  }
