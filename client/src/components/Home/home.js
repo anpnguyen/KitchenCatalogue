@@ -9,7 +9,7 @@ function Home(){
     return(
         <Fragment>
             <NavBar/>
-            <SearchBar/>
+            {/* <SearchBar/> */}
             <IndividualRecipe/>
             {/* <ContentBox title="My recipes" text={true}/> */}
             {/* <ContentBox title="My Cookbooks" text={false}/> */}

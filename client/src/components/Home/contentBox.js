@@ -25,7 +25,7 @@ function ContentBox(props){
 
     return(
         <div className="contentBox">
-            <div className="contentBoxSide "></div>
+            {/* <div className="contentBoxSide "></div> */}
             <div className="contentBoxContent ">
                 <h1 className="text-center">{title}</h1>  
                 <hr className="width80"/>
@@ -38,7 +38,7 @@ function ContentBox(props){
                 </div>
                 
             </div>
-            <div className="contentBoxSide "></div>
+            {/* <div className="contentBoxSide "></div> */}
         </div>
 
 

@@ -11,6 +11,8 @@ html, body, .App, .App-header{
     color: #333;
     background: rgb(246,247,249);
     background: radial-gradient(circle, rgba(246,247,249,1) 0%, rgba(218,235,255,1) 100%);
+    font-size:16px;
+    
 }
 
 h2,h3, p{
@@ -35,6 +37,7 @@ hr{
     border:none;
     border-top: 1px solid #cfcfcf
 }
+
 /* utilities */
 
 .border {

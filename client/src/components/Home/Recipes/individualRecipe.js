@@ -7,20 +7,20 @@ import './individualRecipe.css'
 function IndividualRecipe(){
     return(
         <div className="contentBox">
-            <div className="contentBoxSide "></div>
+            {/* <div className="contentBoxSide "></div> */}
             <div className="contentBoxContent ">
                 
                 <div className="individualRecipe ">
-                <h1 className="text-center">Chicken Pasta</h1>  
-                <div className="individualRecipeDetails text-center">
-                    <div className='spanMargin'>
+                <h1 className="">Chicken Pasta</h1>  
+                <div className="individualRecipeDetails ">
+                    <div className=''>
                         <p><span className='bold'>By: </span> PleatherShaman  </p>
                         <p><span className="spanMargin"><span className='bold'>Serves </span> 4</span>  <span className='bold'>Cooking Time:</span> 20 minutes</p>      
                     </div>
                                    
 
                 </div> 
-                <div className='individualRecipeSave text-center'>
+                <div className='individualRecipeSave'>
                         <button>Save</button>
                     </div> 
                
@@ -31,23 +31,20 @@ function IndividualRecipe(){
 
                 <div className="individualRecipeText">
                     <div className="ingredients  ">
-                        <ul className="individualRecipeUl border">
-                            <li className='bold individualRecipeList color'>Ingredients</li>
-                            <li className='individualRecipeList'>1 cup of Sugar</li>
-                            <li className='individualRecipeList'>1 cup of Meat</li>
-                            <li className='individualRecipeList'>100 grams of  flour or brown flour</li>
-                            <li className='individualRecipeList'>1 cup of water</li>
-                            <li className='individualRecipeList'>2 slice of bread</li>
+                        <ul className="">
+                            <li className=' '>Ingredients</li>
+                            <li className=''>1 cup of Sugar</li>
+                            <li className=''>1 cup of Meat</li>
+                            <li className=''>100 grams of  flour or brown flour</li>
+                            <li className=''>1 cup of water</li>
+                            <li className=''>2 slice of bread</li>
                             
                            
                         </ul>
                     </div>
                     <div className="instructions "> 
                     
-                    <div className="list">
-                        
-                    </div>
-
+                    
                     <ul className="individualRecipeInstructions">
                             
                             <li className='individualRecipeList bold color'>Instructions</li>
@@ -108,7 +105,7 @@ function IndividualRecipe(){
                 </div>
                 
             </div>
-            <div className="contentBoxSide "></div>
+            {/* <div className="contentBoxSide "></div> */}
         </div>
 
 

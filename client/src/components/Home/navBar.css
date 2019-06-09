@@ -9,12 +9,9 @@
     margin:0;
     height: 60px;
     display:flex;
-    /* justify-content: flex-start; */
     align-items: center;
-    /* font-family: 'Montserrat', sans-serif; */
     font-size: 1rem;
     font-weight: bold;
-    /* box-shadow: 5px 5px 8px #bebebe; */
     z-index: 5;
     color: #f8f8f8
     
@@ -26,8 +23,7 @@
     font-family: 'pacifico';
     margin-left: 20px;
     font-size: 30px;
-    font-weight: 700;
-    /* position: absolute; */
+    font-weight: 700;    
 }
 
 .navBarLogoText{

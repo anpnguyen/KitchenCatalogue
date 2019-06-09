@@ -10,15 +10,12 @@ function NavBar(){
     }
     return(
         <div className="navBar">
-        
-
             <div className="navBarLogo">
                 <p className="navBarLogoText">Kitchen Catalogue</p>
             </div>
 
             <div className="navBarButton " onClick={handleToggle}>
-                
-                 <div className="burgerButton"></div>
+                <div className="burgerButton"></div>
                  <div className="burgerButton"></div>
                  <div className="burgerButton"></div>
             </div>
@@ -27,10 +24,11 @@ function NavBar(){
                 <ul className={`navBarList ${toggle? 'display': ""}`}>
                     
                     
-                    <li className="navBarListItem">Home</li>
+                    
+                    <li className="navBarListItem">View All Recipes</li>
                     <li className="navBarListItem">My Recipes</li>
                     <li className="navBarListItem">My Cookbooks</li>
-                    {/* <li className="navBarListItem">Search</li> */}
+                    
                 
                     
                 </ul>

@@ -1,12 +1,13 @@
 .contentBox{
     width:100%;
     display:flex;
+    justify-content: center
     
 }
 
-.contentBoxSide{
+/* .contentBoxSide{
     flex-grow: 1
-}
+} */
 
 .contentBoxContent{
     flex-basis: 1000px;

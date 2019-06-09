@@ -5,13 +5,29 @@ import backgroundImage from '../../images/background.jpg'
 
 function Login(){
 
+
+    const initialData = {
+        name:"",
+        email:"",
+        password:"",
+        password2:""
+
+    }
     const [login, setLogin] = useState(true)
+    const [formData, setFormData] = useState( initialData)
+
+    const {name, email, password, password2} = formData
 
     function handleClick(){
         setLogin(!login)
     }
 
-    //  I can refactor this to make it simpler and split into components
+    function handleChange(e)
+    {
+        setFormData({...formData, [e.target.name]: e.target.value})
+    }
+
+    function handleSubmit(){}
     return(
         <div className="login">
             <img src={backgroundImage} alt='' draggable= 'false' />
@@ -19,12 +35,12 @@ function Login(){
             <div className={`loginContainer ${login ? 'right-panel-active': ""}`} id="container">
 
                 <div className="loginForm-container loginSign-up-container">
-                    <form className='loginForm'action="#">
+                    <form className='loginForm'onSubmit={handleSubmit}>
                          <h1 className="LoginLogo ">Kitchen Catalogue</h1>
                          <h2>Sign in</h2> 
                         
-                        <input className="loginInput" type="email" placeholder="Email" />
-                        <input className="loginInput" type="password" placeholder="Password" />
+                        <input className="loginInput" type="email" placeholder="Email" name='email' value={email} onChange={handleChange} />
+                        <input className="loginInput" type="password" placeholder="Password" name='password' value={password} onChange={handleChange} />
                         
                         <button className="loginButton">Sign In</button>
                         <p className="loginP">Not a member? Press <span onClick={handleClick} className=' blue' id="span_register"> here</span>  to register</p>
@@ -32,13 +48,13 @@ function Login(){
                 </div>
 
                 <div className={`loginForm-container loginSign-in-container ${login ? 'opacity': ""}`}>
-                    <form action="#" className="loginForm">
+                    <form  className="loginForm" onSubmit={handleSubmit}>
                         <h1 className="LoginLogo register">Kitchen Catalogue</h1>
                         <h2 className="register">Create Account</h2>
-                        <input className="loginInput" type="text" placeholder="Name" />
-                        <input className="loginInput" type="email" placeholder="Email" />
-                        <input className="loginInput" type="password" placeholder="Password" />
-                        <input className="loginInput" type="password" placeholder="Please re-enter password" />
+                        <input className="loginInput" type="text" placeholder="Name"  name='name' value={name} onChange={handleChange}/>
+                        <input className="loginInput" type="email" placeholder="Email" name='email' value={email} onChange={handleChange}/>
+                        <input className="loginInput" type="password" placeholder="Password" name='password' value={password} onChange={handleChange}/>
+                        <input className="loginInput" type="password" placeholder="Please re-enter password" name='password2'value={password2} onChange={handleChange}/>
                         <button className="loginButton">Sign Up</button>
                         <p className="register loginP">Already a member? Press <span onClick={handleClick}  className=' blue'id="span_login"> here </span>to login</p>
                     </form>
