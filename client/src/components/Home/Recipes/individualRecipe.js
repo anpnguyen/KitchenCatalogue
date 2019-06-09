@@ -17,12 +17,12 @@ function IndividualRecipe(){
                         <p><span className='bold'>By: </span> PleatherShaman  </p>
                         <p><span className="spanMargin"><span className='bold'>Serves </span> 4</span>  <span className='bold'>Cooking Time:</span> 20 minutes</p>      
                     </div>
-                    <div className='individualRecipeSave text-center'>
-                        <button>Save</button>
-                    </div> 
-                  
+                                   
 
                 </div> 
+                <div className='individualRecipeSave text-center'>
+                        <button>Save</button>
+                    </div> 
                
                 <hr className="width80"/>
                 <div className="text-center ">
