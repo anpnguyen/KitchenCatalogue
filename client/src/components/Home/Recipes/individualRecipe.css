@@ -1,0 +1,128 @@
+.image{
+    max-height: 300px
+}
+
+.individualRecipeText{
+    display: flex
+}
+
+.individualRecipeDetails{
+   position: relative;
+   /* display:inline-block;
+   left:30% */
+}
+
+.ingredients{
+    flex: 2;
+    /* padding: 20px */
+}
+
+.instructions{
+    flex: 5;
+    /* padding: 20px */
+
+}
+
+.individualRecipeList{
+    padding: 8px 0;
+    padding: 15px
+}
+.individualRecipeListInstructions{
+    display: flex;
+    padding: 10px
+}
+
+.individualRecipeUl{
+    margin-left: 20px;
+    margin-top: 0;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    padding: 20px
+}
+
+.number{
+    min-width: 30px
+}
+.individualRecipeInstructions{
+    margin-left: 20px;
+    margin-top: 0;
+    font-size: 0.9rem;
+    letter-spacing: 1.5px;
+    padding: 15px
+}
+
+.individualRecipeUl li:nth-of-type(2n) {
+    background:#F1F7F7;
+  }
+
+.individualRecipe h1{
+    margin-bottom: 0
+}
+
+.individualRecipeDetails p {
+    font-size: 0.8rem;
+    padding: 5px 0px;
+    /* text-align: left */
+    
+}
+
+.spanMargin{
+    margin-right: 20px
+}
+
+.individualRecipeSave{
+    /* display: flex; */
+    /* align-items: center;
+    justify-content: center; */
+
+}
+
+.individualRecipeSave button{
+    background: rgb(54, 216, 81);
+    border: none;
+    height:30px;
+    width:60px;
+    border-radius: 20px;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display:inline-block;
+    position: relative;
+    
+
+}
+
+@media only screen and (max-width: 768px) {
+    .individualRecipeText{
+        flex-direction: column;
+        
+    }
+    .ingredients{
+        /* display: flex; */
+
+        padding: 20px
+    }
+    
+    .instructions{
+        /* width:100%; */
+        padding: 0px
+    
+    }
+    .individualRecipeUl{
+        margin-left: 0px;
+        margin-top: 0;
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+        padding: 20px
+    }
+
+    .individualRecipeInstructions{
+        margin-left: 0px;
+        margin-top: 0;
+        font-size: 0.9rem;
+        letter-spacing: 1.5px;
+        padding: 0px
+    }
+  }
