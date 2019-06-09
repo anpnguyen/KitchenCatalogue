@@ -26,9 +26,11 @@ function NavBar(){
             <div className='navBarContainer'>
                 <ul className={`navBarList ${toggle? 'display': ""}`}>
                     
-                    <li className="navBarListItem">Create A Recipe</li>
+                    
+                    <li className="navBarListItem">Home</li>
                     <li className="navBarListItem">My Recipes</li>
                     <li className="navBarListItem">My Cookbooks</li>
+                    {/* <li className="navBarListItem">Search</li> */}
                 
                     
                 </ul>
