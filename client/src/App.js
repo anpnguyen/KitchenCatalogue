@@ -9,31 +9,31 @@ import IndexContainer from './components/Home/indexContainer';
 
 
 // redux
-// import { Provider } from 'react-redux';
-// import store from './store';
+import { Provider } from 'react-redux';
+import store from './store';
 
 function App() {
   return (
     <div className="App">
-       {/* <Provider store={store}> */}
-      <BrowserRouter>
-        <Switch >
-          <Route 
-              exact
-              path='/'
-              render={IndexContainer}
-          />
+       <Provider store={store}>
+        <BrowserRouter>
+          <Switch >
             <Route 
-              exact
-              path='/login'
-              render={LoginContainer}
+                exact
+                path='/'
+                render={IndexContainer}
             />
+              <Route 
+                exact
+                path='/login'
+                render={LoginContainer}
+              />
 
-          
+            
 
-        </Switch>
-      </BrowserRouter> 
-      {/* </Provider> */}
+          </Switch>
+        </BrowserRouter> 
+      </Provider>
 
         
       

@@ -77,3 +77,15 @@ hr{
 .yellow{
     color: rgb(185, 185, 83)
 }
+
+
+.alert {
+    padding: 0.8rem;
+    margin: 1rem 0;
+    opacity: 0.9;
+    background: white;
+    color: #333;
+    position: absolute;
+    top: 150px;
+    z-index: 9999;
+  }
