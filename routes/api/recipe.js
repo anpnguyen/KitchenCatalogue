@@ -62,6 +62,7 @@ router.post('/',
 router.get('/', authMiddleware, async (req, res) => {
     try {
         console.log(req.user.id)
+        // console.log('called')
         const recipes = await Recipe.find({user:req.user.id});
         res.json(recipes);
     } catch (err) {

@@ -1,0 +1,199 @@
+
+.newRecipe{
+    display:flex;
+    justify-content: center;
+    
+}
+
+.newRecipeForm{
+ 
+    width:80% 
+}
+
+.newRecipeForm form{
+ 
+    display:flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding: 20px 20px 20px 0
+}
+
+.newRecipeItem{
+    width:100%;
+    display: flex;
+    padding-bottom: 20px
+    
+}
+
+.newRecipeDetails .newRecipeItem  div:nth-child(1){
+     width:150px;
+     display: flex;
+     align-items: center;
+     justify-content: flex-end;
+     padding-right:20px;
+     font-weight: bold;
+     text-align: right
+}
+
+.newRecipeDetails .newRecipeItem  div:nth-child(2) {
+     width:100%;
+     /* margin-right: 40px */
+}
+
+.newRecipeDetails .newRecipeItem  div:nth-child(2) input{
+ 
+    width: calc(100% - 30px);
+    height:35px;
+    padding-left: 30px;
+    /* padding-right: -30px; */
+    box-sizing: content-box!important 
+    /* margin-right: 40px */
+}
+
+
+.newRecipeIngredients{
+    display: flex;
+    justify-content: center;
+    /* margin-top: 20px; */
+    flex-direction: column;
+    align-items: center
+}
+
+.newRecipeIngredients h3{
+    padding-top: 10px
+   
+}
+
+.newRecipeIngredientsItems{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width:100%;
+    margin-top: 10px
+}
+
+.newRecipeIngredientItem{
+    width:100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width:100%;
+    margin-top: 10px
+}
+
+.newRecipeIngredientItem div{
+    min-width:100px;
+    max-width:100px;
+    margin: 0 20px;
+    font-weight: bold;
+    font-size: 0.8rem;
+    text-align: center
+}
+
+.newRecipeIngredientItem input{
+    width: calc(100px - 30px);
+    height: 25px;
+    padding-left: 30px;
+    box-sizing: content-box!important 
+    /* margin: 0 20px; */
+    /* font-weight: bold;
+    font-size: 0.8rem;
+    text-align: center */
+}
+
+
+.NewRecipeName{
+    width: 100% !important;
+    max-width: 1000px !important;
+    margin-right:0px!important;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.NewRecipeName input{
+    /* padding-right: 0px; */
+    width: 100%;
+    box-sizing: content-box!important;
+    padding-left:15px
+    
+}
+.NewRecipeName button{
+    /* padding-right: 0px; */
+    width: 30px
+    
+}
+
+.newRecipeInstructionItems{
+    width:100%;
+    
+    
+}
+
+
+.newRecipeInstruction{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px
+}
+.newRecipeInstructionItem{
+    width:100%;
+    
+    display:flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 10px 0
+}
+
+.newRecipeInstructionItems{
+    margin-top: 0px
+}
+
+.newRecipeInstructionItem div:nth-child(1){
+    min-width:60px;
+    height: 100%;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    font-weight: bold
+}
+
+.newRecipeInstructionItem div:nth-child(2){
+    width:100%;  
+  
+}
+
+.newRecipeInstructionItem textarea{
+    width: calc(100% - 35px);
+    height: 50px;
+    padding-left: 30px;
+    font-size: inherit;
+    font-family: inherit
+
+
+}
+
+@media only screen and (max-width: 1000px) {
+    .newRecipeForm{
+ 
+        width:80% 
+    }
+    .newRecipeDetails .newRecipeItem div:nth-child(2) {
+        
+        /* margin-right: 20px */
+   }
+   .newRecipeForm form{
+ 
+    display:flex;
+    justify-content: flex-start;
+    padding: 20px 40px 20px 20px
+}
+}
+
+@media only screen and (max-width: 768px) {
+    .newRecipeForm{
+ 
+        width:100% 
+    }
+}

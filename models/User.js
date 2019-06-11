@@ -17,7 +17,16 @@ const UserSchema = new mongoose.Schema({
     date: {
         type: Date,
         default: Date.now
-  }
+    }
+    // favourites: [
+        
+    //     {
+    //         type: mongoose.Schema.Types.ObjectId,
+    //         ref: 'recipe'
+    //     }
+    // ]
+
+    
 });
 
 User = mongoose.model('user', UserSchema);

@@ -1,44 +1,48 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import ContentCard from './contentCard'
 import './contentBox.css'
-
+import PropTypes from 'prop-types'
+import {connect} from 'react-redux'
 
 function ContentBox(props){
 
-    const {title, text, myRecipes} = props
-    const data = ['1','2','3','4','5','6','7','8','9','10']
+    const {title, text, recipe, showAll} = props
+    
+    const {recipes} = recipe
 
 
-
-    const mappedData = data.map((dataPoint, index) =>{
-        if(!myRecipes && index <4)
+    
+    const mappedData = recipes.map((recipe, index) =>{
+        
+        
+        if(!showAll && index <4)
             {
-            return <ContentCard title="Chicken Curry" data={data} text={text}/>
-
+            return <ContentCard title="Chicken Curry" recipe={recipe} showAll={showAll} text={text} key={recipe._id}/>
+            
         } 
 
-        if(myRecipes){
-            return <ContentCard title="Chicken Curry" data={data} text={text}/>
+        else if(showAll){
+            return <ContentCard title="Chicken Curry" recipe={recipe} showAll={showAll} text={text} key={recipe._id}/>
+        } else {
+            return <Fragment key={recipe._id}></ Fragment>
         }
+
         
     })
 
     return(
         <div className="contentBox">
-            {/* <div className="contentBoxSide "></div> */}
+            
             <div className="contentBoxContent ">
                 <h1 className="text-center">{title}</h1>  
                 <hr className="width80"/>
                 <div className="contentBoxCard">
                     {mappedData}
-                    {/* <ContentCard title="Chicken Curry" data={data} text={text}/> */}
-                    {/* <ContentCard title="Chicken curry wioth extra rice" data={data} text={text}/> */}
-                    {/* <ContentCard title="yummy yummy" data={data} text={text}/> */}
-                    {/* <ContentCard title="my recipe with special sause" data={data} text={text}/> */}
+           
                 </div>
                 
             </div>
-            {/* <div className="contentBoxSide "></div> */}
+            
         </div>
 
 
@@ -49,14 +53,22 @@ function ContentBox(props){
     )
 }
 
-export default ContentBox
+// export default ContentBox
+ContentBox.propTypes = {
+    recipe: PropTypes.object.isRequired
+    // auth: PropTypes.object.isRequired,
+    // getRecipes: PropTypes.func.isRequired
+
+
+}
+
+
+const mapStateToProps = state => ({
+    // auth: state.auth,
+    recipe: state.recipe
+})
+
+export default connect(mapStateToProps, {})(ContentBox)
 
 
 
-
-
-
-
-// content box
-
-    // have a content card

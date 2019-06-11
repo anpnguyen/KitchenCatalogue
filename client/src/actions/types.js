@@ -7,11 +7,14 @@ export const AUTH_ERROR = "AUTH_ERROR"
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS"
 export const LOGIN_FAIL = "LOGIN_FAIL"
 export const LOGOUT = "LOGOUT"
-// export const GET_PROFILE = 'GET_PROFILE'
-// export const PROFILE_ERROR = 'PROFILE_PROFILE'
+export const GET_RECIPE = 'GET_RECIPE'
+export const RECIPE_ERROR = 'RECIPE_ERROR'
 export const CLEAR_USER = 'CLEAR_USER'
 // export const CREATE_PROFILE = 'CREATE_PROFILE'
 // export const CREATE_PROFILE_ERROR = 'CREATE_PROFILE_ERROR'
 
 // export const EDIT_PROFILE_ERROR = 'EDIT_PROFILE_ERROR'
-// export const GET_PROFILES = 'GET_PROFILES'
+export const GET_RECIPES = 'GET_RECIPES'
+export const RECIPES_ERROR = 'GET_RECIPES'
+export const CLEAR_RECIPE = 'CLEAR_RECIPE'
+export const CLEAR_ERROR = 'CLEAR_ERROR'

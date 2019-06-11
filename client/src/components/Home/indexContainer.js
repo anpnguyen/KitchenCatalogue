@@ -1,9 +1,14 @@
 import React from 'react';
 import Home from './home'
+// import NavBar from './navBar'
+// import SearchBar from './searchBar'
 
-function IndexContainer(){
+function IndexContainer(props){
     return(
-        <Home/>
+        <>
+      
+        <Home {...props}/>
+        </>
     )
 }
 
