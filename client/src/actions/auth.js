@@ -115,7 +115,7 @@ export const register = ({ username, email, password }) => async dispatch => {
     }
   };
 
-
+//  Logout 
   export const logout = () => dispatch => {
     dispatch({
       type: CLEAR_USER

@@ -10,8 +10,8 @@ const CookbookSchema = new mongoose.Schema({
 
     cookbookTitle:{
         type: String,
-        required: true,
-        unique: true
+        required: true
+        
     },
 
     cookbookImage:{

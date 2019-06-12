@@ -3,14 +3,28 @@ import React ,{useState}from 'react'
 import {Link} from 'react-router-dom'
 import './navBar.css'
 
-function NavBar(){
+import {connect} from 'react-redux'
 
+import {logout} from '../../actions/auth'
+import { clearRecipe } from '../../actions/recipe';
+
+function NavBar(props){
+
+    const {auth, logout, clearRecipe} = props
     const [toggle, setToggle ] = useState(false)
     
     function handleToggle(){
         setToggle(!toggle)
     }
+
+    function handleLogout(){
+        clearRecipe()
+        logout()
+        
+    }
     return(
+
+        
         <div className="navBar">
             <div className="navBarLogo">
                 <p className="navBarLogoText"><Link to='/'>Kitchen Catalogue</Link></p>
@@ -30,7 +44,8 @@ function NavBar(){
                     <li className="navBarListItem"><Link to='/recipe/new'>Create A Recipe</Link></li>
                     <li className="navBarListItem"><Link to='/recipe'>View All Recipes</Link></li>
                     <li className="navBarListItem"><Link to='/recipe/favourites'>View Facourites</Link></li>
-                    <li className="navBarListItem"><Link to='/home'>Search</Link></li>
+                    <li className="navBarListItem"><button onClick={handleLogout}>Logout</button></li>
+                    
                    
                     
                 
@@ -38,8 +53,16 @@ function NavBar(){
                 </ul>
             </div>
         
+        
+             {auth.loading? "" : "Welcome back "+ auth.user.username }
         </div>
     )
 }
 
-export default NavBar
+const mapStateToProps = state => ({
+    auth: state.auth,
+    // recipe: state.recipe
+    // profile: state.profile
+})
+
+export default connect(mapStateToProps, {logout, clearRecipe})(NavBar)

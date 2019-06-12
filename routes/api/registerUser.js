@@ -6,6 +6,7 @@ const config = require('config');
 const { check, validationResult } = require('express-validator/check');
 
 const User = require('../../models/User');
+const Cookbook = require('../../models/Cookbook')
 
 // *** Register a new user ***
 router.post('/',
@@ -46,6 +47,15 @@ router.post('/',
 
         await user.save();
 
+        // const cookbook = new Cookbook({
+        //     user: user.id,
+        //     cookbookTitle: "My Favourites"
+        // })
+
+        // await cookbook.save()
+
+        // console.log('after cookbook saved')
+
         const payload = {
             user: {
             id: user.id
@@ -62,7 +72,7 @@ router.post('/',
             }
         );
         } catch (err) {
-        console.error(err.message);
+        // console.error(err.message);
         res.status(500).send('Server error');
         }
     }
