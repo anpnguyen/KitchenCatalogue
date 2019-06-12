@@ -42,6 +42,27 @@ export const getRecipes = () => async dispatch => {
     }
 }
 
+// Get Recipes Set
+export const getSetRecipes = (setNumber) => async dispatch => {
+    try {
+        
+        const res = await axios.get(`http://localhost:5000/api/recipe/set/${setNumber}`)
+        
+        dispatch({
+            type: GET_RECIPES,
+            payload: res.data
+          });
+
+    } catch (err) {
+        
+        console.log("catch error or no profile")
+        dispatch({
+            type: RECIPE_ERROR,
+            payload: { msg: "server error", status: "server error"}
+          });
+    }
+}
+
 // Clear Recipe from State
 export const clearRecipe = () => async dispatch => {
     try {

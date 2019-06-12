@@ -14,6 +14,7 @@ import IndividualRecipe from './components/Home/Recipes/individualRecipe'
 import NewRecipeContainer from './components/Home/Recipes/newRecipeContainer'
 import EditIndividualRecipe from './components/Home/Recipes/EditIndividualRecipe'
 import Recipes from './components/Home/Recipes/recipes'
+import RecipesSet from './components/Home/Recipes/recipesSet'
 
 
 // redux
@@ -65,6 +66,11 @@ function App() {
                 exact
                 path='/recipe'
                 component={Recipes}/>
+             
+                <PrivateRoute
+                exact
+                path='/recipe/set/:setNumber'
+                component={RecipesSet}/>
 
 
                 <PrivateRoute

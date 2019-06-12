@@ -76,6 +76,21 @@ router.get('/', authMiddleware, async (req, res) => {
     }
 });
 
+//  *** get a number to  *** 
+router.get('/set/:setNumber', authMiddleware, async (req, res) => {
+    try {
+        // console.log(req.params.setNumber)
+        let num = parseInt(req.params.setNumber)
+        const recipes = await Recipe.find({user:req.user.id}).limit(num);
+        res.json(recipes);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error - cannot fetch user recipes');
+    }
+});
+
+
+
 
 // *** get individual recipe *** working
 router.get('/:recipe_id', authMiddleware, async (req, res) => {
@@ -107,6 +122,9 @@ router.get('/:recipe_id', authMiddleware, async (req, res) => {
         res.status(500).send('Server Error');
     }
 });
+
+
+
 
 // *** Edit a recipe *** workaroudn with post
 
