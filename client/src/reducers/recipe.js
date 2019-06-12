@@ -1,12 +1,18 @@
 import {
   GET_RECIPE, 
   RECIPE_ERROR,
+  CREATE_RECIPE,
+  CREATE_RECIPE_ERROR,
   // CLEAR_USER,
   // CREATE_PROFILE,
   // EDIT_PROFILE,
   GET_RECIPES,
-  CLEAR_RECIPE
+  CLEAR_RECIPE,
+  EDIT_RECIPE,
+  EDIT_RECIPE_ERROR
 } from '../actions/types'
+
+// import {Redirect} from 'react-router-dom'
 
 const initialState = {
     recipes:[],
@@ -47,6 +53,18 @@ const initialState = {
           ...state,
           loading:true
         }
+
+      case CREATE_RECIPE:
+        return{
+          ...state,
+          loading:false
+        }
+      case EDIT_RECIPE:
+        return{
+          ...state,
+          loading:true
+        }
+
   
 
         // case CLEAR_USER:

@@ -27,9 +27,9 @@ function Home(props){
             <SearchBar/>
             {/* <IndividualRecipe {...props}/> */}
 
-            <ContentBox title="My recipes" text={true} showAll={false} {...props}/>
+            <ContentBox title="My Favourite Recipes" text={true} showAll={false} {...props}/>
             
-            <ContentBox title="My Cookbooks" text={false} showAll={false} {...props}/>
+            {/* <ContentBox title="My Cookbooks" text={false} showAll={false} {...props}/> */}
 
             {/* <ContentBox title="My Recipes" text={true} myRecipes={true}/> */}
 

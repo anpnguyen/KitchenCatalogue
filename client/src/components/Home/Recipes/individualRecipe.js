@@ -6,11 +6,12 @@ import {connect} from 'react-redux'
 import uuid from 'uuid/v4'
 import NavBar from '../../Home/navBar'
 
+import{Link} from 'react-router-dom'
 
 function IndividualRecipe(props){
 
     const { match, getRecipeById} = props
-    const {title, imageUrl, servings, time, ingredients, instructions, user} = props.recipe.recipe
+    const {title, imageUrl, servings, time, ingredients, instructions, user,_id} = props.recipe.recipe
     // const {username} = props.recipe.recipe.user
     const {loading} = props.recipe
 
@@ -48,6 +49,7 @@ function IndividualRecipe(props){
                 </div> 
                 <div className='individualRecipeSave'>
                         <button>Save</button>
+                        <Link to={`/recipe/${_id}/edit`}><button >Edit</button></Link>
                     </div> 
                
                 <hr className="width80"/>

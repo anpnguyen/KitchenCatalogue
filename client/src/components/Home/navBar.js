@@ -1,4 +1,6 @@
 import React ,{useState}from 'react'
+
+import {Link} from 'react-router-dom'
 import './navBar.css'
 
 function NavBar(){
@@ -11,7 +13,7 @@ function NavBar(){
     return(
         <div className="navBar">
             <div className="navBarLogo">
-                <p className="navBarLogoText">Kitchen Catalogue</p>
+                <p className="navBarLogoText"><Link to='/'>Kitchen Catalogue</Link></p>
             </div>
 
             <div className="navBarButton " onClick={handleToggle}>
@@ -25,9 +27,9 @@ function NavBar(){
                     
                     
                     
-                    <li className="navBarListItem">View All Recipes</li>
-                    <li className="navBarListItem">My Recipes</li>
-                    <li className="navBarListItem">My Cookbooks</li>
+                    <li className="navBarListItem"><Link to='/recipe/new'>Create A Recipe</Link></li>
+                    <li className="navBarListItem"><Link to='/recipe'>View All Recipes</Link></li>
+                   
                     
                 
                     

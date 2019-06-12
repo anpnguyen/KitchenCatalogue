@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import NavBar from '../navBar'
 import './newRecipe.css'
 
-import {createRecipe} from '../../../actions/recipe'
+import {editRecipe} from '../../../actions/recipe'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {withRouter} from 'react-router-dom'
@@ -12,21 +12,24 @@ import Alert from '../../Layout/alert'
 
 // import "./styles.css";
 
-function NewRecipe(props) {
+function EditIndividualRecipe(props) {
 
-    const {createRecipe,history} = props
+    const {editRecipe,history} = props
+    const {recipe} = props.recipe
     
+    // const {title, imageUrl, servings, time, ingredients, instructions} = recipe.recipe
+
     const initialData = {
-        title:"",
-        imageUrl:"",
-        servings:"",
-        time:""
+        title:recipe.title,
+        imageUrl: recipe.imageUrl,
+        servings: recipe.servings,
+        time: recipe.time
 }
     const [recipeDetails, setRecipeDetails] = useState(initialData)  
     const {title, imageUrl, servings, time} = recipeDetails
-    const [recipeIngredients, setRecipeIngredients] = useState([{ quantity: null , unit:null, ingredientName:null}]);
-    const [recipeInstructions, setRecipeInstructions] = useState([" "]);
-    const [isEdit, setIsEdit] = useState(false);
+    const [recipeIngredients, setRecipeIngredients] = useState(recipe.ingredients);
+    const [recipeInstructions, setRecipeInstructions] = useState(recipe.instructions);
+    // const [isEdit, setIsEdit] = useState(false);
 
 //  Detail Logic
 
@@ -95,12 +98,19 @@ function handleInstructionRemove(index,e) {
 function handleSubmit(e){
     e.preventDefault()
     const formData = {...recipeDetails, ingredients: recipeIngredients, instructions: recipeInstructions}
-    // console.log(formData)
-    createRecipe(formData, history)
+    console.log(formData)
+    console.log(recipe._id)
+    editRecipe(formData, history, recipe._id)
+    
 
     }
 
-
+ useEffect(
+     ()=>{
+     setRecipeDetails(initialData)
+    console.log(recipeDetails)},[]
+ )  
+ 
 
   return(
     <>
@@ -228,11 +238,11 @@ function handleSubmit(e){
 
 
 
-NewRecipe.propTypes = {
+EditIndividualRecipe.propTypes = {
     
     auth: PropTypes.object.isRequired,
     recipe: PropTypes.object.isRequired,
-    createRecipe: PropTypes.func.isRequired
+    editRecipe: PropTypes.func.isRequired
 
 
 }
@@ -243,4 +253,4 @@ const mapStateToProps = state => ({
     recipe: state.recipe
     
 })
-export default withRouter(connect(mapStateToProps, {createRecipe})(NewRecipe))
+export default withRouter(connect(mapStateToProps, {editRecipe})(EditIndividualRecipe))

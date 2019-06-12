@@ -47,14 +47,19 @@ router.post('/',
         
 
 
+      
         try {
-        recipe = new Recipe(recipeFields);
-        await recipe.save();
-        res.json(recipe);
-        } catch (err) {
-            console.error(err.message);
-            res.status(500).send('Server Error - cannot create a new recipe');
-        };
+            recipe = new Recipe(recipeFields);
+            await recipe.save();
+            res.json(recipe);
+
+            } catch (err) {
+                console.error(err);
+                                     
+                    res.status(500).json({ errors: [{ msg: 'A recipe with that title has already been registered - please use a different title' }] });
+                
+                
+            };
     }
 );
 
@@ -75,13 +80,20 @@ router.get('/', authMiddleware, async (req, res) => {
 // *** get individual recipe *** working
 router.get('/:recipe_id', authMiddleware, async (req, res) => {
     try {
-        console.log(req.params.recipe_id)
+
+        // console.log(req.params.recipe_id)
+
+
+        console.log("before before")
         const recipe = await Recipe.findOne({
             _id: req.params.recipe_id
         }).populate('user', ['id', 'username']);
+        console.log("before")
+        
         if (!recipe) {
+            console.log("no recipe")
             return res.status(400).json({ msg: 'recipe not found - from try' });
-        }
+        } 
         if (recipe.user.id !== req.user.id) {
             return res.status(400).json({ msg: 'You are not authorised to access this recipe' });
         }

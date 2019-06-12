@@ -166,10 +166,11 @@
 
 .newRecipeInstructionItem textarea{
     width: calc(100% - 35px);
-    height: 50px;
+    height: auto;
     padding-left: 30px;
     font-size: inherit;
-    font-family: inherit
+    font-family: inherit;
+    resize: vertical
 
 
 }
