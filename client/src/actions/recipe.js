@@ -168,7 +168,52 @@ export const createRecipe = (formData, history) => async dispatch => {
 // edit Recipe
 
 
-export const editRecipe = (formData, history, recipeId) => async dispatch => {
+// export const editRecipe = (formData, history, recipeId) => async dispatch => {
+//     try {
+                   
+//         const config = {
+//             headers: {
+//               'Content-Type': 'application/json'
+//             }
+//           };
+        
+//         // const body = JSON.stringify({ formData});
+        
+        
+//         const res = await axios.post(`http://localhost:5000/api/recipe/${recipeId}/edit`, formData, config)
+        
+//         console.log(res.data)
+
+//         dispatch({
+//             type: EDIT_RECIPE,
+//             payload: res.data
+//         });
+
+//         dispatch(setAlert ( "Recipe Sucessfully Edited", "success"
+//         ));
+
+                      
+        
+//     } catch (err) {
+//         // console.log(err)
+//         // console.log(err.response)
+//         console.log("error in sending create recipe")
+       
+//         // const errors = err.response.data.errors ;
+//         //     if (errors) {
+//         //         errors.forEach(error => dispatch(setAlert(error.msg, 'danger')))
+//         //     };
+
+//         dispatch({
+//             type: EDIT_RECIPE_ERROR,
+//             payload: { msg: "create profile error ", status: "server error"}
+//           });
+        
+//     }
+// };
+
+
+export const editRecipePut = (formData, history, recipeId) => async dispatch => {
     try {
                    
         const config = {
@@ -180,8 +225,8 @@ export const editRecipe = (formData, history, recipeId) => async dispatch => {
         // const body = JSON.stringify({ formData});
         
         
-        const res = await axios.post(`http://localhost:5000/api/recipe/${recipeId}/edit`, formData, config)
-        
+        const res = await axios.put(`http://localhost:5000/api/recipe/${recipeId}`, formData, config)
+        console.log('put request')
         console.log(res.data)
 
         dispatch({

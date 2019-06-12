@@ -2,7 +2,7 @@ const express = require('express')
 const connectDB = require('./config/db')
 
 const app = express()
-
+const cors = require('cors')
 
 // Connect to Mongo
 connectDB()
@@ -11,20 +11,23 @@ connectDB()
 app.use(express.json({ extended: false }));
 
 // cors errors
-app.use((req,res,next)=>{
-    res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+
+app.use(cors())
+
+// app.use((req,res,next)=>{
+//     res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
     
-    res.header(
-        'Access-Control-Allow-Headers', 
-        'Origin, X-Requested-With, Content-Type, Accept, Authorization, x-auth-token '
-    );
-    if(req.method === 'OPTIONS'){ 
-        res.header('Acess-Control-Allow-Methods', 'PUT, POST, GET, DELETE, *')
-        return res.status(200).json({})
-    } 
-    next()
+//     res.header(
+//         'Access-Control-Allow-Headers', 
+//         'Origin, X-Requested-With, Content-Type, Accept, Authorization, x-auth-token '
+//     );
+//     if(req.method === 'OPTIONS'){ 
+//         res.header('Acess-Control-Allow-Methods', 'PUT, POST, GET, DELETE, *')
+//         return res.status(200).json({})
+//     } 
+//     next()
     
-})
+// })
 
 app.get('/', (req,res)=> res.send('API is running'))
 

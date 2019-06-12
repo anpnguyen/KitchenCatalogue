@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import NavBar from '../navBar'
 import './newRecipe.css'
 
-import {editRecipe} from '../../../actions/recipe'
+import {editRecipePut} from '../../../actions/recipe'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {withRouter} from 'react-router-dom'
@@ -14,7 +14,7 @@ import Alert from '../../Layout/alert'
 
 function EditIndividualRecipe(props) {
 
-    const {editRecipe,history} = props
+    const {editRecipePut,history} = props
     const {recipe} = props.recipe
     
     // const {title, imageUrl, servings, time, ingredients, instructions} = recipe.recipe
@@ -100,16 +100,16 @@ function handleSubmit(e){
     const formData = {...recipeDetails, ingredients: recipeIngredients, instructions: recipeInstructions}
     console.log(formData)
     console.log(recipe._id)
-    editRecipe(formData, history, recipe._id)
+    editRecipePut(formData, history, recipe._id)
     
 
     }
 
- useEffect(
-     ()=>{
-     setRecipeDetails(initialData)
-    },[initialData]
- )  
+//  useEffect(
+//      ()=>{
+//      setRecipeDetails(initialData)
+//     },[initialData]
+//  )  
  
 
   return(
@@ -242,7 +242,7 @@ EditIndividualRecipe.propTypes = {
     
     auth: PropTypes.object.isRequired,
     recipe: PropTypes.object.isRequired,
-    editRecipe: PropTypes.func.isRequired
+    editRecipePut: PropTypes.func.isRequired
 
 
 }
@@ -253,4 +253,4 @@ const mapStateToProps = state => ({
     recipe: state.recipe
     
 })
-export default withRouter(connect(mapStateToProps, {editRecipe})(EditIndividualRecipe))
+export default withRouter(connect(mapStateToProps, {editRecipePut})(EditIndividualRecipe))
