@@ -29,6 +29,8 @@ function NavBar(){
                     
                     <li className="navBarListItem"><Link to='/recipe/new'>Create A Recipe</Link></li>
                     <li className="navBarListItem"><Link to='/recipe'>View All Recipes</Link></li>
+                    <li className="navBarListItem"><Link to='/recipe/favourites'>View Facourites</Link></li>
+                    <li className="navBarListItem"><Link to='/home'>Search</Link></li>
                    
                     
                 

@@ -9,7 +9,9 @@ import {
   GET_RECIPES,
   CLEAR_RECIPE,
   EDIT_RECIPE,
-  EDIT_RECIPE_ERROR
+  EDIT_RECIPE_ERROR,
+  DELETE_RECIPE,
+  DELETE_RECIPE_ERROR
 } from '../actions/types'
 
 // import {Redirect} from 'react-router-dom'
@@ -64,23 +66,17 @@ const initialState = {
           ...state,
           loading:true
         }
+      case DELETE_RECIPE:
+        return{
+          ...state,
+          recipe:"",
+          loading:true
+        }
 
+       
   
 
-        // case CLEAR_USER:
-        // return {
-        //   ...state,
-        //   user: null,
-        //   profile: null
-          
-        // }
-
-        // case GET_PROFILES:
-        //   return{
-        //     ...state,
-        //     profiles: action.payload,
-        //     loading: false
-        //   }
+     
     
         default:
             return state    

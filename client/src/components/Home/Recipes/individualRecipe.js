@@ -5,12 +5,14 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import uuid from 'uuid/v4'
 import NavBar from '../../Home/navBar'
-
+import {deleteRecipe} from '../../../actions/recipe'
 import{Link} from 'react-router-dom'
+
+import {withRouter} from 'react-router-dom'
 
 function IndividualRecipe(props){
 
-    const { match, getRecipeById} = props
+    const { match, getRecipeById, deleteRecipe, history} = props
     const {title, imageUrl, servings, time, ingredients, instructions, user,_id} = props.recipe.recipe
     // const {username} = props.recipe.recipe.user
     const {loading} = props.recipe
@@ -19,6 +21,11 @@ function IndividualRecipe(props){
         getRecipeById(match.params.recipe_id)
         
     },[getRecipeById,match.params.recipe_id ])
+
+
+    function handleDelete(){
+        deleteRecipe(history, match.params.recipe_id)
+    }
 
         
         
@@ -49,6 +56,7 @@ function IndividualRecipe(props){
                 </div> 
                 <div className='individualRecipeSave'>
                         <button>Save</button>
+                        <button onClick={handleDelete}>Delete</button>
                         <Link to={`/recipe/${_id}/edit`}><button >Edit</button></Link>
                     </div> 
                
@@ -67,12 +75,7 @@ function IndividualRecipe(props){
                                 </Fragment>
                             ))}
                             
-                            {/* <li className=''>1 cup of Sugar</li>
-                            <li className=''>1 cup of Meat</li>
-                            <li className=''>100 grams of  flour or brown flour</li>
-                            <li className=''>1 cup of water</li>
-                            <li className=''>2 slice of bread</li> */}
-                            
+                                                  
                            
                         </ul>
                     </div>
@@ -96,55 +99,7 @@ function IndividualRecipe(props){
                             <hr className='width80'/>
                             </Fragment>))}
 
-                            {/* <li className='individualRecipeListInstructions'>
-                                <div className="number">
-                                    <span className='bold'>1. </span>  
-                                </div>
-                                <div >
-                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sint imos itaque ad asperiores? Enim, molestias.
-                                </div>
-                            </li>
-                            <hr className='width80'/>
-
-                            <li className='individualRecipeListInstructions'>
-                                <div className="number">
-                                    <span className='bold'>2. </span>  
-                                </div>
-                                <div>
-                                    Lorem ipsum, dolor sit amet consec ad asperiores? Enim, molestias.
-                                </div>
-                            </li>
-                            <hr className='width80'/>
-
-                            <li className='individualRecipeListInstructions'>
-                                <div className="number">
-                                    <span className='bold'>3. </span>  
-                                </div>
-                                <div>
-                                    Lorem it. Sint assumenda rerum blanditiis quod, sequi dignissimos itaque ad asperiores? Enim, molestias.
-                                </div>
-                            </li>
-                            <hr className='width80'/>
-
-                            <li className='individualRecipeListInstructions'>
-                                <div className="number">
-                                    <span className='bold'>4. </span>  
-                                </div>
-                                <div>
-                                   Sint assumenda rerum blanditiis quod, sequi dignissimos itaque ad asperiores? Enim, molestias.
-                                </div>
-                            </li>
-                            <hr className='width80'/>
-
-                            <li className='individualRecipeListInstructions'>
-                                <div className="number">
-                                    <span className='bold'>5. </span>  
-                                </div>
-                                <div>
-                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sint assumenda rerum blanditiis quod, sequi dignissimos itaque ad asperiores? Enim, molestias.
-                                </div>
-                            </li> */}
-                            
+                                                      
                             
                            
                         </ul></div>
@@ -152,7 +107,7 @@ function IndividualRecipe(props){
                 </div>
                 
             </div>
-            {/* <div className="contentBoxSide "></div> */}
+            
         </div>
         </>
 
@@ -163,6 +118,7 @@ function IndividualRecipe(props){
 
 IndividualRecipe.propTypes = {
     getRecipeById: PropTypes.func.isRequired,
+    deleteRecipe: PropTypes.func.isRequired,
     
     recipe:PropTypes.object.isRequired
 }
@@ -174,4 +130,4 @@ const mapStateToProps = state => ({
     
 })
 
-export default connect(mapStateToProps , {getRecipeById})(IndividualRecipe)
+export default withRouter(connect(mapStateToProps , {getRecipeById, deleteRecipe})(IndividualRecipe))

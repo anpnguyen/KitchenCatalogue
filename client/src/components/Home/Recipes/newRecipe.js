@@ -26,7 +26,7 @@ function NewRecipe(props) {
     const {title, imageUrl, servings, time} = recipeDetails
     const [recipeIngredients, setRecipeIngredients] = useState([{ quantity: null , unit:null, ingredientName:null}]);
     const [recipeInstructions, setRecipeInstructions] = useState([" "]);
-    const [isEdit, setIsEdit] = useState(false);
+    // const [isEdit, setIsEdit] = useState(false);
 
 //  Detail Logic
 

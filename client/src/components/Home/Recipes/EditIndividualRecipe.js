@@ -108,7 +108,7 @@ function handleSubmit(e){
  useEffect(
      ()=>{
      setRecipeDetails(initialData)
-    console.log(recipeDetails)},[]
+    },[initialData]
  )  
  
 

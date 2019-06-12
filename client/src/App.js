@@ -13,6 +13,7 @@ import IndividualRecipe from './components/Home/Recipes/individualRecipe'
 // import NewRecipe from './components/Home/Recipes/newRecipe'
 import NewRecipeContainer from './components/Home/Recipes/newRecipeContainer'
 import EditIndividualRecipe from './components/Home/Recipes/EditIndividualRecipe'
+import Recipes from './components/Home/Recipes/recipes'
 
 
 // redux
@@ -59,6 +60,11 @@ function App() {
                 exact 
                 path='/home' 
                 component={IndexContainer} />
+
+                <PrivateRoute
+                exact
+                path='/recipe'
+                component={Recipes}/>
 
 
                 <PrivateRoute

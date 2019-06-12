@@ -1,18 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect } from 'react-redux'
+// import {uuid} from 'uuid/v4'
 
 function Alert(props){
     const {alerts} = props
     console.log(alerts)
     
-    const mappedAlerts = alerts.map(alert => (
-        <p > {alert.msg} </p>
+    const mappedAlerts = alerts.map((alert, index) => (
+        <p key={index + alert}> {alert.msg} </p>
     ))
 
     return(
 
-        <div className="alert">
+        <div className="alert" >
              {mappedAlerts}           
         </div>
 
