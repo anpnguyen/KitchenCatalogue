@@ -95,13 +95,13 @@ function Login(props){
                 <div className="loginOverlay-container">
                     <div className="loginOverlay">
                         <div className="loginOverlay-panel loginOverlay-left">
-                            <h1>Kitchen Catalogue</h1>
+                            <h1 className='pacifico'>Kitchen Catalogue</h1>
                             <p className="loginP">Welcome to Kitchen Catalogue!</p>
                             <p className="loginP">Please enter your details to login</p>
                                                 
                         </div>
                         <div className={`loginOverlay-panel loginOverlay-right ${login ? 'right-panel-active':""} `}>
-                            <h1>Kitchen Catalogue</h1>
+                            <h1 className='pacifico'>Kitchen Catalogue</h1>
                             <p className="loginP">Please enter your details for a free account</p>
                             
                            

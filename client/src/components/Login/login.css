@@ -142,6 +142,8 @@
 	padding: 0 50px;
 	height: 100%;
 	text-align: center;
+	width:100%;
+	box-sizing:border-box 
 }
  
  .loginInput {
@@ -185,7 +187,8 @@ button:hover {
 }
 
 .LoginLogo{
-    display: none
+	display: none;
+	font-family:'pacifico'
 }
 
 .blue{
