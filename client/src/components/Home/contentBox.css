@@ -1,3 +1,5 @@
+
+
 .contentBox{
     width:100%;
     display:flex;
@@ -27,15 +29,72 @@
 
 .searchNumber{
     margin-left :100px;
-    font-weight: bold
+    font-weight: bold;
+    height:100%;
+    padding-top: 5px
 }
 
-.contentBoxCardNavigation{}
+.contentBoxNavigation{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    height:30px;
+    margin-bottom: 10px;
+    
+    
+}
 
 
-/* @media only screen and (max-width: 768px) {
-    .contentBoxContent{
-        flex-basis: 650px;
-        
-    }
-  } */
+.arrows{
+    font-size: 1rem;
+    font-weight: bold;
+    color: #bbbbbb;
+    width:20px;
+    text-align: center;
+    margin: 0 5px
+    
+}
+
+.arrows:hover{
+    
+    color: #999999;
+    cursor: pointer
+    
+}
+
+
+.ml2{
+    margin-left: 25px
+}
+.mr2{
+    margin-right: 25px
+}
+
+.navigationActive{
+    color:rgb(218, 26, 45);
+}
+
+.navigationDisable{
+    color:white
+}
+
+.navigationDisable:hover{
+    
+    color: white !important;
+    cursor: default !important
+    
+}
+
+.contentBoxHeader{
+    display: flex;
+    justify-content: space-between;
+}
+.navigationSelect{
+    margin-right:100px;
+    height:30px
+}
+
+.navigationSelect select{
+  
+}

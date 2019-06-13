@@ -1,5 +1,5 @@
 
-import React ,{useState, useEffect} from 'react'
+import React ,{useEffect} from 'react'
 import NavBar from '../navBar'
 import ContentBox from '../contentBox'
 import {getRecipes} from '../../../actions/recipe'
@@ -10,7 +10,7 @@ import PropTypes from 'prop-types'
 
 function Recipes(props){
     
-    // const [pageLimit, setPageLimit] = useState(10)
+    
 
     const {getRecipes} = props
 

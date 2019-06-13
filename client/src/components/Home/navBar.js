@@ -11,9 +11,9 @@ function NavBar(props){
     const {auth, logout, clearRecipe} = props
     const [toggle, setToggle ] = useState(false)
     
-    function handleToggle(){
-        setToggle(!toggle)
-    }
+    // function handleToggle(){
+    //     setToggle(!toggle)
+    // }
 
     function handleLogout(){
         clearRecipe()

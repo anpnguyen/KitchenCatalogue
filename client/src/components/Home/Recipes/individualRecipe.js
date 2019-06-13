@@ -5,14 +5,14 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import uuid from 'uuid/v4'
 import NavBar from '../../Home/navBar'
-import {deleteRecipe,addRecipeToFavourites} from '../../../actions/recipe'
+import {deleteRecipe} from '../../../actions/recipe'
 import{Link} from 'react-router-dom'
 
 import {withRouter} from 'react-router-dom'
 
 function IndividualRecipe(props){
 
-    const { match, getRecipeById, deleteRecipe, history, addRecipeToFavourites, auth} = props
+    const { match, getRecipeById, deleteRecipe, history} = props
     const {title, imageUrl, servings, time, ingredients, instructions, user,_id} = props.recipe.recipe
     
     const {loading} = props.recipe
@@ -20,8 +20,7 @@ function IndividualRecipe(props){
     useEffect(()=>{
         getRecipeById(match.params.recipe_id)
         
-        // auth.user.favouriteRecipes.find(x=> x===match.params.recipe_id) ? console.log('found'): console.log('notfound')
-    },[getRecipeById,match.params.recipe_id ])
+            },[getRecipeById,match.params.recipe_id ])
     
     
 
@@ -31,29 +30,7 @@ function IndividualRecipe(props){
         deleteRecipe(history, match.params.recipe_id)
     }
 
-     
-    // console.log(auth.user.favouriteRecipes)
-    
-    let arr = [
-        { name:"string 1", value:"this", other: "that" },
-        { name:"string 2", value:"this", other: "that" }
-    ];
-    
-    
-
-    
-    // return the value
-    // console.log(typeof(checker))
-    // console.log(typeof(match.params.recipe_id))
-
-    // useEffect(()=>{
-        
-        // console.log(checker)
-        // console.log(auth.user.favouriteRecipes[0])
-        
-        // console.log(checker == auth.user.favouriteRecipes[0])
-
-    // },[auth.user] )
+ 
 
     return(
         
@@ -156,4 +133,4 @@ const mapStateToProps = state => ({
     
 })
 
-export default withRouter(connect(mapStateToProps , {getRecipeById, deleteRecipe, addRecipeToFavourites})(IndividualRecipe))
+export default withRouter(connect(mapStateToProps , {getRecipeById, deleteRecipe})(IndividualRecipe))

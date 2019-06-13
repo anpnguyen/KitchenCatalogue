@@ -15,6 +15,12 @@ html, body, .App, .App-header{
     
 }
 
+.loaderDiv{
+    height:400px;
+    padding-top: 200px;
+    
+}
+
 h2,h3, p{
     margin:0
 }

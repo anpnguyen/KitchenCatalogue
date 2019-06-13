@@ -3,6 +3,8 @@ import ContentCard from './contentCard'
 import './contentBox.css'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import Spinner from '../Layout/spinner'
+
 
 function ContentBox(props){
 
@@ -19,7 +21,7 @@ function ContentBox(props){
         ()=>{
         setNavigation({...navigation, start: 0, end:pageLimit, current:1})
         
-    },[pageLimit]
+    },[pageLimit, navigation]
     )
     function setFirst(){
         setNavigation({start:0, end: pageLimit, current: 1})
@@ -40,9 +42,17 @@ function ContentBox(props){
         setNavigation(newNavigation)
     }
 
-    function handleNavigationClick(e){
-        let newNavigation = {start: (e.target.value-1)*pageLimit ,  end: (e.target.value)* pageLimit, current: e.target.value } 
+    function handleNavigationClick(e,i){
+        console.log(e.target.value)
+        console.log(i)
+        
+        if(e.target.value !== navigation.current){
+            let newNavigation = {start: (i)*pageLimit ,  end: (i+1)* pageLimit, current: i+1 } 
+        
+            
         setNavigation(newNavigation)
+        console.log(navigation)
+        }
     }
     const mappedData = recipes.map((recipe, index) =>{
            
@@ -61,48 +71,71 @@ function ContentBox(props){
         let navItems = []
     
     for(let i =0; i< totalPages  ; i++){
-        if(i < totalPages -1 && i >0 )
+        if(i < totalPages  && i >=0 )
         navItems.push(
-        <button key= {i + "navButton" }onClick={handleNavigationClick} value={i+1}>{i+1}</button>        )
+       
+
+        <div className={` arrows ${navigation.current === i+1 && 'navigationActive'}`} key= {i + "navButton" }onClick={e=>handleNavigationClick(e,i)} value={i+1}> {i+1} </div>
+        
+        
+        
+        )
     }
     return navItems
     }
 
+   
     return(
-        loading? <h1> loading</h1>:
-        <div className="contentBox">
+        
+        loading? 
+        
+        <Spinner/>:
+
+
+
+        <div className="contentBox" >
             
             <div className="contentBoxContent ">
                 <h1 className="text-center">{title}</h1>  
                 <hr className="width80"/>
-                <p class='searchNumber'> {totalItems} total recipes </p>
+                <div className='contentBoxHeader' >
+                    <div>
+                    <p className='searchNumber'> {totalItems} total recipes </p>
+                    </div>
+                    <div>
+                <select className='navigationSelect' name="itemsPerPage" onChange={(e)=>setPageLimit(parseInt(e.target.value))} value={pageLimit}>    
+                        <option value={5}>5 items per page</option>
+                        <option value={10}>10 items per page</option>
+                        <option value={20}>20 items per page</option>
+                        <option value= {50}>50 items per page</option>
+                    </select> 
+                    </div>
+                </div>
                 <hr className="width80"/>
-                {/* <div className="contentBoxNavigation">
-
-                   {navigation.current!==1 ? <button onClick={setFirst}>First</button> : 'Filler'  }
-                    {navigation.current!==1 ? <button onClick={setBack}>Back</button> : "filler"  }
-                    <button onClick={setNext}>Next</button>   
-                    <button onClick={setLast}>Last</button> 
- 
-                   <select name="cars" onChange={(e)=>setPageLimit(parseInt(e.target.value))} value={pageLimit}>    
-                        <option value={5}>5 items per Page</option>
-                        <option value={10}>10</option>
-                        <option value={20}>20</option>
-                        <option value= {50}>50</option>
-                    </select>  
-
-
-
-                {navigationNumbers()}
-
-                    <hr className="width80"/>
-                </div> */}
+                
 
 
 
                 <div className="contentBoxCard">
                     {mappedData}
-           
+                    <hr className="width80"/>
+                </div>
+
+                <div className="contentBoxNavigation">
+
+                
+                
+                <div className={` arrows  ${navigation.current ===1 && 'navigationDisable'}`}   onClick={setFirst} > {"<<"}  </div>
+                <div className={` arrows mr2 ${navigation.current ===1 && 'navigationDisable'}`} onClick={setBack} > {'<'} </div>
+
+                {navigationNumbers()}
+
+                <div className={` arrows ml2 ${navigation.current === pageLimit && 'navigationDisable'}`} onClick={setNext} > > </div>
+                <div className={` arrows  ${navigation.current === pageLimit && 'navigationDisable'}`} onClick={setLast} > >> </div>
+                
+                <div className="navigationSelectContainer">
+                     
+                    </div>
                 </div>
                 
             </div>

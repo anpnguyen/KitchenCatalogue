@@ -6,15 +6,10 @@ import PrivateRoute from './components/routing/PrivateRoute'
 import './App.css';
 import IndexContainer from './components/Home/indexContainer';
 import IndividualRecipe from './components/Home/Recipes/individualRecipe'
-// import Test from './components/Home/Recipes/Test'
-// import TestContainer from './components/TestContainer'
-// import NavBar from './components/Home/navBar'
-// import SearchBar from './components/Home/searchBar'
-// import NewRecipe from './components/Home/Recipes/newRecipe'
 import NewRecipeContainer from './components/Home/Recipes/newRecipeContainer'
 import EditIndividualRecipe from './components/Home/Recipes/EditIndividualRecipe'
 import Recipes from './components/Home/Recipes/recipes'
-import RecipesSet from './components/Home/Recipes/recipesSet'
+
 
 
 // redux
@@ -67,10 +62,7 @@ function App() {
                 path='/recipe'
                 component={Recipes}/>
              
-                <PrivateRoute
-                exact
-                path='/recipe/set/:setNumber'
-                component={RecipesSet}/>
+              
 
 
                 <PrivateRoute

@@ -9,11 +9,12 @@ import {getRecipes} from '../../actions/recipe'
 
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+// import Spinner from '../Layout/spinner'
 
 
 function Home(props){
 
-    const {getRecipes} = props
+    const {getRecipes, auth, recipe} = props
 
     useEffect(()=>{
         // console.log('calling')
@@ -26,10 +27,13 @@ function Home(props){
             <NavBar/>
             <SearchBar/>
             
+            
+
+            {/* {auth.loading || recipe.loading ? <Spinner/>: */}
 
             <ContentBox title="My Recipes" text={true} showAll={true} {...props}/>
             
-            
+            {/* } */}
             
 
             <Footer/>
