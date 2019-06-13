@@ -29,7 +29,7 @@ export default function(state = initialState, action){
                 ...state, 
                 ...action.payload,
                 isAuthenticated: true,
-                loading: false
+                loading: true
             }
 
         case REGISTER_FAIL:
