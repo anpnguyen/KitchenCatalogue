@@ -12,6 +12,7 @@ import {
   EDIT_RECIPE_ERROR,
   DELETE_RECIPE,
   DELETE_RECIPE_ERROR
+  // RECIPE_ADD_FAVOURITE 
 } from '../actions/types'
 
 // import {Redirect} from 'react-router-dom'
@@ -20,6 +21,7 @@ const initialState = {
     recipes:[],
     recipe:{},
     loading: true,
+    
     error: {}
   };
 
@@ -73,6 +75,7 @@ const initialState = {
           loading:true
         }
 
+        
        
   
 

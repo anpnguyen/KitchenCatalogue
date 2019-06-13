@@ -54,7 +54,7 @@ function NavBar(props){
             </div>
         
         
-             {auth.loading? "" : "Welcome back "+ auth.user.username }
+             {/* {auth.loading? "" : "Welcome back "+ auth.user.username } */}
         </div>
     )
 }

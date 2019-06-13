@@ -47,15 +47,6 @@ router.post('/',
 
         await user.save();
 
-        // const cookbook = new Cookbook({
-        //     user: user.id,
-        //     cookbookTitle: "My Favourites"
-        // })
-
-        // await cookbook.save()
-
-        // console.log('after cookbook saved')
-
         const payload = {
             user: {
             id: user.id
@@ -72,7 +63,6 @@ router.post('/',
             }
         );
         } catch (err) {
-        // console.error(err.message);
         res.status(500).send('Server error');
         }
     }

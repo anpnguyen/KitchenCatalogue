@@ -13,16 +13,18 @@ const initialState = {
     token: localStorage.getItem('token'),
     isAuthenticated: false,
     loading: true,
-    user: null
+    user: null,
+  
 };
 
 
 export default function(state = initialState, action){
+    const {type, payload} = action
+    switch(type){
 
-    // const {type, payload} = action
-    switch(action.type){
+        // we will get a token back
         case REGISTER_SUCCESS:
-            localStorage.setItem('token', action.payload.token)
+            localStorage.setItem('token', payload.token)
             return {
                 ...state, 
                 ...action.payload,
@@ -45,7 +47,6 @@ export default function(state = initialState, action){
                 isAuthenticated:true,
                 loading: false,
                 user: action.payload
-
             };
         case AUTH_ERROR:
             return {
@@ -81,8 +82,7 @@ export default function(state = initialState, action){
                 loading: false,
                 user: null
             }
-        
-        
+                
             default:
             return state
         }

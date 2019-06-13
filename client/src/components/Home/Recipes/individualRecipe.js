@@ -5,32 +5,55 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import uuid from 'uuid/v4'
 import NavBar from '../../Home/navBar'
-import {deleteRecipe} from '../../../actions/recipe'
+import {deleteRecipe,addRecipeToFavourites} from '../../../actions/recipe'
 import{Link} from 'react-router-dom'
 
 import {withRouter} from 'react-router-dom'
 
 function IndividualRecipe(props){
 
-    const { match, getRecipeById, deleteRecipe, history} = props
+    const { match, getRecipeById, deleteRecipe, history, addRecipeToFavourites, auth} = props
     const {title, imageUrl, servings, time, ingredients, instructions, user,_id} = props.recipe.recipe
-    // const {username} = props.recipe.recipe.user
+    
     const {loading} = props.recipe
 
     useEffect(()=>{
         getRecipeById(match.params.recipe_id)
         
+        // auth.user.favouriteRecipes.find(x=> x===match.params.recipe_id) ? console.log('found'): console.log('notfound')
     },[getRecipeById,match.params.recipe_id ])
+    
+    
+
 
 
     function handleDelete(){
         deleteRecipe(history, match.params.recipe_id)
     }
 
+     
+    // console.log(auth.user.favouriteRecipes)
+    
+    let arr = [
+        { name:"string 1", value:"this", other: "that" },
+        { name:"string 2", value:"this", other: "that" }
+    ];
+    
+    
+
+    
+    // return the value
+    // console.log(typeof(checker))
+    // console.log(typeof(match.params.recipe_id))
+
+    // useEffect(()=>{
         
+        // console.log(checker)
+        // console.log(auth.user.favouriteRecipes[0])
         
-   
-        
+        // console.log(checker == auth.user.favouriteRecipes[0])
+
+    // },[auth.user] )
 
     return(
         
@@ -48,6 +71,7 @@ function IndividualRecipe(props){
                 <h1 className="">{title}</h1>  
                 <div className="individualRecipeDetails ">
                     <div className=''>
+                        {/* {auth.user.favouriteRecipes.find(x=> x===match.params.recipe_id) ? 'favourite': 'not a favourite'} */}
                         <p><span className='bold'>By: </span> {user.username} </p>
                         <p><span className="spanMargin"><span className='bold'>Serves </span> {servings}</span>  <span className='bold'>Cooking Time:</span> {time}</p>      
                     </div>
@@ -55,7 +79,7 @@ function IndividualRecipe(props){
 
                 </div> 
                 <div className='individualRecipeSave'>
-                        <button>Save</button>
+                        <button >Save</button>
                         <button onClick={handleDelete}>Delete</button>
                         <Link to={`/recipe/${_id}/edit`}><button >Edit</button></Link>
                     </div> 
@@ -119,15 +143,17 @@ function IndividualRecipe(props){
 IndividualRecipe.propTypes = {
     getRecipeById: PropTypes.func.isRequired,
     deleteRecipe: PropTypes.func.isRequired,
+    addRecipeToFavourites:PropTypes.func.isRequired,
     
-    recipe:PropTypes.object.isRequired
+    recipe:PropTypes.object.isRequired,
+    auth:PropTypes.object.isRequired
 }
 
 
 const mapStateToProps = state => ({
-    
+    auth: state.auth,
     recipe: state.recipe
     
 })
 
-export default withRouter(connect(mapStateToProps , {getRecipeById, deleteRecipe})(IndividualRecipe))
+export default withRouter(connect(mapStateToProps , {getRecipeById, deleteRecipe, addRecipeToFavourites})(IndividualRecipe))
