@@ -1,8 +1,10 @@
 .contentCard{
-    width: 23%;
-    margin: 0 7px;
+    width: 25%;
+    /* margin: 0 7px; */
+    padding: 0 7px;
     overflow: hidden;
-    margin-bottom: 30px
+    margin-bottom: 30px;
+    box-sizing: border-box
     
 }
 
@@ -46,17 +48,24 @@
 
 }
 
-/* .iconSpacer2{
-    width: 300px;
-    display:flex;
-    justify-content: space-around;
-    margin-left: 20px;
-    margin-right: 50px
-} */
+
+@media only screen and (max-width: 900px) {
+    .contentCard{
+        width: 33%;
+        
+    }
+  }
+
 @media only screen and (max-width: 768px) {
     .contentCard{
-        width: 40%;
-        /* height:100px; */
-        /* padding: 0 5px */
+        width: 50%;
+
+    }
+  }
+
+  @media only screen and (max-width: 480px) {
+    .contentCard{
+        width: 100%;
+
     }
   }

@@ -25,13 +25,12 @@ function Home(props){
         <Fragment>
             <NavBar/>
             <SearchBar/>
-            {/* <IndividualRecipe {...props}/> */}
-
-            <ContentBox title="My Favourite Recipes" text={true} showAll={false} {...props}/>
             
-            {/* <ContentBox title="My Cookbooks" text={false} showAll={false} {...props}/> */}
 
-            {/* <ContentBox title="My Recipes" text={true} myRecipes={true}/> */}
+            <ContentBox title="My Recipes" text={true} showAll={true} {...props}/>
+            
+            
+            
 
             <Footer/>
         </Fragment>

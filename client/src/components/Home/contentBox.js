@@ -7,7 +7,6 @@ import {connect} from 'react-redux'
 function ContentBox(props){
 
     const {title, text, recipe, showAll} = props
-    
     const {recipes, loading} = recipe
     const [pageLimit, setPageLimit] = useState(5)
     const [navigation, setNavigation] = useState({start:0, end: pageLimit, current: 1})
@@ -15,9 +14,6 @@ function ContentBox(props){
     const totalPages = Math.floor((recipes.length/pageLimit)) + 1
 
     
-    
-    console.log(navigation)
-    console.log(pageLimit)
 
     useEffect(
         ()=>{
@@ -25,34 +21,14 @@ function ContentBox(props){
         
     },[pageLimit]
     )
-    const mappedData = recipes.map((recipe, index) =>{
-        
-        
-        if(!showAll && index <4)
-            {
-            return <ContentCard title="Chicken Curry" recipe={recipe} showAll={showAll} text={text} key={recipe._id}/>
-            
-        } 
-
-        else if(showAll && index < navigation.end  && index>= navigation.start ){
-            return <ContentCard title="Chicken Curry" recipe={recipe} showAll={showAll} text={text} key={recipe._id}/>
-        } else {
-            return <Fragment key={recipe._id}></ Fragment>
-        }
-
-        
-    })
-
-
     function setFirst(){
         setNavigation({start:0, end: pageLimit, current: 1})
     }
-// 0 -20   curr1
+
     function setNext(){
         let newNavigation = {start: navigation.start + pageLimit, end: navigation.end + pageLimit , current: navigation.current +1 } 
         setNavigation(newNavigation)
     }
-    // 20 -40 curr 2
 
     function setBack(){
         let newNavigation = {start: navigation.start - pageLimit,  end: navigation.end - pageLimit, current: navigation.current -1 } 
@@ -65,15 +41,22 @@ function ContentBox(props){
     }
 
     function handleNavigationClick(e){
-        console.log(e.target.value)
         let newNavigation = {start: (e.target.value-1)*pageLimit ,  end: (e.target.value)* pageLimit, current: e.target.value } 
         setNavigation(newNavigation)
     }
-// 80 to 91
-    // 80 - 100
+    const mappedData = recipes.map((recipe, index) =>{
+           
+        if(!showAll && index <4)
+            {
+            return <ContentCard title="Chicken Curry" recipe={recipe} showAll={showAll} text={text} key={recipe._id}/>
+        } else if(showAll && index < navigation.end  && index>= navigation.start ){
+            return <ContentCard title="Chicken Curry" recipe={recipe} showAll={showAll} text={text} key={recipe._id}/>
+        } else {
+            return <Fragment key={recipe._id}></ Fragment>
+        }
+       
+    })
 
-
-   
     function navigationNumbers(){
         let navItems = []
     
@@ -83,7 +66,7 @@ function ContentBox(props){
         <button key= {i + "navButton" }onClick={handleNavigationClick} value={i+1}>{i+1}</button>        )
     }
     return navItems
-}
+    }
 
     return(
         loading? <h1> loading</h1>:
@@ -92,32 +75,31 @@ function ContentBox(props){
             <div className="contentBoxContent ">
                 <h1 className="text-center">{title}</h1>  
                 <hr className="width80"/>
-                <div className="contentBoxNavigation">
+                <p class='searchNumber'> {totalItems} total recipes </p>
+                <hr className="width80"/>
+                {/* <div className="contentBoxNavigation">
 
                    {navigation.current!==1 ? <button onClick={setFirst}>First</button> : 'Filler'  }
                     {navigation.current!==1 ? <button onClick={setBack}>Back</button> : "filler"  }
                     <button onClick={setNext}>Next</button>   
                     <button onClick={setLast}>Last</button> 
  
-                   <select name="cars" onChange={(e)=>setPageLimit(parseInt(e.target.value))} value={pageLimit}>
-  
-  <option value={5}>5 items per Page</option>
-  <option value={10}>10</option>
+                   <select name="cars" onChange={(e)=>setPageLimit(parseInt(e.target.value))} value={pageLimit}>    
+                        <option value={5}>5 items per Page</option>
+                        <option value={10}>10</option>
+                        <option value={20}>20</option>
+                        <option value= {50}>50</option>
+                    </select>  
 
-  
 
 
-
-  <option value={20}>20</option>
-  <option value= {50}>50</option>
-</select>  
-
-<span> showing {navigation.start +1} to { navigation.end <= totalItems? navigation.end : totalItems} of {totalItems} </span>
-
-{navigationNumbers()}
+                {navigationNumbers()}
 
                     <hr className="width80"/>
-                </div>
+                </div> */}
+
+
+
                 <div className="contentBoxCard">
                     {mappedData}
            
@@ -135,18 +117,15 @@ function ContentBox(props){
     )
 }
 
-// export default ContentBox
+
 ContentBox.propTypes = {
     recipe: PropTypes.object.isRequired
-    // auth: PropTypes.object.isRequired,
-    // getRecipes: PropTypes.func.isRequired
-
-
+ 
 }
 
 
 const mapStateToProps = state => ({
-    // auth: state.auth,
+
     recipe: state.recipe
 })
 
