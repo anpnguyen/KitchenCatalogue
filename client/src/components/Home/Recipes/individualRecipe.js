@@ -120,8 +120,7 @@ function IndividualRecipe(props){
 IndividualRecipe.propTypes = {
     getRecipeById: PropTypes.func.isRequired,
     deleteRecipe: PropTypes.func.isRequired,
-    addRecipeToFavourites:PropTypes.func.isRequired,
-    
+        
     recipe:PropTypes.object.isRequired,
     auth:PropTypes.object.isRequired
 }

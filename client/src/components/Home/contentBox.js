@@ -10,7 +10,7 @@ function ContentBox(props){
 
     const {title, text, recipe, showAll} = props
     const {recipes, loading} = recipe
-    const [pageLimit, setPageLimit] = useState(5)
+    const [pageLimit, setPageLimit] = useState(12)
     const [navigation, setNavigation] = useState({start:0, end: pageLimit, current: 1})
     const totalItems = recipes.length
     const totalPages = Math.floor((recipes.length/pageLimit)) + 1
@@ -21,25 +21,33 @@ function ContentBox(props){
         ()=>{
         setNavigation({...navigation, start: 0, end:pageLimit, current:1})
         
-    },[pageLimit, navigation]
+    },[pageLimit]
     )
     function setFirst(){
-        setNavigation({start:0, end: pageLimit, current: 1})
+        if(navigation.current !== 1){
+           setNavigation({start:0, end: pageLimit, current: 1})
+        }
     }
 
     function setNext(){
+        if(navigation.current !== totalPages){
         let newNavigation = {start: navigation.start + pageLimit, end: navigation.end + pageLimit , current: navigation.current +1 } 
         setNavigation(newNavigation)
     }
+    }
 
     function setBack(){
+        if(navigation.current !== 1){
         let newNavigation = {start: navigation.start - pageLimit,  end: navigation.end - pageLimit, current: navigation.current -1 } 
         setNavigation(newNavigation)
     }
+    }
     
     function setLast(){
+        if(navigation.current !== totalPages){
         let newNavigation = {start: (totalPages-1)*pageLimit ,  end: totalPages* pageLimit, current: totalPages } 
         setNavigation(newNavigation)
+        }
     }
 
     function handleNavigationClick(e,i){
@@ -104,10 +112,10 @@ function ContentBox(props){
                     </div>
                     <div>
                 <select className='navigationSelect' name="itemsPerPage" onChange={(e)=>setPageLimit(parseInt(e.target.value))} value={pageLimit}>    
-                        <option value={5}>5 items per page</option>
-                        <option value={10}>10 items per page</option>
+                        <option value={12}>12 items per page</option>
+                        <option value={16}>16 items per page</option>
                         <option value={20}>20 items per page</option>
-                        <option value= {50}>50 items per page</option>
+                        <option value= {48}>48 items per page</option>
                     </select> 
                     </div>
                 </div>
@@ -130,8 +138,8 @@ function ContentBox(props){
 
                 {navigationNumbers()}
 
-                <div className={` arrows ml2 ${navigation.current === pageLimit && 'navigationDisable'}`} onClick={setNext} > > </div>
-                <div className={` arrows  ${navigation.current === pageLimit && 'navigationDisable'}`} onClick={setLast} > >> </div>
+                <div className={` arrows ml2 ${navigation.current === totalPages && 'navigationDisable'}`} onClick={setNext} > > </div>
+                <div className={` arrows  ${navigation.current === totalPages && 'navigationDisable'}`} onClick={setLast} > >> </div>
                 
                 <div className="navigationSelectContainer">
                      

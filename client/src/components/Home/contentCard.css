@@ -1,27 +1,59 @@
 .contentCard{
-    width: 25%;
-    /* margin: 0 7px; */
-    padding: 0 7px;
+    width: 24%;
+    margin: 0 0.5%;
+    padding: 0 10px;
     overflow: hidden;
     margin-bottom: 30px;
-    box-sizing: border-box
+    box-sizing: border-box;
+    min-height: 290px;
+    border:1px solid #f3f3f3;
+    border-radius: 10px;
+    -webkit-box-shadow: 3px 3px 5px -1px rgba(207,195,207,1);
+    -moz-box-shadow: 3px 3px 5px -1px rgba(207,195,207,1);
+    box-shadow: 3px 3px 5px -1px rgba(207,195,207,1);
     
 }
 
-/* .contentCard img{ */
-    /* text-align:center */
-/* } */
-/* .contentCardImage{
-    text-align:center
-} */
+.ContentCardImage{
+
+    border-radius: 10px 10px 0 0 ;
+    background: #f8f8f8
+
+    /* padding: 5px; */
+
+}
+
+.fillerImg{
+    height:150px;
+    /* width:150px; */
+    max-width:100%;
+    background:  #f8f8f8;
+    border-radius: 10px 10px 0 0 ;
+}
+
+.ContentCardImage img{
+     
+    border-radius: 10px 10px 0 0 ;
 
 
+
+}
+
+.ContentCardText{
+    background: #f8f8f8
+}
 
 .recipeText{
     margin: 10px 0;
     font-size:0.8rem;
     padding-left: 10px;
     text-align: left
+}
+
+.recipeText svg{
+    color:rgba(245, 176, 98, 0.467);
+    margin-right: 5px
+
 }
 
 .contentCardTitleContainer{
@@ -36,7 +68,7 @@
 
 
 
-.iconSpacer{
+/* .iconSpacer{
     width: 100%;
     display:flex;
     justify-content: flex-start;
@@ -46,26 +78,26 @@
 .iconSpacer div{
     margin-right: 20px
 
-}
+} */
 
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 1000px) {
     .contentCard{
-        width: 33%;
+        width: 32%;
         
     }
   }
 
 @media only screen and (max-width: 768px) {
     .contentCard{
-        width: 50%;
+        width: 49%;
 
     }
   }
 
   @media only screen and (max-width: 480px) {
     .contentCard{
-        width: 100%;
+        width: 99%;
 
     }
   }

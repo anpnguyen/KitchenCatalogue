@@ -14,7 +14,7 @@ import {connect} from 'react-redux'
 
 function Home(props){
 
-    const {getRecipes, auth, recipe} = props
+    const {getRecipes} = props
 
     useEffect(()=>{
         // console.log('calling')
