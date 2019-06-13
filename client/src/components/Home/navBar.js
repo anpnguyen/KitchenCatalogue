@@ -27,22 +27,22 @@ function NavBar(props){
                 <p className="navBarLogoText"><Link to='/'>Kitchen Catalogue</Link></p>
             </div>
 
-            <div className="navBarButton " onClick={handleToggle}>
+            {/* <div className="navBarButton " onClick={handleToggle}>
                 <div className="burgerButton"></div>
                  <div className="burgerButton"></div>
                  <div className="burgerButton"></div>
-            </div>
+            </div> */}
 
             <div className='navBarContainer'>
                 <ul className={`navBarList ${toggle? 'display': ""}`}>                           
-                    <li className="navBarListItem"><Link to='/recipe/new'>Create A Recipe</Link></li>
+                    {/* <li className="navBarListItem"><Link to='/recipe/new'>Create A Recipe</Link></li> */}
                     {/* <li className="navBarListItem"><Link to='/recipe'>View All Recipes</Link></li> */}
                     {/* <li className="navBarListItem"><Link to='/recipe/favourites'>View Facourites</Link></li> */}
-                    <li className="navBarListItem"><button onClick={handleLogout}>Logout</button></li>
+                    <li className="navBarListItem">{auth.loading? "" : "Welcome back "+ auth.user.username }  </li>
                 </ul>
             </div>
-      
-             {auth.loading? "" : "Welcome back "+ auth.user.username }
+            <button onClick={handleLogout}><i className="fa fa-sign-out"></i>Logout</button>
+             
         </div>
     )
 }

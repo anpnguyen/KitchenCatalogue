@@ -48,15 +48,26 @@
     
     height:40px;
     border:none;
-    margin-right:10px;
+    /* margin-right:10px; */
     border-radius: 20px;
-    background: rgb(218, 26, 45);
+    background: rgb(50, 119, 231);
+
     width: 100px;
     color: white;
     font-size: 12px;
     font-weight: bold;
     text-transform: uppercase;
-    letter-spacing: 1px
+    letter-spacing: 1px;
+    
+  
+    
    
-       
+    transition: transform 80ms ease-in;
+    
+   
+}
+
+.SearchBarButton:hover{
+    background: rgb(26, 93, 218);
+
 }

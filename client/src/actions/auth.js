@@ -13,14 +13,12 @@ import setAuthToken from '../utils/setAuthToken'
 import axios from 'axios'
 
 
-
 //  *** LOAD A USER  ***
 export const loadUser = () => async dispatch =>{
   // if there is a token in local storage, set it as out axios header
   if(localStorage.token){
     setAuthToken(localStorage.token);
   }
-
   // then make a request to see if the token is valid
   try{
     const res = await axios.get('http://localhost:5000/api/authUser');
@@ -61,8 +59,6 @@ export const register = ({ username, email, password }) => async dispatch => {
       //  err is the name i gave t
       // response.data is the axios response and the data object
       // errors is the name of  object given from the back end
-      
-
       const errors = err.response.data.errors;
       
       // if there are any errors, they will activate set Alert
@@ -77,10 +73,7 @@ export const register = ({ username, email, password }) => async dispatch => {
       });
     }
   };
-  
-
-
-  // LOGIN a user
+    // *** LOGIN a user ***
 
 export const login = ({ email, password }) => async dispatch => {
   const config = {
@@ -117,7 +110,7 @@ export const login = ({ email, password }) => async dispatch => {
   }
 };
 
-//  Logout 
+//  *** LOGOUT *** 
 export const logout = () => dispatch => {
   dispatch({
     type: CLEAR_USER

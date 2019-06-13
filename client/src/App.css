@@ -19,6 +19,15 @@ h2,h3, p{
     margin:0
 }
 
+a {
+    color: inherit;
+    text-decoration: none
+}
+
+button{
+    font-family: 'montserrat'
+    
+}
 
 ul{
     list-style: none;

@@ -2,7 +2,7 @@
 
 
 .navBar{
-    background: #DC3545!important;
+    background:  rgb(218, 26, 45)!important;
     position: relative;
     width: 100%;
     background:#f3f3f3;
@@ -17,6 +17,28 @@
     
 }
 
+.navBar button{
+    background: none;
+    color: white;
+    border:2px solid white;
+    border-radius: 20px;
+    height: 40px;
+    width:100px;
+    margin-right: 20px;
+    font-size: 0.8rem;
+    font-family: inherit;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all .1s ease-in-out;
+}
+
+.navBar button:hover{
+    color: #dddddd;
+    border: 2px solid #dddddd;
+    /* transform:scale(1.05) */
+}
+
 .navBarLogo{
     min-width:280px;
     margin:0;
@@ -28,7 +50,7 @@
 
 .navBarLogoText{
     width:100%;
-    /* box-sizing: border-box; */
+    
 }
 
 .navBarContainer{
@@ -44,7 +66,7 @@
     display:none
 }
 .navBarList{
-    /* width: 100%; */
+    
     display: inline;
     list-style: none;
     margin:0;
@@ -53,7 +75,7 @@
     /* display:inline */
 }
 
-.navBarListItem{
+.navBarListItem a{
     display:inline;
     
     margin: 0 20px;
