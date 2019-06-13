@@ -1,12 +1,10 @@
 import React ,{useState}from 'react'
-
 import {Link} from 'react-router-dom'
-import './navBar.css'
-
 import {connect} from 'react-redux'
-
 import {logout} from '../../actions/auth'
 import { clearRecipe } from '../../actions/recipe';
+import './navBar.css'
+
 
 function NavBar(props){
 
@@ -19,11 +17,10 @@ function NavBar(props){
 
     function handleLogout(){
         clearRecipe()
-        logout()
-        
+        logout()       
     }
-    return(
 
+    return(
         
         <div className="navBar">
             <div className="navBarLogo">
@@ -37,32 +34,21 @@ function NavBar(props){
             </div>
 
             <div className='navBarContainer'>
-                <ul className={`navBarList ${toggle? 'display': ""}`}>
-                    
-                    
-                    
+                <ul className={`navBarList ${toggle? 'display': ""}`}>                           
                     <li className="navBarListItem"><Link to='/recipe/new'>Create A Recipe</Link></li>
-                    <li className="navBarListItem"><Link to='/recipe'>View All Recipes</Link></li>
-                    <li className="navBarListItem"><Link to='/recipe/favourites'>View Facourites</Link></li>
+                    {/* <li className="navBarListItem"><Link to='/recipe'>View All Recipes</Link></li> */}
+                    {/* <li className="navBarListItem"><Link to='/recipe/favourites'>View Facourites</Link></li> */}
                     <li className="navBarListItem"><button onClick={handleLogout}>Logout</button></li>
-                    
-                   
-                    
-                
-                    
                 </ul>
             </div>
-        
-        
-             {/* {auth.loading? "" : "Welcome back "+ auth.user.username } */}
+      
+             {auth.loading? "" : "Welcome back "+ auth.user.username }
         </div>
     )
 }
 
 const mapStateToProps = state => ({
     auth: state.auth,
-    // recipe: state.recipe
-    // profile: state.profile
 })
 
 export default connect(mapStateToProps, {logout, clearRecipe})(NavBar)
