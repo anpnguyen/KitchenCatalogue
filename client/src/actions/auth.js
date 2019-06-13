@@ -67,7 +67,7 @@ export const register = ({ username, email, password }) => async dispatch => {
       
       // if there are any errors, they will activate set Alert
       if (errors) {
-        errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
+        errors.forEach(error => dispatch(setAlert(error.msg, 'LoginDanger')));
       }
       
       // register fail will clear local storage of token 

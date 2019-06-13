@@ -42,10 +42,10 @@ function Login(props){
     function handleRegister(e){
         e.preventDefault()
         if(password!==password2){
-            setAlert("Passwords to not match", "danger")
+            setAlert("Passwords to not match", "LoginDanger")
         }else {
             register({username, email, password})
-            console.log('user registered')
+            // console.log('user registered')
             
         }
         

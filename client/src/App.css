@@ -82,13 +82,54 @@ hr{
 }
 
 
-.alert {
+/* .alert {
     padding: 0.8rem;
     margin: 1rem 0;
     opacity: 0.9;
     background: white;
     color: #333;
-    position: absolute;
+    position: relative;
     top: 150px;
     z-index: 9999;
-  }
+  } */
+
+.LoginDanger{
+    width:450px;
+    padding: 0.8rem 0.8rem 0.8rem 0.8rem;
+    
+    margin: 2px 10px;
+    opacity: 0.9;
+    background: #F2DEDF;
+    color: #8D5556;
+    border: 1px solid #8D5556; 
+    position: relative;
+    top: 70px;
+    z-index: 9999;
+    border-radius: 10px
+}  
+
+.LoginDangerPosition{
+   
+}
+
+
+.AlertContainer{
+    position: absolute;
+    width:100vw;
+    height:100vh;
+    display:flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column
+}
+
+.AlertCross{
+    margin-right: 0.8rem;
+    font-weight: bold
+}
+
+.alert{
+    display:flex;
+    justify-content: space-between
+
+}

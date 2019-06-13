@@ -1,4 +1,8 @@
-import {SET_ALERT, REMOVE_ALERT} from './types'
+import {
+    SET_ALERT, 
+    REMOVE_ALERT,
+    CLEAR_ALERTS    
+} from './types'
 import uuid from 'uuid/v4'
 
 // These are the functions we export
@@ -8,6 +12,12 @@ import uuid from 'uuid/v4'
 export const setAlert = (msg,alertType) => (dispatch) =>{
     // generate id
     const id = uuid();
+
+    // dispatch({
+    //     type: CLEAR_ALERTS
+        
+    // });
+
     dispatch({
         type: SET_ALERT,
         payload: {msg, alertType, id}
@@ -15,4 +25,12 @@ export const setAlert = (msg,alertType) => (dispatch) =>{
 
     setTimeout(()=> dispatch({type:REMOVE_ALERT, payload:id}),5000)
 };
+
+export const removeAlert = (msgId) => (dispatch) =>{
+    
+    dispatch({type:REMOVE_ALERT, payload:msgId})
+
+    
+};
+
 

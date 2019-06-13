@@ -2,18 +2,32 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect } from 'react-redux'
 // import {uuid} from 'uuid/v4'
+import {removeAlert} from '../../actions/alert'
 
 function Alert(props){
-    const {alerts} = props
+    
+    
+    // alertType
+    const {alerts, removeAlert} = props
     console.log(alerts)
     
-    const mappedAlerts = alerts.map((alert, index) => (
-        <p key={index + alert}> {alert.msg} </p>
-    ))
+    const mappedAlerts = alerts.map((alert, index) => {
+        
+        function handleRemove(msgId){
+            removeAlert(msgId)
+
+        }
+
+        return(
+            
+        <div  key={index + alert} className={`alert ${alert.alertType} ${index < alerts.length-1 ? 'LoginDangerPosition' : 'LoginDangerPositionLast'}`} >
+            <div > {alert.msg}</div> <div className='AlertCross' onClick={()=>handleRemove(alert.id)}>x</div>
+        </div>)
+    })
 
     return(
 
-        <div className="alert" >
+        <div className='AlertContainer'>
              {mappedAlerts}           
         </div>
 
@@ -34,7 +48,8 @@ function Alert(props){
 // this checks the props in the Alert component
 Alert.propTypes = {
     // the prop alters is an array and is required
-    alerts: PropTypes.array.isRequired
+    alerts: PropTypes.array.isRequired,
+    removeAlert: PropTypes.func.isRequired
 }
 
 // this gets you access to global state and makes it into a prop
@@ -43,4 +58,4 @@ const mapStateToProps = state=>({
     alerts: state.alert
 })
 
-export default connect(mapStateToProps)(Alert)
+export default connect(mapStateToProps, {removeAlert})(Alert)
