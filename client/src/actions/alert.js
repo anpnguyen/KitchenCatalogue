@@ -9,6 +9,14 @@ import uuid from 'uuid/v4'
 
 // msg is mssage you get form resigter form (or any other component)
 // alertType is what colour the alert should be (this will add a class later on)
+
+export const clearAlerts = ()=> dispatch =>{
+    dispatch({
+            type: CLEAR_ALERTS
+            
+        });
+}
+
 export const setAlert = (msg,alertType) => (dispatch) =>{
     // generate id
     const id = uuid();

@@ -14,6 +14,7 @@ function Alert(props){
     const mappedAlerts = alerts.map((alert, index) => {
         
         function handleRemove(msgId){
+            
             removeAlert(msgId)
 
         }

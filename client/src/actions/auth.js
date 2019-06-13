@@ -8,7 +8,7 @@ import {
   LOGOUT,
   CLEAR_USER
   } from './types'
-import {setAlert} from './alert'
+import {setAlert, clearAlerts} from './alert'
 import setAuthToken from '../utils/setAuthToken'
 import axios from 'axios'
 
@@ -67,6 +67,7 @@ export const register = ({ username, email, password }) => async dispatch => {
       
       // if there are any errors, they will activate set Alert
       if (errors) {
+        dispatch(clearAlerts())
         errors.forEach(error => dispatch(setAlert(error.msg, 'LoginDanger')));
       }
       
@@ -106,7 +107,8 @@ export const login = ({ email, password }) => async dispatch => {
       
     // if there are errors, then for each one, run the function 'setAlert' with each error in err.response.data.errors
     if (errors) {
-      errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
+      dispatch(clearAlerts())
+      errors.forEach(error => dispatch(setAlert(error.msg, 'LoginDangerg')));
     }
   
     dispatch({
