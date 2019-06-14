@@ -7,6 +7,9 @@ import {createRecipe} from '../../../actions/recipe'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {withRouter} from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faClock, faUtensils } from '@fortawesome/free-solid-svg-icons'
+import Footer from '../../Home/footer'
 
 // import Alert from '../../Layout/alert'
 
@@ -14,7 +17,8 @@ import {withRouter} from 'react-router-dom'
 
 function NewRecipe(props) {
 
-    const {createRecipe,history, recipe} = props
+    const {createRecipe,history, recipe, auth} = props
+    const {user} = auth
     const initialData = {
         title:"",
         imageUrl:"",
@@ -110,12 +114,59 @@ function handleSubmit(e){
             
         <div className="contentBox">
             <div className="contentBoxContent height100">    
-            <h1 className="text-center">Create a New Recipe</h1>
+            
             {/* <hr className='width80'/> */}
                 <div className="newRecipe">                    
-                <div className="newRecipePreview">
-                    this is where the preview will go
+                <h1 className="text-center">Create a New Recipe</h1>
+                <hr className="width80"/>
+                {/* <h3 className="text-center"> Recipe Preview</h3>   */}
+                {/* *****PREVIEW */}
+
+                <div className="newRecipePreviewContainer">
+                    
+                    <div className="newRecipePreview">
+                    
+                    <div className="newRecipePreviewItem">
+                            
+                       </div>
+                       {user !== null &&
+                       <>
+                       <div className="newRecipePreviewItem">
+                            <h1 className="">{!title? "My Recipe Title": title}</h1>  
+                       </div>
+                       
+                       
+                        <div className="newRecipePreviewItem">
+                            <p><span className='bold'>By: </span> {user.username} </p>
+                        </div>
+                        <div className="newRecipePreviewItem">
+                                <p>
+                                    <span className="spanMargin">
+                                        <span className='bold'>
+                                            <FontAwesomeIcon icon={faUtensils} /> Serves 
+                                        </span> {servings}
+                                    </span>  
+                                    <span className='bold'>
+                                        <FontAwesomeIcon icon={faClock} />Cooking Time:
+                                    </span> {time}
+                                </p> 
+                        </div>
+                        <div className="newRecipePreviewItem">
+                            {!imageUrl ? <div className="fillerImg"></div>: <img className='image' src={imageUrl} alt=""/>}
+                        </div>
+
+                        </>
+                       } 
+                            
+                            
+                                
+                            
+                                        
+
+                    </div> 
+                        
                 </div>
+            {/* </div> */}
 
                     <div className='newRecipeForm'>
                         <form  onSubmit={handleSubmit}>
@@ -146,7 +197,7 @@ function handleSubmit(e){
                                 
                             </div>
                             
-                          
+{/*                           
                             <div className="newRecipeIngredientsContainer">
                                 <div className="newRecipeIngredients">
                                 <div className="newRecipeIngredientItem">
@@ -189,7 +240,7 @@ function handleSubmit(e){
                                             placeholder="Ingredient Name"
                                             value={recipeIngredient.ingredientName || " "}
                                             onChange={e => handleIngredientNameChange(e, index)}
-                                            // className="NewRecipeName"
+                                            
                                             /> <button type="button" onClick={() => handleIngredientRemove(index)}>
                                             X
                                             </button></div>
@@ -205,16 +256,15 @@ function handleSubmit(e){
                                 </div>
 
                                 </div>
-                            </div>
+                            </div> */}
 
-
+{/* 
                             <div className="newRecipeInstructionContainer ">
                                 <div className='newRecipeInstruction'>
-                                {/* <h3>Instructions</h3> */}
-                                {/* <div className="newRecipeInstructionItem"> */}
+                      
                                     
                                     {recipeInstructions.map( (recipeInstruction,i) => {
-                                        // console.log(recipeInstruction)
+                                   
                                         return(
                                         <div className="newRecipeInstructionItem" key ={`${i} + instruction`}>
                                             <div className='newRecipeInstructionLeft'><h3>{i+1}.</h3> </div>
@@ -226,7 +276,7 @@ function handleSubmit(e){
                                     })}
 
                                 
-                                {/* </div> */}
+                                
                                 <button className="addInstructionButton" onClick={e=> handleInstructionAdd(e)}>Add Instruction</button>
                                 <div className="newRecipeButton">
                                 <button className="save">Save</button>
@@ -237,13 +287,14 @@ function handleSubmit(e){
 
                             
                             </div>
-                        
+                         */}
                         </form>
                         
                     </div>
                 </div>           
             </div>
         </div>
+        <Footer/>
     </>
 )}
 
