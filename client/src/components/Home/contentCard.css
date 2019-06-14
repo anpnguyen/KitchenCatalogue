@@ -1,6 +1,6 @@
 .contentCard{
-    width: 24%;
-    margin: 0 0.5%;
+    width: 23%;
+    margin: 0 1%;
     padding: 0 10px;
     overflow: hidden;
     margin-bottom: 30px;
@@ -51,7 +51,7 @@
 }
 
 .recipeText svg{
-    color:rgba(245, 176, 98, 0.467);
+    color:#8CC700;
     margin-right: 5px
 
 }
@@ -83,21 +83,21 @@
 
 @media only screen and (max-width: 1000px) {
     .contentCard{
-        width: 32%;
+        width: 31%;
         
     }
   }
 
 @media only screen and (max-width: 768px) {
     .contentCard{
-        width: 49%;
+        width: 48%;
 
     }
   }
 
   @media only screen and (max-width: 480px) {
     .contentCard{
-        width: 99%;
+        width: 98%;
 
     }
   }

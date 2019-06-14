@@ -7,8 +7,11 @@ import uuid from 'uuid/v4'
 import NavBar from '../../Home/navBar'
 import {deleteRecipe} from '../../../actions/recipe'
 import{Link} from 'react-router-dom'
-
+import Spinner from '../../Layout/spinner'
+import Footer from '../../Home/footer'
 import {withRouter} from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faClock, faUtensils } from '@fortawesome/free-solid-svg-icons'
 
 function IndividualRecipe(props){
 
@@ -34,13 +37,13 @@ function IndividualRecipe(props){
 
     return(
         
-        loading? <h1>Loading</h1> :
+        loading? <><NavBar/><Spinner/></>:
         <>
         <NavBar/>
 
         <div className="contentBox">
             
-            <div className="contentBoxContent ">    
+            <div className="contentBoxContent padding0">    
 
             
                 
@@ -48,35 +51,35 @@ function IndividualRecipe(props){
                 <h1 className="">{title}</h1>  
                 <div className="individualRecipeDetails ">
                     <div className=''>
-                        {/* {auth.user.favouriteRecipes.find(x=> x===match.params.recipe_id) ? 'favourite': 'not a favourite'} */}
                         <p><span className='bold'>By: </span> {user.username} </p>
-                        <p><span className="spanMargin"><span className='bold'>Serves </span> {servings}</span>  <span className='bold'>Cooking Time:</span> {time}</p>      
+                        <p><span className="spanMargin"><span className='bold'><FontAwesomeIcon icon={faUtensils} /> Serves </span> {servings}</span>  <span className='bold'><FontAwesomeIcon icon={faClock} />Cooking Time:</span> {time}</p>      
                     </div>
                                    
 
                 </div> 
                 <div className='individualRecipeSave'>
-                        <button >Save</button>
-                        <button onClick={handleDelete}>Delete</button>
-                        <Link to={`/recipe/${_id}/edit`}><button >Edit</button></Link>
-                    </div> 
+                    <Link to={`/recipe/${_id}/edit`}><button >Edit</button></Link>
+                    <button onClick={handleDelete}>Delete</button>
+                        
+                </div> 
                
-                <hr className="width80"/>
-                <div className="text-center ">
+                {/* <hr className="width80"/> */}
+                <div className="text-center individualRecipeImageContainer ">
                     <img className='image' src={imageUrl} alt=""/>
                 </div>
+                <hr className="width80"/>
 
                 <div className="individualRecipeText">
                     <div className="ingredients  ">
                         <ul className="">
-                            <li className=' '>Ingredients</li>
+                            <li className=' '><h3>Ingredients</h3>    </li>
                             {ingredients.map( (ingredient, index) =>(
                                 <Fragment key={ingredient._id}>
                                 <li> {`${ingredient.quantity} ${ingredient.unit} of ${ingredient.ingredientName}`}</li>
                                 </Fragment>
                             ))}
                             
-                                                  
+                                                 
                            
                         </ul>
                     </div>
@@ -85,7 +88,7 @@ function IndividualRecipe(props){
                     
                     <ul className="individualRecipeInstructions">
                             
-                            <li className='individualRecipeList bold color'>Instructions</li>
+                            <li className='individualRecipeList bold color'><h3>Instructions</h3>  </li>
 
                             {instructions.map( (instruction, index) =>(
                                 <Fragment key={uuid()}>
@@ -110,6 +113,7 @@ function IndividualRecipe(props){
             </div>
             
         </div>
+        <Footer/>
         </>
 
     )

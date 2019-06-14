@@ -101,7 +101,7 @@ export const login = ({ email, password }) => async dispatch => {
     // if there are errors, then for each one, run the function 'setAlert' with each error in err.response.data.errors
     if (errors) {
       dispatch(clearAlerts())
-      errors.forEach(error => dispatch(setAlert(error.msg, 'LoginDangerg')));
+      errors.forEach(error => dispatch(setAlert(error.msg, 'LoginDanger')));
     }
   
     dispatch({

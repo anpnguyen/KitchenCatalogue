@@ -69,8 +69,8 @@
 
 .loginOverlay {
 
-	background: -webkit-linear-gradient(to right, #bdc3c7, #2c3e50);
-	background: linear-gradient(to right, #bdc3c7, #2c3e50);
+	background: rgb(218,35,35)!important;
+background: linear-gradient(90deg, rgba(218,35,35,1) 0%, rgba(215,131,71,1) 100%)!important;
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 0 0;
@@ -153,8 +153,8 @@
 
  .loginButton {
 	border-radius: 20px;
-	border: 1px solid #DC3545;
-	background-color: #DC3545;
+	border: 1px solid rgb(50, 119, 231);
+	background-color: rgb(50, 119, 231);
 	color: #FFFFFF;
 	font-size: 12px;
 	font-weight: bold;
@@ -162,17 +162,26 @@
 	letter-spacing: 1px;
 	text-transform: uppercase;
     transition: transform 80ms ease-in;
-    margin-top: 10px
+	margin-top: 10px;
+	-webkit-box-shadow: 3px 3px 2px 0px rgba(184,184,184,1);
+-moz-box-shadow: 3px 3px 2px 0px rgba(184,184,184,1);
+box-shadow: 3px 3px 2px 0px rgba(184,184,184,1);
+outline: none
+	
 }
 
 
 button:active {
 	transform: scale(0.95);
+	-webkit-box-shadow: 1px 1px 2px 0px rgba(184,184,184,1);
+-moz-box-shadow: 1px 1px 2px 0px rgba(184,184,184,1);
+box-shadow: 1px 1px 2px 0px rgba(184,184,184,1);
 }
 
 button:hover {
 	/* border: 1px solid rgb(218, 26, 45); */
-	background-color: rgb(218, 26, 45);
+	background-color: rgb(26, 93, 218);
+	
 }
 
 .loginP {

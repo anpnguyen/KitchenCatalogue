@@ -2,7 +2,8 @@
 
 
 .navBar{
-    background:  rgb(218, 26, 45)!important;
+    background: rgb(218,35,35)!important;
+    background: linear-gradient(90deg, rgba(218,35,35,1) 0%, rgba(215,131,71,1) 100%)!important;
     position: relative;
     width: 100%;
     background:#f3f3f3;

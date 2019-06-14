@@ -1,7 +1,9 @@
 
 .individualRecipe h1{
-    margin-bottom: 0;
-    text-align: center
+    margin: 0;
+    text-align: center;
+    background:rgba(255, 230, 202, 0.5);
+    padding-top: 30px
 }
 
 
@@ -9,6 +11,7 @@
     display:flex;
     text-align: center;
     justify-content: center;
+    background:rgba(255, 230, 202, 0.5)
   
 }
 
@@ -22,14 +25,16 @@
     display: flex; 
     align-items: center;
     justify-content: center;
+    padding: 7px 0;
+    background:rgba(255, 230, 202, 0.5)
 
 }
 
 .individualRecipeSave button{
-    background: rgb(54, 216, 81);
+    background: rgb(50, 119, 231);
     border: none;
     height:30px;
-    width:60px;
+    width:80px;
     border-radius: 20px;
     color: white;
     font-size: 12px;
@@ -38,19 +43,38 @@
     letter-spacing: 1px;
     display:inline-block;
     position: relative;
-    text-align: center
+    text-align: center;
+    margin: 0 10px
+  }
+
+  .individualRecipeSave button:hover{
+    background: rgb(26, 93, 218);
     
+  }
 
+.individualRecipeImageContainer{
+    padding-top: 20px;
+    
 }
-
 .image{
-    max-height: 300px
+    max-height: 300px;
+    border-radius: 10px;
+    -webkit-box-shadow: 3px 3px 5px -1px rgba(207,195,207,1);
+    -moz-box-shadow: 3px 3px 5px -1px rgba(207,195,207,1);
+    box-shadow: 3px 3px 5px -1px rgba(207,195,207,1);
 }
 
 .individualRecipeText{
     display: flex;
     text-align: center;
     justify-content: center;
+    /* background:#f8f8f8 */
+    
+}
+
+.individualRecipeDetails svg{
+    color:#8CC700;
+    margin-right: 5px
 }
 
 
@@ -62,19 +86,11 @@
 .instructions{
     flex: 5;
     
-
 }
 
 
 
 
-/* .individualRecipeUl{
-    margin-left: 20px;
-    margin-top: 0;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-    padding: 20px
-} */
 
 .ingredients Ul{
     margin-left: 20px;
@@ -86,7 +102,7 @@
 
 .ingredients ul li:nth-of-type(1) {
     font-weight: bold;
-    color: red
+    color: rgb(218, 26, 45);
   }
 
 .ingredients ul li:nth-of-type(2n) {
@@ -99,17 +115,6 @@
     padding: 15px
 }
 
-/* .individualRecipeList{
-    padding: 8px 0;
-    padding: 15px
-} */
-  /* .individualRecipeInstructions{
-    margin-left: 20px;
-    margin-top: 0;
-    font-size: 0.9rem;
-    letter-spacing: 1.5px;
-    padding: 15px
-} */
 
 .instructions ul{
     margin-left: 20px;
@@ -131,6 +136,10 @@
     min-width: 30px
 }
 
+.padding0{
+    padding:0 !important;
+    /* margin:0 10px !important */
+}
 
 
 

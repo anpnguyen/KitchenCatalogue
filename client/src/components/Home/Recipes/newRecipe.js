@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import NavBar from '../navBar'
 import './newRecipe.css'
@@ -8,14 +8,13 @@ import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {withRouter} from 'react-router-dom'
 
-import Alert from '../../Layout/alert'
+// import Alert from '../../Layout/alert'
 
 // import "./styles.css";
 
 function NewRecipe(props) {
 
-    const {createRecipe,history} = props
-    
+    const {createRecipe,history, recipe} = props
     const initialData = {
         title:"",
         imageUrl:"",
@@ -26,7 +25,7 @@ function NewRecipe(props) {
     const {title, imageUrl, servings, time} = recipeDetails
     const [recipeIngredients, setRecipeIngredients] = useState([{ quantity: null , unit:null, ingredientName:null}]);
     const [recipeInstructions, setRecipeInstructions] = useState([" "]);
-    // const [isEdit, setIsEdit] = useState(false);
+    const [newRecipe, setNewRecipe] = useState('Details')
 
 //  Detail Logic
 
@@ -103,50 +102,76 @@ function handleSubmit(e){
 
 
   return(
+
+    
+
     <>
         <NavBar/>
-            <Alert/>
+            
         <div className="contentBox">
             <div className="contentBoxContent height100">    
             <h1 className="text-center">Create a New Recipe</h1>
-            <hr className='width80'/>
-                <div className="newRecipe">
+            {/* <hr className='width80'/> */}
+                <div className="newRecipe">                    
+                <div className="newRecipePreview">
+                    this is where the preview will go
+                </div>
+
                     <div className='newRecipeForm'>
                         <form  onSubmit={handleSubmit}>
-                            <div className="newRecipeDetails">
-                                <div className='newRecipeItem'>
-                                    <div><label htmlFor="Title">Title: </label></div>
-                                    <div><input type="text" placeholder="Title" name="title" value={title} onChange={handleDetailChange} /></div>
+                            <div className="newRecipeDetailsContainer">
+                                <div className="newRecipeDetails">
+                                    <div className='newRecipeItem text-center'>
+                                        <h3>Recipe Details</h3>
+                                        
+                                    </div>
+                                    <div className='newRecipeItem text-center'>
+                                        <div><label htmlFor="Title"><h5>Title:</h5> </label></div>
+                                        <div><input type="text" placeholder="Title" name="title" value={title} onChange={handleDetailChange} /></div>
+                                    </div>
+                                    <div className='newRecipeItem'>
+                                        <div><label htmlFor="ImageUrl"><h5>Image Url:</h5> </label></div>
+                                        <div><input type="text" placeholder="Image Url" name = "imageUrl" value={imageUrl} onChange={handleDetailChange}/></div>
+                                    </div>
+                                    <div className='newRecipeItem'>
+                                        <div><label htmlFor="ImageUrl"><h5>Servings:</h5> </label></div>
+                                        <div><input type="text" placeholder="Servings" name ="servings" value={servings} onChange={handleDetailChange}/></div>
+                                    </div>
+                                    <div className='newRecipeItem'>
+                                        <div><label htmlFor="ImageUrl"><h5>Cooking Time:</h5> </label></div>
+                                        <div><input type="text" placeholder="Cooking Time" name="time" value={time} onChange={handleDetailChange}/></div>
+                                    </div>
+                                    {/* <hr className="width80"/> */}
                                 </div>
-                                <div className='newRecipeItem'>
-                                    <div><label htmlFor="ImageUrl">Image Url: </label></div>
-                                    <div><input type="text" placeholder="Image Url" name = "imageUrl" value={imageUrl} onChange={handleDetailChange}/></div>
-                                </div>
-                                <div className='newRecipeItem'>
-                                    <div><label htmlFor="ImageUrl">Servings: </label></div>
-                                    <div><input type="text" placeholder="Servings" name ="servings" value={servings} onChange={handleDetailChange}/></div>
-                                </div>
-                                <div className='newRecipeItem'>
-                                    <div><label htmlFor="ImageUrl">Cooking Time: </label></div>
-                                    <div><input type="text" placeholder="Cooking Time" name="time" value={time} onChange={handleDetailChange}/></div>
-                                </div>
-                                <hr className="width80"/>
+                                
                             </div>
                             
-                            
-                            <div className="newRecipeIngredients ">
-                                <h3>Ingredients</h3>
-                                <div className="newRecipeIngredientsItems">
-                                    <div className="newRecipeIngredientItem">
-                                        <div >Quantity</div>
-                                        <div >Unit</div>
-                                        <div className="NewRecipeName">Ingredient Name</div>
-                                    </div>
+                          
+                            <div className="newRecipeIngredientsContainer">
+                                <div className="newRecipeIngredients">
+                                <div className="newRecipeIngredientItem">
+                                    <h3>Ingredients</h3>
+                                </div>
+                                <div className="newRecipeIngredientItem">
+                                    
+                                        <div className='newIngredientItemLeft'>
+                                            
+                                        </div>
+                                        <div className='newIngredientItemRight'> 
+                                            <div >Quantity</div>
+                                            <div >Unit</div>
+                                            <div className="NewRecipeName">Ingredient Name</div>
+                                        </div>
+                                       
+                                </div>
                                     
                                     {recipeIngredients.map((recipeIngredient, index) => {
                                         return (
                                         <div key={`${index} + ingredient`} className="newRecipeIngredientItem">
-                                            
+                                            <div className='newIngredientItemLeft'>
+                                                <h3>{index+1}.</h3>
+                                            </div>
+                                            <div className='newIngredientItemRight'>
                                             <div><input
                                             type="text"
                                             placeholder="Quantity"
@@ -168,55 +193,53 @@ function handleSubmit(e){
                                             /> <button type="button" onClick={() => handleIngredientRemove(index)}>
                                             X
                                             </button></div>
+                                            </div>
                                             
                                         </div>
                                         );
                                     })}
                                 
+                                
+                                <div className="width100 text-center">
+                                    <button className="addIngredientButton" onClick={e=> handleIngredientAdd(e)}>Add Ingredient</button>
                                 </div>
-                                <button className="save" onClick={e=> handleIngredientAdd(e)}>Add Ingredient</button>
+
+                                </div>
                             </div>
 
-                            <div className="newRecipeInstruction ">
-                                <h3>Instructions</h3>
-                                <div className="newRecipeInstructionItems">
+
+                            <div className="newRecipeInstructionContainer ">
+                                <div className='newRecipeInstruction'>
+                                {/* <h3>Instructions</h3> */}
+                                {/* <div className="newRecipeInstructionItem"> */}
                                     
                                     {recipeInstructions.map( (recipeInstruction,i) => {
                                         // console.log(recipeInstruction)
                                         return(
                                         <div className="newRecipeInstructionItem" key ={`${i} + instruction`}>
-                                            <div>{i+1}. </div>
-                                            <div><textarea rows="4" onChange={(e)=>handleInstructionChange(e,i)} value={recipeInstruction}/></div>
-                                            <div><button onClick={(e)=> handleInstructionRemove(i, e)}>X</button></div>
+                                            <div className='newRecipeInstructionLeft'><h3>{i+1}.</h3> </div>
+                                            <div className='newRecipeInstructionRight'><textarea rows="4" onChange={(e)=>handleInstructionChange(e,i)} value={recipeInstruction}/><button onClick={(e)=> handleInstructionRemove(i, e)}>X</button></div>
+                                            
                                         </div>)
                                     
 
                                     })}
-{/* 
-                                    <div className="newRecipeInstructionItem">
-                                        <div>1. </div>
-                                        <div><textarea rows="4" /></div>
-                                    </div>
-                                    <div className="newRecipeInstructionItem">
-                                        <div>2. </div>
-                                        <div ><textarea rows="4" /></div>
-                                    </div>
-                                    <div className="newRecipeInstructionItem">
-                                        <div>3. </div>
-                                        <div ><textarea rows="4" /></div>
-                                    </div> */}
 
-                                </div>
-                                <button className="save" onClick={e=> handleInstructionAdd(e)}>Add Instruction</button>
-                            </div>
-
-
-                            <div className="newRecipeButton">
+                                
+                                {/* </div> */}
+                                <button className="addInstructionButton" onClick={e=> handleInstructionAdd(e)}>Add Instruction</button>
+                                <div className="newRecipeButton">
                                 <button className="save">Save</button>
                                 <button className="save">Clear</button>
                             </div>
+                            </div>
+
+
+                            
+                            </div>
                         
                         </form>
+                        
                     </div>
                 </div>           
             </div>

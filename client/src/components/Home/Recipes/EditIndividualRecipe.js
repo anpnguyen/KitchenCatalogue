@@ -115,7 +115,7 @@ function handleSubmit(e){
   return(
     <>
         <NavBar/>
-            <Alert/>
+            {/* <Alert/> */}
         <div className="contentBox">
             <div className="contentBoxContent height100">    
             <h1 className="text-center">Create a New Recipe</h1>

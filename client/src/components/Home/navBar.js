@@ -38,7 +38,7 @@ function NavBar(props){
                     {/* <li className="navBarListItem"><Link to='/recipe/new'>Create A Recipe</Link></li> */}
                     {/* <li className="navBarListItem"><Link to='/recipe'>View All Recipes</Link></li> */}
                     {/* <li className="navBarListItem"><Link to='/recipe/favourites'>View Facourites</Link></li> */}
-                    <li className="navBarListItem">{auth.loading? "" : "Welcome back "+ auth.user.username }  </li>
+                    {/* <li className="navBarListItem">{auth.loading? "" : "Welcome back "+ auth.user.username }  </li> */}
                 </ul>
             </div>
             <button onClick={handleLogout}><i className="fa fa-sign-out"></i>Logout</button>

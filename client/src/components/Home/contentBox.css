@@ -14,7 +14,7 @@
 .contentBoxContent{
     flex-basis: 1000px;
     background: white;
-    padding: 0 10px
+    /* padding: 0 10px */
 }
 
 .contentBoxCard{
@@ -95,6 +95,3 @@
     height:30px
 }
 
-.navigationSelect select{
-  
-}
