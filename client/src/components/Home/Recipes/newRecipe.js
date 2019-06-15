@@ -29,7 +29,7 @@ function NewRecipe(props) {
     const {title, imageUrl, servings, time} = recipeDetails
     const [recipeIngredients, setRecipeIngredients] = useState([{ quantity: null , unit:null, ingredientName:null}]);
     const [recipeInstructions, setRecipeInstructions] = useState([" "]);
-    const [newRecipeStage, setNewRecipeStage] = useState('Details')
+    const [newRecipeStage, setNewRecipeStage] = useState(1)
 
 //  Detail Logic
 
@@ -103,9 +103,17 @@ function handleSubmit(e){
 
     }
 
-function handleToIngredients(e){
+function handleToNext(e){
     e.preventDefault();
-    setNewRecipeStage("ingredients")
+
+    setNewRecipeStage(newRecipeStage +1)
+
+}
+
+function handleToBack(e){
+    e.preventDefault();
+
+    setNewRecipeStage(newRecipeStage -1)
 
 }
 
@@ -126,7 +134,7 @@ function handleToIngredients(e){
                 {/* <h3 className="text-center"> Recipe Preview</h3>   */}
                 {/* *****PREVIEW */}
 
-                <div className="newRecipePreviewContainer">
+                {newRecipeStage === 1 && <div className="newRecipePreviewContainer">
                     
                     <div className="newRecipePreview">
                     
@@ -170,14 +178,15 @@ function handleToIngredients(e){
 
                     </div> 
                         {/* <hr className="width80"/> */}
-                </div>
-                <hr className="width80"/>
+                </div>}
+
+                {/* <hr className="width80"/> */}
             {/* </div> */}
 
                     <div className='newRecipeForm'>
                         <form  onSubmit={handleSubmit}>
 
-                            {newRecipeStage === 'Details' &&
+                            {newRecipeStage === 1 &&
                             <div className="newRecipeDetailsContainer">
                                 <div className="newRecipeDetails">
                                     <div className='newRecipeItem text-center'>
@@ -202,7 +211,7 @@ function handleToIngredients(e){
                                     </div>
                                     <div className='newRecipeItem'>
                                         {/* <button className="newRecipeNavigation">Clear Text</button> */}
-                                        <button onClick={handleToIngredients} className="newRecipeNavigation">Next</button>
+                                        <button onClick={handleToNext} className="newRecipeNavigation">Next</button>
                                     </div>
                                     {/* <hr className="width80"/> */}
                                 </div>
@@ -211,7 +220,7 @@ function handleToIngredients(e){
 
                             {/* *** Instructions **** */}
                             
-                           {newRecipeStage === "ingredients" &&
+                           {newRecipeStage === 2 &&
                             <div className="newRecipeIngredientsContainer">
                                 <div className="newRecipeIngredients">
                                 <div className="newRecipeIngredientItem">
@@ -265,20 +274,32 @@ function handleToIngredients(e){
                                     })}
                                 
                                 
-                                <div className="width100 text-center">
+                                
+                                
+                                <div className="newRecipeIngredientItem">
+                                    
                                     <button className="addIngredientButton" onClick={e=> handleIngredientAdd(e)}>Add Ingredient</button>
-                                    <button className="addIngredientButton" onClick={e=> handleIngredientAdd(e)}>Back to Details</button>
-                                    <button className="addIngredientButton" onClick={e=> handleIngredientAdd(e)}>Next</button>
+                                    
+                                    
                                 </div>
 
+                                
+
+                                </div>
+                                <div className="newRecipeIngredientItem newRecipeIngredientItemLast">
+                                    <button className="newRecipeNavigation" onClick={e=> handleToBack(e)}>Back </button>
+                                    <button className="newRecipeNavigation" onClick={e=> handleToNext(e)}>Next</button>
                                 </div>
                             </div> }
 
-{/* 
+                                            {/* instruction */}
+                            {newRecipeStage ===3 &&
                             <div className="newRecipeInstructionContainer ">
                                 <div className='newRecipeInstruction'>
                       
-                                    
+                                    <div className="newRecipeInstructionItem ">
+                                        <h3>Instructions</h3>
+                                    </div>
                                     {recipeInstructions.map( (recipeInstruction,i) => {
                                    
                                         return(
@@ -294,16 +315,19 @@ function handleToIngredients(e){
                                 
                                 
                                 <button className="addInstructionButton" onClick={e=> handleInstructionAdd(e)}>Add Instruction</button>
-                                <div className="newRecipeButton">
+                                {/* <div className="newRecipeButton">
                                 <button className="save">Save</button>
                                 <button className="save">Clear</button>
-                            </div>
+                                </div> */}
                             </div>
 
-
+                            <div className="newRecipeIngredientItem newRecipeIngredientItemLast">
+                                    <button className="newRecipeNavigation" onClick={e=> handleToBack(e)}>Back </button>
+                                    <button className="newRecipeNavigation" onClick={e=> handleSubmit(e)}>Submit</button>
+                            </div>
                             
-                            </div>
-                         */}
+                            </div>}                                                
+                        
                         </form>
                         
                     </div>
