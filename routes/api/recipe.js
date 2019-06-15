@@ -108,7 +108,7 @@ router.get('/:recipe_id', authMiddleware, async (req, res) => {
 
 // *** Edit a recipe *** workaroudn with post
 
-router.post('/:recipe_id/edit',[
+router.put('/:recipe_id',[
         authMiddleware,
         [
         check('title', 'A title is required')

@@ -127,12 +127,11 @@ function handleToBack(e){
         <div className="contentBox">
             <div className="contentBoxContent height100">    
             
-            {/* <hr className='width80'/> */}
+            
                 <div className="newRecipe">                    
                 <h1 className="text-center">Create a New Recipe</h1>
                 <hr className="width80"/>
-                {/* <h3 className="text-center"> Recipe Preview</h3>   */}
-                {/* *****PREVIEW */}
+               
 
                 {newRecipeStage === 1 && <div className="newRecipePreviewContainer">
                     

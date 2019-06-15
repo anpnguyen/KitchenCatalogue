@@ -2,19 +2,22 @@
 .newRecipe{
     display:flex;
     justify-content: center;;
-    flex-direction: column
-    
+    flex-direction: column;
+    align-items: center
 }
 
 .newRecipePreviewContainer{
     width:100%;
     display:flex;
     justify-content: center;
+    height:500px;
+    /* overflow: auto */
     /* background: rgb(251, 242, 231); */
 }
 
 .newRecipePreview{
     width:60%;
+    height:95%!important;
     display:flex;
     flex-direction: column;
     border:1px solid rgba(240, 198, 151, 0.5);
@@ -359,8 +362,9 @@ box-shadow: 1px 1px 2px 0px rgba(184,184,184,1);
 
 }
 
+    
 @media only screen and (max-width: 1000px) {
-    .newRecipeDetails, .newRecipeIngredients, .newRecipeInstruction{
+    .newRecipeDetails, .newRecipeIngredients, .newRecipeInstruction {
         width:90%
     }
     .newIngredientItemLeft, .newRecipeInstructionLeft {
@@ -369,20 +373,26 @@ box-shadow: 1px 1px 2px 0px rgba(184,184,184,1);
 
     .newRecipeDetails .newRecipeItem  div:nth-child(1){
         width:15%; 
-}
+    }
+    .newRecipeForm{
+ 
+        width:90% ;
+        /* padding-left: 10px */
+    }
 }
 
 @media only screen and (max-width: 768px) {
-    .newRecipeDetails, .newRecipeIngredients, .newRecipeInstruction{
+    .newRecipeDetails, .newRecipeIngredients, .newRecipeInstruction, .newRecipePreview{
         width:100%;
-        padding:0 20px
+        /* padding:0 20px */
     }
+    
 }
 
 
 @media only screen and (max-width: 768px) {
     .newRecipeForm{
  
-        width:100% 
+        width:90% 
     }
 }
