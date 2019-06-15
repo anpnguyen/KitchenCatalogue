@@ -29,7 +29,7 @@ function NewRecipe(props) {
     const {title, imageUrl, servings, time} = recipeDetails
     const [recipeIngredients, setRecipeIngredients] = useState([{ quantity: null , unit:null, ingredientName:null}]);
     const [recipeInstructions, setRecipeInstructions] = useState([" "]);
-    const [newRecipe, setNewRecipe] = useState('Details')
+    const [newRecipeStage, setNewRecipeStage] = useState('Details')
 
 //  Detail Logic
 
@@ -103,7 +103,11 @@ function handleSubmit(e){
 
     }
 
+function handleToIngredients(e){
+    e.preventDefault();
+    setNewRecipeStage("ingredients")
 
+}
 
   return(
 
@@ -143,7 +147,7 @@ function handleSubmit(e){
                                 <p>
                                     <span className="spanMargin">
                                         <span className='bold'>
-                                            <FontAwesomeIcon icon={faUtensils} /> Serves 
+                                            <FontAwesomeIcon icon={faUtensils} /> Serves: 
                                         </span> {servings}
                                     </span>  
                                     <span className='bold'>
@@ -153,8 +157,9 @@ function handleSubmit(e){
                         </div>
                         <div className="newRecipePreviewItem">
                             {!imageUrl ? <div className="fillerImg"></div>: <img className='image' src={imageUrl} alt=""/>}
+                            
                         </div>
-
+                            
                         </>
                        } 
                             
@@ -164,19 +169,22 @@ function handleSubmit(e){
                                         
 
                     </div> 
-                        
+                        {/* <hr className="width80"/> */}
                 </div>
+                <hr className="width80"/>
             {/* </div> */}
 
                     <div className='newRecipeForm'>
                         <form  onSubmit={handleSubmit}>
+
+                            {newRecipeStage === 'Details' &&
                             <div className="newRecipeDetailsContainer">
                                 <div className="newRecipeDetails">
                                     <div className='newRecipeItem text-center'>
                                         <h3>Recipe Details</h3>
                                         
                                     </div>
-                                    <div className='newRecipeItem text-center'>
+                                    <div className='newRecipeItem '>
                                         <div><label htmlFor="Title"><h5>Title:</h5> </label></div>
                                         <div><input type="text" placeholder="Title" name="title" value={title} onChange={handleDetailChange} /></div>
                                     </div>
@@ -192,12 +200,18 @@ function handleSubmit(e){
                                         <div><label htmlFor="ImageUrl"><h5>Cooking Time:</h5> </label></div>
                                         <div><input type="text" placeholder="Cooking Time" name="time" value={time} onChange={handleDetailChange}/></div>
                                     </div>
+                                    <div className='newRecipeItem'>
+                                        {/* <button className="newRecipeNavigation">Clear Text</button> */}
+                                        <button onClick={handleToIngredients} className="newRecipeNavigation">Next</button>
+                                    </div>
                                     {/* <hr className="width80"/> */}
                                 </div>
                                 
-                            </div>
+                            </div>}
+
+                            {/* *** Instructions **** */}
                             
-{/*                           
+                           {newRecipeStage === "ingredients" &&
                             <div className="newRecipeIngredientsContainer">
                                 <div className="newRecipeIngredients">
                                 <div className="newRecipeIngredientItem">
@@ -253,10 +267,12 @@ function handleSubmit(e){
                                 
                                 <div className="width100 text-center">
                                     <button className="addIngredientButton" onClick={e=> handleIngredientAdd(e)}>Add Ingredient</button>
+                                    <button className="addIngredientButton" onClick={e=> handleIngredientAdd(e)}>Back to Details</button>
+                                    <button className="addIngredientButton" onClick={e=> handleIngredientAdd(e)}>Next</button>
                                 </div>
 
                                 </div>
-                            </div> */}
+                            </div> }
 
 {/* 
                             <div className="newRecipeInstructionContainer ">
