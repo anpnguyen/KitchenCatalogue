@@ -1,9 +1,9 @@
-import React, { useState} from "react";
+import React, { useState, useEffect} from "react";
 
 import NavBar from '../navBar'
 import './newRecipe.css'
 
-import {editRecipePut} from '../../../actions/recipe'
+import {editRecipePut, getRecipeById} from '../../../actions/recipe'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {withRouter} from 'react-router-dom'
@@ -15,9 +15,9 @@ import Footer from '../../Home/footer'
 
 function EditIndividualRecipe(props) {
 
+    
 
-
-   const {editRecipePut,history, recipe, auth} = props
+   const {editRecipePut,history, recipe, auth, getRecipeById, match} = props
    const {user} = auth
     // const {recipe} = props.recipe
     
@@ -133,18 +133,33 @@ function handleToBack(e){
     setNewRecipeStage(newRecipeStage -1)
 
 }
- 
+useEffect(()=>{
+    console.log(recipe.loading)
+     getRecipeById(match.params.recipe_id)
+    
+},[]
+    )
+
+    useEffect(()=>{
+        setRecipeDetails(initialData);    
+    
+        setRecipeIngredients(recipe.recipe.ingredients);
+        setRecipeInstructions(recipe.recipe.instructions);
+        
+    },[recipe]
+        )
 
   return(
     <>
         <NavBar/>
-            
+        <Alert/>
+        {recipe.loading === true? <h1>Loading</h1> :
         <div className="contentBox">
             <div className="contentBoxContent height100">    
             
             
                 <div className="newRecipe">                    
-                <h1 className="text-center">Create a New Recipe</h1>
+                <h1 className="text-center">Edit Recipe</h1>
                 <hr className="width80"/>
                
 
@@ -347,7 +362,7 @@ function handleToBack(e){
                     </div>
                 </div>           
             </div>
-        </div>
+        </div>}
         <Footer/>
     </>
 )}
@@ -360,7 +375,8 @@ EditIndividualRecipe.propTypes = {
     
     auth: PropTypes.object.isRequired,
     recipe: PropTypes.object.isRequired,
-    editRecipePut: PropTypes.func.isRequired
+    editRecipePut: PropTypes.func.isRequired,
+    getRecipeById: PropTypes.func.isRequired
 
 
 }
@@ -371,4 +387,4 @@ const mapStateToProps = state => ({
     recipe: state.recipe
     
 })
-export default withRouter(connect(mapStateToProps, {editRecipePut})(EditIndividualRecipe))
+export default withRouter(connect(mapStateToProps, {editRecipePut,getRecipeById})(EditIndividualRecipe))

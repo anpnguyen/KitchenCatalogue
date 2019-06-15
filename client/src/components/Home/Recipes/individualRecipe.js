@@ -12,6 +12,7 @@ import Footer from '../../Home/footer'
 import {withRouter} from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClock, faUtensils } from '@fortawesome/free-solid-svg-icons'
+import Alert from '../../Layout/alert'
 
 function IndividualRecipe(props){
 
@@ -40,6 +41,7 @@ function IndividualRecipe(props){
         loading? <><NavBar/><Spinner/></>:
         <>
         <NavBar/>
+        <Alert/>
 
         <div className="contentBox">
             

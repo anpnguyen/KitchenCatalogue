@@ -21,7 +21,7 @@ function Alert(props){
 
         return(
             
-        <div  key={index + alert} className={`alert ${alert.alertType} ${index < alerts.length-1 ? 'LoginDangerPosition' : 'LoginDangerPositionLast'}`} >
+        <div  key={index + alert} className={`alert ${alert.alertType} `} >
             <div > {alert.msg}</div> <div className='AlertCross' onClick={()=>handleRemove(alert.id)}>x</div>
         </div>)
     })

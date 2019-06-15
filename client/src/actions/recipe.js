@@ -152,7 +152,7 @@ export const createRecipe = (formData, history) => async dispatch => {
        
         const errors = err.response.data.errors ;
             if (errors) {
-                errors.forEach(error => dispatch(setAlert(error.msg, 'danger')))
+                errors.forEach(error => dispatch(setAlert(error.msg, 'LoginDanger')))
             };
 
         dispatch({
@@ -220,8 +220,7 @@ export const editRecipePut = (formData, history, recipeId) => async dispatch => 
             }
           };
         
-        // const body = JSON.stringify({ formData});
-        
+            
         
         const res = await axios.put(`http://localhost:5000/api/recipe/${recipeId}`, formData, config)
         console.log('put request')
@@ -232,8 +231,10 @@ export const editRecipePut = (formData, history, recipeId) => async dispatch => 
             payload: res.data
         });
 
-        dispatch(setAlert ( "Recipe Sucessfully Edited", "success"
+        dispatch(setAlert ( "Recipe Sucessfully Edited", "RecipeEditSuccess"
         ));
+
+        history.push(`/recipe/${recipeId}`)
 
                       
         

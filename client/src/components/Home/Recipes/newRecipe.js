@@ -10,7 +10,7 @@ import {withRouter} from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClock, faUtensils } from '@fortawesome/free-solid-svg-icons'
 import Footer from '../../Home/footer'
-
+import Alert from '../../Layout/alert'
 // import Alert from '../../Layout/alert'
 
 // import "./styles.css";
@@ -123,6 +123,7 @@ function handleToBack(e){
 
     <>
         <NavBar/>
+        <Alert/>
             
         <div className="contentBox">
             <div className="contentBoxContent height100">    
