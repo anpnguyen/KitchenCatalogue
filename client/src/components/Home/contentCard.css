@@ -55,8 +55,9 @@
 .fillerImg{
     height:180px;
     /* width:150px; */
+    min-width: 100%;
     max-width:100%;
-    background:  #f8f8f8;
+    background:  #f8f8f8!important;
     border-radius: 10px 10px 0 0 ;
 }
 

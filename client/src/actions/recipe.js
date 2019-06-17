@@ -44,6 +44,8 @@ export const getRecipes = () => async dispatch => {
 
 
 
+
+
 // Clear Recipe from State
 export const clearRecipe = () => async dispatch => {
     try {              
@@ -196,8 +198,7 @@ export const editRecipePut = (formData, history, recipeId) => async dispatch => 
 
 
 export const deleteRecipe = (history, recipeId) => async dispatch => {
-    try {
-                   
+    try {         
              
               
         
@@ -232,6 +233,11 @@ export const deleteRecipe = (history, recipeId) => async dispatch => {
         
     }
 };
+
+
+
+
+
 
 
 export const addRecipeToFavourites = (recipeId) => async dispatch => {
