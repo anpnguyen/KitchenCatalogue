@@ -23,7 +23,7 @@ function ContentCard(props){
     return(
         <div className="contentCard " onClick={handleClicker}>
 
-            <div className='ContentCardImage'>
+            <div className='ContentCardImage text-center'>
                 {!imageUrl && <div className="fillerImg"></div>}
                 <img className=''src={imageUrl} alt=""/>
             </div>
