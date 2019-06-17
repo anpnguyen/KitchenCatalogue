@@ -25,7 +25,6 @@ import{
 // GET the all the users recipes
 export const getRecipes = () => async dispatch => {
     try {
-        
         const res = await axios.get('http://localhost:5000/api/recipe')
         
         dispatch({
@@ -43,27 +42,7 @@ export const getRecipes = () => async dispatch => {
     }
 }
 
-// Get Recipes Set - unused
 
-export const getSetRecipes = (setNumber) => async dispatch => {
-    try {
-        
-        const res = await axios.get(`http://localhost:5000/api/recipe/set/${setNumber}`)
-        
-        dispatch({
-            type: GET_RECIPES,
-            payload: res.data
-          });
-
-    } catch (err) {
-        
-        console.log("catch error or no profile")
-        dispatch({
-            type: RECIPE_ERROR,
-            payload: { msg: "server error", status: "server error"}
-          });
-    }
-}
 
 // Clear Recipe from State
 export const clearRecipe = () => async dispatch => {
@@ -82,7 +61,7 @@ export const clearRecipe = () => async dispatch => {
 };
 
 // **** Get an individual RECIPE
-export const getRecipeById = recipeId => async dispatch => {
+export const getRecipeById = (recipeId,history) => async dispatch => {
     try {
         
         const res = await axios.get(`http://localhost:5000/api/recipe/${recipeId}`)
@@ -94,6 +73,8 @@ export const getRecipeById = recipeId => async dispatch => {
             payload: res.data
           });
 
+        
+
         //   thi sneed to get fixed so it redirects
     } catch (err) {
         
@@ -101,8 +82,9 @@ export const getRecipeById = recipeId => async dispatch => {
             type: CLEAR_RECIPE
         })
 
+        history.push('/home')
         
-        console.log("catch error or no profile")
+        // console.log("catch error or no profile")
         // dispatch({
         //     type: RECIPE_ERROR,
         //     payload: { msg: "server error", status: "server error"}
@@ -134,7 +116,7 @@ export const createRecipe = (formData, history) => async dispatch => {
             payload: res.data
         });
 
-        dispatch(setAlert ( "Recipe Created", "success"
+        dispatch(setAlert ( "Recipe Created", "RecipeEditSuccess"
         ));
 
         dispatch({
@@ -162,53 +144,6 @@ export const createRecipe = (formData, history) => async dispatch => {
         
     }
 };
-
-// edit Recipe
-
-
-// export const editRecipe = (formData, history, recipeId) => async dispatch => {
-//     try {
-                   
-//         const config = {
-//             headers: {
-//               'Content-Type': 'application/json'
-//             }
-//           };
-        
-//         // const body = JSON.stringify({ formData});
-        
-        
-//         const res = await axios.post(`http://localhost:5000/api/recipe/${recipeId}/edit`, formData, config)
-        
-//         console.log(res.data)
-
-//         dispatch({
-//             type: EDIT_RECIPE,
-//             payload: res.data
-//         });
-
-//         dispatch(setAlert ( "Recipe Sucessfully Edited", "success"
-//         ));
-
-                      
-        
-//     } catch (err) {
-//         // console.log(err)
-//         // console.log(err.response)
-//         console.log("error in sending create recipe")
-       
-//         // const errors = err.response.data.errors ;
-//         //     if (errors) {
-//         //         errors.forEach(error => dispatch(setAlert(error.msg, 'danger')))
-//         //     };
-
-//         dispatch({
-//             type: EDIT_RECIPE_ERROR,
-//             payload: { msg: "create profile error ", status: "server error"}
-//           });
-        
-//     }
-// };
 
 
 export const editRecipePut = (formData, history, recipeId) => async dispatch => {
@@ -243,10 +178,11 @@ export const editRecipePut = (formData, history, recipeId) => async dispatch => 
         // console.log(err.response)
         console.log("error in sending create recipe")
        
-        // const errors = err.response.data.errors ;
-        //     if (errors) {
-        //         errors.forEach(error => dispatch(setAlert(error.msg, 'danger')))
-        //     };
+        const errors = err.response.data ;
+        console.log(errors)
+            if (errors) {
+                errors.forEach(error => dispatch(setAlert(error.msg, error.errorType)))
+            };
 
         dispatch({
             type: EDIT_RECIPE_ERROR,
@@ -273,10 +209,10 @@ export const deleteRecipe = (history, recipeId) => async dispatch => {
             type: DELETE_RECIPE,
         });
 
-        dispatch(setAlert ( "Recipe Sucessfully Deleted", "success"
+        dispatch(setAlert ( "Recipe Sucessfully Deleted", "RecipeEditSuccess"
         ));
 
-        history.push(`/recipe`)
+        history.push(`/home`)
 
                       
         

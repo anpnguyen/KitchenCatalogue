@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClock, faUtensils } from '@fortawesome/free-solid-svg-icons'
 import Alert from '../../Layout/alert'
 import Footer from '../../Home/footer'
+import Spinner from '../../Layout/spinner'
 // import "./styles.css";
 
 function EditIndividualRecipe(props) {
@@ -141,8 +142,7 @@ useEffect(()=>{
     )
 
     useEffect(()=>{
-        setRecipeDetails(initialData);    
-    
+        setRecipeDetails(initialData);        
         setRecipeIngredients(recipe.recipe.ingredients);
         setRecipeInstructions(recipe.recipe.instructions);
         
@@ -153,7 +153,7 @@ useEffect(()=>{
     <>
         <NavBar/>
         <Alert/>
-        {recipe.loading === true? <h1>Loading</h1> :
+        {recipe.loading === true? <Spinner/> :
         <div className="contentBox">
             <div className="contentBoxContent height100">    
             

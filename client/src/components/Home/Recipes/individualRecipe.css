@@ -54,7 +54,14 @@
 
 .individualRecipeImageContainer{
     padding-top: 20px;
-    
+}
+
+.individualRecipeImageContainer .fillerImg{
+    width:60%;
+    margin: 0 auto;
+    height: 300px;
+    border: 1px solid #e8e8e8;
+    border-radius: 10px
 }
 .image{
     max-height: 300px;
@@ -172,5 +179,13 @@
 
     .ingredients ul {
         margin-left: 0
+    }
+
+    .individualRecipeImageContainer .fillerImg{
+        width:80%;
+        margin: 0 auto;
+        height: 300px;
+        border: 1px solid #e8e8e8;
+        border-radius: 10px
     }
   }

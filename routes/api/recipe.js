@@ -59,7 +59,7 @@ z             };
 //  *** get all users recipes *** working
 router.get('/', authMiddleware, async (req, res) => {
     try {
-        console.log(req.user.id)
+        // console.log(req.user.id)
         const recipes = await Recipe.find({user:req.user.id});
         res.json(recipes);
     } catch (err) {
@@ -149,8 +149,21 @@ router.put('/:recipe_id',[
             await Recipe.findOneAndUpdate({_id: req.params.recipe_id}, recipeFields );
             res.json({ msg: 'recipe updated' });
         } catch (err) {
-            console.error(err.message);
-            res.status(500).send('Server Error - cannot create a new recipe');
+            
+            
+            
+            // console.log(err)
+            // console.log(err.code)
+            // console.log(typeof(err.code))
+
+            if(err.code == 11000){
+                // console.log('calling')
+                return res.status(500).json([{msg:'Please Use A Unique Recipe Title', errorType:'LoginDanger'}])
+            } else {
+                // console.log('calling back')
+                // return res.status(500).send('Server Error - cannot create a new recipe')
+            
+        };
         };
     }
   )
@@ -164,6 +177,8 @@ router.post('/:recipe_id/delete', authMiddleware, async (req, res) => {
 
     } catch (err) {
         console.error(err.message);
+        console.error(err);
+        // if(err)
         res.status(500).send('Server Error - cannot delete recipe');
     }
 });

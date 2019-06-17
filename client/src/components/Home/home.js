@@ -3,6 +3,7 @@ import NavBar from './navBar'
 import SearchBar from './searchBar'
 import ContentBox from './contentBox'
 import Footer from './footer'
+import Alert from '../Layout/alert'
 // import IndividualRecipe from './Recipes/individualRecipe'
 
 import {getRecipes} from '../../actions/recipe'
@@ -26,6 +27,7 @@ function Home(props){
         <Fragment>
             <NavBar/>
             <SearchBar/>
+            <Alert/>
             
             
 

@@ -22,9 +22,10 @@ function IndividualRecipe(props){
     const {loading} = props.recipe
 
     useEffect(()=>{
-        getRecipeById(match.params.recipe_id)
+        getRecipeById(match.params.recipe_id,history)
         
-            },[getRecipeById,match.params.recipe_id ])
+            },[getRecipeById ])
+            // ,match.params.recipe_id
     
     
 
@@ -67,7 +68,9 @@ function IndividualRecipe(props){
                
                 {/* <hr className="width80"/> */}
                 <div className="text-center individualRecipeImageContainer ">
-                    <img className='image' src={imageUrl} alt=""/>
+                    {!imageUrl ? <div className="fillerImg"></div>: <img className='image' src={imageUrl} alt=""/>} 
+                    {/* <img className='image' src={imageUrl} alt=""/> */}
+
                 </div>
                 <hr className="width80"/>
 
