@@ -230,7 +230,7 @@ export const deleteRecipe = (history, recipeId) => async dispatch => {
              
               
         
-        await axios.post(`http://localhost:5000/api/recipe/${recipeId}/delete`)
+        await axios.delete(`http://localhost:5000/api/recipe/${recipeId}`)
         
         // console.log(res.data)
 
@@ -264,6 +264,42 @@ export const deleteRecipe = (history, recipeId) => async dispatch => {
 
 
 
+// export const deleteRecipe = (history, recipeId) => async dispatch => {
+//     try {         
+             
+              
+        
+//         await axios.post(`http://localhost:5000/api/recipe/${recipeId}/delete`)
+        
+//         // console.log(res.data)
+
+//         dispatch({
+//             type: DELETE_RECIPE,
+//         });
+
+//         dispatch(setAlert ( "Recipe Sucessfully Deleted", "RecipeEditSuccess"
+//         ));
+
+//         history.push(`/home`)
+
+                      
+        
+//     } catch (err) {
+//         console.log(err)
+//         console.log("error in deleting recipe")
+       
+//         // const errors = err.response.data.errors ;
+//         //     if (errors) {
+//         //         errors.forEach(error => dispatch(setAlert(error.msg, 'danger')))
+//         //     };
+
+//         dispatch({
+//             type: DELETE_RECIPE_ERROR,
+//             payload: { msg: "create profile error ", status: "server error"}
+//           });
+        
+//     }
+// };
 
 
 
