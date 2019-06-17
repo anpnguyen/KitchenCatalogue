@@ -1,9 +1,10 @@
 
-.backgroundWhite{
-    background: white!important
 
-}
-.individualRecipe{
+#individualRecipe{
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+
     margin: 20px;
     border:1px solid #dddddd;
     border-radius: 10px;
@@ -12,15 +13,15 @@
     box-shadow: 3px 3px 5px -1px rgba(207,195,207,1);
 }
 
-.individualRecipe h1{
+#individualRecipe h1{
     margin: 0;
     text-align: center;
     background:rgba(255, 230, 202, 0.5);
-    padding-top: 30px
+    padding: 20px 0px
 }
 
 
-.individualRecipeDetails{
+#individualRecipe .recipeDetails{
     display:flex;
     text-align: center;
     justify-content: center;
@@ -28,9 +29,9 @@
   
 }
 
-.individualRecipeDetails p {
-    font-size: 0.8rem;
-    padding: 5px 0px;
+#individualRecipe .recipeDetails p {
+    font-size: 12px;
+    padding: 0px 0px 10px 0;
        
 }
 
@@ -38,44 +39,27 @@
     display: flex; 
     align-items: center;
     justify-content: center;
-    padding: 7px 0 20px 0;
+    padding: 0px 0 20px 0;
     background:rgba(255, 230, 202, 0.5)
 
 }
 
-.individualRecipeSave button{
-    background: rgb(50, 119, 231);
-    border: none;
-    height:30px;
-    width:80px;
-    border-radius: 20px;
-    color: white;
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    display:inline-block;
-    position: relative;
-    text-align: center;
-    margin: 0 10px;
-    -webkit-box-shadow: 3px 3px 5px -1px rgb(144, 144, 144);
-    -moz-box-shadow: 3px 3px 5px -1px rgb(144, 144, 144);
-    box-shadow: 3px 3px 5px -1px rgb(144, 144, 144);
-  }
+
 
   .individualRecipeSave button:hover{
     background: rgb(26, 93, 218);
     
   }
 
-.individualRecipeImageContainer{
+#individualRecipe .imageContainer{
     margin: 20px 0px ;
     overflow: hidden;
     width:100%;
-    box-sizing: border-box
+    box-sizing: border-box;
+    text-align: center
 }
 
-.individualRecipeImageContainer .fillerImg{
+#individualRecipe .imageContainer .fillerImg{
     width:60%;
     margin: 0 auto;
     height: 300px;
@@ -83,11 +67,12 @@
     border-radius: 10px
 }
 
-.individualRecipeImageContainer .image{
+#individualRecipe .imageContainer {
     padding:0 20px;
     box-sizing: border-box
 }
-.image{
+
+#individualRecipe .image{
     max-height: 300px;
     max-width:100%;
     border-radius: 10px;
@@ -96,15 +81,16 @@
     box-shadow: 3px 3px 5px -1px rgba(207,195,207,1);
 }
 
-.individualRecipeText{
+#individualRecipe .recipeText{
     display: flex;
     text-align: center;
     justify-content: center;
+    margin:0
     /* background:#f8f8f8 */
     
 }
 
-.individualRecipeDetails svg{
+#individualRecipe .recipeDetails svg{
     color:#8CC700;
     margin-right: 5px
 }
@@ -116,28 +102,36 @@
 }
 
 .instructions{
-    flex: 5;
+    flex: 6;
     
 }
-
-
-
-
 
 .ingredients Ul{
     margin-left: 20px;
     margin-top: 0;
     font-size: 0.9rem;
     letter-spacing: 1px;
-    padding: 20px;
+    padding: 0px;
     font-family: inherit;
-    
-    
+        
+}
+
+.ingredients ul li{
+    padding: 10px 5px !important;
+    padding: 15px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+    line-height: 25px;
+     box-sizing: border-box;
+     width:100%
 }
 
 .ingredients ul li:nth-of-type(1) {
     font-weight: bold;
     color: rgb(218, 26, 45);
+    padding-top: 15px !important;
+    padding-bottom: 20px !important
   }
 
 .ingredients ul li:nth-of-type(2n) {
@@ -145,52 +139,51 @@
   }
 
 
-  .ingredients ul li{
-    padding: 8px 0;
-    padding: 15px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    font-size: 0.8rem;
-    line-height: 25px;
-}
-
-
-.instructions ul{
-    /* margin-left: 20px; */
-    margin-top: 0;
-    font-size: 12px !important;
-    letter-spacing: 1.5px;
-    padding: 15px;
-    line-height: 25px;
-    font-weight: 500
-}
 
 .individualRecipeListInstructions{
     display: flex;
     padding: 10px;
     font-size: 0.8rem;
     letter-spacing: 1.5px;
-    padding: 15px
+    padding: 0 15px ;
+    margin:0
 }
+
+
+
+.instructions ul{
+    
+    margin-top: 0;
+    font-size: 12px !important;
+    letter-spacing: 1.5px;
+    padding: 0 15px;
+    line-height: 25px;
+    font-weight: 500
+}
+
+.instructions ul li{
+       
+    padding: 15px 15px;
+    
+}
+
 
 .individualRecipeInstructions h3{
     color:rgb(218, 26, 45);
     font-size: 0.9rem;
     letter-spacing: 1.5px;
-    padding: 15px
+    /* padding: 15px */
 }
 .individualRecipeListInstructions div:nth-child(2){
     text-align: left
 }
 
   .number{
-    min-width: 30px
+    min-width: 30px;
+    
 }
 
-.padding0{
-    padding:0 !important;
-    /* margin:0 10px !important */
-}
+
 
 
 
@@ -204,12 +197,13 @@
 
 
 @media only screen and (max-width: 768px) {
-    .individualRecipeText{
+    .recipeText{
         flex-direction: column;
-        
+        padding:0
+       
     }
     .ingredients{
-        padding: 20px
+        /* padding: 20px */
     }
     
     .instructions{
@@ -251,8 +245,9 @@
           
     }
 
-    .individualRecipe{
+    #individualRecipe{
         width:100%;
+        box-sizing: border-box;
         margin: 0px;
         border:0 solid #dddddd;
         border-radius: 10px;
@@ -260,7 +255,9 @@
         -moz-box-shadow: none;
         box-shadow: none;
     }
-    .image{
-       padding: 0 20px! important
+    #individualRecipe .image{
+       
+       max-width: 95%;
+
     }
 }

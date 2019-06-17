@@ -4,13 +4,10 @@ import SearchBar from './searchBar'
 import ContentBox from './contentBox'
 import Footer from './footer'
 import Alert from '../Layout/alert'
-// import IndividualRecipe from './Recipes/individualRecipe'
-
 import {getRecipes} from '../../actions/recipe'
-
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-// import Spinner from '../Layout/spinner'
+
 
 
 function Home(props){
@@ -18,7 +15,6 @@ function Home(props){
     const {getRecipes} = props
 
     useEffect(()=>{
-        // console.log('calling')
         getRecipes()},[getRecipes]
 
     )
@@ -31,11 +27,11 @@ function Home(props){
             
             
 
-            {/* {auth.loading || recipe.loading ? <Spinner/>: */}
+            
 
             <ContentBox title="My Recipes" text={true} showAll={true} {...props}/>
             
-            {/* } */}
+     
             
 
             <Footer/>

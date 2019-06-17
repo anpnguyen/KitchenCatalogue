@@ -50,9 +50,9 @@ function IndividualRecipe(props){
 
             
                 
-                <div className="individualRecipe ">
+                <div className="individualRecipe" id="individualRecipe">
                 <h1 className="">{title}</h1>  
-                <div className="individualRecipeDetails ">
+                <div className="recipeDetails ">
                     <div className=''>
                         <p><span className='bold'>By: </span> {user.username} </p>
                         <p><span className="spanMargin"><span className='bold'><FontAwesomeIcon icon={faUtensils} /> Serves </span> {servings}</span>  <span className='bold'><FontAwesomeIcon icon={faClock} />Cooking Time:</span> {time}</p>      
@@ -61,20 +61,20 @@ function IndividualRecipe(props){
 
                 </div> 
                 <div className='individualRecipeSave'>
-                    <Link to={`/recipe/${_id}/edit`}><button >Edit</button></Link>
-                    <button onClick={handleDelete}>Delete</button>
+                    <Link to={`/recipe/${_id}/edit`}><button className="blueButton" >Edit</button></Link>
+                    <button className="blueButton" onClick={handleDelete}>Delete</button>
                         
                 </div> 
                
                 {/* <hr className="width80"/> */}
-                <div className="text-center individualRecipeImageContainer ">
+                <div className="imageContainer ">
                     {!imageUrl ? <div className="fillerImg"></div>: <img className='image' src={imageUrl} alt=""/>} 
                     {/* <img className='image' src={imageUrl} alt=""/> */}
 
                 </div>
                 <hr className="width80"/>
 
-                <div className="individualRecipeText">
+                <div className="recipeText">
                     <div className="ingredients  ">
                         <ul className="">
                             <li className=' '><h3>Ingredients</h3>    </li>
@@ -99,7 +99,7 @@ function IndividualRecipe(props){
                                 <Fragment key={uuid()}>
                                 <li className='individualRecipeListInstructions'>
                                     <div className="number">
-                                        <span className='bold'>{index+1} </span>  
+                                        <span className='bold'>{index+1}. </span>  
                                     </div>
                                     <div >
                                         {instruction}

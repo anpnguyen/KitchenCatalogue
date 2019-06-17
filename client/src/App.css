@@ -64,25 +64,36 @@ hr{
 }
 
 .width80{
-    width:80%
+    width:80%;
+    
 }
 
 .width100{
     max-width:100% !important
 }
 
-/* .height100{
-    height:100%
-} */
-
-/* margin */
-
-/* .mt-2{
-    margin-top: 2rem
+.blueButton{
+    background: rgb(50, 119, 231);
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 10px;
+    height:30px;
+    width:80px;
+    -webkit-box-shadow: 3px 3px 5px -1px rgb(144, 144, 144);
+    -moz-box-shadow: 3px 3px 5px -1px rgb(144, 144, 144);
+    box-shadow: 3px 3px 5px -1px rgb(144, 144, 144);
 }
-.mt-1{
-    margin-top: 1rem
-} */
+
+    .blueButton:hover{
+    background: rgb(26, 93, 218);
+    
+  }
 
 .bold{
     font-weight: bold
