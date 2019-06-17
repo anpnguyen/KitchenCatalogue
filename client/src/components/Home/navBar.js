@@ -1,5 +1,5 @@
 import React ,{useState}from 'react'
-import {Link} from 'react-router-dom'
+import {Link } from 'react-router-dom'
 import {connect} from 'react-redux'
 import {logout} from '../../actions/auth'
 import { clearRecipe } from '../../actions/recipe';
@@ -8,7 +8,7 @@ import './navBar.css'
 
 function NavBar(props){
 
-    const {auth, logout, clearRecipe} = props
+    const {auth, logout, clearRecipe, match} = props
     const [toggle, setToggle ] = useState(false)
     
     // function handleToggle(){
@@ -19,6 +19,8 @@ function NavBar(props){
         clearRecipe()
         logout()       
     }
+
+ 
 
     return(
         
@@ -41,6 +43,8 @@ function NavBar(props){
                     {/* <li className="navBarListItem">{auth.loading? "" : "Welcome back "+ auth.user.username }  </li> */}
                 </ul>
             </div>
+
+            
             <button onClick={handleLogout}><i className="fa fa-sign-out"></i>Logout</button>
              
         </div>

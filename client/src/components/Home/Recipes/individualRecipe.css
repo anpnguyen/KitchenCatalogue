@@ -81,6 +81,7 @@
 }
 .image{
     max-height: 300px;
+    /* width:100%; */
     border-radius: 10px;
     -webkit-box-shadow: 3px 3px 5px -1px rgba(207,195,207,1);
     -moz-box-shadow: 3px 3px 5px -1px rgba(207,195,207,1);
@@ -226,7 +227,7 @@
   }
   
   
-@media only screen and (max-width: 560px) {
+@media only screen and (max-width: 480px) {
 
   .ingredients Ul{
     margin-left: 0px;
@@ -243,6 +244,7 @@
     }
 
     .individualRecipe{
+        width:100%;
         margin: 0px;
         border:0 solid #dddddd;
         border-radius: 10px;
@@ -250,5 +252,7 @@
         -moz-box-shadow: none;
         box-shadow: none;
     }
-    
+    .image{
+       padding: 0 20px! important
+    }
 }

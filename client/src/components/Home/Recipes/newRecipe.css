@@ -386,7 +386,7 @@ box-shadow: 1px 1px 2px 0px rgba(184,184,184,1);
     margin-right: 21px;
     padding: 10px 20px 10px 30px;
     line-height: 25px;
-    font-weight: 500
+    
     /* border: 1px solid #eeeeee; */
     /* border-radius: 20px */
     
@@ -425,10 +425,10 @@ box-shadow: 1px 1px 2px 0px rgba(184,184,184,1);
 @media only screen and (max-width: 768px) {
 
     .newRecipeInstructionContainer{
-        width:100%
+        width:90%
     }
     .newRecipeDetails, .newRecipeIngredients, .newRecipeInstruction, .newRecipePreview, .newRecipeIngredientItem{
-        width:100%;
+        width:90%;
         /* padding:0 20px */
     }
 
@@ -441,7 +441,8 @@ box-shadow: 1px 1px 2px 0px rgba(184,184,184,1);
     }
 
     .newRecipeInstructionItem textarea{
-        margin-right: 5px
+        margin-right: 5px;
+        height:auto
     }
 
 
@@ -456,6 +457,20 @@ box-shadow: 1px 1px 2px 0px rgba(184,184,184,1);
     }
 
     .newRecipePreviewItem .image{
-        max-width:90%
+        /* max-width:90% */
     }
+}
+
+@media only screen and (max-width: 480px) {
+
+ .newRecipePreviewItem .image{
+     padding: 0 !important
+ }   
+ .newRecipePreviewContainer{
+     width:100%
+ }
+ .newRecipeDetails, .newRecipeIngredients, .newRecipeInstruction, .newRecipePreview, .newRecipeIngredientItem{
+    width:100%;
+    /* padding:0 20px */
+}
 }

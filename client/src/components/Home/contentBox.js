@@ -4,11 +4,12 @@ import './contentBox.css'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import Spinner from '../Layout/spinner'
+import {Link} from 'react-router-dom'
 
 
 function ContentBox(props){
 
-    const {title, text, recipe, showAll} = props
+    const {title, text, recipe, showAll, history} = props
     const {recipes, loading} = recipe
     const [pageLimit, setPageLimit] = useState(12)
     const [navigation, setNavigation] = useState({start:0, end: pageLimit, current: 1})
@@ -62,13 +63,17 @@ function ContentBox(props){
         console.log(navigation)
         }
     }
+
+    function handleRedirect(){
+        history.push('/recipe/new')
+    }
     const mappedData = recipes.map((recipe, index) =>{
            
         if(!showAll && index <4)
             {
-            return <ContentCard title="Chicken Curry" recipe={recipe} showAll={showAll} text={text} key={recipe._id}/>
+            return <ContentCard  recipe={recipe} showAll={showAll} text={text} key={recipe._id}/>
         } else if(showAll && index < navigation.end  && index>= navigation.start ){
-            return <ContentCard title="Chicken Curry" recipe={recipe} showAll={showAll} text={text} key={recipe._id}/>
+            return <ContentCard  recipe={recipe} showAll={showAll} text={text} key={recipe._id}/>
         } else {
             return <Fragment key={recipe._id}></ Fragment>
         }
@@ -126,6 +131,9 @@ function ContentBox(props){
 
                 <div className="contentBoxCard">
                     {mappedData}
+                    
+                    <ContentCard {...props} titleText="Create New Recipe" onClick={handleRedirect}/>
+                    
                     <hr className="width80"/>
                 </div>
 

@@ -15,7 +15,11 @@ function ContentCard(props){
 
     const handleClicker = () => {
         clearRecipe()
-        props.history.push(`/recipe/${_id}`)
+        if(!_id){
+            props.history.push(`/recipe/new`)
+        }else{
+
+        props.history.push(`/recipe/${_id}`)}
     }
             
     
@@ -23,17 +27,19 @@ function ContentCard(props){
     return(
         <div className="contentCard " onClick={handleClicker}>
 
-            <div className='ContentCardImage text-center'>
-                {!imageUrl && <div className="fillerImg"></div>}
-                <img className=''src={imageUrl} alt=""/>
+            <div className='ContentCardImage'>
+                {!imageUrl && props.titleText && <div className="fillerImgCreate"> + </div>}
+                {!imageUrl && !props.titleText && <div className="fillerImg"></div>}
+                {imageUrl && <img className=''src={imageUrl} alt=""/>}
+                
             </div>
 
             <div className="ContentCardText ">
                 <div className="contentCardTitleContainer ">
-                    <h3>{title}</h3>
+                    {props.titleText && <h3> {props.titleText}</h3>    }<h3>{title}</h3>
                 </div>
                 
-                {text &&
+                {text && !props.titleText &&
                 <Fragment>
                 {/* <div className=' recipeText'>
                                       
