@@ -59,14 +59,36 @@ z             };
 //  *** get all users recipes *** working
 router.get('/', authMiddleware, async (req, res) => {
     try {
-        console.log(req.query)
-        const recipes = await Recipe.find({user:req.user.id});
-        res.json(recipes);
+        console.log(req.query.search)
+        if(req.query.search){
+            console.log('first')
+             const recipes = await Recipe.find({user:req.user.id, title: { "$regex": req.query.search, "$options": "i" }});
+             res.json(recipes);
+        } else{
+            console.log('second')
+            const recipes = await Recipe.find({ user:req.user.id});
+            res.json(recipes);
+        }
+        // console.log(recipes)
+        
+
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error - cannot fetch user recipes');
     }
 });
+
+// router.get('/', authMiddleware, async (req, res) => {
+//     try {
+//         console.log(req.query.q)
+//         console.log(tu)
+//         const recipes = await Recipe.find({user:req.user.id, title:req.query.q});
+//         res.json(recipes);
+//     } catch (err) {
+//         console.error(err.message);
+//         res.status(500).send('Server Error - cannot fetch user recipes');
+//     }
+// });
 
 //  *** get a number to  ***   UNUSED
 router.get('/set/:setNumber', authMiddleware, async (req, res) => {

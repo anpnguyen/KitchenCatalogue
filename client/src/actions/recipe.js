@@ -23,9 +23,37 @@ import{
 
 
 // GET the all the users recipes
-export const getRecipes = () => async dispatch => {
+// export const getRecipes = () => async dispatch => {
+//     try {
+//         const res = await axios.get('http://localhost:5000/api/recipe')
+        
+//         dispatch({
+//             type: GET_RECIPES,
+//             payload: res.data
+//           });
+
+//     } catch (err) {
+        
+//         console.log("catch error or no profile")
+//         dispatch({
+//             type: RECIPE_ERROR,
+//             payload: { msg: "server error", status: "server error"}
+//           });
+//     }
+// }
+
+// GET the all the users recipes
+export const getRecipes = (searchParams) => async dispatch => {
     try {
-        const res = await axios.get('http://localhost:5000/api/recipe')
+
+        const config = {
+            params: {
+              'search': searchParams
+            }
+          };
+        console.log(searchParams)
+
+        const res = await axios.get('http://localhost:5000/api/recipe', config)
         
         dispatch({
             type: GET_RECIPES,
