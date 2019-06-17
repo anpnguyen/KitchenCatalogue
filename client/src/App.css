@@ -6,19 +6,16 @@ html, body, .App, .App-header, #root{
     margin:0;
     padding:0;
     overflow-x: hidden;
-    background: #eeeeee;
+    background: white;
     font-family: 'Montserrat', sans-serif;
     color: #333;
-    /* background: rgba(246, 240, 221, 0.5); */
-    /* background: radial-gradient(circle, rgba(246,247,249,1) 0%, rgba(218,235,255,1) 100%); */
     font-size:16px;
     
 }
 
 .loaderDiv{
     height:400px;
-    padding-top: 200px;
-    
+    padding-top: 200px;    
 }
 
 h2,h3,h5, p{
@@ -31,8 +28,7 @@ a {
 }
 
 button{
-    font-family: 'montserrat'
-    
+    font-family: 'Montserrat', sans-serif;
 }
 
 ul{
@@ -43,9 +39,9 @@ ul{
     font-family:'pacifico'
 }
 
-.color{
+/* .color{
     color: rgb(218, 26, 45);
-}
+} */
 
 
 hr{
@@ -81,32 +77,23 @@ hr{
 
 /* margin */
 
-.mt-2{
+/* .mt-2{
     margin-top: 2rem
 }
 .mt-1{
     margin-top: 1rem
-}
+} */
 
 .bold{
     font-weight: bold
 }
 
-.yellow{
+/* .yellow{
     color: rgb(185, 185, 83)
-}
+} */
 
 
-/* .alert {
-    padding: 0.8rem;
-    margin: 1rem 0;
-    opacity: 0.9;
-    background: white;
-    color: #333;
-    position: relative;
-    top: 150px;
-    z-index: 9999;
-  } */
+
 
 .LoginDanger{
     width:450px;

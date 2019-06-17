@@ -25,7 +25,7 @@ function ContentCard(props){
 
             <div className='ContentCardImage'>
                 {!imageUrl && <div className="fillerImg"></div>}
-                <img className='width100'src={imageUrl} alt=""/>
+                <img className=''src={imageUrl} alt=""/>
             </div>
 
             <div className="ContentCardText ">
@@ -35,10 +35,10 @@ function ContentCard(props){
                 
                 {text &&
                 <Fragment>
-                <div className=' recipeText'>
+                {/* <div className=' recipeText'>
                                       
                   
-                </div>
+                </div> */}
                 <p className=' recipeText'><span className='bold'><FontAwesomeIcon icon={faUtensils} /> Servings: </span> {servings}</p>
                 <p className=' recipeText'><span className='bold'><FontAwesomeIcon icon={faClock} /> Cooking Time: </span> {time}</p>
                 </Fragment>

@@ -154,7 +154,7 @@ useEffect(()=>{
         <NavBar/>
         <Alert/>
         {recipe.loading === true? <Spinner/> :
-        <div className="contentBox">
+        <div className="contentBox backgroundWhite">
             <div className="contentBoxContent height100">    
             
             

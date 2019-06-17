@@ -44,9 +44,9 @@ function IndividualRecipe(props){
         <NavBar/>
         <Alert/>
 
-        <div className="contentBox">
+        <div className="contentBox backgroundWhite">
             
-            <div className="contentBoxContent padding0">    
+            <div className="contentBoxContent backgroundWhite">    
 
             
                 

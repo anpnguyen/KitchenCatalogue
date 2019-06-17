@@ -101,7 +101,7 @@ function ContentBox(props){
 
 
 
-        <div className="contentBox" >
+        <div className="contentBox backgroundWhite" >
             
             <div className="contentBoxContent ">
                 <h1 className="text-center">{title}</h1>  

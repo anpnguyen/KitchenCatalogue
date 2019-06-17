@@ -46,7 +46,8 @@
     background: white;
     display:flex;
     justify-content: center;
-    padding: 15px 0
+    padding: 15px 0;
+    border-radius: 10px
 
 }
 
@@ -394,5 +395,9 @@ box-shadow: 1px 1px 2px 0px rgba(184,184,184,1);
     .newRecipeForm{
  
         width:90% 
+    }
+
+    .newRecipePreviewItem .image{
+        max-width:90%
     }
 }
