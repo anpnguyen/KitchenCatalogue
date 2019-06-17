@@ -42,9 +42,9 @@
 
 .ContentCardImage img{
     border-radius: 10px 10px 0 0 ;
-    max-height: 10rem;
+    max-height: 300px;
     /* max-width:350px; */
-    /* width:100%; */
+    max-width:100%;
     box-sizing: border-box;
     /* margin-top: auto!important */
 
@@ -149,7 +149,8 @@
         -webkit-box-shadow: none;
         -moz-box-shadow: none;
         box-shadow: none;
-        padding:0px;
+        margin:20px;
+        border:none
         
         /* height: 350px */
 
@@ -179,6 +180,10 @@
     }
     .contentCardTitleContainer {
         height:30px;
-        padding-top: 15px
+        padding-top: 15px;
+        box-shadow: none
+    }
+    .individualRecipeImageContainer .image{
+        box-shadow: none !important
     }
   }
