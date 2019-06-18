@@ -28,7 +28,7 @@ export const getRecipes = (searchParams) => async dispatch => {
               'search': searchParams
             }
           };
-        console.log(searchParams)
+        // console.log(searchParams)
 
         const res = await axios.get('http://localhost:5000/api/recipe', config)
         

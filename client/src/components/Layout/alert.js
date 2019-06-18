@@ -9,7 +9,7 @@ function Alert(props){
     
     // alertType
     const {alerts, removeAlert} = props
-    console.log(alerts)
+    
     
     const mappedAlerts = alerts.map((alert, index) => {
         

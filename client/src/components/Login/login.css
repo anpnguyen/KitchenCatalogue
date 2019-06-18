@@ -201,6 +201,10 @@ button:hover {
     color: blue
 }
 
+.blue:hover{
+	cursor: pointer;
+}
+
 @media only screen and (max-width: 680px) {
     .loginOverlay{
         display:none
