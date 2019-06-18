@@ -63,8 +63,12 @@
 
 .navBarButton{
     position: absolute;
+    top: 20px;
     right: 50px;
-    transform: scale(2)
+    z-index: 10;
+    transform: scale(2);
+    color: #f8f8f8
+
 }
 
 .navBarButton:active{
@@ -114,7 +118,13 @@
     color:#333;
     margin: 15px  auto;
     text-transform: uppercase;
-    text-align: center
+    text-align: center;
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+
     
 }
 
@@ -124,6 +134,11 @@
     margin: 50px  auto;
     text-transform: none;
     cursor: default !important;
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    user-select: none;
 }
 
 .navBarListItem:first-of-type:hover{

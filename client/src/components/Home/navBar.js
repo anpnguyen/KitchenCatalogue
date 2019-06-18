@@ -14,7 +14,9 @@ function NavBar(props){
     const [toggle, setToggle ] = useState(false)
     
     function handleToggle(){
+        console.log(toggle)
         setToggle(!toggle)
+        console.log(toggle)
     }
 
     function handleLogout(){
@@ -37,7 +39,8 @@ function NavBar(props){
         
         if (toggle) {
           document.addEventListener("mousedown", handleClickOutside);
-        } else {
+        } 
+        else {
           document.removeEventListener("mousedown", handleClickOutside);
         }
     
@@ -62,9 +65,7 @@ function NavBar(props){
                  <div className="burgerButton"></div>
             </div> */}
 
-            <div className="navBarButton " onClick={handleToggle}>
-                <FontAwesomeIcon icon={faBars} />
-            </div>
+            
 
             
 
@@ -73,6 +74,10 @@ function NavBar(props){
              
         </div>
         <div className='navBarContainer' ref={node}>
+        <div className="navBarButton " >
+                <FontAwesomeIcon icon={faBars}  onClick={handleToggle}/>
+            </div>
+            
             <ul className={`navBarList ${toggle && 'slide'}`} >                           
                 <li className="navBarListItem"><h2 className='pacifico'>Kitchen Catalogue</h2></li>
                 <li className="navBarListItem" onClick={()=>setToggle(false)}><Link to='/recipe/new'>Create A Recipe</Link></li>
