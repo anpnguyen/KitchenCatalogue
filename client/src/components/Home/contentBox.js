@@ -1,10 +1,10 @@
-import React, {Fragment, useState, useEffect, useRef} from 'react'
+import React, {Fragment, useState, useEffect} from 'react'
 import ContentCard from './contentCard'
 import './contentBox.css'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import Spinner from '../Layout/spinner'
-import {Link} from 'react-router-dom'
+// import {Link} from 'react-router-dom'
 
 
 function ContentBox(props){
@@ -15,14 +15,14 @@ function ContentBox(props){
     const [navigation, setNavigation] = useState({start:0, end: pageLimit, current: 1})
     const totalItems = recipes.length
     const totalPages = Math.floor((recipes.length/pageLimit)) + 1
-    const node = useRef()
+    
     
 
     useEffect(
         ()=>{
         setNavigation({...navigation, start: 0, end:pageLimit, current:1})
         
-    },[pageLimit]
+    },[pageLimit, navigation]
     )
     function setFirst(){
         if(navigation.current !== 1){
@@ -106,7 +106,7 @@ function ContentBox(props){
 
 
 
-        <div className="contentBox " ref={node}>
+        <div className="contentBox " >
             
             <div className="contentBoxContent ">
                 <h1 className="text-center">{title}</h1>  

@@ -1,4 +1,4 @@
-import React ,{useState}from 'react'
+import React from 'react'
 import {Link } from 'react-router-dom'
 import {connect} from 'react-redux'
 import {logout} from '../../actions/auth'
@@ -8,8 +8,8 @@ import './navBar.css'
 
 function NavBar(props){
 
-    const {auth, logout, clearRecipe, match} = props
-    const [toggle, setToggle ] = useState(false)
+    const { logout, clearRecipe} = props
+    // const [toggle, setToggle ] = useState(false)
     
     // function handleToggle(){
     //     setToggle(!toggle)
@@ -36,7 +36,7 @@ function NavBar(props){
             </div> */}
 
             <div className='navBarContainer'>
-                <ul className={`navBarList ${toggle? 'display': ""}`}>                           
+                <ul className='display'>                           
                     {/* <li className="navBarListItem"><Link to='/recipe/new'>Create A Recipe</Link></li> */}
                     {/* <li className="navBarListItem"><Link to='/recipe'>View All Recipes</Link></li> */}
                     {/* <li className="navBarListItem"><Link to='/recipe/favourites'>View Facourites</Link></li> */}

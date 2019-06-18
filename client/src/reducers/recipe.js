@@ -2,17 +2,13 @@ import {
   GET_RECIPE, 
   RECIPE_ERROR,
   CREATE_RECIPE,
-  CREATE_RECIPE_ERROR,
-  // CLEAR_USER,
-  // CREATE_PROFILE,
-  // EDIT_PROFILE,
+  
   GET_RECIPES,
   CLEAR_RECIPE,
   EDIT_RECIPE,
-  EDIT_RECIPE_ERROR,
-  DELETE_RECIPE,
-  DELETE_RECIPE_ERROR
-  // RECIPE_ADD_FAVOURITE 
+  
+  DELETE_RECIPE
+  
 } from '../actions/types'
 
 // import {Redirect} from 'react-router-dom'
@@ -21,23 +17,21 @@ const initialState = {
     recipes:[],
     recipe:{},
     loading: true,
-    
     error: {}
   };
 
   export default function(state = initialState, action) {
     const { type, payload } = action;
-  
-    
+      
     switch (type) {
       case GET_RECIPES:
-        // console.log(action.payload)
         return {
           ...state,
           recipes: payload,
           loading: false
         }
-        case RECIPE_ERROR:
+
+      case RECIPE_ERROR:
         return {
           ...state,
           error:payload,

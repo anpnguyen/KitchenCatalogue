@@ -10,42 +10,19 @@ import{
     CLEAR_RECIPE,
     CLEAR_ERROR,
     CREATE_RECIPE,
-    CREATE_RECIPE_ERROR,    
+    // CREATE_RECIPE_ERROR,    
     EDIT_RECIPE,    
-    EDIT_RECIPE_ERROR,
+    // EDIT_RECIPE_ERROR,
     DELETE_RECIPE,
-    DELETE_RECIPE_ERROR,
+    // DELETE_RECIPE_ERROR,
     RECIPE_ADD_FAVOURITE    
 
 } from '../actions/types'
 
 
-
-
-// GET the all the users recipes
-// export const getRecipes = () => async dispatch => {
-//     try {
-//         const res = await axios.get('http://localhost:5000/api/recipe')
-        
-//         dispatch({
-//             type: GET_RECIPES,
-//             payload: res.data
-//           });
-
-//     } catch (err) {
-        
-//         console.log("catch error or no profile")
-//         dispatch({
-//             type: RECIPE_ERROR,
-//             payload: { msg: "server error", status: "server error"}
-//           });
-//     }
-// }
-
 // GET the all the users recipes
 export const getRecipes = (searchParams) => async dispatch => {
     try {
-
         const config = {
             params: {
               'search': searchParams
@@ -69,9 +46,6 @@ export const getRecipes = (searchParams) => async dispatch => {
           });
     }
 }
-
-
-
 
 
 // Clear Recipe from State
@@ -113,13 +87,7 @@ export const getRecipeById = (recipeId,history) => async dispatch => {
         })
 
         history.push('/home')
-        
-        // console.log("catch error or no profile")
-        // dispatch({
-        //     type: RECIPE_ERROR,
-        //     payload: { msg: "server error", status: "server error"}
-        //   });
-           
+
     }
 };
 
@@ -158,9 +126,7 @@ export const createRecipe = (formData, history) => async dispatch => {
                     
         
     } catch (err) {
-        // console.log(err)
-        console.log(err.response)
-        console.log("error in sending create recipe")
+  
        
         const errors = err.response.data.errors ;
             if (errors) {
@@ -168,7 +134,7 @@ export const createRecipe = (formData, history) => async dispatch => {
             };
 
         dispatch({
-            type: CREATE_RECIPE_ERROR,
+            type: RECIPE_ERROR,
             payload: { msg: "create profile error ", status: "server error"}
           });
         
@@ -215,7 +181,7 @@ export const editRecipePut = (formData, history, recipeId) => async dispatch => 
             };
 
         dispatch({
-            type: EDIT_RECIPE_ERROR,
+            type: RECIPE_ERROR,
             payload: { msg: "create profile error ", status: "server error"}
           });
         
@@ -227,8 +193,6 @@ export const editRecipePut = (formData, history, recipeId) => async dispatch => 
 
 export const deleteRecipe = (history, recipeId) => async dispatch => {
     try {         
-             
-              
         
         await axios.delete(`http://localhost:5000/api/recipe/${recipeId}`)
         
@@ -255,7 +219,7 @@ export const deleteRecipe = (history, recipeId) => async dispatch => {
         //     };
         
         dispatch({
-            type: DELETE_RECIPE_ERROR,
+            type: RECIPE_ERROR,
             payload: { msg: "create profile error ", status: "server error"}
           });
         

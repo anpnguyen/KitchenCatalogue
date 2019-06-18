@@ -45,7 +45,7 @@ function Login(props){
     }
 
     if (props.isAuthenticated) {
-        return <Redirect to='/home' />;
+        return <Redirect to='/recipe' />;
     }
     
     return(

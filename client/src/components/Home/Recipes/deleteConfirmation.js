@@ -18,7 +18,7 @@ function DeleteConfirmation(props){
         return () => {
           document.removeEventListener("mousedown", handleClickOutside);
         };
-      }, []);
+      }, [isDelete]);
 
     function handleOnClickNo(){
         handleStateChange(false)

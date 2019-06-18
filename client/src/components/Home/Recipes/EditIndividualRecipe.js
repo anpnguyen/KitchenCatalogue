@@ -110,10 +110,10 @@ function handleToBack(e){
 
 }
 useEffect(()=>{
-    console.log(recipe.loading)
+    
      getRecipeById(match.params.recipe_id)
     
-},[]
+},[getRecipeById,match.params.recipe_id]
     )
 
     useEffect(()=>{

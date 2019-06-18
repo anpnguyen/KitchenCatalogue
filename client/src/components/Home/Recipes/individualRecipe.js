@@ -26,20 +26,8 @@ function IndividualRecipe(props){
     useEffect(()=>{
         getRecipeById(match.params.recipe_id,history)
         
-            },[getRecipeById ])
+            },[getRecipeById, history, match  ])
             
-    // useEffect(()=>{
-    //     document.addEventListener('mousedown', handleClick, false)
-        
-    //     },[])
-    
-
-    // function handleClick(e){
-    //     if(this.node.contains(e.target){
-    //         return
-    //     })
-    // }
-
     function handleDelete(){
         setIsDelete(true) 
     }
@@ -99,7 +87,7 @@ function IndividualRecipe(props){
                         <ul className="">
                             <li className=' '><h3>Ingredients</h3>    </li>
                             {ingredients.map( (ingredient, index) =>(
-                                <Fragment key={ingredient._id}>
+                                <Fragment key={ingredient + index}>
                                 {/* <li> {`${ingredient.quantity} ${ingredient.unit} of ${ingredient.ingredientName}`}</li> */}
                                 <li>{ingredient}</li>
                                 </Fragment>

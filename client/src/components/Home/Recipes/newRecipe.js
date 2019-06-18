@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import NavBar from '../navBar'
 import './newRecipe.css'
@@ -15,7 +15,7 @@ import Alert from '../../Layout/alert'
 
 function NewRecipe(props) {
 
-    const {createRecipe,history, recipe, auth} = props
+    const {createRecipe,history, auth} = props
     const {user} = auth
     const initialData = {
         title:"",

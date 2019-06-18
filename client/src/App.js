@@ -54,14 +54,14 @@ function App() {
 
               <PrivateRoute 
                 exact 
-                path='/home' 
+                path='/recipe' 
                 component={IndexContainer} />
 
-                <PrivateRoute
+                {/* <PrivateRoute
                 exact
                 path='/recipe'
                 component={Recipes}/>
-             
+              */}
               
 
 
@@ -80,6 +80,9 @@ function App() {
                 path='/recipe/:recipe_id/edit'
                 component={EditIndividualRecipe}/>
                 
+                <Route path='*' 
+                  exact
+                  render={()=> <h1>PAge not found</h1> } />
                
 
             
