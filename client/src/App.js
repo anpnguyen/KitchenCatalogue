@@ -8,7 +8,7 @@ import IndexContainer from './components/Home/indexContainer';
 import IndividualRecipe from './components/Home/Recipes/individualRecipe'
 import NewRecipeContainer from './components/Home/Recipes/newRecipeContainer'
 import EditIndividualRecipe from './components/Home/Recipes/EditIndividualRecipe'
-import Recipes from './components/Home/Recipes/recipes'
+// import Recipes from './components/Home/Recipes/recipes'
 
 
 

@@ -142,9 +142,7 @@ useEffect(()=>{
                     
                     <div className="newRecipePreview">
                     
-                    <div className="newRecipePreviewItem">
-                            
-                       </div>
+                   
                        {user !== null &&
                        <>
                        <div className="newRecipePreviewItem">

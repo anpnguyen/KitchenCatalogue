@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Pacifico&display=swap');
 
 
+
 .navBar{
     background: rgb(218,35,35)!important;
     background: linear-gradient(90deg, rgba(218,35,35,1) 0%, rgba(215,131,71,1) 100%)!important;
-    position: relative;
     width: 100%;
     background:#f3f3f3;
     margin:0;
@@ -14,7 +14,8 @@
     font-size: 1rem;
     font-weight: bold;
     z-index: 5;
-    color: #f8f8f8
+    color: #f8f8f8;
+    justify-content: space-between;
     
 }
 
@@ -32,6 +33,7 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     transition: all .1s ease-in-out;
+ 
 }
 
 .navBar button:hover{
@@ -55,68 +57,62 @@
 }
 
 .navBarContainer{
-    width:70%;
-    margin-right: 50px;
-    display:flex;
-    justify-content:center
+    height:60px;
+    max-height:60px;
+    width:30%;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end
+  
+  
 }
 
-.navBarButton{
-    position: absolute;
-    top: 20px;
-    right: 50px;
-    z-index: 10;
-    transform: scale(2);
-    color: #f8f8f8
-
+.NavList{
+    background:#dddddd;
+    margin:0;
+    z-index: 15;
+    height:350px;
+    width: 300px;
+    -webkit-box-shadow: 3px 3px 5px -1px rgba(207,195,207,1);
+    -moz-box-shadow: 3px 3px 5px -1px rgba(207,195,207,1);
+    box-shadow: 3px 3px 5px -1px rgba(207,195,207,1);
+    opacity:0.9
+    
 }
 
-.navBarButton:active{
+.slide{
+    position: relative;
+    right:-350px;
+    z-index:-100
+}
+
+.navButton{
+    height:20px;
+    margin: 20px ;
+    margin-right: 30px;
+    transform: scale(2)
+}
+
+.navButton:active{
   transform: scale(1.90)
 }
 
-.navBarButton:hover{
+.navButton:hover{
     color: #d8d8d8
   }
 
 
 
-.navBarList{
-        
-    position: absolute;
-    top:-360px;
-    right:15px;
-    width:300px;
-    height:350px;
-    margin:0;
-    padding:0; 
-    background: #d8d8d8;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    z-index: 4;
-    color:#f8f8f8;
-    border-radius: 0 0 10px 10px;
-    opacity: 0.9;
-    transition: all 0.3s  ease-in-out;
-    font-weight: bold
 
-   
-} 
 
- .slide{
-    top: 60px
-    /* z-index */
+
+
+.NavList li{
     
-
-} 
-
-.navBarListItem{
-    
-    width:200px;
+    width:100%;
+    padding: 20px;
     color:#333;
-    margin: 15px  auto;
     text-transform: uppercase;
     text-align: center;
     -moz-user-select: -moz-none;
@@ -124,39 +120,29 @@
     -webkit-user-select: none;
     -o-user-select: none;
     user-select: none;
+    box-sizing: border-box
 
     
 }
 
-.navBarListItem:first-of-type{
+.NavList li:first-of-type{
     
-    width:200px;
-    margin: 50px  auto;
-    text-transform: none;
-    cursor: default !important;
-    -moz-user-select: -moz-none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    -o-user-select: none;
-    user-select: none;
+    padding: none
 }
 
-.navBarListItem:first-of-type:hover{
+.NavList li:first-of-type:hover{
     color: #333
   
 }
-.navBarListItem:hover{
+.NavList li:hover{
+
     cursor: pointer;
     color: rgb(218, 26, 45) 
 }
 
 
 
-.navBarListItem a{
-    display:inline;
-    color: #333;
-    letter-spacing: 1.5px
-}
+
 
 .navBarListItem a:hover{
     display:inline;
@@ -185,10 +171,7 @@
         display:block !important
     }
 
-    .navBarContainer{
-        display:block
-    }
-    
+  
 
         
     

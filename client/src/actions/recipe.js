@@ -31,6 +31,7 @@ export const getRecipes = (searchParams) => async dispatch => {
         // console.log(searchParams)
 
         const res = await axios.get('http://localhost:5000/api/recipe', config)
+        console.log(res.data)
         
         dispatch({
             type: GET_RECIPES,
@@ -46,6 +47,8 @@ export const getRecipes = (searchParams) => async dispatch => {
           });
     }
 }
+
+// search Recipes
 
 
 // Clear Recipe from State

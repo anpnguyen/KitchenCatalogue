@@ -13,6 +13,7 @@ function ContentBox(props){
     const {recipes, loading} = recipe
     const [pageLimit, setPageLimit] = useState(12)
     const [navigation, setNavigation] = useState({start:0, end: pageLimit, current: 1})
+    // const [isSearch, setIsSearch] = useState(false)
     const totalItems = recipes.length
     const totalPages = Math.floor((recipes.length/pageLimit)) + 1
     

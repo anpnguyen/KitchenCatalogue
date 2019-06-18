@@ -190,13 +190,14 @@
 
 .isDelete{
     width:35%;
+    /* min-width: 300px; */
     height:200px;
     position: absolute;
     top:200px;
     left:30%;
     z-index: 50;
     background: #f8f8f8;
-    border: 1px solid #333;
+    border: 1px solid #ddd;
     display:flex;
     justify-content: center;
     align-items: center;
@@ -259,6 +260,11 @@
         border: 1px solid #e8e8e8;
         border-radius: 10px
     }
+    .isDelete{
+        width:70%;
+        left:9%
+
+    }
   }
   
   
@@ -291,6 +297,11 @@
     #individualRecipe .image{
        
        max-width: 95%;
+
+    }
+    .isDelete{
+        width:80%;
+        left:10%
 
     }
 }

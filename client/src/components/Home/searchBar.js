@@ -30,7 +30,7 @@ function SearchBar(props){
     return(
         
         <div className="searchBar " style={styles}>
-            {/* <img className='SearchBarImg' src={SearchBack} alt=""/> */}
+            
             <div className='SeachBarFormContainer'>
                 <form className='SeachBarForm' onSubmit={handleSubmit}>
                     

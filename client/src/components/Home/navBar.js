@@ -11,12 +11,11 @@ import './navBar.css'
 function NavBar(props){
     const node = useRef()
     const { logout, clearRecipe} = props
-    const [toggle, setToggle ] = useState(false)
+    const [showMenu, setShowMenu ] = useState(false)
     
     function handleToggle(){
-        console.log(toggle)
-        setToggle(!toggle)
-        console.log(toggle)
+        setShowMenu(!showMenu)
+        
     }
 
     function handleLogout(){
@@ -29,15 +28,18 @@ function NavBar(props){
         const handleClickOutside = e => {
            
         
-            if (node.current.contains(e.target)) {
-            
+            if (node.current.contains(e.target ||   
+            <div className="navBarButton " >
+              
+            </div>)) {
+              // console.log(e.target)
               return;
             }
             
-            setToggle(false);
+            setShowMenu(false);
           };
         
-        if (toggle) {
+        if (showMenu) {
           document.addEventListener("mousedown", handleClickOutside);
         } 
         else {
@@ -47,53 +49,56 @@ function NavBar(props){
         return () => {
           document.removeEventListener("mousedown", handleClickOutside);
         };
-      }, [toggle]);
+      }, [showMenu]);
 
       
  
 
     return(
-        <><div>
+        
         <div className="navBar">
             <div className="navBarLogo">
                 <p className="navBarLogoText"><Link to='/'>Kitchen Catalogue</Link></p>
             </div>
-
-            {/* <div className="navBarButton " onClick={handleToggle}>
-                <div className="burgerButton"></div>
-                 <div className="burgerButton"></div>
-                 <div className="burgerButton"></div>
-            </div> */}
-
-            
-
-            
-
-            
-            {/* <button onClick={handleLogout}><i className="fa fa-sign-out"></i>Logout</button> */}
+            <div className='navBarContainer' ref={node} >
              
-        </div>
-        <div className='navBarContainer' ref={node}>
-        <div className="navBarButton " >
-                <FontAwesomeIcon icon={faBars}  onClick={handleToggle}/>
-            </div>
-            
-            <ul className={`navBarList ${toggle && 'slide'}`} >                           
-                <li className="navBarListItem"><h2 className='pacifico'>Kitchen Catalogue</h2></li>
-                <li className="navBarListItem" onClick={()=>setToggle(false)}><Link to='/recipe/new'>Create A Recipe</Link></li>
-                <li className="navBarListItem" onClick={()=>setToggle(false)}><Link to='/recipe'>View All Recipes</Link></li>
+
+               <div className="navButton" onClick={handleToggle}>
+               <FontAwesomeIcon icon={faBars} height="2em" />
+              </div>
+                <div className="">
+                <ul className={`NavList ${!showMenu ? "slide": "" }`}>
+                  <li className=""><h2 className='pacifico'>Kitchen Catalogue</h2></li>
+                  <li className="" onClick={()=>setShowMenu(false)}><Link to='/recipe/new'>Create A Recipe</Link></li>
+                  <li className="" onClick={()=>setShowMenu(false)}><Link to='/recipe'>View All Recipes</Link></li>
                 
                 <li className="navBarListItem" onClick={handleLogout}>Logout</li>
                 </ul>
-            </div>
+                </div>
+                
+            
+            
+            {/* <ul  ref={node}>                           
+                <li className="navBarListItem"><h2 className='pacifico'>Kitchen Catalogue</h2></li>
+                <li className="navBarListItem" onClick={()=>setShowMenu(false)}><Link to='/recipe/new'>Create A Recipe</Link></li>
+                <li className="navBarListItem" onClick={()=>setShowMenu(false)}><Link to='/recipe'>View All Recipes</Link></li>
+                
+                <li className="navBarListItem" onClick={handleLogout}>Logout</li>
+                </ul> */}
+            
+          </div>
+        
+             
         </div>
+        
+        
         
             
        
         
         
     
-    </>
+  
     )
 }
 
