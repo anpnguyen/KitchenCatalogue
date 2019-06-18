@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react'
+import React, {Fragment, useEffect} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClock, faUtensils } from '@fortawesome/free-solid-svg-icons'
 import { withRouter} from 'react-router-dom'
@@ -21,7 +21,9 @@ function ContentCard(props){
 
         props.history.push(`/recipe/${_id}`)}
     }
-            
+
+
+    useEffect(()=> console.log('rerender card'),[])
     
 
     return(
@@ -41,10 +43,7 @@ function ContentCard(props){
                 
                 {text && !props.titleText &&
                 <Fragment>
-                {/* <div className=' recipeText'>
-                                      
-                  
-                </div> */}
+                
                 <p className=' recipeText'><span className='bold'><FontAwesomeIcon icon={faUtensils} /> Servings: </span> {servings}</p>
                 <p className=' recipeText'><span className='bold'><FontAwesomeIcon icon={faClock} /> Cooking Time: </span> {time}</p>
                 </Fragment>
@@ -54,7 +53,7 @@ function ContentCard(props){
               
                 
             
-            {/* <div className="contentCardText"></div> */}
+            
         </div>
     
     )

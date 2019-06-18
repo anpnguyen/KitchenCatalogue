@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import NavBar from '../navBar'
 import './newRecipe.css'
@@ -29,6 +29,7 @@ function NewRecipe(props) {
     const [recipeInstructions, setRecipeInstructions] = useState([" "]);
     const [newRecipeStage, setNewRecipeStage] = useState(1)
 
+    useEffect(()=> console.log('rerender'))
 //  Detail Logic
 
     function handleDetailChange(e){

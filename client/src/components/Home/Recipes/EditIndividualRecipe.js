@@ -21,17 +21,25 @@ function EditIndividualRecipe(props) {
  
 
     const initialData = {
-        title:recipe.recipe.title,
-        imageUrl: recipe.recipe.imageUrl,
-        servings: recipe.recipe.servings,
-        time: recipe.recipe.time
+        title:"",
+        imageUrl: "",
+        servings: "",
+        time: ""
     }
   
+    // const initialData = {
+    //     title:recipe.recipe.title,
+    //     imageUrl: recipe.recipe.imageUrl,
+    //     servings: recipe.recipe.servings,
+    //     time: recipe.recipe.time
+    // }
 
     const [recipeDetails, setRecipeDetails] = useState(initialData)  
     const {title, imageUrl, servings, time} = recipeDetails
-    const [recipeIngredients, setRecipeIngredients] = useState(recipe.recipe.ingredients);
-    const [recipeInstructions, setRecipeInstructions] = useState(recipe.recipe.instructions);
+    // const [recipeIngredients, setRecipeIngredients] = useState(recipe.recipe.ingredients);
+    const [recipeIngredients, setRecipeIngredients] = useState([]);
+    // const [recipeInstructions, setRecipeInstructions] = useState(recipe.recipe.instructions);
+    const [recipeInstructions, setRecipeInstructions] = useState([]);
     const [newRecipeStage, setNewRecipeStage] = useState(1)
 
 
@@ -109,26 +117,43 @@ function handleToBack(e){
     setNewRecipeStage(newRecipeStage -1)
 
 }
+console.log(recipe.loading)
 useEffect(()=>{
-    
+    console.log('calling')
      getRecipeById(match.params.recipe_id)
+     
+          
     
-},[getRecipeById,match.params.recipe_id]
+     setRecipeDetails({
+         title: recipe.loading || !recipe.recipe.title ? "": recipe.recipe.title,
+         imageUrl: recipe.loading || !recipe.recipe.imageUrl ? "": recipe.recipe.imageUrl,
+         servings: recipe.loading || !recipe.recipe.servings ? "": recipe.recipe.servings,
+         time: recipe.loading || !recipe.recipe.time ? "": recipe.recipe.time
+     }
+
+     );        
+     setRecipeIngredients(!recipe.recipe.ingredients? "" : recipe.recipe.ingredients);
+     setRecipeInstructions(!recipe.recipe.instructions? "" : recipe.recipe.instructions);
+    
+},  [getRecipeById, recipe.loading ]
     )
 
-    useEffect(()=>{
-        setRecipeDetails(initialData);        
-        setRecipeIngredients(recipe.recipe.ingredients);
-        setRecipeInstructions(recipe.recipe.instructions);
+  
+    console.log(recipe.recipe)
+
+    // useEffect(()=>{
+    //     setRecipeDetails(initialData);        
+    //     setRecipeIngredients(recipe.recipe.ingredients);
+    //     setRecipeInstructions(recipe.recipe.instructions);
         
-    },[recipe]
-        )
+    // },[recipe, initialData]
+    //     )
 
   return(
     <>
         <NavBar/>
         <Alert/>
-        {recipe.loading === true? <Spinner/> :
+        {recipe.loading === true && recipe.recipe ==={} ? <Spinner/> :
         <div className="contentBox backgroundWhite">
             <div className="contentBoxContent height100">    
             

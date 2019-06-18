@@ -17,7 +17,7 @@ function ContentBox(props){
     const totalItems = recipes.length
     const totalPages = Math.floor((recipes.length/pageLimit)) + 1
     
-    
+    // useEffect(()=>console.log('rerender'))
 
     useEffect(
         ()=>{
@@ -61,10 +61,10 @@ function ContentBox(props){
         
             
         setNavigation(newNavigation)
-        console.log(navigation)
+        // console.log(navigation)
         }
     }
-
+    useEffect(()=> console.log('rerender box'),[])
     function handleRedirect(){
         history.push('/recipe/new')
     }
