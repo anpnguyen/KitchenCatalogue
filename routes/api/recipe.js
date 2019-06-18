@@ -193,18 +193,18 @@ router.put('/:recipe_id',[
 
 
 // Delete POst work around
-router.post('/:recipe_id/delete', authMiddleware, async (req, res) => {
-    try {
-        await Recipe.deleteOne({ _id: req.params.recipe_id });
-        res.json({ msg: 'Recipe  deleted' });
+// router.post('/:recipe_id/delete', authMiddleware, async (req, res) => {
+//     try {
+//         await Recipe.deleteOne({ _id: req.params.recipe_id });
+//         res.json({ msg: 'Recipe  deleted' });
 
-    } catch (err) {
-        console.error(err.message);
-        console.error(err);
-        // if(err)
-        res.status(500).send('Server Error - cannot delete recipe');
-    }
-});
+//     } catch (err) {
+//         console.error(err.message);
+//         console.error(err);
+//         // if(err)
+//         res.status(500).send('Server Error - cannot delete recipe');
+//     }
+// });
 
 
 //  *** Delete Route - unused **  NEED TO CHANGE

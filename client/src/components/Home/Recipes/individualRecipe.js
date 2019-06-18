@@ -14,6 +14,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClock, faUtensils } from '@fortawesome/free-solid-svg-icons'
 import Alert from '../../Layout/alert'
 
+import DeleteConfimation from './deleteConfirmation'
+
 function IndividualRecipe(props){
 
     const { match, getRecipeById, deleteRecipe, history} = props
@@ -26,15 +28,31 @@ function IndividualRecipe(props){
         
             },[getRecipeById ])
             
-    
+    // useEffect(()=>{
+    //     document.addEventListener('mousedown', handleClick, false)
+        
+    //     },[])
     
 
-
+    // function handleClick(e){
+    //     if(this.node.contains(e.target){
+    //         return
+    //     })
+    // }
 
     function handleDelete(){
-        !isDelete? setIsDelete(true) :  deleteRecipe(history, match.params.recipe_id)
+        setIsDelete(true) 
     }
 
+    function handleStateChange(value){
+        setIsDelete(value)
+    }
+
+    function handleDeleteConfirmation(){
+        deleteRecipe(history, match.params.recipe_id)
+    }
+
+    
  
 
     return(
@@ -43,15 +61,9 @@ function IndividualRecipe(props){
         <>
         <NavBar/>
         <Alert/>
-        <div className={`${!isDelete && "hide"} isDelete`}>
-            <div>
-                <h2>Are you sure you want to delete this item?</h2>
-            </div>
-            <div>
-                <button className='blueButton' onClick={handleDelete}>Yes</button>
-                <button className='blueButton' onClick={()=> setIsDelete(false)}>No</button>
-            </div>
-        </div>
+        {isDelete &&
+        <DeleteConfimation  handleStateChange={handleStateChange} handleDeleteConfirmation={handleDeleteConfirmation} isDelete={isDelete} />
+        }
 
         <div className="contentBox ">
                 <div className="contentBoxContent ">    

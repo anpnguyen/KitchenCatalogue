@@ -1,4 +1,4 @@
-import React, {Fragment, useState, useEffect} from 'react'
+import React, {Fragment, useState, useEffect, useRef} from 'react'
 import ContentCard from './contentCard'
 import './contentBox.css'
 import PropTypes from 'prop-types'
@@ -15,7 +15,7 @@ function ContentBox(props){
     const [navigation, setNavigation] = useState({start:0, end: pageLimit, current: 1})
     const totalItems = recipes.length
     const totalPages = Math.floor((recipes.length/pageLimit)) + 1
-
+    const node = useRef()
     
 
     useEffect(
@@ -106,7 +106,7 @@ function ContentBox(props){
 
 
 
-        <div className="contentBox backgroundWhite" >
+        <div className="contentBox " ref={node}>
             
             <div className="contentBoxContent ">
                 <h1 className="text-center">{title}</h1>  
