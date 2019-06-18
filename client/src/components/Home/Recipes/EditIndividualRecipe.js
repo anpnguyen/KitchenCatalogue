@@ -55,17 +55,17 @@ function EditIndividualRecipe(props) {
     }
 
 //   Ingredient Logic
-  function handleQuantityChange(e, index) {
-    const values = [...recipeIngredients];
-    values[index].quantity = e.target.value;
-    setRecipeIngredients(values);
-  }
+//   function handleQuantityChange(e, index) {
+//     const values = [...recipeIngredients];
+//     values[index].quantity = e.target.value;
+//     setRecipeIngredients(values);
+//   }
 
-  function handleUnitChange(e, index) {
-    const values = [...recipeIngredients];
-    values[index].unit = e.target.value;
-    setRecipeIngredients(values);
-  }
+//   function handleUnitChange(e, index) {
+//     const values = [...recipeIngredients];
+//     values[index].unit = e.target.value;
+//     setRecipeIngredients(values);
+//   }
   function handleIngredientNameChange(e, index) {
     const values = [...recipeIngredients];
     values[index].ingredientName = e.target.value;
@@ -75,7 +75,7 @@ function EditIndividualRecipe(props) {
   function handleIngredientAdd(e) {
       e.preventDefault()
     const values = [...recipeIngredients];
-    values.push({ quantity: " " , unit:" ", ingredientName:" "});
+    values.push("");
     setRecipeIngredients(values);
     console.log(values)
   }
@@ -275,22 +275,22 @@ useEffect(()=>{
                                                 <h3>{index+1}.</h3>
                                             </div>
                                             <div className='newIngredientItemRight'>
-                                            <div><input
+                                            {/* <div><input
                                             type="text"
                                             placeholder="Quantity"
                                             value={recipeIngredient.quantity || " "}
                                             onChange={e => handleQuantityChange(e, index)}
-                                            /></div>
-                                            <div><input
+                                            /></div> */}
+                                            {/* <div><input
                                             type="text"
                                             placeholder="Unit"
                                             value={recipeIngredient.unit || " "}
                                             onChange={e => handleUnitChange(e, index)}
-                                            /></div>
+                                            /></div> */}
                                             <div className="NewRecipeName"><input
                                             type="text"
                                             placeholder="Ingredient Name"
-                                            value={recipeIngredient.ingredientName || " "}
+                                            value={recipeIngredient || " "}
                                             onChange={e => handleIngredientNameChange(e, index)}
                                             
                                             /> <button type="button" onClick={() => handleIngredientRemove(index)}>

@@ -10,7 +10,7 @@ function Footer(){
                 <p className="footertext">All rights reserved.</p>
             </div>
             
-            <div className="footerBox footerBoxRight ">
+            {/* <div className="footerBox footerBoxRight ">
                 <ul className='footerList'>
                     <li className='bold'>
                         Kitchen Catalogue
@@ -20,7 +20,7 @@ function Footer(){
                     <li>My Recipes</li>
                     <li>My Cookbooks</li>
                 </ul>
-            </div>
+            </div> */}
         </div>
     )
 }

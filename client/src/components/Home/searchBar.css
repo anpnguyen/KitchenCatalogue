@@ -34,13 +34,15 @@
 }
 
 .SearchBarInput{
-    
+    outline: none;
     width:400px;
     height:40px;
     border:none;
     margin: 0 10px;
     border-radius: 20px;
-    padding-left: 20px
+    padding-left: 20px;
+    font-family: inherit;
+    font-weight: 500
        
 }
 

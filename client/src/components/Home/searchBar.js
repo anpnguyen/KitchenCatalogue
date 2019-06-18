@@ -24,6 +24,7 @@ function SearchBar(props){
     function handleSubmit(e){
         e.preventDefault();
         getRecipes(searchData)
+
     }
 
     return(
@@ -33,7 +34,7 @@ function SearchBar(props){
             <div className='SeachBarFormContainer'>
                 <form className='SeachBarForm' onSubmit={handleSubmit}>
                     
-                        <input className='SearchBarInput'type="text" placeholder="Search" value={searchData} onChange={handleSearchChange}/>
+                        <input className='SearchBarInput'type="text" placeholder="Search My Recipes..." value={searchData} onChange={handleSearchChange}/>
                     
                     
                         <button className='SearchBarButton'>Search</button>

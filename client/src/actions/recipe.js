@@ -139,7 +139,7 @@ export const createRecipe = (formData, history) => async dispatch => {
         
         const res = await axios.post('http://localhost:5000/api/recipe', formData, config)
         
-        console.log(res.data)
+        // console.log(res.data)
 
         dispatch({
             type: CREATE_RECIPE,
@@ -158,7 +158,7 @@ export const createRecipe = (formData, history) => async dispatch => {
                     
         
     } catch (err) {
-        console.log(err)
+        // console.log(err)
         console.log(err.response)
         console.log("error in sending create recipe")
        
@@ -253,7 +253,7 @@ export const deleteRecipe = (history, recipeId) => async dispatch => {
         //     if (errors) {
         //         errors.forEach(error => dispatch(setAlert(error.msg, 'danger')))
         //     };
-
+        
         dispatch({
             type: DELETE_RECIPE_ERROR,
             payload: { msg: "create profile error ", status: "server error"}

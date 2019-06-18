@@ -229,25 +229,26 @@
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    padding-bottom: 5px
+    padding-bottom: 5px;
+    width:100%
 }
 
-.newIngredientItemRight div:nth-child(1){
-    width: 100px;
+.newIngredientItemRight {
+    width: 100%;
     /* display: flex;
     align-self: flex-end;
     justify-content: center */
     
 }
-.newIngredientItemRight div:nth-child(2){
+/* .newIngredientItemRight div:nth-child(2){
     width: 100px
     
-}
+} */
 
-.newIngredientItemRight div:nth-child(3){
+/* .newIngredientItemRight div:nth-child(3){
     width: calc(100% - 200px)!important
     
-}
+} */
 
 .newIngredientItemRight div input {
     width:90%;

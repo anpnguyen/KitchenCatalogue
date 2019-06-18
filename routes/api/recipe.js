@@ -46,6 +46,7 @@ router.post('/',[
         try {
             recipe = new Recipe(recipeFields);
             await recipe.save();
+            console.log(recipe)
             res.json(recipe);
 
             } catch (err) {

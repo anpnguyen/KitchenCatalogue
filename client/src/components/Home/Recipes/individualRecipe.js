@@ -80,7 +80,8 @@ function IndividualRecipe(props){
                             <li className=' '><h3>Ingredients</h3>    </li>
                             {ingredients.map( (ingredient, index) =>(
                                 <Fragment key={ingredient._id}>
-                                <li> {`${ingredient.quantity} ${ingredient.unit} of ${ingredient.ingredientName}`}</li>
+                                {/* <li> {`${ingredient.quantity} ${ingredient.unit} of ${ingredient.ingredientName}`}</li> */}
+                                <li>{ingredient}</li>
                                 </Fragment>
                             ))}
                             

@@ -12,9 +12,18 @@
     -webkit-box-shadow: 3px 3px 5px -1px rgba(207,195,207,1);
     -moz-box-shadow: 3px 3px 5px -1px rgba(207,195,207,1);
     box-shadow: 3px 3px 5px -1px rgba(207,195,207,1);
-    box-sizing: border-box
-    /* max-height:500px; */
+    box-sizing: border-box;
+    transition: all 0.15s ease-in-out;
     
+    
+}
+
+.contentCard:hover{
+    transform: scale(.98);
+    opacity: 0.8;
+    -webkit-box-shadow: 1px 1px 3px -1px  rgba(207,195,207,1);
+    -moz-box-shadow: 1px 1px 3px -1px  rgba(207,195,207,1);
+    box-shadow: 1px 1px 3px -1px rgba(207,195,207,1);
 }
 
 .ContentCardImage{

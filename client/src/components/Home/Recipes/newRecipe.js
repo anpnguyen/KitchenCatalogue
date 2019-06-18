@@ -27,7 +27,7 @@ function NewRecipe(props) {
 }
     const [recipeDetails, setRecipeDetails] = useState(initialData)  
     const {title, imageUrl, servings, time} = recipeDetails
-    const [recipeIngredients, setRecipeIngredients] = useState([{ quantity: null , unit:null, ingredientName:null}]);
+    const [recipeIngredients, setRecipeIngredients] = useState([" "]);
     const [recipeInstructions, setRecipeInstructions] = useState([" "]);
     const [newRecipeStage, setNewRecipeStage] = useState(1)
 
@@ -38,27 +38,32 @@ function NewRecipe(props) {
     }
 
 //   Ingredient Logic
-  function handleQuantityChange(e, index) {
-    const values = [...recipeIngredients];
-    values[index].quantity = e.target.value;
-    setRecipeIngredients(values);
-  }
+//   function handleQuantityChange(e, index) {
+//     const values = [...recipeIngredients];
+//     values[index].quantity = e.target.value;
+//     setRecipeIngredients(values);
+//   }
 
-  function handleUnitChange(e, index) {
-    const values = [...recipeIngredients];
-    values[index].unit = e.target.value;
-    setRecipeIngredients(values);
-  }
+//   function handleUnitChange(e, index) {
+//     const values = [...recipeIngredients];
+//     values[index].unit = e.target.value;
+//     setRecipeIngredients(values);
+//   }
   function handleIngredientNameChange(e, index) {
     const values = [...recipeIngredients];
-    values[index].ingredientName = e.target.value;
+    // console.log(values)
+    // console.log(index)
+    
+    values[index] = e.target.value;
+    
     setRecipeIngredients(values);
+    console.log(recipeIngredients)
   }
   
   function handleIngredientAdd(e) {
       e.preventDefault()
     const values = [...recipeIngredients];
-    values.push({ quantity: " " , unit:" ", ingredientName:" "});
+    values.push(" ");
     setRecipeIngredients(values);
     console.log(values)
   }
@@ -97,7 +102,9 @@ function handleInstructionRemove(index,e) {
 
 function handleSubmit(e){
     e.preventDefault()
+    
     const formData = {...recipeDetails, ingredients: recipeIngredients, instructions: recipeInstructions}
+    console.log(formData)
     // console.log(formData)
     createRecipe(formData, history)
 
@@ -231,11 +238,11 @@ function handleToBack(e){
                                         <div className='newIngredientItemLeft'>
                                             
                                         </div>
-                                        <div className='newIngredientItemRight'> 
+                                        {/* <div className='newIngredientItemRight'> 
                                             <div >Quantity</div>
                                             <div >Unit</div>
                                             <div className="NewRecipeName">Ingredient Name</div>
-                                        </div>
+                                        </div> */}
                                        
                                 </div>
                                     
@@ -246,7 +253,7 @@ function handleToBack(e){
                                                 <h3>{index+1}.</h3>
                                             </div>
                                             <div className='newIngredientItemRight'>
-                                            <div><input
+                                            {/* <div><input
                                             type="text"
                                             placeholder="Quantity"
                                             value={recipeIngredient.quantity || " "}
@@ -257,11 +264,11 @@ function handleToBack(e){
                                             placeholder="Unit"
                                             value={recipeIngredient.unit || " "}
                                             onChange={e => handleUnitChange(e, index)}
-                                            /></div>
+                                            /></div> */}
                                             <div className="NewRecipeName"><input
                                             type="text"
                                             placeholder="Ingredient Name"
-                                            value={recipeIngredient.ingredientName || " "}
+                                            value={recipeIngredients[index] || " "}
                                             onChange={e => handleIngredientNameChange(e, index)}
                                             
                                             /> <button type="button" onClick={() => handleIngredientRemove(index)}>
