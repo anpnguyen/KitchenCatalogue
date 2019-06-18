@@ -188,8 +188,37 @@
 
 
 
+.isDelete{
+    width:40%;
+    height:200px;
+    position: absolute;
+    top:200px;
+    left:30%;
+    z-index: 50;
+    background: #f8f8f8;
+    border: 1px solid #333;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    border-radius: 20px;
+    -webkit-box-shadow: 3px 3px 5px -1px rgba(207,195,207,1);
+    -moz-box-shadow: 3px 3px 5px -1px rgba(207,195,207,1);
+    box-shadow: 3px 3px 5px -1px rgba(207,195,207,1);
+    transition: all 0.5s ease-in-out;
+    /* opacity:0 */
+   
+}
 
+.isDelete div:nth-child(2){
+    padding-top: 20px
 
+}
+
+.hide{
+   display:none
+}
 
 
 

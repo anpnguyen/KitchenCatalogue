@@ -11,9 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClock, faUtensils } from '@fortawesome/free-solid-svg-icons'
 import Footer from '../../Home/footer'
 import Alert from '../../Layout/alert'
-// import Alert from '../../Layout/alert'
 
-// import "./styles.css";
 
 function NewRecipe(props) {
 
@@ -37,27 +35,14 @@ function NewRecipe(props) {
         setRecipeDetails({...recipeDetails, [e.target.name]: e.target.value})
     }
 
-//   Ingredient Logic
-//   function handleQuantityChange(e, index) {
-//     const values = [...recipeIngredients];
-//     values[index].quantity = e.target.value;
-//     setRecipeIngredients(values);
-//   }
 
-//   function handleUnitChange(e, index) {
-//     const values = [...recipeIngredients];
-//     values[index].unit = e.target.value;
-//     setRecipeIngredients(values);
-//   }
   function handleIngredientNameChange(e, index) {
     const values = [...recipeIngredients];
-    // console.log(values)
-    // console.log(index)
     
     values[index] = e.target.value;
     
     setRecipeIngredients(values);
-    console.log(recipeIngredients)
+    
   }
   
   function handleIngredientAdd(e) {
@@ -104,8 +89,7 @@ function handleSubmit(e){
     e.preventDefault()
     
     const formData = {...recipeDetails, ingredients: recipeIngredients, instructions: recipeInstructions}
-    console.log(formData)
-    // console.log(formData)
+   
     createRecipe(formData, history)
 
     }

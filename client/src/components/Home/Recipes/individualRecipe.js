@@ -1,4 +1,4 @@
-import React , {useEffect, Fragment} from 'react'
+import React , {useEffect, Fragment, useState} from 'react'
 import './individualRecipe.css'
 import {getRecipeById} from '../../../actions/recipe'
 import PropTypes from 'prop-types'
@@ -18,21 +18,21 @@ function IndividualRecipe(props){
 
     const { match, getRecipeById, deleteRecipe, history} = props
     const {title, imageUrl, servings, time, ingredients, instructions, user,_id} = props.recipe.recipe
-    
     const {loading} = props.recipe
+    const [isDelete, setIsDelete] = useState(false)
 
     useEffect(()=>{
         getRecipeById(match.params.recipe_id,history)
         
             },[getRecipeById ])
-            // ,match.params.recipe_id
+            
     
     
 
 
 
     function handleDelete(){
-        deleteRecipe(history, match.params.recipe_id)
+        !isDelete? setIsDelete(true) :  deleteRecipe(history, match.params.recipe_id)
     }
 
  
@@ -43,10 +43,18 @@ function IndividualRecipe(props){
         <>
         <NavBar/>
         <Alert/>
+        <div className={`${!isDelete && "hide"} isDelete`}>
+            <div>
+                <h2>Are you sure you want to delete this item?</h2>
+            </div>
+            <div>
+                <button className='blueButton' onClick={handleDelete}>Yes</button>
+                <button className='blueButton' onClick={()=> setIsDelete(false)}>No</button>
+            </div>
+        </div>
 
         <div className="contentBox ">
-            
-            <div className="contentBoxContent ">    
+                <div className="contentBoxContent ">    
 
             
                 

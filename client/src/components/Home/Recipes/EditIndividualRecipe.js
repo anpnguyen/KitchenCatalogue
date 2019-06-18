@@ -12,63 +12,38 @@ import { faClock, faUtensils } from '@fortawesome/free-solid-svg-icons'
 import Alert from '../../Layout/alert'
 import Footer from '../../Home/footer'
 import Spinner from '../../Layout/spinner'
-// import "./styles.css";
+
 
 function EditIndividualRecipe(props) {
 
-    
-
-   const {editRecipePut,history, recipe, auth, getRecipeById, match} = props
-   const {user} = auth
-    // const {recipe} = props.recipe
-    
-    // pulling from State
-    // const {title, imageUrl, servings, time, ingredients, instructions} = recipe.recipe
+    const {editRecipePut,history, recipe, auth, getRecipeById, match} = props
+    const {user} = auth
+ 
 
     const initialData = {
         title:recipe.recipe.title,
         imageUrl: recipe.recipe.imageUrl,
         servings: recipe.recipe.servings,
         time: recipe.recipe.time
-}
-
- 
-
-
-
-
-
-
-   
+    }
+  
 
     const [recipeDetails, setRecipeDetails] = useState(initialData)  
-    // state
     const {title, imageUrl, servings, time} = recipeDetails
     const [recipeIngredients, setRecipeIngredients] = useState(recipe.recipe.ingredients);
     const [recipeInstructions, setRecipeInstructions] = useState(recipe.recipe.instructions);
     const [newRecipeStage, setNewRecipeStage] = useState(1)
 
-//  Detail Logic
+
 
     function handleDetailChange(e){
         setRecipeDetails({...recipeDetails, [e.target.name]: e.target.value})
     }
 
-//   Ingredient Logic
-//   function handleQuantityChange(e, index) {
-//     const values = [...recipeIngredients];
-//     values[index].quantity = e.target.value;
-//     setRecipeIngredients(values);
-//   }
 
-//   function handleUnitChange(e, index) {
-//     const values = [...recipeIngredients];
-//     values[index].unit = e.target.value;
-//     setRecipeIngredients(values);
-//   }
   function handleIngredientNameChange(e, index) {
     const values = [...recipeIngredients];
-    values[index].ingredientName = e.target.value;
+    values[index] = e.target.value;
     setRecipeIngredients(values);
   }
   
@@ -86,7 +61,7 @@ function EditIndividualRecipe(props) {
     setRecipeIngredients(values);
   }
 
-//   Instruction Logic
+
 
 function handleInstructionChange(e, index) {
     const valuesInstructions = [...recipeInstructions];
@@ -206,12 +181,10 @@ useEffect(()=>{
                                         
 
                     </div> 
-                        {/* <hr className="width80"/> */}
+                    
                 </div>}
 
-                {/* <hr className="width80"/> */}
-            {/* </div> */}
-
+            
                     <div className='newRecipeForm'>
                         <form  onSubmit={handleSubmit}>
 
@@ -239,15 +212,15 @@ useEffect(()=>{
                                         <div><input type="text" placeholder="Cooking Time" name="time" value={time} onChange={handleDetailChange}/></div>
                                     </div>
                                     <div className='newRecipeItem'>
-                                        {/* <button className="newRecipeNavigation">Clear Text</button> */}
+                                        
                                         <button onClick={handleToNext} className="newRecipeNavigation">Next</button>
                                     </div>
-                                    {/* <hr className="width80"/> */}
+                                
                                 </div>
                                 
                             </div>}
 
-                            {/* *** Instructions **** */}
+                       
                             
                            {newRecipeStage === 2 &&
                             <div className="newRecipeIngredientsContainer">
@@ -275,18 +248,7 @@ useEffect(()=>{
                                                 <h3>{index+1}.</h3>
                                             </div>
                                             <div className='newIngredientItemRight'>
-                                            {/* <div><input
-                                            type="text"
-                                            placeholder="Quantity"
-                                            value={recipeIngredient.quantity || " "}
-                                            onChange={e => handleQuantityChange(e, index)}
-                                            /></div> */}
-                                            {/* <div><input
-                                            type="text"
-                                            placeholder="Unit"
-                                            value={recipeIngredient.unit || " "}
-                                            onChange={e => handleUnitChange(e, index)}
-                                            /></div> */}
+                                        
                                             <div className="NewRecipeName"><input
                                             type="text"
                                             placeholder="Ingredient Name"
@@ -344,10 +306,7 @@ useEffect(()=>{
                                 
                                 
                                 <button className="addInstructionButton" onClick={e=> handleInstructionAdd(e)}>Add Instruction</button>
-                                {/* <div className="newRecipeButton">
-                                <button className="save">Save</button>
-                                <button className="save">Clear</button>
-                                </div> */}
+                              
                             </div>
 
                             <div className="newRecipeIngredientItem newRecipeIngredientItemLast">
