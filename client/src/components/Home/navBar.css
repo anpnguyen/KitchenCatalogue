@@ -63,25 +63,89 @@
 
 .navBarButton{
     position: absolute;
-    right: 20px;
-    display:none
+    right: 50px;
+    transform: scale(2)
 }
+
+.navBarButton:active{
+  transform: scale(1.90)
+}
+
+.navBarButton:hover{
+    color: #d8d8d8
+  }
+
+
+
 .navBarList{
-    
-    display: inline;
-    list-style: none;
+        
+    position: absolute;
+    top:-360px;
+    right:15px;
+    width:300px;
+    height:350px;
     margin:0;
-    padding:0;
-    /* margin-left: 80px */
-    /* display:inline */
+    padding:0; 
+    background: #d8d8d8;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    z-index: 4;
+    color:#f8f8f8;
+    border-radius: 0 0 10px 10px;
+    opacity: 0.9;
+    transition: all 0.3s  ease-in-out;
+    font-weight: bold
+
+   
+} 
+
+ .slide{
+    top: 60px
+    /* z-index */
+    
+
+} 
+
+.navBarListItem{
+    
+    width:200px;
+    color:#333;
+    margin: 15px  auto;
+    text-transform: uppercase;
+    text-align: center
+    
 }
+
+.navBarListItem:first-of-type{
+    
+    width:200px;
+    margin: 50px  auto;
+    text-transform: none;
+    cursor: default !important;
+}
+
+.navBarListItem:first-of-type:hover{
+    color: #333
+  
+}
+.navBarListItem:hover{
+    cursor: pointer;
+    color: rgb(218, 26, 45) 
+}
+
+
 
 .navBarListItem a{
     display:inline;
-    
-    margin: 0 20px;
-    /* color: #DC3545; */
-    color: #f8f8f8;
+    color: #333;
+    letter-spacing: 1.5px
+}
+
+.navBarListItem a:hover{
+    display:inline;
+    color: rgb(218, 26, 45) ;
     letter-spacing: 1.5px
 }
 
@@ -97,6 +161,7 @@
     border-radius: 5px
   }
 
+ 
 
 @media only screen and (max-width: 900px) {
 
@@ -108,22 +173,8 @@
     .navBarContainer{
         display:block
     }
-    .navBarList{
-        display: none;
-        position: absolute;
-        top:60px;
-        left:0;
-        width:100%;
-        margin:0;
-        padding:0; 
-        background: #f8f8f8
-    } 
-    .navBarListItem{
-        display:block;
-        width:200px;
-        margin: 20px 30px;
-        color: #DC3545;
-    }
+    
+
         
     
 

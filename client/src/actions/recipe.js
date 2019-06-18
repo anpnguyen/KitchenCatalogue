@@ -86,7 +86,7 @@ export const getRecipeById = (recipeId,history) => async dispatch => {
             type: CLEAR_RECIPE
         })
 
-        history.push('/home')
+        history.push('/recipe')
 
     }
 };
@@ -205,7 +205,7 @@ export const deleteRecipe = (history, recipeId) => async dispatch => {
         dispatch(setAlert ( "Recipe Sucessfully Deleted", "RecipeEditSuccess"
         ));
 
-        history.push(`/home`)
+        history.push(`/recipe`)
 
                       
         
@@ -213,11 +213,7 @@ export const deleteRecipe = (history, recipeId) => async dispatch => {
         console.log(err)
         console.log("error in deleting recipe")
        
-        // const errors = err.response.data.errors ;
-        //     if (errors) {
-        //         errors.forEach(error => dispatch(setAlert(error.msg, 'danger')))
-        //     };
-        
+          
         dispatch({
             type: RECIPE_ERROR,
             payload: { msg: "create profile error ", status: "server error"}
@@ -225,45 +221,6 @@ export const deleteRecipe = (history, recipeId) => async dispatch => {
         
     }
 };
-
-
-
-// export const deleteRecipe = (history, recipeId) => async dispatch => {
-//     try {         
-             
-              
-        
-//         await axios.post(`http://localhost:5000/api/recipe/${recipeId}/delete`)
-        
-//         // console.log(res.data)
-
-//         dispatch({
-//             type: DELETE_RECIPE,
-//         });
-
-//         dispatch(setAlert ( "Recipe Sucessfully Deleted", "RecipeEditSuccess"
-//         ));
-
-//         history.push(`/home`)
-
-                      
-        
-//     } catch (err) {
-//         console.log(err)
-//         console.log("error in deleting recipe")
-       
-//         // const errors = err.response.data.errors ;
-//         //     if (errors) {
-//         //         errors.forEach(error => dispatch(setAlert(error.msg, 'danger')))
-//         //     };
-
-//         dispatch({
-//             type: DELETE_RECIPE_ERROR,
-//             payload: { msg: "create profile error ", status: "server error"}
-//           });
-        
-//     }
-// };
 
 
 

@@ -8,6 +8,7 @@ function DeleteConfirmation(props){
     
 
     useEffect(() => {
+       
         
         if (isDelete) {
           document.addEventListener("mousedown", handleClickOutside);
@@ -20,26 +21,25 @@ function DeleteConfirmation(props){
         };
       }, [isDelete]);
 
-    function handleOnClickNo(){
-        handleStateChange(false)
-    }
+      const handleClickOutside = e => {  
+        function handleOnClickNo(){
+          handleStateChange(false)
+      }    
+        
+        if (node.current.contains(e.target)) {
+          return;
+        }
+        handleOnClickNo();
+      };
 
     function handleOnClickDelete(){
         handleDeleteConfirmation()
     }
     
-    const handleClickOutside = e => {
-        
-        
-        
-        if (node.current.contains(e.target)) {
-        
-          return;
-        }
-        
-        handleOnClickNo();
-      };
-
+    
+    function handleOnClickNo(){
+      handleStateChange(false)
+  }
      
     
 
