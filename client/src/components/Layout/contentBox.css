@@ -96,4 +96,15 @@
 
     .contentBoxContent{
         width:100%
-    }}
+    }
+    
+    .navigationSelect{
+        margin-right:20px;
+        height:30px
+    }
+    .searchNumber{
+        margin-left :20px;
+        
+    }
+
+}

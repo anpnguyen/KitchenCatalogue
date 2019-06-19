@@ -10,12 +10,12 @@ import {connect} from 'react-redux'
 
 
 
-function Home(props){
+function SearchPage(props){
 
-    const {getRecipes} = props
+    const {getRecipes,search} = props
 
     useEffect(()=>{
-        getRecipes()},[getRecipes]
+        getRecipes(search.searchData)},[getRecipes]
 
     )
     const [isSearch, setIsSearch] = useState({searchStatus: false, searchText:""})
@@ -23,14 +23,14 @@ function Home(props){
     return(
         <Fragment>
             <NavBar/>
-            <SearchBar setIsSearch={setIsSearch} {...props}/>
+            <SearchBar  {...props}/>
             <Alert/>
-            {/* {isSearch.searchStatus? <h1>{isSearch.searchText}</h1>: <h1>not searching</h1>       } */}
+            
             
 
             
 
-            <ContentBox title="My Recipes" text={true} showAll={true} {...props} isSearch={isSearch}/>
+                <ContentBox title="My Recipes" text={true} showAll={true} {...props} isSearch={true}/>
             
      
             
@@ -44,9 +44,10 @@ function Home(props){
 
 // export default Home
 
-Home.propTypes = {
+SearchPage.propTypes = {
     // getCurrentProfile: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
+    search: PropTypes.object.isRequired,
     getRecipes: PropTypes.func.isRequired
 
 
@@ -55,8 +56,9 @@ Home.propTypes = {
 // this is the state that the current component has available to it
 const mapStateToProps = state => ({
     auth: state.auth,
-    recipe: state.recipe
+    recipe: state.recipe,
+    search: state.search
     // profile: state.profile
 })
 
-export default connect(mapStateToProps, {getRecipes})(Home)
+export default connect(mapStateToProps, {getRecipes})(SearchPage)

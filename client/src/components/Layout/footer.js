@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+// import {Link} from 'react-router-dom'
 import './footer.css'
 
 function Footer(){
@@ -11,7 +11,7 @@ function Footer(){
                 <p className="footertext">All rights reserved.</p>
             </div>
             
-            <div className="footerBox footerBoxRight ">
+            {/* <div className="footerBox footerBoxRight ">
                 <ul className='footerList'>
                     <li className='bold'>
                         Kitchen Catalogue
@@ -21,7 +21,7 @@ function Footer(){
                     <li><Link to="/recipe">View All Recipes</Link></li>
                     
                 </ul>
-            </div>
+            </div> */}
         </div>
     )
 }

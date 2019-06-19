@@ -8,7 +8,7 @@ import IndexContainer from './components/Layout/indexContainer';
 import IndividualRecipe from './components/Recipes/individualRecipe'
 import NewRecipeContainer from './components/Recipes/newRecipeContainer'
 import EditIndividualRecipe from './components/Recipes/EditIndividualRecipe'
-
+import SearchContainer from './components/Layout/searchContainer'
 import './App.css';
 
 
@@ -57,6 +57,11 @@ function App() {
                 exact 
                 path='/recipe' 
                 component={IndexContainer} />
+
+              <PrivateRoute 
+                exact 
+                path='/recipe/search' 
+                component={SearchContainer} />
 
         
 

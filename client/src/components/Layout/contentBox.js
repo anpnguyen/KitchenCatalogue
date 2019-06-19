@@ -9,7 +9,7 @@ import Spinner from './spinner'
 
 function ContentBox(props){
 
-    const {title, text, recipe, showAll, history, isSearch} = props
+    const {title, text, recipe, showAll, history, isSearch, search} = props
     const {recipes, loading} = recipe
     const [pageLimit, setPageLimit] = useState(12)
     const [navigation, setNavigation] = useState({start:0, end: pageLimit, current: 1})
@@ -77,7 +77,7 @@ function ContentBox(props){
             return (
             <>
             <ContentCard  recipe={recipe} showAll={showAll} text={text} key={recipe._id}/>
-            <ContentCard {...props} titleText="Create New Recipe" onClick={handleRedirect}/>
+            <ContentCard {...props} titleText="Create New Recipe" onClick={handleRedirect} key={recipe._id+ 'create'}/>
             </>)
         } 
         
@@ -106,12 +106,12 @@ function ContentBox(props){
         loading? <Spinner/>:
   
         <div className="contentBox " >
-            <div className="contentBoxContent ">
-                <h1 className="text-center">{isSearch.searchStatus=== true? "Search Results" :title}</h1>  
+            <div className="contentBoxContent " >
+                <h1 className="text-center">{isSearch=== true? "Search Results" :title}</h1>  
                 <hr className="width80"/>
                 <div className='contentBoxHeader' >
                     <div>
-                    <p className='searchNumber'> {totalItems} {totalItems===1?"recipe": "recipes"} found {isSearch.searchStatus === true && ` for '${isSearch.searchText}'`}</p>
+                    <p className='searchNumber'> {totalItems} {totalItems===1?"recipe": "recipes"} found {isSearch === true && ` for '${search.searchData}'`}</p>
                     </div>
                     <div>
                         <select className='navigationSelect' name="itemsPerPage" onChange={(e)=>setPageLimit(parseInt(e.target.value))} value={pageLimit}>    
@@ -129,7 +129,7 @@ function ContentBox(props){
 
                 <div className="contentBoxCard">
                     {mappedData}
-                    
+                    {recipes.length ===0&&<ContentCard {...props} titleText="Create New Recipe" onClick={handleRedirect}/>}
                     
                     
                     <hr className="width80"/>
@@ -162,7 +162,8 @@ ContentBox.propTypes = {
 
 const mapStateToProps = state => ({
 
-    recipe: state.recipe
+    recipe: state.recipe,
+    search: state.search
 })
 
 export default connect(mapStateToProps, {})(ContentBox)

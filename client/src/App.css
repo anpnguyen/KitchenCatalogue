@@ -127,6 +127,7 @@ button:hover, select:hover{
     top: 50px;
     z-index: 9999;
     border-radius: 10px;
+    
       
      
 }  
@@ -143,6 +144,7 @@ button:hover, select:hover{
     top: 50px;
     z-index: 9999;
     border-radius: 10px;
+    
       
      
 }  
@@ -169,5 +171,12 @@ button:hover, select:hover{
 .alert{
     display:flex;
     justify-content: space-between
+
+}
+.alert div:first-of-type{
+    width:90%;
+    text-align: center
+ 
+ 
 
 }

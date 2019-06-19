@@ -22,6 +22,7 @@ function Login(props){
     const {username, email, password, password2} = formData
 
     function handleClick(){
+        setFormData(initialData)
         setIsLogin(!isLogin)
     }
 

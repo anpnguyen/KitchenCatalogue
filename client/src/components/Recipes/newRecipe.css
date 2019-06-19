@@ -36,6 +36,11 @@
 
 }
 
+.newRecipePreviewItem svg{
+    color: #8CC700;
+    margin-right: 5px
+}
+
 .newRecipePreviewItem:first-of-type{
     border-radius: 10px 10px 0 0
 

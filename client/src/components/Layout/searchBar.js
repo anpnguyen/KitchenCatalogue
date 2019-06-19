@@ -3,11 +3,12 @@ import PropTypes from 'prop-types'
 import SearchBack from '../../images/searchback_crop.jpg'
 import {connect} from 'react-redux'
 import {getRecipes} from '../../actions/recipe'
+import {searchRecipes} from '../../actions/search'
 import './searchBar.css'
 
 function SearchBar(props){
 
-    const {getRecipes, setIsSearch} = props
+    const {getRecipes, setIsSearch, history, searchRecipes} = props
 
     let styles= {
         backgroundImage: `url(${SearchBack})`,
@@ -15,19 +16,19 @@ function SearchBar(props){
         backgroundPosition: 'center'
     }
 
-    const [searchData, setSearchData] = useState("")
+    const [formData, setFormData] = useState("")
 
     function handleSearchChange(e){
-        setSearchData( e.target.value)
-        console.log(searchData)
+        setFormData( e.target.value)
+        
     }
 
     function handleSubmit(e){
         e.preventDefault();
-        searchData&&
-        setIsSearch({searchStatus: true, searchText: searchData})
-        getRecipes(searchData)
-        setSearchData("")
+        formData&&
+        
+        searchRecipes(formData, history)
+        console.log(formData)
 
     }
 
@@ -37,7 +38,7 @@ function SearchBar(props){
             
             <div className='SeachBarFormContainer'>
                 <form className='SeachBarForm' onSubmit={handleSubmit}>
-                    <input className='SearchBarInput'type="text" placeholder="Search My Recipes..." value={searchData} onChange={handleSearchChange}/>                               
+                    <input className='SearchBarInput'type="text" placeholder="Search By Title..." value={formData} onChange={handleSearchChange}/>                               
                     <button className='SearchBarButton'>Search</button>                   
                 </form>
             </div>
@@ -50,6 +51,13 @@ function SearchBar(props){
 SearchBar.propTypes = {
   
     getRecipes: PropTypes.func.isRequired,    
+    searchRecipes: PropTypes.func.isRequired,    
   }
 
-export default connect(null, {getRecipes})(SearchBar)
+
+  const mapStateToProps = state => ({
+
+    search: state.search
+})
+
+export default connect(mapStateToProps, {getRecipes, searchRecipes})(SearchBar)

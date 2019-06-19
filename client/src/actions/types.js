@@ -21,6 +21,8 @@ export const GET_RECIPES = 'GET_RECIPES'
 export const RECIPES_ERROR = 'GET_RECIPES'
 export const CLEAR_RECIPE = 'CLEAR_RECIPE'
 export const CLEAR_ERROR = 'CLEAR_ERROR'
+export const SEARCH = 'SEARCH'
+export const SEARCH_ERROR = 'SEARCH_ERROR'
 
 // to be cleared
 
