@@ -13,9 +13,9 @@ import{
     // CREATE_RECIPE_ERROR,    
     EDIT_RECIPE,    
     // EDIT_RECIPE_ERROR,
-    DELETE_RECIPE,
+    DELETE_RECIPE
     // DELETE_RECIPE_ERROR,
-    RECIPE_ADD_FAVOURITE    
+     
 
 } from '../actions/types'
 
@@ -227,46 +227,3 @@ export const deleteRecipe = (history, recipeId) => async dispatch => {
 
 
 
-
-export const addRecipeToFavourites = (recipeId) => async dispatch => {
-    try {
-     
-        const config = {
-            headers: {
-              'Content-Type': 'application/json'
-            }
-          };
-
-
-        let res = await axios.put(`http://localhost:5000/api/recipe/favourite`, recipeId  ,config)
-        
-        console.log("recipe added to favourite")
-
-        dispatch({
-            type: RECIPE_ADD_FAVOURITE,
-            payload: res.data
-        });
-
-        dispatch(setAlert ( "Recipe Sucessfully Deleted", "success"
-        ));
-
-        // history.push(`/recipe`)
-
-                      
-        
-    } catch (err) {
-        console.log(err)
-        console.log("error in ading favourite recipe")
-       
-        // const errors = err.response.data.errors ;
-        //     if (errors) {
-        //         errors.forEach(error => dispatch(setAlert(error.msg, 'danger')))
-        //     };
-
-        // dispatch({
-        //     type: DELETE_RECIPE_ERROR,
-        //     payload: { msg: "create profile error ", status: "server error"}
-        //   });
-        
-    }
-};

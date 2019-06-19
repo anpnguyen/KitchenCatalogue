@@ -72,12 +72,13 @@
     background:#dddddd;
     margin:0;
     z-index: 15;
-    height:350px;
+    /* height:350px; */
     width: 300px;
     -webkit-box-shadow: 3px 3px 5px -1px rgba(207,195,207,1);
     -moz-box-shadow: 3px 3px 5px -1px rgba(207,195,207,1);
     box-shadow: 3px 3px 5px -1px rgba(207,195,207,1);
-    opacity:0.9
+    opacity:0.9;
+    border-radius: 0px 0px 10px 10px
     
 }
 
@@ -126,8 +127,14 @@
 }
 
 .NavList li:first-of-type{
+    text-transform: none;
+    padding-top: 50px;
+    cursor: default !important;
+}
+
+.NavList li:last-of-type{
     
-    padding: none
+    padding-bottom: 50px
 }
 
 .NavList li:first-of-type:hover{
@@ -135,10 +142,11 @@
   
 }
 .NavList li:hover{
-
     cursor: pointer;
     color: rgb(218, 26, 45) 
 }
+
+
 
 
 

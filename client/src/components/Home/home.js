@@ -1,4 +1,4 @@
-import React , {Fragment, useEffect}from 'react'
+import React , {Fragment, useEffect, useState}from 'react'
 import NavBar from './navBar'
 import SearchBar from './searchBar'
 import ContentBox from './contentBox'
@@ -18,18 +18,19 @@ function Home(props){
         getRecipes()},[getRecipes]
 
     )
+    const [isSearch, setIsSearch] = useState({searchStatus: false, searchText:""})
 
     return(
         <Fragment>
             <NavBar/>
-            <SearchBar/>
+            <SearchBar setIsSearch={setIsSearch}/>
             <Alert/>
-            
-            
-
+            {/* {isSearch.searchStatus? <h1>{isSearch.searchText}</h1>: <h1>not searching</h1>       } */}
             
 
-            <ContentBox title="My Recipes" text={true} showAll={true} {...props}/>
+            
+
+            <ContentBox title="My Recipes" text={true} showAll={true} {...props} isSearch={isSearch}/>
             
      
             

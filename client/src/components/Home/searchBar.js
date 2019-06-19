@@ -6,7 +6,7 @@ import {getRecipes} from '../../actions/recipe'
 
 function SearchBar(props){
 
-    const {getRecipes} = props
+    const {getRecipes, setIsSearch} = props
 
     let styles= {
         backgroundImage: `url(${SearchBack})`,
@@ -23,7 +23,10 @@ function SearchBar(props){
 
     function handleSubmit(e){
         e.preventDefault();
+        searchData&&
+        setIsSearch({searchStatus: true, searchText: searchData})
         getRecipes(searchData)
+        setSearchData("")
 
     }
 

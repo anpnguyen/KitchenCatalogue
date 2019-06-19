@@ -37,15 +37,16 @@ function EditIndividualRecipe(props) {
     const [recipeDetails, setRecipeDetails] = useState(initialData)  
     const {title, imageUrl, servings, time} = recipeDetails
     // const [recipeIngredients, setRecipeIngredients] = useState(recipe.recipe.ingredients);
-    const [recipeIngredients, setRecipeIngredients] = useState([]);
+    const [recipeIngredients, setRecipeIngredients] = useState(recipe.recipe.ingredients);
     // const [recipeInstructions, setRecipeInstructions] = useState(recipe.recipe.instructions);
-    const [recipeInstructions, setRecipeInstructions] = useState([]);
+    const [recipeInstructions, setRecipeInstructions] = useState(recipe.recipe.instructions);
     const [newRecipeStage, setNewRecipeStage] = useState(1)
 
 
 
     function handleDetailChange(e){
         setRecipeDetails({...recipeDetails, [e.target.name]: e.target.value})
+        console.log(recipeDetails)
     }
 
 
@@ -53,6 +54,7 @@ function EditIndividualRecipe(props) {
     const values = [...recipeIngredients];
     values[index] = e.target.value;
     setRecipeIngredients(values);
+    console.log('ingredient')
   }
   
   function handleIngredientAdd(e) {
@@ -117,7 +119,7 @@ function handleToBack(e){
     setNewRecipeStage(newRecipeStage -1)
 
 }
-console.log(recipe.loading)
+// console.log(recipe.loading)
 useEffect(()=>{
     console.log('calling')
      getRecipeById(match.params.recipe_id)
@@ -130,16 +132,18 @@ useEffect(()=>{
          servings: recipe.loading || !recipe.recipe.servings ? "": recipe.recipe.servings,
          time: recipe.loading || !recipe.recipe.time ? "": recipe.recipe.time
      }
+    );        
+    // need to fix using useCallback
+    setRecipeIngredients(!recipe.recipe.ingredients? "" : recipe.recipe.ingredients);
+    setRecipeInstructions(!recipe.recipe.instructions? "" : recipe.recipe.instructions);
 
-     );        
-     setRecipeIngredients(!recipe.recipe.ingredients? "" : recipe.recipe.ingredients);
-     setRecipeInstructions(!recipe.recipe.instructions? "" : recipe.recipe.instructions);
     
-},  [getRecipeById, recipe.loading ]
+},  [getRecipeById, recipe.loading, recipe.recipe.title,recipe.recipe.imageUrl,recipe.recipe.time,recipe.recipe.servings, match.params.recipe_id]
     )
 
+    
   
-    console.log(recipe.recipe)
+    // console.log(recipe.recipe)
 
     // useEffect(()=>{
     //     setRecipeDetails(initialData);        

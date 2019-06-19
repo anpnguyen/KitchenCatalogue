@@ -23,6 +23,5 @@ export const CLEAR_RECIPE = 'CLEAR_RECIPE'
 export const CLEAR_ERROR = 'CLEAR_ERROR'
 
 // to be cleared
-export const RECIPE_ADD_FAVOURITE = 'RECIPE_ADD_FAVOURITE'
-export const GET_FAVOURITES = 'GET_FAVOURITES'
+
 

@@ -9,7 +9,7 @@ import Spinner from '../Layout/spinner'
 
 function ContentBox(props){
 
-    const {title, text, recipe, showAll, history} = props
+    const {title, text, recipe, showAll, history, isSearch} = props
     const {recipes, loading} = recipe
     const [pageLimit, setPageLimit] = useState(12)
     const [navigation, setNavigation] = useState({start:0, end: pageLimit, current: 1})
@@ -110,11 +110,11 @@ function ContentBox(props){
         <div className="contentBox " >
             
             <div className="contentBoxContent ">
-                <h1 className="text-center">{title}</h1>  
+                <h1 className="text-center">{isSearch.searchStatus=== true? "Search Results" :title}</h1>  
                 <hr className="width80"/>
                 <div className='contentBoxHeader' >
                     <div>
-                    <p className='searchNumber'> {totalItems} total recipes </p>
+                    <p className='searchNumber'> {totalItems} {totalItems===1?"recipe": "recipes"} found {isSearch.searchStatus === true && ` for '${isSearch.searchText}'`}</p>
                     </div>
                     <div>
                 <select className='navigationSelect' name="itemsPerPage" onChange={(e)=>setPageLimit(parseInt(e.target.value))} value={pageLimit}>    
