@@ -1,20 +1,24 @@
 import React , {useEffect, Fragment, useState} from 'react'
-import './individualRecipe.css'
-import {getRecipeById} from '../../../actions/recipe'
 import PropTypes from 'prop-types'
+import NavBar from '../Layout/navBar'
+import Spinner from '../Layout/spinner'
+import Footer from '../Layout/footer'
+import Alert from '../Layout/alert'
+import DeleteConfimation from './deleteConfirmation'
+
+import {getRecipeById, deleteRecipe} from '../../actions/recipe'
 import {connect} from 'react-redux'
 import uuid from 'uuid/v4'
-import NavBar from '../../Home/navBar'
-import {deleteRecipe} from '../../../actions/recipe'
+
 import{Link} from 'react-router-dom'
-import Spinner from '../../Layout/spinner'
-import Footer from '../../Home/footer'
 import {withRouter} from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClock, faUtensils } from '@fortawesome/free-solid-svg-icons'
-import Alert from '../../Layout/alert'
 
-import DeleteConfimation from './deleteConfirmation'
+import './individualRecipe.css'
+
+
+
 
 function IndividualRecipe(props){
 

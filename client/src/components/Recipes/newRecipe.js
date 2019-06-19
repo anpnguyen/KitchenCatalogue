@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 
-import NavBar from '../navBar'
+import NavBar from '../Layout/navBar'
 import './newRecipe.css'
 
-import {createRecipe} from '../../../actions/recipe'
+import {createRecipe} from '../../actions/recipe'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {withRouter} from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClock, faUtensils } from '@fortawesome/free-solid-svg-icons'
-import Footer from '../../Home/footer'
-import Alert from '../../Layout/alert'
+import Footer from '../Layout/footer'
+import Alert from '../Layout/alert'
 
 
 function NewRecipe(props) {

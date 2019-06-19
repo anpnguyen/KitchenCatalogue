@@ -3,7 +3,7 @@ import ContentCard from './contentCard'
 import './contentBox.css'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import Spinner from '../Layout/spinner'
+import Spinner from './spinner'
 
 
 

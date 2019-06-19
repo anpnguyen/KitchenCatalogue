@@ -3,12 +3,13 @@ import LoginContainer from './components/Login/loginContainer'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import PrivateRoute from './components/routing/PrivateRoute'
 
+
+import IndexContainer from './components/Layout/indexContainer';
+import IndividualRecipe from './components/Recipes/individualRecipe'
+import NewRecipeContainer from './components/Recipes/newRecipeContainer'
+import EditIndividualRecipe from './components/Recipes/EditIndividualRecipe'
+
 import './App.css';
-import IndexContainer from './components/Home/indexContainer';
-import IndividualRecipe from './components/Home/Recipes/individualRecipe'
-import NewRecipeContainer from './components/Home/Recipes/newRecipeContainer'
-import EditIndividualRecipe from './components/Home/Recipes/EditIndividualRecipe'
-// import Recipes from './components/Home/Recipes/recipes'
 
 
 
@@ -57,13 +58,7 @@ function App() {
                 path='/recipe' 
                 component={IndexContainer} />
 
-                {/* <PrivateRoute
-                exact
-                path='/recipe'
-                component={Recipes}/>
-              */}
-              
-
+        
 
                 <PrivateRoute
                 exact
