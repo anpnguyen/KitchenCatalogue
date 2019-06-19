@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Pacifico&display=swap');
 
-
-
 .navBar{
     background: rgb(218,35,35)!important;
     background: linear-gradient(90deg, rgba(218,35,35,1) 0%, rgba(215,131,71,1) 100%)!important;
@@ -103,12 +101,6 @@
     color: #d8d8d8
   }
 
-
-
-
-
-
-
 .NavList li{
     
     width:100%;
@@ -171,18 +163,3 @@
   }
 
  
-
-@media only screen and (max-width: 900px) {
-
-
-    .navBarButton{
-        display:block !important
-    }
-
-  
-
-        
-    
-
-}
-

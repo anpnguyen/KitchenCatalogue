@@ -1,8 +1,9 @@
 import React, {useState} from 'react'
+import PropTypes from 'prop-types'
 import SearchBack from '../../images/searchback_crop.jpg'
-import './searchBar.css'
 import {connect} from 'react-redux'
 import {getRecipes} from '../../actions/recipe'
+import './searchBar.css'
 
 function SearchBar(props){
 
@@ -36,12 +37,8 @@ function SearchBar(props){
             
             <div className='SeachBarFormContainer'>
                 <form className='SeachBarForm' onSubmit={handleSubmit}>
-                    
-                        <input className='SearchBarInput'type="text" placeholder="Search My Recipes..." value={searchData} onChange={handleSearchChange}/>
-                    
-                    
-                        <button className='SearchBarButton'>Search</button>
-                    
+                    <input className='SearchBarInput'type="text" placeholder="Search My Recipes..." value={searchData} onChange={handleSearchChange}/>                               
+                    <button className='SearchBarButton'>Search</button>                   
                 </form>
             </div>
         </div>
@@ -49,5 +46,10 @@ function SearchBar(props){
       
     )
 }
+
+SearchBar.propTypes = {
+  
+    getRecipes: PropTypes.func.isRequired,    
+  }
 
 export default connect(null, {getRecipes})(SearchBar)
