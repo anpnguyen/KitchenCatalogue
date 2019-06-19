@@ -44,7 +44,8 @@ export const register = ({ username, email, password }) => async dispatch => {
     };
     const body = JSON.stringify({ username, email, password });
     try {
-      const res = await axios.post('http://localhost:5000/api/registerUser', body, config);
+      const res = await axios.post('/api/registerUser', body, config);
+      // http://localhost:5000
       
       // response will be a token, which register success will set in localStorage and set as state
       // set authentication as true
