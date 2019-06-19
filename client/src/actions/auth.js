@@ -21,7 +21,7 @@ export const loadUser = () => async dispatch =>{
   }
   // then make a request to see if the token is valid
   try{
-    const res = await axios.get('http://localhost:5000/api/authUser');
+    const res = await axios.get('/api/authUser');
     dispatch({
       type:USER_LOADED,
       payload: res.data
@@ -86,7 +86,7 @@ export const login = ({ email, password }) => async dispatch => {
   const body = JSON.stringify({ email, password });
       
   try {
-    const res = await axios.post('http://localhost:5000/api/authUser', body, config);
+    const res = await axios.post('/api/authUser', body, config);
         
     dispatch({
       type: LOGIN_SUCCESS,

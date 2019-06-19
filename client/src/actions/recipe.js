@@ -30,7 +30,7 @@ export const getRecipes = (searchParams) => async dispatch => {
           };
         // console.log(searchParams)
 
-        const res = await axios.get('http://localhost:5000/api/recipe', config)
+        const res = await axios.get('/api/recipe', config)
         console.log(res.data)
         
         dispatch({
@@ -71,7 +71,7 @@ export const clearRecipe = () => async dispatch => {
 export const getRecipeById = (recipeId,history) => async dispatch => {
     try {
         
-        const res = await axios.get(`http://localhost:5000/api/recipe/${recipeId}`)
+        const res = await axios.get(`/api/recipe/${recipeId}`)
         
         // console.log(res.data)
 
@@ -108,7 +108,7 @@ export const createRecipe = (formData, history) => async dispatch => {
         // const body = JSON.stringify({ formData});
         
         
-        const res = await axios.post('http://localhost:5000/api/recipe', formData, config)
+        const res = await axios.post('/api/recipe', formData, config)
         
         // console.log(res.data)
 
@@ -156,7 +156,7 @@ export const editRecipePut = (formData, history, recipeId) => async dispatch => 
         
             
         
-        const res = await axios.put(`http://localhost:5000/api/recipe/${recipeId}`, formData, config)
+        const res = await axios.put(`/api/recipe/${recipeId}`, formData, config)
         console.log('put request')
         console.log(res.data)
 
@@ -197,7 +197,7 @@ export const editRecipePut = (formData, history, recipeId) => async dispatch => 
 export const deleteRecipe = (history, recipeId) => async dispatch => {
     try {         
         
-        await axios.delete(`http://localhost:5000/api/recipe/${recipeId}`)
+        await axios.delete(`/api/recipe/${recipeId}`)
         
         // console.log(res.data)
 
