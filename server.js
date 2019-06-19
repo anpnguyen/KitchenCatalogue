@@ -41,14 +41,18 @@ app.use('/api/authUser', require('./routes/api/authUser'));
 app.use('/api/recipe', require('./routes/api/recipe'));
 app.use('/api/cookbook', require('./routes/api/cookbook'));
 
-if(process.env.NODE_ENV === "production"){
-    app.use(express.static('client/build'))
 
-    app.get('*', (req,res) => {
-        res.sendFile(path.resolve(__dirname, "client", 'build', 'index.html'));
+if (process.env.NODE_ENV === 'production') {
+    // Set static folder
+    app.use(express.static('client/build'));
+  
+    app.get('*', (req, res) => {
+      res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
     });
-}
+  }
 
-const PORT = process.env.PORT ;
+
+
+const PORT = process.env.PORT || 5000 ;
 
 app.listen(PORT, ()=>{console.log(`server started on ${PORT}`)})
