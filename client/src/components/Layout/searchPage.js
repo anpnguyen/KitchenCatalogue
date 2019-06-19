@@ -1,4 +1,4 @@
-import React , {Fragment, useEffect, useState}from 'react'
+import React , {Fragment, useEffect}from 'react'
 import NavBar from './navBar'
 import SearchBar from './searchBar'
 import ContentBox from './contentBox'
@@ -15,18 +15,15 @@ function SearchPage(props){
     const {getRecipes,search} = props
 
     useEffect(()=>{
-        getRecipes(search.searchData)},[getRecipes]
-
+        getRecipes(search.searchData)},[getRecipes,search]
     )
-    const [isSearch, setIsSearch] = useState({searchStatus: false, searchText:""})
+    
 
     return(
         <Fragment>
             <NavBar/>
             <SearchBar  {...props}/>
-            <Alert/>
-            
-            
+            <Alert/>            
 
             
 

@@ -8,7 +8,7 @@ import './searchBar.css'
 
 function SearchBar(props){
 
-    const {getRecipes, setIsSearch, history, searchRecipes} = props
+    const { history, searchRecipes} = props
 
     let styles= {
         backgroundImage: `url(${SearchBack})`,
