@@ -1,18 +1,15 @@
 import React, { useState, useEffect} from "react";
-
-import NavBar from '../navBar'
-import './newRecipe.css'
-
-import {editRecipePut, getRecipeById} from '../../../actions/recipe'
-import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import {withRouter} from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faClock, faUtensils } from '@fortawesome/free-solid-svg-icons'
+import NavBar from '../navBar'
 import Alert from '../../Layout/alert'
 import Footer from '../../Home/footer'
 import Spinner from '../../Layout/spinner'
-
+import {editRecipePut, getRecipeById} from '../../../actions/recipe'
+import {connect} from 'react-redux'
+import {withRouter} from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faClock, faUtensils } from '@fortawesome/free-solid-svg-icons'
+import './newRecipe.css'
 
 function EditIndividualRecipe(props) {
 
@@ -27,22 +24,11 @@ function EditIndividualRecipe(props) {
         time: ""
     }
   
-    // const initialData = {
-    //     title:recipe.recipe.title,
-    //     imageUrl: recipe.recipe.imageUrl,
-    //     servings: recipe.recipe.servings,
-    //     time: recipe.recipe.time
-    // }
-
     const [recipeDetails, setRecipeDetails] = useState(initialData)  
-    const {title, imageUrl, servings, time} = recipeDetails
-    // const [recipeIngredients, setRecipeIngredients] = useState(recipe.recipe.ingredients);
-    const [recipeIngredients, setRecipeIngredients] = useState(recipe.recipe.ingredients);
-    // const [recipeInstructions, setRecipeInstructions] = useState(recipe.recipe.instructions);
+    const {title, imageUrl, servings, time} = recipeDetails 
+    const [recipeIngredients, setRecipeIngredients] = useState(recipe.recipe.ingredients);    
     const [recipeInstructions, setRecipeInstructions] = useState(recipe.recipe.instructions);
     const [newRecipeStage, setNewRecipeStage] = useState(1)
-
-
 
     function handleDetailChange(e){
         setRecipeDetails({...recipeDetails, [e.target.name]: e.target.value})
@@ -50,117 +36,102 @@ function EditIndividualRecipe(props) {
     }
 
 
-  function handleIngredientNameChange(e, index) {
-    const values = [...recipeIngredients];
-    values[index] = e.target.value;
-    setRecipeIngredients(values);
-    console.log('ingredient')
-  }
+    function handleIngredientNameChange(e, index) {
+        const values = [...recipeIngredients];
+        values[index] = e.target.value;
+        setRecipeIngredients(values);
+        console.log('ingredient')
+    }
   
-  function handleIngredientAdd(e) {
-      e.preventDefault()
-    const values = [...recipeIngredients];
-    values.push("");
-    setRecipeIngredients(values);
-    console.log(values)
-  }
+    function handleIngredientAdd(e) {
+        e.preventDefault()
+        const values = [...recipeIngredients];
+        values.push("");
+        setRecipeIngredients(values);
+        console.log(values)
+    }
 
-  function handleIngredientRemove(index) {
-    const values = [...recipeIngredients];
-    values.splice(index, 1);
-    setRecipeIngredients(values);
-  }
-
-
-
-function handleInstructionChange(e, index) {
-    const valuesInstructions = [...recipeInstructions];
-    console.log(valuesInstructions)
-    valuesInstructions[index] = e.target.value;
-    setRecipeInstructions(valuesInstructions);
-  }
-
-function handleInstructionAdd(e) {
-    e.preventDefault()
-    const valuesInstructions = [...recipeInstructions];
-    valuesInstructions.push(" ");
-    console.log(valuesInstructions)
-    setRecipeInstructions(valuesInstructions)
-    
-}
-
-function handleInstructionRemove(index,e) {
-    e.preventDefault()
-    const valuesInstructions = [...recipeInstructions];
-    console.log(valuesInstructions)
-    valuesInstructions.splice(index, 1);
-    setRecipeInstructions(valuesInstructions);
-}
-
-function handleSubmit(e){
-    e.preventDefault()
-    const formData = {...recipeDetails, ingredients: recipeIngredients, instructions: recipeInstructions}
-    console.log(formData)
-    console.log(recipe.recipe._id)
-    editRecipePut(formData, history, recipe.recipe._id)
-}
+    function handleIngredientRemove(index) {
+        const values = [...recipeIngredients];
+        values.splice(index, 1);
+        setRecipeIngredients(values);
+    }
 
 
-function handleToNext(e){
-    e.preventDefault();
 
-    setNewRecipeStage(newRecipeStage +1)
+    function handleInstructionChange(e, index) {
+        const valuesInstructions = [...recipeInstructions];
+        console.log(valuesInstructions)
+        valuesInstructions[index] = e.target.value;
+        setRecipeInstructions(valuesInstructions);
+    }
 
-}
+    function handleInstructionAdd(e) {
+        e.preventDefault()
+        const valuesInstructions = [...recipeInstructions];
+        valuesInstructions.push(" ");
+        console.log(valuesInstructions)
+        setRecipeInstructions(valuesInstructions)
+        
+    }
 
-function handleToBack(e){
-    e.preventDefault();
+    function handleInstructionRemove(index,e) {
+        e.preventDefault()
+        const valuesInstructions = [...recipeInstructions];
+        console.log(valuesInstructions)
+        valuesInstructions.splice(index, 1);
+        setRecipeInstructions(valuesInstructions);
+    }
 
-    setNewRecipeStage(newRecipeStage -1)
+    function handleSubmit(e){
+        e.preventDefault()
+        const formData = {...recipeDetails, ingredients: recipeIngredients, instructions: recipeInstructions}
+        console.log(formData)
+        console.log(recipe.recipe._id)
+        editRecipePut(formData, history, recipe.recipe._id)
+    }
 
-}
-// console.log(recipe.loading)
-useEffect(()=>{
-    console.log('calling')
-     getRecipeById(match.params.recipe_id)
-     
-          
-    
-     setRecipeDetails({
-         title: recipe.loading || !recipe.recipe.title ? "": recipe.recipe.title,
-         imageUrl: recipe.loading || !recipe.recipe.imageUrl ? "": recipe.recipe.imageUrl,
-         servings: recipe.loading || !recipe.recipe.servings ? "": recipe.recipe.servings,
-         time: recipe.loading || !recipe.recipe.time ? "": recipe.recipe.time
-     }
-    );        
-    // need to fix using useCallback
-    setRecipeIngredients(!recipe.recipe.ingredients? "" : recipe.recipe.ingredients);
-    setRecipeInstructions(!recipe.recipe.instructions? "" : recipe.recipe.instructions);
 
-    
-},  [getRecipeById, recipe.loading, recipe.recipe.title,recipe.recipe.imageUrl,recipe.recipe.time,recipe.recipe.servings, match.params.recipe_id]
+    function handleToNext(e){
+        e.preventDefault();
+        setNewRecipeStage(newRecipeStage +1)
+    }
+
+    function handleToBack(e){
+        e.preventDefault();
+        setNewRecipeStage(newRecipeStage -1)
+    }
+
+    useEffect(()=>{
+        console.log('calling')
+        getRecipeById(match.params.recipe_id)                
+        
+        setRecipeDetails({
+            title: recipe.loading || !recipe.recipe.title ? "": recipe.recipe.title,
+            imageUrl: recipe.loading || !recipe.recipe.imageUrl ? "": recipe.recipe.imageUrl,
+            servings: recipe.loading || !recipe.recipe.servings ? "": recipe.recipe.servings,
+            time: recipe.loading || !recipe.recipe.time ? "": recipe.recipe.time
+        }
+        );        
+        // need to fix using useCallback
+        setRecipeIngredients(!recipe.recipe.ingredients? "" : recipe.recipe.ingredients);
+        setRecipeInstructions(!recipe.recipe.instructions? "" : recipe.recipe.instructions);
+
+        
+    },  [getRecipeById, recipe.loading, recipe.recipe.title,recipe.recipe.imageUrl,recipe.recipe.time,recipe.recipe.servings, match.params.recipe_id]
     )
 
     
   
-    // console.log(recipe.recipe)
 
-    // useEffect(()=>{
-    //     setRecipeDetails(initialData);        
-    //     setRecipeIngredients(recipe.recipe.ingredients);
-    //     setRecipeInstructions(recipe.recipe.instructions);
-        
-    // },[recipe, initialData]
-    //     )
 
-  return(
+    return(
     <>
         <NavBar/>
         <Alert/>
         {recipe.loading === true && recipe.recipe ==={} ? <Spinner/> :
         <div className="contentBox backgroundWhite">
-            <div className="contentBoxContent height100">    
-            
+            <div className="contentBoxContent height100">                
             
                 <div className="newRecipe">                    
                 <h1 className="text-center">Edit Recipe</h1>
@@ -202,11 +173,6 @@ useEffect(()=>{
                         </>
                        } 
                             
-                            
-                                
-                            
-                                        
-
                     </div> 
                     
                 </div>}
@@ -252,21 +218,21 @@ useEffect(()=>{
                            {newRecipeStage === 2 &&
                             <div className="newRecipeIngredientsContainer">
                                 <div className="newRecipeIngredients">
-                                <div className="newRecipeIngredientItem">
-                                    <h3>Ingredients</h3>
-                                </div>
-                                <div className="newRecipeIngredientItem">
-                                    
-                                        <div className='newIngredientItemLeft'>
-                                            
-                                        </div>
-                                        <div className='newIngredientItemRight'> 
-                                            <div >Quantity</div>
-                                            <div >Unit</div>
-                                            <div className="NewRecipeName">Ingredient Name</div>
-                                        </div>
-                                       
-                                </div>
+                                    <div className="newRecipeIngredientItem">
+                                        <h3>Ingredients</h3>
+                                    </div>
+                                    <div className="newRecipeIngredientItem">
+                                        
+                                            <div className='newIngredientItemLeft'>
+                                                
+                                            </div>
+                                            <div className='newIngredientItemRight'> 
+                                                <div >Quantity</div>
+                                                <div >Unit</div>
+                                                <div className="NewRecipeName">Ingredient Name</div>
+                                            </div>
+                                        
+                                    </div>
                                     
                                     {recipeIngredients.map((recipeIngredient, index) => {
                                         return (
@@ -291,19 +257,11 @@ useEffect(()=>{
                                         );
                                     })}
                                 
-                                
-                                
-                                
-                                <div className="newRecipeIngredientItem">
-                                    
-                                    <button className="addIngredientButton" onClick={e=> handleIngredientAdd(e)}>Add Ingredient</button>
-                                    
-                                    
+                                <div className="newRecipeIngredientItem">                                    
+                                    <button className="addIngredientButton" onClick={e=> handleIngredientAdd(e)}>Add Ingredient</button>  
                                 </div>
 
-                                
-
-                                </div>
+                            </div>
                                 <div className="newRecipeIngredientItem newRecipeIngredientItemLast">
                                     <button className="newRecipeNavigation" onClick={e=> handleToBack(e)}>Back </button>
                                     <button className="newRecipeNavigation" onClick={e=> handleToNext(e)}>Next</button>
@@ -311,6 +269,7 @@ useEffect(()=>{
                             </div> }
 
                                             {/* instruction */}
+
                             {newRecipeStage ===3 &&
                             <div className="newRecipeInstructionContainer ">
                                 <div className='newRecipeInstruction'>
@@ -325,21 +284,17 @@ useEffect(()=>{
                                             <div className='newRecipeInstructionLeft'><h3>{i+1}.</h3> </div>
                                             <div className='newRecipeInstructionRight'><textarea rows="4" onChange={(e)=>handleInstructionChange(e,i)} value={recipeInstruction}/><button onClick={(e)=> handleInstructionRemove(i, e)}>X</button></div>
                                             
-                                        </div>)
-                                    
-
-                                    })}
-
-                                
+                                        </div>)                                  
+                                    })}                               
                                 
                                 <button className="addInstructionButton" onClick={e=> handleInstructionAdd(e)}>Add Instruction</button>
                               
-                            </div>
+                                </div>
 
-                            <div className="newRecipeIngredientItem newRecipeIngredientItemLast">
-                                    <button className="newRecipeNavigation" onClick={e=> handleToBack(e)}>Back </button>
-                                    <button className="newRecipeNavigation" onClick={e=> handleSubmit(e)}>Submit</button>
-                            </div>
+                                <div className="newRecipeIngredientItem newRecipeIngredientItemLast">
+                                        <button className="newRecipeNavigation" onClick={e=> handleToBack(e)}>Back </button>
+                                        <button className="newRecipeNavigation" onClick={e=> handleSubmit(e)}>Submit</button>
+                                </div>
                             
                             </div>}                                                
                         
@@ -354,9 +309,6 @@ useEffect(()=>{
 )}
 
 
-
-
-
 EditIndividualRecipe.propTypes = {
     
     auth: PropTypes.object.isRequired,
@@ -364,10 +316,8 @@ EditIndividualRecipe.propTypes = {
     editRecipePut: PropTypes.func.isRequired,
     getRecipeById: PropTypes.func.isRequired
 
-
 }
 
-// this is the state that the current component has available to it
 const mapStateToProps = state => ({
     auth: state.auth,
     recipe: state.recipe

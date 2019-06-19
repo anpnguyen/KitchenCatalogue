@@ -25,8 +25,8 @@ function NewRecipe(props) {
 }
     const [recipeDetails, setRecipeDetails] = useState(initialData)  
     const {title, imageUrl, servings, time} = recipeDetails
-    const [recipeIngredients, setRecipeIngredients] = useState([" "]);
-    const [recipeInstructions, setRecipeInstructions] = useState([" "]);
+    const [recipeIngredients, setRecipeIngredients] = useState([""]);
+    const [recipeInstructions, setRecipeInstructions] = useState([""]);
     const [newRecipeStage, setNewRecipeStage] = useState(1)
 
     useEffect(()=> console.log('rerender'))
@@ -39,19 +39,15 @@ function NewRecipe(props) {
 
   function handleIngredientNameChange(e, index) {
     const values = [...recipeIngredients];
-    
     values[index] = e.target.value;
-    
-    setRecipeIngredients(values);
-    
+    setRecipeIngredients(values);    
   }
   
   function handleIngredientAdd(e) {
-      e.preventDefault()
+     e.preventDefault()
     const values = [...recipeIngredients];
-    values.push(" ");
-    setRecipeIngredients(values);
-    console.log(values)
+    values.push("");
+    setRecipeIngredients(values);    
   }
 
   function handleIngredientRemove(index) {
@@ -64,7 +60,6 @@ function NewRecipe(props) {
 
 function handleInstructionChange(e, index) {
     const valuesInstructions = [...recipeInstructions];
-    console.log(valuesInstructions)
     valuesInstructions[index] = e.target.value;
     setRecipeInstructions(valuesInstructions);
   }
@@ -72,8 +67,7 @@ function handleInstructionChange(e, index) {
 function handleInstructionAdd(e) {
     e.preventDefault()
     const valuesInstructions = [...recipeInstructions];
-    valuesInstructions.push(" ");
-    console.log(valuesInstructions)
+    valuesInstructions.push("");    
     setRecipeInstructions(valuesInstructions)
     
 }
@@ -81,109 +75,85 @@ function handleInstructionAdd(e) {
 function handleInstructionRemove(index,e) {
     e.preventDefault()
     const valuesInstructions = [...recipeInstructions];
-    console.log(valuesInstructions)
     valuesInstructions.splice(index, 1);
     setRecipeInstructions(valuesInstructions);
 }
 
 function handleSubmit(e){
     e.preventDefault()
-    
     const formData = {...recipeDetails, ingredients: recipeIngredients, instructions: recipeInstructions}
-   
     createRecipe(formData, history)
 
-    }
+}
 
 function handleToNext(e){
     e.preventDefault();
-
     setNewRecipeStage(newRecipeStage +1)
-
 }
 
 function handleToBack(e){
     e.preventDefault();
-
     setNewRecipeStage(newRecipeStage -1)
-
 }
 
-  return(
-
-    
+return(  
 
     <>
         <NavBar/>
         <Alert/>
             
         <div className="contentBox">
-            <div className="contentBoxContent height100">    
-            
+            <div className="contentBoxContent height100">              
             
                 <div className="newRecipe">                    
-                <h1 className="text-center">Create a New Recipe</h1>
-                <hr className="width80"/>
-               
+                    <h1 className="text-center">Create a New Recipe</h1>
+                    <hr className="width80"/>               
 
-                {newRecipeStage === 1 && <div className="newRecipePreviewContainer">
+                    {newRecipeStage === 1 && 
+                    <div className="newRecipePreviewContainer">
                     
-                    <div className="newRecipePreview">
+                        <div className="newRecipePreview">
+                        
                     
-                    <div className="newRecipePreviewItem">
-                            
-                       </div>
-                       {user !== null &&
-                       <>
-                       <div className="newRecipePreviewItem">
-                            <h1 className="">{!title? "My Recipe Title": title}</h1>  
-                       </div>
-                       
-                       
-                        <div className="newRecipePreviewItem">
-                            <p><span className='bold'>By: </span> {user.username} </p>
-                        </div>
-                        <div className="newRecipePreviewItem">
-                                <p>
-                                    <span className="spanMargin">
-                                        <span className='bold'>
-                                            <FontAwesomeIcon icon={faUtensils} /> Serves: 
-                                        </span> {servings}
-                                    </span>  
-                                    <span className='bold'>
-                                        <FontAwesomeIcon icon={faClock} />Cooking Time:
-                                    </span> {time}
-                                </p> 
-                        </div>
-                        <div className="newRecipePreviewItem">
-                            {!imageUrl ? <div className="fillerImg"></div>: <img className='image' src={imageUrl} alt=""/>}
-                            
-                        </div>
-                            
-                        </>
-                       } 
-                            
-                            
-                                
-                            
-                                        
+                            {user !== null &&
+                                <>
+                                    <div className="newRecipePreviewItem">
+                                        <h1 className="">{!title? "My Recipe Title": title}</h1>  
+                                    </div>
+                                                                
+                                    <div className="newRecipePreviewItem">
+                                        <p><span className='bold'>By: </span> {user.username} </p>
+                                    </div>
+                                    <div className="newRecipePreviewItem">
+                                        <p>
+                                            <span className="spanMargin">
+                                                <span className='bold'>
+                                                    <FontAwesomeIcon icon={faUtensils} /> Serves: 
+                                                </span> {servings}
+                                            </span>  
+                                            <span className='bold'>
+                                                <FontAwesomeIcon icon={faClock} />Cooking Time:
+                                            </span> {time}
+                                        </p> 
+                                    </div>
 
-                    </div> 
-                        {/* <hr className="width80"/> */}
-                </div>}
-
-                {/* <hr className="width80"/> */}
-            {/* </div> */}
+                                    <div className="newRecipePreviewItem">
+                                        {!imageUrl ? <div className="fillerImg"></div>: <img className='image' src={imageUrl} alt=""/>}                               
+                                    </div>                            
+                                </>
+                            } 
+                        </div>                       
+                    </div>
+                    }
+            
 
                     <div className='newRecipeForm'>
                         <form  onSubmit={handleSubmit}>
-
                             {newRecipeStage === 1 &&
                             <div className="newRecipeDetailsContainer">
                                 <div className="newRecipeDetails">
                                     <div className='newRecipeItem text-center'>
-                                        <h3>Recipe Details</h3>
-                                        
+                                        <h3>Recipe Details</h3>                                        
                                     </div>
                                     <div className='newRecipeItem '>
                                         <div><label htmlFor="Title"><h5>Title:</h5> </label></div>
@@ -201,11 +171,9 @@ function handleToBack(e){
                                         <div><label htmlFor="ImageUrl"><h5>Cooking Time:</h5> </label></div>
                                         <div><input type="text" placeholder="Cooking Time" name="time" value={time} onChange={handleDetailChange}/></div>
                                     </div>
-                                    <div className='newRecipeItem'>
-                                        {/* <button className="newRecipeNavigation">Clear Text</button> */}
+                                    <div className='newRecipeItem'>                                        
                                         <button onClick={handleToNext} className="newRecipeNavigation">Next</button>
-                                    </div>
-                                    {/* <hr className="width80"/> */}
+                                    </div>                                    
                                 </div>
                                 
                             </div>}
@@ -215,21 +183,10 @@ function handleToBack(e){
                            {newRecipeStage === 2 &&
                             <div className="newRecipeIngredientsContainer">
                                 <div className="newRecipeIngredients">
-                                <div className="newRecipeIngredientItem">
-                                    <h3>Ingredients</h3>
-                                </div>
-                                <div className="newRecipeIngredientItem">
-                                    
-                                        <div className='newIngredientItemLeft'>
-                                            
-                                        </div>
-                                        {/* <div className='newIngredientItemRight'> 
-                                            <div >Quantity</div>
-                                            <div >Unit</div>
-                                            <div className="NewRecipeName">Ingredient Name</div>
-                                        </div> */}
-                                       
-                                </div>
+                                    <div className="newRecipeIngredientItem">
+                                        <h3>Ingredients</h3>
+                                    </div>
+                                
                                     
                                     {recipeIngredients.map((recipeIngredient, index) => {
                                         return (
@@ -238,45 +195,27 @@ function handleToBack(e){
                                                 <h3>{index+1}.</h3>
                                             </div>
                                             <div className='newIngredientItemRight'>
-                                            {/* <div><input
-                                            type="text"
-                                            placeholder="Quantity"
-                                            value={recipeIngredient.quantity || " "}
-                                            onChange={e => handleQuantityChange(e, index)}
-                                            /></div>
-                                            <div><input
-                                            type="text"
-                                            placeholder="Unit"
-                                            value={recipeIngredient.unit || " "}
-                                            onChange={e => handleUnitChange(e, index)}
-                                            /></div> */}
-                                            <div className="NewRecipeName"><input
-                                            type="text"
-                                            placeholder="Ingredient Name"
-                                            value={recipeIngredients[index] || " "}
-                                            onChange={e => handleIngredientNameChange(e, index)}
                                             
-                                            /> <button type="button" onClick={() => handleIngredientRemove(index)}>
-                                            X
-                                            </button></div>
-                                            </div>
-                                            
+                                                <div className="NewRecipeName">
+                                                    <input
+                                                        type="text"
+                                                        placeholder="Ingredient Name"
+                                                        value={recipeIngredients[index] || " "}
+                                                        onChange={e => handleIngredientNameChange(e, index)}                                            
+                                                    /> 
+                                                    <button 
+                                                        type="button" 
+                                                        onClick={() => handleIngredientRemove(index)}
+                                                    >X                                            
+                                                    </button>
+                                                </div>
+                                            </div>                                            
                                         </div>
                                         );
                                     })}
-                                
-                                
-                                
-                                
-                                <div className="newRecipeIngredientItem">
-                                    
-                                    <button className="addIngredientButton" onClick={e=> handleIngredientAdd(e)}>Add Ingredient</button>
-                                    
-                                    
-                                </div>
-
-                                
-
+                                    <div className="newRecipeIngredientItem">                                    
+                                        <button className="addIngredientButton" onClick={e=> handleIngredientAdd(e)}>Add Ingredient</button>                          
+                                    </div>     
                                 </div>
                                 <div className="newRecipeIngredientItem newRecipeIngredientItemLast">
                                     <button className="newRecipeNavigation" onClick={e=> handleToBack(e)}>Back </button>
@@ -285,38 +224,33 @@ function handleToBack(e){
                             </div> }
 
                                             {/* instruction */}
+
                             {newRecipeStage ===3 &&
                             <div className="newRecipeInstructionContainer ">
-                                <div className='newRecipeInstruction'>
-                      
+                                <div className='newRecipeInstruction'>                      
                                     <div className="newRecipeInstructionItem ">
                                         <h3>Instructions</h3>
                                     </div>
-                                    {recipeInstructions.map( (recipeInstruction,i) => {
-                                   
+                                    {recipeInstructions.map( (recipeInstruction,i) => {                                   
                                         return(
                                         <div className="newRecipeInstructionItem" key ={`${i} + instruction`}>
                                             <div className='newRecipeInstructionLeft'><h3>{i+1}.</h3> </div>
                                             <div className='newRecipeInstructionRight'><textarea rows="4" onChange={(e)=>handleInstructionChange(e,i)} value={recipeInstruction}/><button onClick={(e)=> handleInstructionRemove(i, e)}>X</button></div>
                                             
-                                        </div>)
-                                    
+                                        </div>)                                   
 
                                     })}
 
                                 
                                 
-                                <button className="addInstructionButton" onClick={e=> handleInstructionAdd(e)}>Add Instruction</button>
-                                {/* <div className="newRecipeButton">
-                                <button className="save">Save</button>
-                                <button className="save">Clear</button>
-                                </div> */}
-                            </div>
+                                    <button className="addInstructionButton" onClick={e=> handleInstructionAdd(e)}>Add Instruction</button>
+                              
+                                </div>
 
-                            <div className="newRecipeIngredientItem newRecipeIngredientItemLast">
-                                    <button className="newRecipeNavigation" onClick={e=> handleToBack(e)}>Back </button>
-                                    <button className="newRecipeNavigation" onClick={e=> handleSubmit(e)}>Submit</button>
-                            </div>
+                                <div className="newRecipeIngredientItem newRecipeIngredientItemLast">
+                                        <button className="newRecipeNavigation" onClick={e=> handleToBack(e)}>Back </button>
+                                        <button className="newRecipeNavigation" onClick={e=> handleSubmit(e)}>Submit</button>
+                                </div>
                             
                             </div>}                                                
                         
@@ -335,15 +269,12 @@ function handleToBack(e){
 
 
 NewRecipe.propTypes = {
-    
     auth: PropTypes.object.isRequired,
     recipe: PropTypes.object.isRequired,
     createRecipe: PropTypes.func.isRequired
-
-
 }
 
-// this is the state that the current component has available to it
+
 const mapStateToProps = state => ({
     auth: state.auth,
     recipe: state.recipe

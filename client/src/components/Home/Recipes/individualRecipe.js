@@ -45,100 +45,87 @@ function IndividualRecipe(props){
 
     return(
         
-        loading? <><NavBar/><Spinner/></>:
+        loading? 
+            <>
+                <NavBar/>
+                <Spinner/>
+            </>:
+        
         <>
-        <NavBar/>
-        <Alert/>
-        {isDelete &&
-        <DeleteConfimation  handleStateChange={handleStateChange} handleDeleteConfirmation={handleDeleteConfirmation} isDelete={isDelete} />
-        }
+            <NavBar/>
+            <Alert/>
+                {isDelete &&
+                <DeleteConfimation  handleStateChange={handleStateChange} handleDeleteConfirmation={handleDeleteConfirmation} isDelete={isDelete} />
+                }
 
-        <div className="contentBox ">
-                <div className="contentBoxContent ">    
+                <div className="contentBox ">
+                    <div className="contentBoxContent ">    
 
-            
-                
-                <div className="individualRecipe" id="individualRecipe">
-                <h1 className="">{title}</h1>  
-                <div className="recipeDetails ">
-                    <div className=''>
-                        <p><span className='bold'>By: </span> {user.username} </p>
-                        <p><span className="spanMargin"><span className='bold'><FontAwesomeIcon icon={faUtensils} /> Serves </span> {servings}</span>  <span className='bold'><FontAwesomeIcon icon={faClock} />Cooking Time:</span> {time}</p>      
-                    </div>
-                                   
+                        <div className="individualRecipe" id="individualRecipe">
+                          <h1 className="">{title}</h1>  
+                            <div className="recipeDetails ">
+                                <div className=''>
+                                    <p><span className='bold'>By: </span> {user.username} </p>
+                                    <p><span className="spanMargin"><span className='bold'><FontAwesomeIcon icon={faUtensils} /> Serves </span> {servings}</span>  <span className='bold'><FontAwesomeIcon icon={faClock} />Cooking Time:</span> {time}</p>      
+                                </div>                             
+                            </div> 
 
-                </div> 
-                <div className='individualRecipeSave'>
-                    <Link to={`/recipe/${_id}/edit`}><button className="blueButton" >Edit</button></Link>
-                    <button className="blueButton" onClick={handleDelete}>Delete</button>
+                            <div className='individualRecipeSave'>
+                                <Link to={`/recipe/${_id}/edit`}><button className="blueButton" >Edit</button></Link>
+                                <button className="blueButton" onClick={handleDelete}>Delete</button>                                
+                            </div> 
+                    
                         
-                </div> 
-               
-                {/* <hr className="width80"/> */}
-                <div className="imageContainer ">
-                    {!imageUrl ? <div className="fillerImg"></div>: <img className='image' src={imageUrl} alt=""/>} 
-                    {/* <img className='image' src={imageUrl} alt=""/> */}
+                            <div className="imageContainer ">
+                                {!imageUrl ? <div className="fillerImg"></div>: <img className='image' src={imageUrl} alt=""/>} 
+                            </div>
+                            <hr className="width80"/>   
 
+                            <div className="recipeText">
+                                <div className="ingredients ">
+                                    <ul className="">
+                                        <li className=' '><h3>Ingredients</h3>    </li>
+                                        {ingredients.map( (ingredient, index) =>(
+                                            <Fragment key={ingredient + index}>
+                                            {/* <li> {`${ingredient.quantity} ${ingredient.unit} of ${ingredient.ingredientName}`}</li> */}
+                                            <li>{ingredient}</li>
+                                            </Fragment>
+                                        ))}
+                                    </ul>
+                                </div>
+                                <div className="instructions "> 
+                                                            
+                                    <ul className="individualRecipeInstructions">
+                                            
+                                        <li className='individualRecipeList bold color'><h3>Instructions</h3>  </li>
+
+                                        {instructions.map( (instruction, index) =>(
+                                            <Fragment key={uuid()}>
+                                                <li className='individualRecipeListInstructions'>
+                                                    <div className="number">
+                                                        <span className='bold'>{index+1}. </span>  
+                                                    </div>
+                                                    <div >
+                                                        {instruction}
+                                                    </div>
+                                                </li>
+                                                <hr className='width80'/>
+                                            </Fragment>))
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>                    
                 </div>
-                <hr className="width80"/>
-
-                <div className="recipeText">
-                    <div className="ingredients  ">
-                        <ul className="">
-                            <li className=' '><h3>Ingredients</h3>    </li>
-                            {ingredients.map( (ingredient, index) =>(
-                                <Fragment key={ingredient + index}>
-                                {/* <li> {`${ingredient.quantity} ${ingredient.unit} of ${ingredient.ingredientName}`}</li> */}
-                                <li>{ingredient}</li>
-                                </Fragment>
-                            ))}
-                            
-                                                 
-                           
-                        </ul>
-                    </div>
-                    <div className="instructions "> 
-                    
-                    
-                    <ul className="individualRecipeInstructions">
-                            
-                            <li className='individualRecipeList bold color'><h3>Instructions</h3>  </li>
-
-                            {instructions.map( (instruction, index) =>(
-                                <Fragment key={uuid()}>
-                                <li className='individualRecipeListInstructions'>
-                                    <div className="number">
-                                        <span className='bold'>{index+1}. </span>  
-                                    </div>
-                                    <div >
-                                        {instruction}
-                                    </div>
-                            </li>
-                            <hr className='width80'/>
-                            </Fragment>))}
-
-                                                      
-                            
-                           
-                        </ul></div>
-                </div>
-                </div>
-                
-            </div>
-            
-        </div>
-        <Footer/>
+            <Footer/>
         </>
-
     )
 }
 
-
-
 IndividualRecipe.propTypes = {
     getRecipeById: PropTypes.func.isRequired,
-    deleteRecipe: PropTypes.func.isRequired,
-        
+    deleteRecipe: PropTypes.func.isRequired,        
     recipe:PropTypes.object.isRequired,
     auth:PropTypes.object.isRequired
 }

@@ -92,8 +92,6 @@ NavBar.propTypes = {
   auth: PropTypes.object.isRequired,
   getRecipe: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired
-
-
 }
 
 

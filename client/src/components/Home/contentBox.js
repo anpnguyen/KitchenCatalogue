@@ -4,7 +4,7 @@ import './contentBox.css'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import Spinner from '../Layout/spinner'
-// import {Link} from 'react-router-dom'
+
 
 
 function ContentBox(props){
@@ -13,18 +13,18 @@ function ContentBox(props){
     const {recipes, loading} = recipe
     const [pageLimit, setPageLimit] = useState(12)
     const [navigation, setNavigation] = useState({start:0, end: pageLimit, current: 1})
-    // const [isSearch, setIsSearch] = useState(false)
     const totalItems = recipes.length
     const totalPages = Math.floor((recipes.length/pageLimit)) + 1
     
-    // useEffect(()=>console.log('rerender'))
+    
 
     useEffect(
         ()=>{
         setNavigation({...navigation, start: 0, end:pageLimit, current:1})
         
-    },[pageLimit, navigation]
+        },[pageLimit, navigation]
     )
+
     function setFirst(){
         if(navigation.current !== 1){
            setNavigation({start:0, end: pageLimit, current: 1})
@@ -35,14 +35,14 @@ function ContentBox(props){
         if(navigation.current !== totalPages){
         let newNavigation = {start: navigation.start + pageLimit, end: navigation.end + pageLimit , current: navigation.current +1 } 
         setNavigation(newNavigation)
-    }
+        }
     }
 
     function setBack(){
         if(navigation.current !== 1){
         let newNavigation = {start: navigation.start - pageLimit,  end: navigation.end - pageLimit, current: navigation.current -1 } 
         setNavigation(newNavigation)
-    }
+        }
     }
     
     function setLast(){
@@ -52,26 +52,23 @@ function ContentBox(props){
         }
     }
 
-    function handleNavigationClick(e,i){
-        console.log(e.target.value)
-        console.log(i)
+    function handleNavigationClick(e,i){   
         
         if(e.target.value !== navigation.current){
             let newNavigation = {start: (i)*pageLimit ,  end: (i+1)* pageLimit, current: i+1 } 
         
-            
         setNavigation(newNavigation)
-        // console.log(navigation)
+        
         }
-    }
-    useEffect(()=> console.log('rerender box'),[])
+    }    
+    
     function handleRedirect(){
         history.push('/recipe/new')
     }
+
     const mappedData = recipes.map((recipe, index) =>{
            
-        if(!showAll && index <4)
-            {
+        if(!showAll && index <4){
             return <ContentCard  recipe={recipe} showAll={showAll} text={text} key={recipe._id}/>
         } else if(showAll && index < navigation.end  && index>= navigation.start ){
             return <ContentCard  recipe={recipe} showAll={showAll} text={text} key={recipe._id}/>
@@ -84,31 +81,21 @@ function ContentBox(props){
     function navigationNumbers(){
         let navItems = []
     
-    for(let i =0; i< totalPages  ; i++){
-        if(i < totalPages  && i >=0 )
-        navItems.push(
-       
-
-        <div className={` arrows ${navigation.current === i+1 && 'navigationActive'}`} key= {i + "navButton" }onClick={e=>handleNavigationClick(e,i)} value={i+1}> {i+1} </div>
-        
-        
-        
-        )
-    }
-    return navItems
+        for(let i =0; i< totalPages  ; i++){
+            if(i < totalPages  && i >=0 )
+            navItems.push(     
+              <div className={` arrows ${navigation.current === i+1 && 'navigationActive'}`} key= {i + "navButton" }onClick={e=>handleNavigationClick(e,i)} value={i+1}> {i+1} </div>
+            )
+        }
+        return navItems
     }
 
    
     return(
         
-        loading? 
-        
-        <Spinner/>:
-
-
-
+        loading? <Spinner/>:
+  
         <div className="contentBox " >
-            
             <div className="contentBoxContent ">
                 <h1 className="text-center">{isSearch.searchStatus=== true? "Search Results" :title}</h1>  
                 <hr className="width80"/>
@@ -117,12 +104,12 @@ function ContentBox(props){
                     <p className='searchNumber'> {totalItems} {totalItems===1?"recipe": "recipes"} found {isSearch.searchStatus === true && ` for '${isSearch.searchText}'`}</p>
                     </div>
                     <div>
-                <select className='navigationSelect' name="itemsPerPage" onChange={(e)=>setPageLimit(parseInt(e.target.value))} value={pageLimit}>    
-                        <option value={12}>12 items per page</option>
-                        <option value={16}>16 items per page</option>
-                        <option value={20}>20 items per page</option>
-                        <option value= {48}>48 items per page</option>
-                    </select> 
+                        <select className='navigationSelect' name="itemsPerPage" onChange={(e)=>setPageLimit(parseInt(e.target.value))} value={pageLimit}>    
+                            <option value={12}>12 items per page</option>
+                            <option value={16}>16 items per page</option>
+                            <option value={20}>20 items per page</option>
+                            <option value= {48}>48 items per page</option>
+                        </select> 
                     </div>
                 </div>
                 <hr className="width80"/>
@@ -132,38 +119,28 @@ function ContentBox(props){
 
                 <div className="contentBoxCard">
                     {mappedData}
-                    
                     <ContentCard {...props} titleText="Create New Recipe" onClick={handleRedirect}/>
                     
                     <hr className="width80"/>
                 </div>
 
-                <div className="contentBoxNavigation">
-
+                <div className="contentBoxNavigation">               
                 
+                    <div className={` arrows  ${navigation.current ===1 && 'navigationDisable'}`}   onClick={setFirst} > {"<<"}  </div>
+                    <div className={` arrows mr2 ${navigation.current ===1 && 'navigationDisable'}`} onClick={setBack} > {'<'} </div>
+                    {navigationNumbers()}
+                    <div className={` arrows ml2 ${navigation.current === totalPages && 'navigationDisable'}`} onClick={setNext} > > </div>
+                    <div className={` arrows  ${navigation.current === totalPages && 'navigationDisable'}`} onClick={setLast} > >> </div>
                 
-                <div className={` arrows  ${navigation.current ===1 && 'navigationDisable'}`}   onClick={setFirst} > {"<<"}  </div>
-                <div className={` arrows mr2 ${navigation.current ===1 && 'navigationDisable'}`} onClick={setBack} > {'<'} </div>
-
-                {navigationNumbers()}
-
-                <div className={` arrows ml2 ${navigation.current === totalPages && 'navigationDisable'}`} onClick={setNext} > > </div>
-                <div className={` arrows  ${navigation.current === totalPages && 'navigationDisable'}`} onClick={setLast} > >> </div>
-                
-                <div className="navigationSelectContainer">
+                {/* <div className="navigationSelectContainer">
                      
-                    </div>
+                </div> */}
                 </div>
                 
             </div>
             
         </div>
-
-
-                
-            
-            
-            
+   
     )
 }
 

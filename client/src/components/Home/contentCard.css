@@ -45,7 +45,6 @@
     justify-content: center;
     align-content: center
 
-    /* padding: 5px; */
 
 }
 
@@ -54,10 +53,10 @@
 .ContentCardImage img{
     border-radius: 10px 10px 0 0 ;
     max-height: 300px;
-    /* max-width:350px; */
+    
     max-width:100%;
     box-sizing: border-box;
-    /* margin-top: auto!important */
+    
 
 
 
@@ -87,12 +86,11 @@
 }
 
 .ContentCardText{
-    /* background: #f8f8f8; */
-     /* max-height: 240px; */
+
     min-height: 45%; 
     box-sizing: border-box;
     margin-bottom:10px;
-    /* padding-bottom:10px; */
+
     border-radius: 0  0 10px 10px 
 
 }
@@ -122,17 +120,6 @@
 
 
 
-/* .iconSpacer{
-    width: 100%;
-    display:flex;
-    justify-content: flex-start;
-
-}
-
-.iconSpacer div{
-    margin-right: 20px
-
-} */
 
 
 @media only screen and (max-width: 1000px) {

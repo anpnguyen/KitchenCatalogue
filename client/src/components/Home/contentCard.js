@@ -1,11 +1,10 @@
 import React, {Fragment, useEffect} from 'react'
+import PropTypes from 'prop-types'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClock, faUtensils } from '@fortawesome/free-solid-svg-icons'
 import { withRouter} from 'react-router-dom'
 import {clearRecipe} from '../../actions/recipe'
-import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-
 import './contentCard.css'
 
 
@@ -42,17 +41,14 @@ function ContentCard(props){
                 </div>
                 
                 {text && !props.titleText &&
-                <Fragment>
-                
-                <p className=' recipeText'><span className='bold'><FontAwesomeIcon icon={faUtensils} /> Servings: </span> {servings}</p>
-                <p className=' recipeText'><span className='bold'><FontAwesomeIcon icon={faClock} /> Cooking Time: </span> {time}</p>
-                </Fragment>
+                    <Fragment>
+                    
+                        <p className=' recipeText'><span className='bold'><FontAwesomeIcon icon={faUtensils} /> Servings: </span> {servings}</p>
+                        <p className=' recipeText'><span className='bold'><FontAwesomeIcon icon={faClock} /> Cooking Time: </span> {time}</p>
+                    </Fragment>
                 
                 }
-                </div>
-              
-                
-            
+            </div>
             
         </div>
     
