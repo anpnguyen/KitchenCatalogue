@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "A online database for all your custom cooking recipes",
   "main": "server.js",
+  "engines": {
+    "node": "10.15.3",
+    "npm": "6.4.1"
+  },
   "scripts": {
     "start": "node server",
     "server": "nodemon server",
