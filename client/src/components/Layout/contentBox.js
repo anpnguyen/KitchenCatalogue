@@ -16,13 +16,14 @@ function ContentBox(props){
     const totalItems = recipes.length
     const totalPages = Math.floor((recipes.length/pageLimit)) + 1
     
-    
+    console.log(navigation)
 
+    // need to fix with useCallbakc
     useEffect(
         ()=>{
+        // console.log('useNavigation')    
         setNavigation({...navigation, start: 0, end:pageLimit, current:1})
-        
-        },[pageLimit, navigation]
+        },[pageLimit]
     )
 
     function setFirst(){
@@ -70,12 +71,21 @@ function ContentBox(props){
            
         if(!showAll && index <4){
             return <ContentCard  recipe={recipe} showAll={showAll} text={text} key={recipe._id}/>
-        } else if(showAll && index < navigation.end  && index>= navigation.start ){
+        } else if(showAll && index < navigation.end  && index>= navigation.start && index!== totalItems-1 ){
             return <ContentCard  recipe={recipe} showAll={showAll} text={text} key={recipe._id}/>
-        } else {
+        }  else if(showAll && index < navigation.end  && index>= navigation.start && index=== totalItems-1 ){
+            return (
+            <>
+            <ContentCard  recipe={recipe} showAll={showAll} text={text} key={recipe._id}/>
+            <ContentCard {...props} titleText="Create New Recipe" onClick={handleRedirect}/>
+            </>)
+        } 
+        
+        else {
             return <Fragment key={recipe._id}></ Fragment>
         }
-       
+                    
+        
     })
 
     function navigationNumbers(){
@@ -119,7 +129,8 @@ function ContentBox(props){
 
                 <div className="contentBoxCard">
                     {mappedData}
-                    <ContentCard {...props} titleText="Create New Recipe" onClick={handleRedirect}/>
+                    
+                    
                     
                     <hr className="width80"/>
                 </div>
@@ -132,9 +143,7 @@ function ContentBox(props){
                     <div className={` arrows ml2 ${navigation.current === totalPages && 'navigationDisable'}`} onClick={setNext} > > </div>
                     <div className={` arrows  ${navigation.current === totalPages && 'navigationDisable'}`} onClick={setLast} > >> </div>
                 
-                {/* <div className="navigationSelectContainer">
-                     
-                </div> */}
+                
                 </div>
                 
             </div>

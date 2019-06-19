@@ -7,7 +7,7 @@ import {clearRecipe} from '../../actions/recipe'
 import {connect} from 'react-redux'
 import './contentCard.css'
 
-
+// console.log('card')
 function ContentCard(props){
     const { text, clearRecipe} = props
     const {title, imageUrl, _id, servings, time} = props.recipe
