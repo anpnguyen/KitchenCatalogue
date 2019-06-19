@@ -7,9 +7,9 @@ const path = require('path')
 
 // Connect to Mongo
 connectDB()
-console.log(process.env.MONGOURI)
 
-// use body parser in express as json 
+
+
 app.use(express.json({ extended: false }));
 
 // cors errors
