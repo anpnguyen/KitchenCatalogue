@@ -3,11 +3,11 @@ const connectDB = require('./config/db')
 
 const app = express()
 const cors = require('cors')
-
 const path = require('path')
 
 // Connect to Mongo
 connectDB()
+console.log(process.env.MONGOURI)
 
 // use body parser in express as json 
 app.use(express.json({ extended: false }));
@@ -40,6 +40,7 @@ app.use('/api/registerUser', require('./routes/api/registerUser.js'));
 app.use('/api/authUser', require('./routes/api/authUser'));
 app.use('/api/recipe', require('./routes/api/recipe'));
 app.use('/api/cookbook', require('./routes/api/cookbook'));
+
 
 
 if (process.env.NODE_ENV === 'production') {
