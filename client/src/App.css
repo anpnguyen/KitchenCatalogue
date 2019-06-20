@@ -13,6 +13,11 @@ html, body, .App, .App-header, #root{
     
 }
 
+figure{
+    margin:0;
+    overflow:hidden
+}
+
 .loaderDiv{
     height:400px;
     padding-top: 200px;    

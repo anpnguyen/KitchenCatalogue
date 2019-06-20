@@ -21,8 +21,13 @@ function Alert(props){
 
         return(
             
-        <div  key={index + alert} className={`alert ${alert.alertType} `} >
-            <div > {alert.msg}</div> <div className='AlertCross' onClick={()=>handleRemove(alert.id)}>x</div>
+        <div  key={index + alert} className={`alert ${alert.alertType} `} role='alert'>
+            <div > 
+                {alert.msg}
+            </div> 
+            <div className='AlertCross' onClick={()=>handleRemove(alert.id)} aria-label='close'>
+                <span aria-hidden={true}>x</span>
+            </div>
         </div>)
     })
 

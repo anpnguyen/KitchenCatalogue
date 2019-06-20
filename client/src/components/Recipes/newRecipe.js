@@ -246,7 +246,7 @@ return(
                                                 </label>
                                             </div>
                                             <div className='instructionsItemRight'>
-                                                <textarea name={`${i}instruction`} rows="4" onChange={(e)=>handleInstructionChange(e,i)} value={recipeInstruction}/>]
+                                                <textarea name={`${i}instruction`} rows="4" onChange={(e)=>handleInstructionChange(e,i)} value={recipeInstruction}/>
                                                 <button className='blueButton' onClick={(e)=> handleInstructionRemove(i, e)}>X</button>
                                             </div>
                                             
