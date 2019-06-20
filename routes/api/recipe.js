@@ -51,10 +51,11 @@ router.post('/',[
             res.json(recipe);
 
             } catch (err) {
-                
+
+                    console.log(err)
                                      
                     res.status(500).json({ errors: [{ msg: 'A recipe with that title has already been registered - please use a different title' }] });
-z             };
+             };
     }
 );
 
