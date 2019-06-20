@@ -106,7 +106,7 @@ function ContentBox(props){
         loading? <Spinner/>:
   
         <div className="contentBox " >
-            <div className="contentBoxContent " >
+            <div className="contentBoxContent" >
                 <h1 className="text-center">{isSearch=== true? "Search Results" :title}</h1>  
                 <hr className="width80"/>
                 <div className='contentBoxHeader' >

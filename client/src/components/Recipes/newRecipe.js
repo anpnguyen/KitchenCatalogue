@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import NavBar from '../Layout/navBar'
 import './newRecipe.css'
@@ -14,7 +14,7 @@ import Alert from '../Layout/alert'
 
 
 function NewRecipe(props) {
-
+    const node = useRef()
     const {createRecipe,history, auth} = props
     const {user} = auth
     const initialData = {
@@ -29,7 +29,9 @@ function NewRecipe(props) {
     const [recipeInstructions, setRecipeInstructions] = useState([""]);
     const [newRecipeStage, setNewRecipeStage] = useState(1)
 
-    useEffect(()=> console.log('rerender'))
+    useEffect(()=> 
+        window.scrollTo({top:0, left: 0}), []
+    )
 //  Detail Logic
 
     function handleDetailChange(e){
@@ -87,12 +89,13 @@ function handleSubmit(e){
 }
 
 function handleToNext(e){
-    e.preventDefault();
+    e.preventDefault();    
     setNewRecipeStage(newRecipeStage +1)
+    
 }
 
 function handleToBack(e){
-    e.preventDefault();
+    e.preventDefault();    
     setNewRecipeStage(newRecipeStage -1)
 }
 
@@ -102,29 +105,29 @@ return(
         <NavBar/>
         <Alert/>
             
-        <div className="contentBox">
-            <div className="contentBoxContent height100">              
+        <div className="contentBox" ref={node}>
+            <div className="contentBoxContent ">              
             
-                <div className="newRecipe">                    
+                <div className="newRecipe" id="newRecipe">                    
                     <h1 className="text-center">Create a New Recipe</h1>
                     <hr className="width80"/>               
 
                     {newRecipeStage === 1 && 
-                    <div className="newRecipePreviewContainer">
+                    <div className="previewContainer">
                     
-                        <div className="newRecipePreview">
+                        <div className="preview">
                         
                     
                             {user !== null &&
                                 <>
-                                    <div className="newRecipePreviewItem">
+                                    <div className="previewItem">
                                         <h1 className="">{!title? "My Recipe Title": title}</h1>  
                                     </div>
                                                                 
-                                    <div className="newRecipePreviewItem">
+                                    <div className="previewItem">
                                         <p><span className='bold'>By: </span> {user.username} </p>
                                     </div>
-                                    <div className="newRecipePreviewItem">
+                                    <div className="previewItem lastP">
                                         <p>
                                             <span className="spanMargin">
                                                 <span className='bold'>
@@ -137,7 +140,7 @@ return(
                                         </p> 
                                     </div>
 
-                                    <div className="newRecipePreviewItem">
+                                    <div className="previewItem">
                                         {!imageUrl ? <div className="fillerImg"></div>: <img className='image' src={imageUrl} alt=""/>}                               
                                     </div>                            
                                 </>
@@ -147,63 +150,63 @@ return(
                     }
             
 
-                    <div className='newRecipeForm'>
+                    <div className='recipeForm' >
                         <form  onSubmit={handleSubmit}>
                             {newRecipeStage === 1 &&
-                            <div className="newRecipeDetailsContainer">
-                                <div className="newRecipeDetails">
-                                    <div className='newRecipeItem text-center'>
+                            <div className="recipeDetailsContainer">
+                                <div className="recipeDetails">
+                                    <div className='recipeDetailsItem text-center'>
                                         <h3>Recipe Details</h3>                                        
                                     </div>
-                                    <div className='newRecipeItem '>
+                                    <div className='recipeDetailsItem '>
                                         <div><label htmlFor="Title"><h5>Title:</h5> </label></div>
                                         <div><input type="text" placeholder="Title" name="title" value={title} onChange={handleDetailChange} /></div>
                                     </div>
-                                    <div className='newRecipeItem'>
+                                    <div className='recipeDetailsItem'>
                                         <div><label htmlFor="ImageUrl"><h5>Image Url:</h5> </label></div>
                                         <div><input type="text" placeholder="Image Url" name = "imageUrl" value={imageUrl} onChange={handleDetailChange}/></div>
                                     </div>
-                                    <div className='newRecipeItem'>
+                                    <div className='recipeDetailsItem'>
                                         <div><label htmlFor="ImageUrl"><h5>Servings:</h5> </label></div>
                                         <div><input type="text" placeholder="Servings" name ="servings" value={servings} onChange={handleDetailChange}/></div>
                                     </div>
-                                    <div className='newRecipeItem'>
+                                    <div className='recipeDetailsItem'>
                                         <div><label htmlFor="ImageUrl"><h5>Cooking Time:</h5> </label></div>
                                         <div><input type="text" placeholder="Cooking Time" name="time" value={time} onChange={handleDetailChange}/></div>
                                     </div>
-                                    <div className='newRecipeItem'>                                        
-                                        <button onClick={handleToNext} className="newRecipeNavigation">Next</button>
+                                    <div className='recipeDetailsItem'>                                        
+                                        <button onClick={handleToNext} className="blueButton">Next</button>
                                     </div>                                    
                                 </div>
                                 
                             </div>}
 
-                            {/* *** Instructions **** */}
+                            
                             
                            {newRecipeStage === 2 &&
-                            <div className="newRecipeIngredientsContainer">
-                                <div className="newRecipeIngredients">
-                                    <div className="newRecipeIngredientItem">
+                            <div className="ingredientsContainer">
+                                <div className="ingredients">
+                                    <div className="ingredientsItem">
                                         <h3>Ingredients</h3>
                                     </div>
                                 
                                     
                                     {recipeIngredients.map((recipeIngredient, index) => {
                                         return (
-                                        <div key={`${index} + ingredient`} className="newRecipeIngredientItem">
-                                            <div className='newIngredientItemLeft'>
+                                        <div key={`${index} + ingredient`} className="ingredientsItem">
+                                            <div className='ingredientsItemLeft'>
                                                 <h3>{index+1}.</h3>
                                             </div>
-                                            <div className='newIngredientItemRight'>
+                                            <div className='ingredientsItemRight'>
                                             
-                                                <div className="NewRecipeName">
+                                                <div className="">
                                                     <input
                                                         type="text"
                                                         placeholder="Ingredient Name"
                                                         value={recipeIngredients[index] || " "}
                                                         onChange={e => handleIngredientNameChange(e, index)}                                            
                                                     /> 
-                                                    <button 
+                                                    <button className='blueButton'
                                                         type="button" 
                                                         onClick={() => handleIngredientRemove(index)}
                                                     >X                                            
@@ -213,43 +216,44 @@ return(
                                         </div>
                                         );
                                     })}
-                                    <div className="newRecipeIngredientItem">                                    
-                                        <button className="addIngredientButton" onClick={e=> handleIngredientAdd(e)}>Add Ingredient</button>                          
+                                    <div className="ingredientsItem addIngredientButton">                                    
+                                        <button className="blueButton " onClick={e=> handleIngredientAdd(e)}>Add Ingredient</button>                          
                                     </div>     
                                 </div>
-                                <div className="newRecipeIngredientItem newRecipeIngredientItemLast">
-                                    <button className="newRecipeNavigation" onClick={e=> handleToBack(e)}>Back </button>
-                                    <button className="newRecipeNavigation" onClick={e=> handleToNext(e)}>Next</button>
+                                <div className="ingredientsItem ingredientNavButton">
+                                    <button className="blueButton" onClick={e=> handleToBack(e)}>Back </button>
+                                    <button className="blueButton" onClick={e=> handleToNext(e)}>Next</button>
                                 </div>
                             </div> }
 
                                             {/* instruction */}
 
                             {newRecipeStage ===3 &&
-                            <div className="newRecipeInstructionContainer ">
-                                <div className='newRecipeInstruction'>                      
-                                    <div className="newRecipeInstructionItem ">
+                            <div className="instructionsContainer ">
+                                <div className='instructions'>                      
+                                    <div className="instructionsItem ">
                                         <h3>Instructions</h3>
                                     </div>
                                     {recipeInstructions.map( (recipeInstruction,i) => {                                   
                                         return(
-                                        <div className="newRecipeInstructionItem" key ={`${i} + instruction`}>
-                                            <div className='newRecipeInstructionLeft'><h3>{i+1}.</h3> </div>
-                                            <div className='newRecipeInstructionRight'><textarea rows="4" onChange={(e)=>handleInstructionChange(e,i)} value={recipeInstruction}/><button onClick={(e)=> handleInstructionRemove(i, e)}>X</button></div>
+                                        <div className="instructionsItem" key ={`${i} + instruction`}>
+                                            <div className='instructionsItemLeft'><h3>{i+1}.</h3> </div>
+                                            <div className='instructionsItemRight'><textarea rows="4" onChange={(e)=>handleInstructionChange(e,i)} value={recipeInstruction}/><button className='blueButton' onClick={(e)=> handleInstructionRemove(i, e)}>X</button></div>
                                             
                                         </div>)                                   
 
                                     })}
 
                                 
-                                
-                                    <button className="addInstructionButton" onClick={e=> handleInstructionAdd(e)}>Add Instruction</button>
+                                    <div className="instructionsItem addInstructionButton">
+                                    <button className="blueButton" onClick={e=> handleInstructionAdd(e)}>Add Instruction</button>
+                                    </div>
                               
                                 </div>
 
-                                <div className="newRecipeIngredientItem newRecipeIngredientItemLast">
-                                        <button className="newRecipeNavigation" onClick={e=> handleToBack(e)}>Back </button>
-                                        <button className="newRecipeNavigation" onClick={e=> handleSubmit(e)}>Submit</button>
+                                <div className=" instructionsItem instructionsNavButton">
+                                        <button className="blueButton" onClick={e=> handleToBack(e)}>Back </button>
+                                        <button className="blueButton" onClick={e=> handleSubmit(e)}>Submit</button>
                                 </div>
                             
                             </div>}                                                

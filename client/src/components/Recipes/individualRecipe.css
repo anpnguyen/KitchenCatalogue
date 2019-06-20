@@ -17,7 +17,8 @@
     margin: 0;
     text-align: center;
     background:rgba(255, 230, 202, 0.5);
-    padding: 20px 0px
+    padding: 20px 10px;
+    border-radius: 10px 10px 0 0
 }
 
 
@@ -35,7 +36,7 @@
        
 }
 
-.individualRecipeSave{
+#individualRecipe .saveButton{
     display: flex; 
     align-items: center;
     justify-content: center;
@@ -44,12 +45,10 @@
 
 }
 
-
-
-  .individualRecipeSave button:hover{
+.saveButton button:hover{
     background: rgb(26, 93, 218);
     
-  }
+}
 
 #individualRecipe .imageContainer{
     margin: 20px 0px ;
@@ -287,14 +286,18 @@
     }
 
     #individualRecipe{
-        width:100%;
+        width:96%;
         box-sizing: border-box;
-        margin: 0px;
-        border:0 solid #dddddd;
+        margin: 20px 2%;
+        border:1px solid #dddddd;
         border-radius: 10px;
-        -webkit-box-shadow: none;
+        /* -webkit-box-shadow: none;
         -moz-box-shadow: none;
-        box-shadow: none;
+        box-shadow: none; */
+    }
+
+    #individualRecipe h1{
+       font-size: 1.7rem
     }
     #individualRecipe .image{
        

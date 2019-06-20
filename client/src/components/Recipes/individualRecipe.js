@@ -74,7 +74,7 @@ function IndividualRecipe(props){
                                 </div>                             
                             </div> 
 
-                            <div className='individualRecipeSave'>
+                            <div className='saveButton'>
                                 <Link to={`/recipe/${_id}/edit`}><button className="blueButton" >Edit</button></Link>
                                 <button className="blueButton" onClick={handleDelete}>Delete</button>                                
                             </div> 
