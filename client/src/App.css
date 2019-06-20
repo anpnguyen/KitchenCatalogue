@@ -180,7 +180,9 @@ button:hover, select:hover{
 
 .AlertCross{
     margin-right: 0.8rem;
-    font-weight: bold
+    font-weight: bold;
+    cursor: pointer;
+
 }
 
 .alert{
