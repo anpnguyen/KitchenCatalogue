@@ -16,7 +16,7 @@ try {
     );
     
     req.user = decoded.user;
-    // console.log(req.user)
+    
     next();
     } catch (err) {
     res.status(401).json({ msg: 'Token is not valid, please login first' });

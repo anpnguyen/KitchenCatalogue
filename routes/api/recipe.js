@@ -47,11 +47,11 @@ router.post('/',[
         try {
             recipe = new Recipe(recipeFields);
             await recipe.save();
-            console.log(recipe)
+            
             res.json(recipe);
 
             } catch (err) {
-                console.error(err);
+                
                                      
                     res.status(500).json({ errors: [{ msg: 'A recipe with that title has already been registered - please use a different title' }] });
 z             };
@@ -61,46 +61,36 @@ z             };
 //  *** get all users recipes *** working
 router.get('/', authMiddleware, async (req, res) => {
     try {
-        console.log(req.query.search)
+        
         if(req.query.search){
-            console.log('first')
+            
              const recipes = await Recipe.find({user:req.user.id, title: { "$regex": req.query.search, "$options": "i" }});
              res.json(recipes);
         } else{
-            console.log('second')
+        
             const recipes = await Recipe.find({ user:req.user.id});
             res.json(recipes);
         }
-        // console.log(recipes)
+        
         
 
     } catch (err) {
-        console.error(err.message);
+       
         res.status(500).send('Server Error - cannot fetch user recipes');
     }
 });
 
-// router.get('/', authMiddleware, async (req, res) => {
-//     try {
-//         console.log(req.query.q)
-//         console.log(tu)
-//         const recipes = await Recipe.find({user:req.user.id, title:req.query.q});
-//         res.json(recipes);
-//     } catch (err) {
-//         console.error(err.message);
-//         res.status(500).send('Server Error - cannot fetch user recipes');
-//     }
-// });
+
 
 //  *** get a number to  ***   UNUSED
 router.get('/set/:setNumber', authMiddleware, async (req, res) => {
     try {
-        // console.log(req.params.setNumber)
+        
         let num = parseInt(req.params.setNumber)
         const recipes = await Recipe.find({user:req.user.id}).limit(num);
         res.json(recipes);
     } catch (err) {
-        console.error(err.message);
+        
         res.status(500).send('Server Error - cannot fetch user recipes');
     }
 });
@@ -121,7 +111,7 @@ router.get('/:recipe_id', authMiddleware, async (req, res) => {
         res.json(recipe);
 
     } catch (err) {
-        console.error(err.message);
+        
         if (err.kind == 'ObjectId') {
             return res.status(400).json({ msg: 'Recipe not found - from catch' });
         }
@@ -130,7 +120,7 @@ router.get('/:recipe_id', authMiddleware, async (req, res) => {
 });
 
 
-// *** Edit a recipe *** workaroudn with post
+// *** Edit a recipe *** 
 
 router.put('/:recipe_id',[
         authMiddleware,
@@ -175,17 +165,14 @@ router.put('/:recipe_id',[
         } catch (err) {
             
             
-            
-            // console.log(err)
-            // console.log(err.code)
-            // console.log(typeof(err.code))
+         
 
             if(err.code == 11000){
-                // console.log('calling')
+             
                 return res.status(500).json([{msg:'Please Use A Unique Recipe Title', errorType:'LoginDanger'}])
             } else {
-                // console.log('calling back')
-                // return res.status(500).send('Server Error - cannot create a new recipe')
+                
+                return res.status(500).send('Server Error - cannot create a new recipe')
             
         };
         };
@@ -193,19 +180,6 @@ router.put('/:recipe_id',[
   )
 
 
-// Delete POst work around
-// router.post('/:recipe_id/delete', authMiddleware, async (req, res) => {
-//     try {
-//         await Recipe.deleteOne({ _id: req.params.recipe_id });
-//         res.json({ msg: 'Recipe  deleted' });
-
-//     } catch (err) {
-//         console.error(err.message);
-//         console.error(err);
-//         // if(err)
-//         res.status(500).send('Server Error - cannot delete recipe');
-//     }
-// });
 
 
 //  *** Delete Route - unused **  NEED TO CHANGE
@@ -216,7 +190,7 @@ router.delete('/:recipe_id', authMiddleware, async (req, res) => {
         res.json({ msg: 'Recipe  deleted' });
 
     } catch (err) {
-        console.error(err.message);
+        
         res.status(500).send('Server Error - cannot delete recipe');
     }
 });
@@ -231,7 +205,7 @@ router.get('/', authMiddleware, async (req, res) => {
         const user = await User.findById(req.user.id).select('-password');
         res.json(user);
     } catch (err) {
-        console.error(err.message);
+       
         res.status(500).send('Server Error - User cannot be found');
     }
   });
@@ -243,10 +217,10 @@ router.get('/favourite', authMiddleware     , async (req, res) => {
             const favRecipes = await User.findbyId(req.user.id).select('-password').populate('favouriteRecipes');                      
 
             res.json(favRecipes.favouriteRecipes);
-            console.log('get all recipes')
+            
             // res.json({ msg: 'recipe added to favourites' });
         } catch (err) {
-            console.error(err.message);
+         
             res.status(500).send('Server Error - cannot add to favourite');
         };
 
@@ -281,18 +255,13 @@ router.put('/favourite',
 
             let favouritedRecipes = await User.findOneAndUpdate({_id: req.user.id},  { $push: { favouriteRecipes: recipeId } } ).populate('favouriteRecipes',['title']);
 
-            // const cookbook = await Cookbook.findOne({
-            //     _id: req.params.cookbook_id
-            // }).populate('savedRecipes',['title', 'imageUrl'] );
-
-
-            // let favouritedRecipes = await User.findOne({_id:})
+           
 
             res.json(favouritedRecipes.favouriteRecipes);
-            console.log('added')
-            // res.json({ msg: 'recipe added to favourites' });
+            
+        
         } catch (err) {
-            console.error(err.message);
+          
             res.status(500).send('Server Error - cannot add to favourite');
         };
     }

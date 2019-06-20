@@ -4,6 +4,7 @@ const config = require('config');
 
 const connectDB = async ()=>{
     try{
+        
         await mongoose.connect(process.env.MONGO,{
             useNewUrlParser: true,
             useCreateIndex: true,
@@ -12,7 +13,7 @@ const connectDB = async ()=>{
     }
 
     catch(err){
-        console.log(err)
+        
         // Exit process if failure
         process.exit(1)
 
