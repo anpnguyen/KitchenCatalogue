@@ -56,7 +56,7 @@ function NavBar(props){
 
   return(
         
-    <div className="navBar">
+    <nav className="navBar">
       <div className="navBarLogo">
           <p className="navBarLogoText">
               <Link to='/'>Kitchen Catalogue</Link>
@@ -86,7 +86,7 @@ function NavBar(props){
           </div>
   
       </div>
-    </div>
+    </nav>
    )
 }
 

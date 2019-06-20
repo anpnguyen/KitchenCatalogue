@@ -127,14 +127,14 @@ function EditIndividualRecipe(props) {
         <div className="contentBox ">
             <div className="contentBoxContent ">                
             
-                <div className="editRecipe" id='editRecipe'>                    
+                <main className="editRecipe" id='editRecipe'>                    
                 <h1 className="text-center">Edit Recipe</h1>
                 <hr className="width80"/>
                
 
                 {newRecipeStage === 1 && <div className="previewContainer">
                     
-                    <div className="preview">
+                    <section className="preview">
                     
                    
                        {user !== null &&
@@ -160,14 +160,14 @@ function EditIndividualRecipe(props) {
                                 </p> 
                         </div>
                         <div className="previewItem">
-                            {!imageUrl ? <div className="fillerImg"></div>: <img className='image' src={imageUrl} alt=""/>}
+                            {!imageUrl ? <div className="fillerImg"></div>: <img className='image' src={imageUrl} alt={title}/>}
                             
                         </div>
                             
                         </>
                        } 
                             
-                    </div> 
+                    </section> 
                     
                 </div>}
 
@@ -177,7 +177,7 @@ function EditIndividualRecipe(props) {
 
                             {newRecipeStage === 1 &&
                             <div className="recipeDetailsContainer">
-                                <div className="recipeDetails">
+                                <section className="recipeDetails">
                                     <div className='recipeDetailsItem text-center'>
                                         <h3>Recipe Details</h3>
                                         
@@ -191,19 +191,19 @@ function EditIndividualRecipe(props) {
                                         <div><input type="text" placeholder="Image Url" name = "imageUrl" value={imageUrl} onChange={handleDetailChange}/></div>
                                     </div>
                                     <div className='recipeDetailsItem'>
-                                        <div><label htmlFor="ImageUrl"><h5>Servings:</h5> </label></div>
+                                        <div><label htmlFor="servings"><h5>Servings:</h5> </label></div>
                                         <div><input type="text" placeholder="Servings" name ="servings" value={servings} onChange={handleDetailChange}/></div>
                                     </div>
                                     <div className='recipeDetailsItem'>
-                                        <div><label htmlFor="ImageUrl"><h5>Cooking Time:</h5> </label></div>
+                                        <div><label htmlFor="time"><h5>Cooking Time:</h5> </label></div>
                                         <div><input type="text" placeholder="Cooking Time" name="time" value={time} onChange={handleDetailChange}/></div>
                                     </div>
-                                    <div className='recipeDetailsItem'>
+                                    <nav className='recipeDetailsItem'>
                                         
                                         <button onClick={handleToNext} className="blueButton">Next</button>
-                                    </div>
+                                    </nav>
                                 
-                                </div>
+                                </section>
                                 
                             </div>}
 
@@ -211,7 +211,7 @@ function EditIndividualRecipe(props) {
                             
                            {newRecipeStage === 2 &&
                             <div className="ingredientsContainer">
-                                <div className="ingredients">
+                                <section className="ingredients">
                                     <div className="ingredientsItem">
                                         <h3>Ingredients</h3>
                                     </div>
@@ -230,21 +230,24 @@ function EditIndividualRecipe(props) {
                                     
                                     {recipeIngredients.map((recipeIngredient, index) => {
                                         return (
-                                        <div key={`${index} + ingredient`} className="ingredientsItem">
+                                        <div key={`${index}ingredient`} className="ingredientsItem">
                                             <div className='ingredientItemsLeft'>
-                                                <h3>{index+1}.</h3>
+                                                <label htmlFor={`${index}ingredient`}><h3>{index+1}.</h3></label>
                                             </div>
                                             <div className='ingredientsItemRight'>
                                         
-                                            <div className="NewRecipeName"><input
-                                            type="text"
-                                            placeholder="Ingredient Name"
-                                            value={recipeIngredient || " "}
-                                            onChange={e => handleIngredientNameChange(e, index)}
-                                            
-                                            /> <button className='blueButton' type="button" onClick={() => handleIngredientRemove(index)}>
-                                            X
-                                            </button></div>
+                                                <div className="NewRecipeName">
+                                                    <input
+                                                        type="text"
+                                                        placeholder="Ingredient Name"
+                                                        value={recipeIngredient || " "}
+                                                        onChange={e => handleIngredientNameChange(e, index)}
+                                                        name={`${index}ingredient`}                                            
+                                                    /> 
+                                                    <button className='blueButton' type="button" onClick={() => handleIngredientRemove(index)}>
+                                                        X
+                                                    </button>
+                                                </div>
                                             </div>
                                             
                                         </div>
@@ -255,18 +258,18 @@ function EditIndividualRecipe(props) {
                                     <button className=" " onClick={e=> handleIngredientAdd(e)}>Add Ingredient</button>  
                                 </div>
 
-                            </div>
-                                <div className="ingredientsItem ingredientNavButton">
+                            </section>
+                                <nav className="ingredientsItem ingredientNavButton">
                                     <button className="blueButton" onClick={e=> handleToBack(e)}>Back </button>
                                     <button className="blueButton" onClick={e=> handleToNext(e)}>Next</button>
-                                </div>
+                                </nav>
                             </div> }
 
                                             {/* instruction */}
 
                             {newRecipeStage ===3 &&
                             <div className="instructionsContainer ">
-                                <div className='instructions'>
+                                <section className='instructions'>
                       
                                     <div className="instructionsItem ">
                                         <h3>Instructions</h3>
@@ -275,27 +278,34 @@ function EditIndividualRecipe(props) {
                                    
                                         return(
                                         <div className="instructionsItem" key ={`${i} + instruction`}>
-                                            <div className='instructionsItemLeft'><h3>{i+1}.</h3> </div>
-                                            <div className='instructionsItemRight'><textarea rows="4" onChange={(e)=>handleInstructionChange(e,i)} value={recipeInstruction}/><button className='blueButton' onClick={(e)=> handleInstructionRemove(i, e)}>X</button></div>
+                                            <div className='instructionsItemLeft'>
+                                                <label htmlFor={`${i}instruction`}>
+                                                    <h3>{i+1}.</h3>
+                                                </label>
+                                            </div>
+                                            <div className='instructionsItemRight'>
+                                                <textarea name={`${i}instruction`} rows="4" onChange={(e)=>handleInstructionChange(e,i)} value={recipeInstruction}/>
+                                                <button className='blueButton' onClick={(e)=> handleInstructionRemove(i, e)}>X</button>
+                                            </div>
                                             
                                         </div>)                                  
                                     })}                               
                                 <div className="instructionsItem addInstructionButton">
                                     <button className="" onClick={e=> handleInstructionAdd(e)}>Add Instruction</button>
                                 </div>
-                                </div>
+                                </section>
 
-                                <div className="instructionsItem instructionsNavButton">
+                                <nav className="instructionsItem instructionsNavButton">
                                         <button className="blueButton" onClick={e=> handleToBack(e)}>Back </button>
                                         <button className="blueButton" onClick={e=> handleSubmit(e)}>Submit</button>
-                                </div>
+                                </nav>
                             
                             </div>}                                                
                         
                         </form>
                         
                     </div>
-                </div>           
+                </main>           
             </div>
         </div>}
         <Footer/>

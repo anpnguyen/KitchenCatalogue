@@ -4,7 +4,7 @@ import './footer.css'
 
 function Footer(){
     return(
-        <div className="footer">
+        <footer className="footer">
             <div className="footerBox text-center">
                 <h2 className="pacifico footerLogo">Kitchen Catalogue</h2>
                 <p className="footertext">© 2019 Kitchen Catalogue. </p>
@@ -22,7 +22,7 @@ function Footer(){
                     
                 </ul>
             </div> */}
-        </div>
+        </footer>
     )
 }
 

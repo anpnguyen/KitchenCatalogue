@@ -26,8 +26,8 @@ function ContentCard(props){
     
 
     return(
-        <div className="contentCard " onClick={handleClicker}>
-
+        <article className="contentCard " onClick={handleClicker}>
+            <figure>
             <div className='ContentCardImage'>
                 {!imageUrl && props.titleText && <div className="fillerImgCreate"> + </div>}
                 {!imageUrl && !props.titleText && <div className="fillerImg"></div>}
@@ -35,7 +35,7 @@ function ContentCard(props){
                 
             </div>
 
-            <div className="ContentCardText ">
+            <figcaption className="ContentCardText ">
                 <div className="contentCardTitleContainer ">
                     {props.titleText && <h3> {props.titleText}</h3>    }<h3>{title}</h3>
                 </div>
@@ -48,9 +48,9 @@ function ContentCard(props){
                     </Fragment>
                 
                 }
-            </div>
-            
-        </div>
+            </figcaption>
+            </figure>
+        </article>
     
     )
 }

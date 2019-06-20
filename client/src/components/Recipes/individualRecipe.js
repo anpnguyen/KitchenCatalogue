@@ -65,14 +65,14 @@ function IndividualRecipe(props){
                 <div className="contentBox ">
                     <div className="contentBoxContent ">    
 
-                        <div className="individualRecipe" id="individualRecipe">
+                        <main className="individualRecipe" id="individualRecipe">
                           <h1 className="">{title}</h1>  
-                            <div className="recipeDetails ">
+                            <section className="recipeDetails ">
                                 <div className=''>
                                     <p><span className='bold'>By: </span> {user.username} </p>
                                     <p><span className="spanMargin"><span className='bold'><FontAwesomeIcon icon={faUtensils} /> Serves </span> {servings}</span>  <span className='bold'><FontAwesomeIcon icon={faClock} />Cooking Time:</span> {time}</p>      
                                 </div>                             
-                            </div> 
+                            </section> 
 
                             <div className='saveButton'>
                                 <Link to={`/recipe/${_id}/edit`}><button className="blueButton" >Edit</button></Link>
@@ -80,13 +80,13 @@ function IndividualRecipe(props){
                             </div> 
                     
                         
-                            <div className="imageContainer ">
-                                {!imageUrl ? <div className="fillerImg"></div>: <img className='image' src={imageUrl} alt=""/>} 
-                            </div>
+                            <section className="imageContainer ">
+                                {!imageUrl ? <div className="fillerImg"></div>: <img className='image' src={imageUrl} alt={title}/>} 
+                            </section>
                             <hr className="width80"/>   
 
                             <div className="recipeText">
-                                <div className="ingredients ">
+                                <section className="ingredients ">
                                     <ul className="">
                                         <li className=' '><h3>Ingredients</h3>    </li>
                                         {ingredients.map( (ingredient, index) =>(
@@ -96,8 +96,8 @@ function IndividualRecipe(props){
                                             </Fragment>
                                         ))}
                                     </ul>
-                                </div>
-                                <div className="instructions "> 
+                                </section>
+                                <section className="instructions "> 
                                                             
                                     <ul className="individualRecipeInstructions">
                                             
@@ -117,9 +117,9 @@ function IndividualRecipe(props){
                                             </Fragment>))
                                         }
                                     </ul>
-                                </div>
+                                </section>
                             </div>
-                        </div>                        
+                        </main>                        
                     </div>                    
                 </div>
             <Footer/>

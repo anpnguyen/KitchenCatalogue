@@ -105,7 +105,7 @@ function ContentBox(props){
         
         loading? <Spinner/>:
   
-        <div className="contentBox " >
+        <main className="contentBox " >
             <div className="contentBoxContent" >
                 <h1 className="text-center">{isSearch=== true? "Search Results" :title}</h1>  
                 <hr className="width80"/>
@@ -127,15 +127,15 @@ function ContentBox(props){
 
 
 
-                <div className="contentBoxCard">
+                <section className="contentBoxCard">
                     {mappedData}
                     {recipes.length ===0&&<ContentCard {...props} titleText="Create New Recipe" onClick={handleRedirect}/>}
                     
                     
                     <hr className="width80"/>
-                </div>
+                </section>
 
-                <div className="contentBoxNavigation">               
+                <nav className="contentBoxNavigation">               
                 
                     <div className={` arrows  ${navigation.current ===1 && 'navigationDisable'}`}   onClick={setFirst} > {"<<"}  </div>
                     <div className={` arrows mr2 ${navigation.current ===1 && 'navigationDisable'}`} onClick={setBack} > {'<'} </div>
@@ -144,11 +144,11 @@ function ContentBox(props){
                     <div className={` arrows  ${navigation.current === totalPages && 'navigationDisable'}`} onClick={setLast} > >> </div>
                 
                 
-                </div>
+                </nav>
                 
             </div>
             
-        </div>
+        </main>
    
     )
 }

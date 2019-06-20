@@ -52,7 +52,7 @@ function Login(props){
     return(
         <div className="login">
             <Alert/>
-            <img src={backgroundImage} alt='' draggable= 'false' />
+            <img src={backgroundImage} alt='' draggable= 'false' role='presentation'/>
             <div className={`loginContainer ${isLogin ? 'right-panel-active': ""}`} id="container">            
                 <div className="loginForm-container loginSign-up-container">
                     <form className='loginForm'onSubmit={handleLogin}>
