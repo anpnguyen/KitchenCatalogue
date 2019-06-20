@@ -67,7 +67,7 @@ function NavBar(props){
           <div className="navButton" onClick={handleToggle}>
               <FontAwesomeIcon icon={faBars} height="2em" />
           </div>
-          <div className="">
+          <div className="navBarListContainer">
               <ul className={`NavList ${!showMenu ? "slide": "" }`}>
                   <li className="">
                       <h2 className='pacifico'>Kitchen Catalogue</h2></li>
