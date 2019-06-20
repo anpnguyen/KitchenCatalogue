@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useRouter } from "react";
 
 import NavBar from '../Layout/navBar'
 import './newRecipe.css'
@@ -13,8 +13,9 @@ import Footer from '../Layout/footer'
 import Alert from '../Layout/alert'
 
 
+
 function NewRecipe(props) {
-    const node = useRef()
+    
     const {createRecipe,history, auth} = props
     const {user} = auth
     const initialData = {
@@ -28,10 +29,8 @@ function NewRecipe(props) {
     const [recipeIngredients, setRecipeIngredients] = useState([""]);
     const [recipeInstructions, setRecipeInstructions] = useState([""]);
     const [newRecipeStage, setNewRecipeStage] = useState(1)
-
-    useEffect(()=> 
-        window.scrollTo({top:0, left: 0}), []
-    )
+    // const  { pathname, search } = useRouter();
+   
 //  Detail Logic
 
     function handleDetailChange(e){
@@ -90,7 +89,8 @@ function handleSubmit(e){
 
 function handleToNext(e){
     e.preventDefault();    
-    setNewRecipeStage(newRecipeStage +1)
+    setNewRecipeStage(newRecipeStage +1);
+    
     
 }
 
@@ -105,7 +105,7 @@ return(
         <NavBar/>
         <Alert/>
             
-        <div className="contentBox" ref={node}>
+        <div className="contentBox" >
             <div className="contentBoxContent ">              
             
                 <div className="newRecipe" id="newRecipe">                    
