@@ -12,7 +12,7 @@ function RecipesSet(props){
     const {getSetRecipes, match, auth} = props
 
     useEffect(()=>{
-        console.log(match.params.setNumber)
+        
         getSetRecipes(match.params.setNumber)},[getSetRecipes]
 
     )

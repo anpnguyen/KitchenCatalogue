@@ -28,7 +28,7 @@ function SearchBar(props){
         formData&&
         
         searchRecipes(formData, history)
-        console.log(formData)
+        
 
     }
 

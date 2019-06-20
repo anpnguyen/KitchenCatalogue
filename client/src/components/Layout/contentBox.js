@@ -16,12 +16,12 @@ function ContentBox(props){
     const totalItems = recipes.length
     const totalPages = Math.floor((recipes.length/pageLimit)) + 1
     
-    console.log(navigation)
+    
 
     // need to fix with useCallbakc
     useEffect(
         ()=>{
-        // console.log('useNavigation')    
+         
         setNavigation({...navigation, start: 0, end:pageLimit, current:1})
         },[pageLimit]
     )

@@ -31,7 +31,7 @@ function EditIndividualRecipe(props) {
 
     function handleDetailChange(e){
         setRecipeDetails({...recipeDetails, [e.target.name]: e.target.value})
-        console.log(recipeDetails)
+        
     }
 
 
@@ -39,7 +39,7 @@ function EditIndividualRecipe(props) {
         const values = [...recipeIngredients];
         values[index] = e.target.value;
         setRecipeIngredients(values);
-        console.log('ingredient')
+        
     }
   
     function handleIngredientAdd(e) {
@@ -47,7 +47,7 @@ function EditIndividualRecipe(props) {
         const values = [...recipeIngredients];
         values.push("");
         setRecipeIngredients(values);
-        console.log(values)
+        
     }
 
     function handleIngredientRemove(index) {
@@ -60,7 +60,7 @@ function EditIndividualRecipe(props) {
 
     function handleInstructionChange(e, index) {
         const valuesInstructions = [...recipeInstructions];
-        console.log(valuesInstructions)
+        
         valuesInstructions[index] = e.target.value;
         setRecipeInstructions(valuesInstructions);
     }
@@ -69,7 +69,7 @@ function EditIndividualRecipe(props) {
         e.preventDefault()
         const valuesInstructions = [...recipeInstructions];
         valuesInstructions.push(" ");
-        console.log(valuesInstructions)
+        
         setRecipeInstructions(valuesInstructions)
         
     }
@@ -77,7 +77,7 @@ function EditIndividualRecipe(props) {
     function handleInstructionRemove(index,e) {
         e.preventDefault()
         const valuesInstructions = [...recipeInstructions];
-        console.log(valuesInstructions)
+        
         valuesInstructions.splice(index, 1);
         setRecipeInstructions(valuesInstructions);
     }
@@ -85,8 +85,7 @@ function EditIndividualRecipe(props) {
     function handleSubmit(e){
         e.preventDefault()
         const formData = {...recipeDetails, ingredients: recipeIngredients, instructions: recipeInstructions}
-        console.log(formData)
-        console.log(recipe.recipe._id)
+        
         editRecipePut(formData, history, recipe.recipe._id)
     }
 
@@ -102,7 +101,7 @@ function EditIndividualRecipe(props) {
     }
 
     useEffect(()=>{
-        console.log('calling')
+        
         getRecipeById(match.params.recipe_id)                
         
         setRecipeDetails({
