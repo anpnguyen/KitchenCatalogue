@@ -83,6 +83,7 @@
 .contentBoxHeader{
     display: flex;
     justify-content: space-between;
+    margin: 5px 0
 }
 .navigationSelect{
     margin-right:100px;
@@ -96,6 +97,18 @@
         width:100%
     }
     
+    /* .navigationSelect{
+        margin-right:20px;
+        height:30px
+    }
+    .searchNumber{
+        margin-left :20px;
+        
+    } */
+
+}
+
+@media only screen and (max-width: 680px) {
     .navigationSelect{
         margin-right:20px;
         height:30px
