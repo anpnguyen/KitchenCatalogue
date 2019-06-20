@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import {logout} from '../../actions/auth'
 import { clearRecipe } from '../../actions/recipe';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons'
 import './navBar.css'
 
 
@@ -65,7 +65,7 @@ function NavBar(props){
       <div className='navBarContainer' ref={node}>
   
           <div className="navButton" onClick={handleToggle}>
-              <FontAwesomeIcon icon={faBars} height="2em" />
+              {!showMenu?<FontAwesomeIcon icon={faBars} height="2em" />: <FontAwesomeIcon icon={faTimes} height="2em" />}
           </div>
           <div className="navBarListContainer">
               <ul className={`NavList ${!showMenu ? "slide": "" }`}>
