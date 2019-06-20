@@ -108,7 +108,8 @@
 .NavList li{
     
     width:100%;
-    padding: 20px;
+    
+    padding:  20px;
     color:#333;
     text-transform: uppercase;
     text-align: center;
@@ -130,16 +131,22 @@
 
 .NavList li:last-of-type{
     
-    padding-bottom: 50px
+    padding-bottom: 20px
 }
 
 .NavList li:first-of-type:hover{
     color: #333
   
 }
-.NavList li:hover{
+.NavList li a:hover{
     cursor: pointer;
     color: rgb(218, 26, 45) 
+}
+
+.navBarDivider{
+    border-color:#9e9e9e;
+    width:60%
+
 }
 
 
@@ -147,24 +154,15 @@
 
 
 
-
-.navBarListItem a:hover{
-    display:inline;
+.navBarListItem:hover{
+    /* display:inline; */
     color: rgb(218, 26, 45) ;
-    letter-spacing: 1.5px
+    /* letter-spacing: 1.5px */
 }
 
 .display{
     display:block !important
 }
 
-/* .burgerButton {
-    width: 35px;
-    height: 5px;
-    background-color: #f8f8f8;
-    margin: 6px 0;
-    border-radius: 5px;
-
-  } */
 
  

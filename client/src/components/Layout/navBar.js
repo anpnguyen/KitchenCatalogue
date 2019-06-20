@@ -70,15 +70,18 @@ function NavBar(props){
           <div className="navBarListContainer">
               <ul className={`NavList ${!showMenu ? "slide": "" }`}>
                   <li className="">
-                      <h2 className='pacifico'>Kitchen Catalogue</h2></li>
-                  <li className="" onClick={()=>setShowMenu(false)}>
-                      <Link to='/recipe/new'>Create A Recipe</Link>
+                      <h2 className='pacifico'>Kitchen Catalogue</h2>
                   </li>
-                  <li className="" onClick={()=>setShowMenu(false)}>
-                      <Link to='/recipe'>View All Recipes</Link>
+                  <hr className='navBarDivider'/>
+
+                  <li className="" >
+                      <Link to='/recipe/new' onClick={()=>setShowMenu(false)}>Create A Recipe</Link>
                   </li>
-  
-                  <li className="navBarListItem" onClick={handleLogout}>Logout</li>
+                  <li className="" >
+                      <Link to='/recipe' onClick={()=>setShowMenu(false)}>View All Recipes</Link>
+                  </li>
+                  <hr className='navBarDivider'/>
+                  <li className="navBarListItem" onClick={handleLogout}><Link to='/login' onClick={()=>setShowMenu(false)}>LOGOUT</Link></li>
               </ul>
           </div>
   

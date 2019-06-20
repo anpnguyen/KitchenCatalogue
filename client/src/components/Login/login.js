@@ -74,7 +74,7 @@ function Login(props){
                         <input className="loginInput" type="password" placeholder="Password" name='password' value={password} onChange={handleChange}/>
                         <input className="loginInput" type="password" placeholder="Please re-enter password" name='password2'value={password2} onChange={handleChange}/>
                         <button className="loginButton">Sign Up</button>
-                        <p className="register loginP">Already a member? Press <span onClick={handleClick}  className=' blue'id="span_login"> here </span>to login</p>
+                        <p className="register loginP">Already a member? Press <span onClick={handleClick}  className=' blue'id="span_login"> here </span>to continue to Kitchen Catalogue</p>
                     </form>
                 </div>
             

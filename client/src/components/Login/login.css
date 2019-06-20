@@ -152,15 +152,15 @@ background: linear-gradient(90deg, rgba(218,35,35,1) 0%, rgba(215,131,71,1) 100%
 }
 
  .loginButton {
-	border-radius: 20px;
+	/* border-radius: 20px; */
 	border: 1px solid rgb(50, 119, 231);
 	background-color: rgb(50, 119, 231);
 	color: #FFFFFF;
-	font-size: 12px;
-	font-weight: bold;
-	padding: 12px 45px;
+	/* font-size: 12px; */
+	/* font-weight: bold; */
+	
 	letter-spacing: 1px;
-	text-transform: uppercase;
+	/* text-transform: uppercase; */
     transition: transform 80ms ease-in;
 	margin-top: 10px;
 	-webkit-box-shadow: 3px 3px 2px 0px rgba(184,184,184,1);
