@@ -190,12 +190,12 @@
 
 
 .isDelete{
-    width:35%;
+    width:500px;
     /* min-width: 300px; */
     height:200px;
     position: absolute;
     top:200px;
-    left:30%;
+    left:auto;
     z-index: 50;
     background: #f8f8f8;
     border: 1px solid #ddd;
@@ -262,8 +262,8 @@
         border-radius: 10px
     }
     .isDelete{
-        width:70%;
-        left:9%
+        width:400px
+        /* left:9% */
 
     }
   }
@@ -305,8 +305,10 @@
 
     }
     .isDelete{
-        width:80%;
-        left:10%
+        width:85%;
+        margin: 0 auto;
+        box-sizing: border-box
+        /* left:auto */
 
     }
 

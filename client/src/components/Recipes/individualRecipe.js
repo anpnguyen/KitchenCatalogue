@@ -58,11 +58,12 @@ function IndividualRecipe(props){
         <>
             <NavBar/>
             <Alert/>
+                
+
+                <div className="contentBox ">
                 {isDelete &&
                 <DeleteConfimation  handleStateChange={handleStateChange} handleDeleteConfirmation={handleDeleteConfirmation} isDelete={isDelete} />
                 }
-
-                <div className="contentBox ">
                     <div className="contentBoxContent ">    
 
                         <main className="individualRecipe" id="individualRecipe">

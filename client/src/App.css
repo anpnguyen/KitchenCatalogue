@@ -176,7 +176,7 @@ button:hover, select:hover{
     width:1px;
     height:1px;
     display:flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     flex-direction: column;
     top:10px;
@@ -193,7 +193,8 @@ button:hover, select:hover{
 
 .alert{
     display:flex;
-    justify-content: space-between
+    justify-content: space-between;
+    width: 300px
 
 }
 .alert div:first-of-type{
