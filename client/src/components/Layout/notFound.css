@@ -1,0 +1,29 @@
+.notFoundContainer{
+    width:100vw;
+    height:100vh;
+    overflow: hidden;
+
+}
+
+.notFound{
+   
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    
+}
+
+.notFound h1{
+    margin: 100px 50px;
+    text-align: center
+}
+
+.notFound h3{
+    text-align: center;
+    margin: 0 50px
+}
+
+.notFound a{
+    color: rgb(0, 0, 190)
+}

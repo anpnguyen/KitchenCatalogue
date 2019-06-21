@@ -8,6 +8,7 @@ import IndividualRecipe from "./components/Recipes/individualRecipe";
 import NewRecipeContainer from "./components/Recipes/newRecipeContainer";
 import EditIndividualRecipe from "./components/Recipes/EditIndividualRecipe";
 import SearchContainer from "./components/Layout/searchContainer";
+import NotFound from './components/Layout/notFound'
 import "./App.css";
 
 // redux
@@ -61,7 +62,11 @@ function App() {
               component={EditIndividualRecipe}
             />
 
-            <Route path="*" exact render={() => <h1>PAge not found</h1>} />
+            <PrivateRoute
+              
+              path='*'
+              component={NotFound}
+            />
           </Switch>
         </BrowserRouter>
       </Provider>
