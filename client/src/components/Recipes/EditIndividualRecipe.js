@@ -9,6 +9,7 @@ import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClock, faUtensils } from '@fortawesome/free-solid-svg-icons'
+import TextareaAutosize from 'react-textarea-autosize'
 import './newRecipe.css'
 
 function EditIndividualRecipe(props) {
@@ -231,7 +232,7 @@ function EditIndividualRecipe(props) {
                                     {recipeIngredients.map((recipeIngredient, index) => {
                                         return (
                                         <div key={`${index}ingredient`} className="ingredientsItem">
-                                            <div className='ingredientsItemLeft'>
+                                            <div className='ingredientsItemsLeft'>
                                                 <label htmlFor={`${index}ingredient`}><h3>{index+1}.</h3></label>
                                             </div>
                                             <div className='ingredientsItemRight'>
@@ -284,7 +285,15 @@ function EditIndividualRecipe(props) {
                                                 </label>
                                             </div>
                                             <div className='instructionsItemRight'>
-                                                <textarea name={`${i}instruction`} rows="4" onChange={(e)=>handleInstructionChange(e,i)} value={recipeInstruction}/>
+
+                                                {/* <textarea name={`${i}instruction`} rows="4" onChange={(e)=>handleInstructionChange(e,i)} value={recipeInstruction}/> */}
+                                                <TextareaAutosize 
+                                                    useCacheForDOMMeasurements
+                                                    name={`${i}instruction`}
+                                                    value={recipeInstruction}
+                                                    onChange={(e)=>handleInstructionChange(e,i)}
+                                                />
+                                                
                                                 <button className='blueButton' onClick={(e)=> handleInstructionRemove(i, e)}>X</button>
                                             </div>
                                             

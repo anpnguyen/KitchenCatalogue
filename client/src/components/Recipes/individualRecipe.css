@@ -278,7 +278,8 @@
     letter-spacing: 1px;
     padding: 0
     }
-    .instructions {
+    
+    #individualRecipe .instructions {
     padding: 10px !important;
      
           

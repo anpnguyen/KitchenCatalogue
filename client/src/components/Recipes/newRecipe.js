@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClock, faUtensils } from '@fortawesome/free-solid-svg-icons'
 import Footer from '../Layout/footer'
 import Alert from '../Layout/alert'
+import TextareaAutosize from 'react-textarea-autosize'
 
 
 
@@ -246,7 +247,13 @@ return(
                                                 </label>
                                             </div>
                                             <div className='instructionsItemRight'>
-                                                <textarea name={`${i}instruction`} rows="4" onChange={(e)=>handleInstructionChange(e,i)} value={recipeInstruction}/>
+                                                {/* <textarea name={`${i}instruction`} rows="4" onChange={(e)=>handleInstructionChange(e,i)} value={recipeInstruction}/> */}
+                                                <TextareaAutosize 
+                                                    useCacheForDOMMeasurements
+                                                    name={`${i}instruction`}
+                                                    value={recipeInstruction}
+                                                    onChange={(e)=>handleInstructionChange(e,i)}
+                                                />
                                                 <button className='blueButton' onClick={(e)=> handleInstructionRemove(i, e)}>X</button>
                                             </div>
                                             
