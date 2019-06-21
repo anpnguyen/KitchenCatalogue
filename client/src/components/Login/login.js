@@ -56,12 +56,12 @@ function Login(props){
             <div className={`loginContainer ${isLogin ? 'right-panel-active': ""}`} id="container">            
                 <div className="loginForm-container loginSign-up-container">
                     <form className='loginForm'onSubmit={handleLogin}>
-                         <h1 className="LoginLogo ">Kitchen Catalogue</h1>
+                         <h1 className="LoginLogo signIn">Kitchen Catalogue</h1>
                          <h2>Sign in</h2>                         
                         <input className="loginInput" type="email" placeholder="Email" name='email' value={email} onChange={handleChange} />
                         <input className="loginInput" type="password" placeholder="Password" name='password' value={password} onChange={handleChange} />
                         <button className="loginButton">Sign In</button>
-                        <p className="loginP">Not a member? Press <span onClick={handleClick} className=' blue' id="span_register"> here</span>  to register</p>
+                        <p className="loginP signInP">Not a member? Press <span onClick={handleClick} className=' blue' id="span_register"> here</span>  to register</p>
                     </form>
                 </div>
 

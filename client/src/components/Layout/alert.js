@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {connect } from 'react-redux'
 // import {uuid} from 'uuid/v4'
 import {removeAlert} from '../../actions/alert'
-
+import './alert.css'
 function Alert(props){
     
     
