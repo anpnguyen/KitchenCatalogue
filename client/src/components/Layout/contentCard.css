@@ -64,7 +64,7 @@
 }
 
 .fillerImg{
-    height:180px;
+    min-height:180px;
     /* width:150px; */
     min-width: 100%;
     max-width:100%;

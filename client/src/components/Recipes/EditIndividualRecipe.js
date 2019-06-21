@@ -231,7 +231,7 @@ function EditIndividualRecipe(props) {
                                     {recipeIngredients.map((recipeIngredient, index) => {
                                         return (
                                         <div key={`${index}ingredient`} className="ingredientsItem">
-                                            <div className='ingredientItemsLeft'>
+                                            <div className='ingredientsItemLeft'>
                                                 <label htmlFor={`${index}ingredient`}><h3>{index+1}.</h3></label>
                                             </div>
                                             <div className='ingredientsItemRight'>

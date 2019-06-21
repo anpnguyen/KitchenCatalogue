@@ -4,8 +4,8 @@
     /* display: flex;
     justify-content: center;
     align-items: center; */
-
-    margin: 20px 1%;
+    width:96%;
+    margin: 20px 2%;
     border:1px solid #dddddd;
     border-radius: 10px;
     -webkit-box-shadow: 3px 3px 5px -1px rgba(207,195,207,1);
@@ -279,16 +279,15 @@
     padding: 0
     }
     .instructions {
-     
     padding: 10px !important;
      
           
     }
 
     #individualRecipe{
-        width:96%;
+        /* width:96%; */
         box-sizing: border-box;
-        margin: 20px 2%;
+        /* margin: 20px 2%; */
         border:1px solid #dddddd;
         border-radius: 10px;
         /* -webkit-box-shadow: none;
@@ -301,12 +300,20 @@
     }
     #individualRecipe .image{
        
-       max-width: 95%;
+       /* max-width: 95%; */
 
     }
     .isDelete{
         width:80%;
         left:10%
 
+    }
+
+    .individualRecipeInstructions    {
+        padding:0 !important
+    }
+
+    .individualRecipeListInstructions{
+        padding:  15px 15px 15px 0 !important
     }
 }

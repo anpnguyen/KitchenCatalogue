@@ -12,7 +12,7 @@
     width:100%;
     display:flex;
     justify-content: center;
-    height:500px;
+    max-height:500px;
     margin: 20px 1% 0 1%
 
 }
@@ -68,13 +68,14 @@
 #newRecipe .previewItem:last-of-type,
 #editRecipe .previewItem:last-of-type{
     width:96%;
+    
     flex-grow: 1;
     text-align: center;
     background: white;
     display:flex;
     justify-content: center;    
     border-radius: 10px;
-    margin: 10px 2%;
+    margin: 20px 2%;
     box-sizing: border-box;
     align-items: center
 
@@ -104,15 +105,26 @@
 
 #newRecipe  .previewItem .image,
 #editRecipe  .previewItem .image{
-    height:90%;
+    /* height:90%; */
     max-height: 290px;
-    max-width:100%;
+    max-width:90%;
     border-radius: 10px;
     margin: 0 20px;
     box-sizing: border-box
     
 }
 
+#newRecipe  .previewItem .fillerImg,
+#editRecipe  .previewItem .fillerImg{
+
+
+    min-height:180px;
+    /* width:150px; */
+    min-width: 90%;
+    max-width:90%;
+    background:  #f8f8f8!important;
+    border-radius: 10px 10px 0 0 ;
+}
 
 
 
@@ -273,6 +285,12 @@
     font-weight: bold;
     text-align: right
 }
+
+/* #newRecipe .ingredientsItemLeft label,
+#editRecipe .ingredientsItemLeft label{
+   min-height: 10px
+} */
+
 
 #newRecipe .ingredientsItemRight,
 #editRecipe .ingredientsItemRight {
@@ -484,4 +502,12 @@
      margin: 20px 2%
  }
  
+ #newRecipe .ingredients,
+ #editRecipe .ingredients,
+ #newRecipe .instructions,
+ #editRecipe .instructions {
+     width:100%;
+     /* margin: 20px 2% */
+ }
+
 }
