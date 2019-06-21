@@ -1,17 +1,17 @@
-import React from 'react'
+import React from "react";
 // import {Link} from 'react-router-dom'
-import './footer.css'
+import "./footer.css";
 
-function Footer(){
-    return(
-        <footer className="footer">
-            <div className="footerBox text-center">
-                <h2 className="pacifico footerLogo">Kitchen Catalogue</h2>
-                <p className="footertext">© 2019 Kitchen Catalogue. </p>
-                <p className="footertext">All rights reserved.</p>
-            </div>
-            
-            {/* <div className="footerBox footerBoxRight ">
+function Footer() {
+  return (
+    <footer className="footer">
+      <div className="footerBox text-center">
+        <h2 className="pacifico footerLogo">Kitchen Catalogue</h2>
+        <p className="footertext">© 2019 Kitchen Catalogue. </p>
+        <p className="footertext">All rights reserved.</p>
+      </div>
+
+      {/* <div className="footerBox footerBoxRight ">
                 <ul className='footerList'>
                     <li className='bold'>
                         Kitchen Catalogue
@@ -22,8 +22,8 @@ function Footer(){
                     
                 </ul>
             </div> */}
-        </footer>
-    )
+    </footer>
+  );
 }
 
-export default Footer
+export default Footer;

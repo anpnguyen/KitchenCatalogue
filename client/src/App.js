@@ -1,34 +1,27 @@
-import React, {useEffect} from 'react';
-import LoginContainer from './components/Login/loginContainer'
-import {BrowserRouter, Route, Switch} from 'react-router-dom'
-import PrivateRoute from './components/routing/PrivateRoute'
+import React, { useEffect } from "react";
+import LoginContainer from "./components/Login/loginContainer";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import PrivateRoute from "./components/routing/PrivateRoute";
 
-
-import IndexContainer from './components/Layout/indexContainer';
-import IndividualRecipe from './components/Recipes/individualRecipe'
-import NewRecipeContainer from './components/Recipes/newRecipeContainer'
-import EditIndividualRecipe from './components/Recipes/EditIndividualRecipe'
-import SearchContainer from './components/Layout/searchContainer'
-import './App.css';
-
-
+import IndexContainer from "./components/Layout/indexContainer";
+import IndividualRecipe from "./components/Recipes/individualRecipe";
+import NewRecipeContainer from "./components/Recipes/newRecipeContainer";
+import EditIndividualRecipe from "./components/Recipes/EditIndividualRecipe";
+import SearchContainer from "./components/Layout/searchContainer";
+import "./App.css";
 
 // redux
-import { Provider } from 'react-redux';
-import store from './store';
+import { Provider } from "react-redux";
+import store from "./store";
 
-import { loadUser } from './actions/auth';
-import setAuthToken from './utils/setAuthToken';
-
+import { loadUser } from "./actions/auth";
+import setAuthToken from "./utils/setAuthToken";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
 
-
-
 function App() {
-
   // if there is a token in the local storage, it will automaticall log the user in
   useEffect(() => {
     store.dispatch(loadUser());
@@ -36,70 +29,44 @@ function App() {
 
   return (
     <div className="App">
-       <Provider store={store}>
-        
+      <Provider store={store}>
         <BrowserRouter>
-          <Switch >
+          <Switch>
+            <Route exact path="/" render={LoginContainer} />
+            <Route exact path="/login" render={LoginContainer} />
 
-            
-            <Route 
-                exact
-                path='/'
-                render={LoginContainer}
+            <PrivateRoute exact path="/recipe" component={IndexContainer} />
+
+            <PrivateRoute
+              exact
+              path="/recipe/search"
+              component={SearchContainer}
             />
-              <Route 
-                exact
-                path='/login'
-                render={LoginContainer}
-              />
 
-              <PrivateRoute 
-                exact 
-                path='/recipe' 
-                component={IndexContainer} />
+            <PrivateRoute
+              exact
+              path="/recipe/new"
+              component={NewRecipeContainer}
+            />
 
-              <PrivateRoute 
-                exact 
-                path='/recipe/search' 
-                component={SearchContainer} />
+            <PrivateRoute
+              exact
+              path="/recipe/:recipe_id"
+              component={IndividualRecipe}
+            />
 
-        
+            <PrivateRoute
+              exact
+              path="/recipe/:recipe_id/edit"
+              component={EditIndividualRecipe}
+            />
 
-                <PrivateRoute
-                exact
-                path='/recipe/new'
-                component={NewRecipeContainer}/>
-                
-                <PrivateRoute
-                exact
-                path='/recipe/:recipe_id'
-                component={IndividualRecipe}/>
-                
-                <PrivateRoute
-                exact
-                path='/recipe/:recipe_id/edit'
-                component={EditIndividualRecipe}/>
-                
-                <Route path='*' 
-                  exact
-                  render={()=> <h1>PAge not found</h1> } />
-               
-
-            
-
-            
-            
-
+            <Route path="*" exact render={() => <h1>PAge not found</h1>} />
           </Switch>
-        </BrowserRouter> 
+        </BrowserRouter>
       </Provider>
-
-        
-      
     </div>
   );
 }
-
-
 
 export default App;

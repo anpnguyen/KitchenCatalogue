@@ -51,7 +51,8 @@ button{
     height:40px;
     width: 100px;
     letter-spacing: 1px;
-    border:none
+    border:none;
+    transition: transform 80ms ease-in;
 
 }
 

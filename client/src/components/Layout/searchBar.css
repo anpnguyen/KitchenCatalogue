@@ -48,10 +48,7 @@
 
 .SearchBarButton{
     
-    height:40px;
-    border:none;
-    /* margin-right:10px; */
-    border-radius: 20px;
+    
     background: rgb(50, 119, 231);
 
     width: 100px;
@@ -60,6 +57,7 @@
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 1px;
+    box-shadow: none
 
     
    
@@ -67,6 +65,13 @@
 
 .SearchBarButton:hover{
     background: rgb(26, 93, 218);
+
+
+}
+
+.SearchBarButton:active{
+    box-shadow: none
+    
 
 }
 
