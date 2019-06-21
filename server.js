@@ -44,7 +44,14 @@ app.use('/api/cookbook', require('./routes/api/cookbook'));
 
 
 if (process.env.NODE_ENV === 'production') {
-    // Set static folder
+ 
+    app.use((req, res, next) => {
+      if (req.header('x-forwarded-proto') !== 'https')
+        res.redirect(`https://${req.header('host')}${req.url}`)
+      else
+        next()
+    })
+   // Set static folder
     app.use(express.static('client/build'));
   
     app.get('*', (req, res) => {
