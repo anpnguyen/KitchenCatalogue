@@ -22,7 +22,7 @@ const ContentCard = props => {
 
   return (
     <article className="contentCard " onClick={handleClicker}>
-      <figure>
+      {/* <div> */}
         <div className="ContentCardImage">
           {!imageUrl && props.titleText && (
             <div className="fillerImgCreate"> + </div>
@@ -31,7 +31,7 @@ const ContentCard = props => {
           {imageUrl && <img className="" src={imageUrl} alt="" />}
         </div>
 
-        <figcaption className="ContentCardText ">
+        <div className="ContentCardText ">
           <div className="contentCardTitleContainer ">
             {props.titleText && <h3> {props.titleText}</h3>}
             <h3>{title}</h3>
@@ -53,8 +53,8 @@ const ContentCard = props => {
               </p>
             </Fragment>
           )}
-        </figcaption>
-      </figure>
+        </div>
+      {/* </div> */}
     </article>
   );
 };
