@@ -1,29 +1,25 @@
 import React, { useEffect } from "react";
 import LoginContainer from "./components/Login/loginContainer";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import PrivateRoute from "./components/routing/PrivateRoute";
 
+import PrivateRoute from "./components/routing/PrivateRoute";
 import IndexContainer from "./components/Layout/indexContainer";
 import IndividualRecipe from "./components/Recipes/individualRecipe";
 import NewRecipeContainer from "./components/Recipes/newRecipeContainer";
 import EditIndividualRecipe from "./components/Recipes/EditIndividualRecipe";
 import SearchContainer from "./components/Layout/searchContainer";
-import NotFound from './components/Layout/notFound'
-import "./App.css";
-
-// redux
+import NotFound from "./components/Layout/notFound";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
-
 import { loadUser } from "./actions/auth";
 import setAuthToken from "./utils/setAuthToken";
+import "./App.css";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
 
-function App() {
-  // if there is a token in the local storage, it will automaticall log the user in
+const App = () => {
   useEffect(() => {
     store.dispatch(loadUser());
   }, []);
@@ -62,11 +58,7 @@ function App() {
               component={EditIndividualRecipe}
             />
 
-            <PrivateRoute
-              
-              path='*'
-              component={NotFound}
-            />
+            <PrivateRoute path="*" component={NotFound} />
           </Switch>
         </BrowserRouter>
       </Provider>

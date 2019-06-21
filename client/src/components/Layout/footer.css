@@ -1,53 +1,50 @@
 .footer {
-
-    background: #333;
-    width:100%;
-    height: 16rem;
-    display:flex;
-    justify-content: center
+  background: #333;
+  width: 100%;
+  height: 16rem;
+  display: flex;
+  justify-content: center;
 }
 
-.footerBox{
-    width: 240px;
-    color: #f8f8f8;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    line-height: 30px;
-    flex-direction: column
-    
-
+.footerBox {
+  width: 240px;
+  color: #f8f8f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 30px;
+  flex-direction: column;
 }
-.footerBoxRight{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    line-height: 30px
+.footerBoxRight {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 30px;
 }
 
-.footerLogo{
-    font-size: 2rem;
-    margin-bottom: 20px;
-    line-height: 50px
+.footerLogo {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  line-height: 50px;
 }
-.footertext{
-    font-size: 0.8rem
-}
-
-.footerList{
-    list-style: none;
-    padding:0;
-    margin: 0
+.footertext {
+  font-size: 0.8rem;
 }
 
-.footerList li:first-of-type{
-    padding: 10px 0
+.footerList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.footerList li:first-of-type:hover{
-    color:#f8f8f8
+.footerList li:first-of-type {
+  padding: 10px 0;
 }
 
-.footerList li:hover{
-    color: #ccc
+.footerList li:first-of-type:hover {
+  color: #f8f8f8;
+}
+
+.footerList li:hover {
+  color: #ccc;
 }

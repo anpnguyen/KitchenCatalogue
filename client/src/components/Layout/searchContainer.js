@@ -1,10 +1,8 @@
-import React from 'react'
-import SearchPage from './searchPage'
+import React from "react";
+import SearchPage from "./searchPage";
 
-function SearchContainer(props){
-    return(
-        <SearchPage {...props}/>
-    )
-}
+const SearchContainer = props => {
+  return <SearchPage {...props} />;
+};
 
-export default SearchContainer
+export default SearchContainer;

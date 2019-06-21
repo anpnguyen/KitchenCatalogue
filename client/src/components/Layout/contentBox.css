@@ -1,103 +1,89 @@
-.contentBox{
-    width:100%;
-    display:flex;
-    justify-content: center    
+.contentBox {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
-
-.contentBoxContent{
-    flex-basis: 1000px;
-    background: white;
-  
+.contentBoxContent {
+  flex-basis: 1000px;
+  background: white;
 }
 
-.contentBoxCard{
-    display: flex;
-    width:100%;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    margin-top: 20px;
-    box-sizing: border-box
-    
+.contentBoxCard {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-top: 20px;
+  box-sizing: border-box;
 }
 
-.searchNumber{
-    margin-left :100px;
-    font-weight: bold;
-    height:100%;
-    padding-top: 5px
+.searchNumber {
+  margin-left: 100px;
+  font-weight: bold;
+  height: 100%;
+  padding-top: 5px;
 }
 
-.contentBoxNavigation{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    height:30px;
-    margin-bottom: 10px;
-    
-    
+.contentBoxNavigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  height: 30px;
+  margin-bottom: 10px;
 }
 
-
-.arrows{
-    font-size: 1rem;
-    font-weight: bold;
-    color: #bbbbbb;
-    width:20px;
-    text-align: center;
-    margin: 0 5px
-    
+.arrows {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #bbbbbb;
+  width: 20px;
+  text-align: center;
+  margin: 0 5px;
 }
 
-.arrows:hover{
-    
-    color:rgb(218, 26, 45);
-    cursor: pointer
-    
+.arrows:hover {
+  color: rgb(218, 26, 45);
+  cursor: pointer;
 }
 
-
-.ml2{
-    margin-left: 25px
+.ml2 {
+  margin-left: 25px;
 }
-.mr2{
-    margin-right: 25px
-}
-
-.navigationActive{
-    color:rgb(218, 26, 45);
+.mr2 {
+  margin-right: 25px;
 }
 
-.navigationDisable{
-    color:white
+.navigationActive {
+  color: rgb(218, 26, 45);
 }
 
-.navigationDisable:hover{
-    
-    color: white !important;
-    cursor: default !important
-    
+.navigationDisable {
+  color: white;
 }
 
-.contentBoxHeader{
-    display: flex;
-    justify-content: space-between;
-    margin: 5px 0
-}
-.navigationSelect{
-    margin-right:100px;
-    height:30px
+.navigationDisable:hover {
+  color: white !important;
+  cursor: default !important;
 }
 
+.contentBoxHeader {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+}
+.navigationSelect {
+  margin-right: 100px;
+  height: 30px;
+}
 
 @media only screen and (max-width: 768px) {
+  .contentBoxContent {
+    width: 100%;
+  }
 
-    .contentBoxContent{
-        width:100%
-    }
-    
-    /* .navigationSelect{
+  /* .navigationSelect{
         margin-right:20px;
         height:30px
     }
@@ -105,17 +91,14 @@
         margin-left :20px;
         
     } */
-
 }
 
 @media only screen and (max-width: 680px) {
-    .navigationSelect{
-        margin-right:20px;
-        height:30px
-    }
-    .searchNumber{
-        margin-left :20px;
-        
-    }
-
+  .navigationSelect {
+    margin-right: 20px;
+    height: 30px;
+  }
+  .searchNumber {
+    margin-left: 20px;
+  }
 }

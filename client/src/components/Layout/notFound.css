@@ -1,42 +1,37 @@
-.notFoundContainer{
-    width:100vw;
-    height:100vh;
-    overflow: hidden;
-
+.notFoundContainer {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.notFound{
-    height:100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: column;
-    
+.notFound {
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
 }
 
-.notFoundDark{
-    height:100%;
-    width:100%;
-    background: rgba(0,0,0 ,0.5)
+.notFoundDark {
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
 }
 
-
-
-
-.notFound h1{
-    margin: 100px 50px;
-    text-align: center;
-    color:#f8f8f8
-    /* background: white; */
-    /* border: 1px solid #333 */
+.notFound h1 {
+  margin: 100px 50px;
+  text-align: center;
+  color: #f8f8f8;
+  /* background: white; */
+  /* border: 1px solid #333 */
 }
 
-.notFound h3{
-    text-align: center;
-    margin: 0 50px;
-    color:#f8f8f8
+.notFound h3 {
+  text-align: center;
+  margin: 0 50px;
+  color: #f8f8f8;
 }
 
-.notFound a{
-    color: rgb(0, 0, 134)
+.notFound a {
+  color: rgb(0, 0, 134);
 }

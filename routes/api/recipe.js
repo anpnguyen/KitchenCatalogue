@@ -51,16 +51,14 @@ router.post(
     } catch (err) {
       console.log(err);
 
-      res
-        .status(500)
-        .json({
-          errors: [
-            {
-              msg:
-                "A recipe with that title has already been registered - please use a different title"
-            }
-          ]
-        });
+      res.status(500).json({
+        errors: [
+          {
+            msg:
+              "A recipe with that title has already been registered - please use a different title"
+          }
+        ]
+      });
     }
   }
 );
@@ -166,14 +164,12 @@ router.put(
       res.json({ msg: "recipe updated" });
     } catch (err) {
       if (err.code == 11000) {
-        return res
-          .status(500)
-          .json([
-            {
-              msg: "Please Use A Unique Recipe Title",
-              errorType: "LoginDanger"
-            }
-          ]);
+        return res.status(500).json([
+          {
+            msg: "Please Use A Unique Recipe Title",
+            errorType: "LoginDanger"
+          }
+        ]);
       } else {
         return res
           .status(500)
@@ -231,16 +227,14 @@ router.put(
       let newFavRecipe = await User.findOne({ favouriteRecipes: recipeId });
 
       if (newFavRecipe) {
-        return res
-          .status(400)
-          .json({
-            errors: [
-              {
-                msg:
-                  "This has already been favourited - please use a different email"
-              }
-            ]
-          });
+        return res.status(400).json({
+          errors: [
+            {
+              msg:
+                "This has already been favourited - please use a different email"
+            }
+          ]
+        });
       }
 
       let favouritedRecipes = await User.findOneAndUpdate(

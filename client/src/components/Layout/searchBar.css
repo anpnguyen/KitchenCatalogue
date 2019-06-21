@@ -1,87 +1,70 @@
 .searchBar {
- 
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 18rem;
-    overflow: hidden;
-    z-index: 0
-    
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 18rem;
+  overflow: hidden;
+  z-index: 0;
 }
 
-.SearchBarImg{
-    position: absolute;
-    height: 26rem;
-    
-    position: center;
-    z-index:-1;
-    
+.SearchBarImg {
+  position: absolute;
+  height: 26rem;
 
-
+  position: center;
+  z-index: -1;
 }
-.SeachBarFormContainer{
-    display:flex;
-    justify-content: center;
-    width:100%;
+.SeachBarFormContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
-.SeachBarForm{
-    background-color: transparent;
-    max-width:480px;
-    display:flex
-    
+.SeachBarForm {
+  background-color: transparent;
+  max-width: 480px;
+  display: flex;
 }
 
-.SearchBarInput{
-    outline: none;
-    width:400px;
-    height:40px;
-    border:none;
-    margin: 0 10px;
-    border-radius: 20px;
-    padding-left: 20px;
-    font-family: inherit;
-    font-weight: 500
-       
+.SearchBarInput {
+  outline: none;
+  width: 400px;
+  height: 40px;
+  border: none;
+  margin: 0 10px;
+  border-radius: 20px;
+  padding-left: 20px;
+  font-family: inherit;
+  font-weight: 500;
 }
 
-.SearchBarButton{
-    
-    
-    background: rgb(50, 119, 231);
+.SearchBarButton {
+  background: rgb(50, 119, 231);
 
-    width: 100px;
-    color: white;
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: none
-
-    
-   
+  width: 100px;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: none;
 }
 
-.SearchBarButton:hover{
-    background: rgb(26, 93, 218);
-
-
+.SearchBarButton:hover {
+  background: rgb(26, 93, 218);
 }
 
-.SearchBarButton:active{
-    box-shadow: none
-    
-
+.SearchBarButton:active {
+  box-shadow: none;
 }
 
 @media only screen and (max-width: 768px) {
-
-.SeachBarFormContainer{
-    width: 90%
-}
-.SeachBarForm{
-    width:90%;
-    margin: 0px 10px
-}
+  .SeachBarFormContainer {
+    width: 90%;
+  }
+  .SeachBarForm {
+    width: 90%;
+    margin: 0px 10px;
+  }
 }

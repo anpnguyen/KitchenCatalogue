@@ -2,7 +2,7 @@ import React from "react";
 // import {Link} from 'react-router-dom'
 import "./footer.css";
 
-function Footer() {
+const Footer = () => {
   return (
     <footer className="footer">
       <div className="footerBox text-center">
@@ -24,6 +24,6 @@ function Footer() {
             </div> */}
     </footer>
   );
-}
+};
 
 export default Footer;
