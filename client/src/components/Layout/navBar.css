@@ -151,16 +151,35 @@
   display: block !important;
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 481px) {
   .NavList {
     width: 100vw;
     opacity: 1;
     box-shadow: none;
+    position: absolute;
+    left:0
   }
 
   .slide {
     position: relative;
     right: -550px;
+    z-index: -100;
+  }
+
+
+}
+
+@media only screen and (max-height: 481px) {
+  .NavList {
+    width: 100vw;
+    opacity: 1;
+    box-shadow: none;
+    
+  }
+
+  .slide {
+    position: relative;
+    right: -1050px;
     z-index: -100;
   }
 }
