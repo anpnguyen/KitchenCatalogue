@@ -27,7 +27,7 @@
 }
 
 #individualRecipe .recipeDetails p {
-  font-size: 12px;
+  font-size: 0.8rem;
   padding: 0px 0px 10px 0;
 }
 
@@ -139,7 +139,7 @@
 
 .instructions ul {
   margin-top: 0;
-  font-size: 12px !important;
+  font-size: 0.8rem !important;
   letter-spacing: 1.5px;
   padding: 0 15px;
   line-height: 25px;
@@ -275,6 +275,6 @@
   }
 
   .individualRecipeListInstructions {
-    padding: 15px 15px 15px 0 !important;
+    padding: 15px 0px 15px 0 !important;
   }
 }

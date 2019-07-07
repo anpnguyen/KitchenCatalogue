@@ -49,10 +49,16 @@ const Login = (props) => {
     return <Redirect to="/recipe" />;
   }
 
+  let style={
+    backgroundImage : `url(${backgroundImage})`,
+    backgroundSize: 'cover',
+
+  }
+
   return (
-    <div className="login">
+    <div className="login" style={style}>
       <Alert />
-      <img src={backgroundImage} alt="" draggable="false" role="presentation" />
+      {/* <img src={backgroundImage} alt="" draggable="false" role="presentation" /> */}
       <div
         className={`loginContainer ${isLogin ? "right-panel-active" : ""}`}
         id="container"

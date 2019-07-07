@@ -218,6 +218,7 @@
   align-items: center;
   justify-content: flex-start;
   padding-bottom: 20px;
+  box-sizing: border-box
 }
 
 #newRecipe .ingredientsItem,
@@ -225,6 +226,7 @@
   display: flex;
   width: 80%;
   padding-bottom: 20px;
+  box-sizing: border-box
 }
 
 #newRecipe .ingredientsItem:nth-child(1),
@@ -424,20 +426,27 @@
   #newRecipe .recipeDetails,
   #newRecipe .ingredients,
   #newRecipe .instructions,
-  #newRecipe .preview,
+  
   #newRecipe .ingredientsItem,
   #editRecipe .recipeDetails,
   #editRecipe .ingredients,
   #editRecipe .instructions,
-  #editRecipe .preview,
+  
   #editRecipe .ingredientsItem {
     width: 90%;
     /* padding:0 20px */
   }
+  #editRecipe .preview,
+  #newRecipe .preview{
+    width:96%;
+    margin: 0 2%
+  }
 
   #newRecipe .instructionsItem,
   #editRecipe .instructionsItem {
-    width: 90%;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 
   #newRecipe .instructionsItem textarea,
