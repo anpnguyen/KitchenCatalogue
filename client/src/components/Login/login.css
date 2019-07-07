@@ -205,7 +205,7 @@ button:hover {
   cursor: pointer;
 }
 
-@media only screen and (max-height: 400px) {
+@media only screen and (max-height: 410px) {
 
 
 	body, html, .App, .login{
@@ -268,9 +268,12 @@ button:hover {
 		min-height: 100vh
 	}
 
+
+
 	.loginContainer{
 		min-width:100vw;
-		min-height:100vh
+		min-height:100vh;
+		border-radius: 0px !important
 	}
 
 	.loginForm{
