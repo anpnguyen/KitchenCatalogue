@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import backgroundImage from "../../images/background.jpg";
 import Alert from "../Layout/alert";
@@ -20,6 +20,8 @@ const Login = (props) => {
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState(initialData);
   const { username, email, password, password2 } = formData;
+  const [isDemo, setIsDemo] = useState(false)
+  
 
   const handleClick = () => {
     setFormData(initialData);
@@ -45,6 +47,19 @@ const Login = (props) => {
     }
   };
 
+  const handleDemoLogin = e =>{
+    e.preventDefault();
+    setFormData({email: 'demo@demo.com', password: '12345678'})
+    setIsDemo(true)
+
+  }
+
+  useEffect(()=>{
+    isDemo &&   login({ email, password });
+  }, [isDemo, email, password, login])
+ 
+
+
   if (props.isAuthenticated) {
     return <Redirect to="/recipe" />;
   }
@@ -55,10 +70,12 @@ const Login = (props) => {
 
   }
 
+
+
   return (
     <div className="login" style={style}>
       <Alert />
-      {/* <img src={backgroundImage} alt="" draggable="false" role="presentation" /> */}
+     
       <div
         className={`loginContainer ${isLogin ? "right-panel-active" : ""}`}
         id="container"
@@ -83,7 +100,12 @@ const Login = (props) => {
               value={password}
               onChange={handleChange}
             />
+            <div className='loginButtonContainer'>
             <button className="loginButton">Sign In</button>
+            <button className="loginButton" onClick={handleDemoLogin}>Demo </button>
+            </div>  
+           
+            
             <p className="loginP signInP">
               Not a member? Press{" "}
               <span onClick={handleClick} className=" blue" id="span_register">

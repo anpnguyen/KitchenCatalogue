@@ -65,26 +65,46 @@
   align-items: flex-end;
 }
 .navBarListContainer {
-  height: 0px;
+  height:0;
 }
 
 .NavList {
   background: #dddddd;
+  height:94vh;
   margin: 0;
   z-index: 15;
-  /* height:350px; */
   width: 300px;
   -webkit-box-shadow: 3px 3px 5px -1px rgba(207, 195, 207, 1);
   -moz-box-shadow: 3px 3px 5px -1px rgba(207, 195, 207, 1);
   box-shadow: 3px 3px 5px -1px rgba(207, 195, 207, 1);
   opacity: 1;
   border-radius: 0px 0px 10px 10px;
+  transition: all 0.5s ease-in-out;
+  transform: translateX(0px);
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  
+
+  
+  
 }
 
+
+
 .slide {
-  position: relative;
-  right: -350px;
+  
+  
+  transform: translateX(350px);
   z-index: -100;
+  
+  
+}
+
+ul.slide li {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out
 }
 
 .navButton {
@@ -105,7 +125,6 @@
 
 .NavList li {
   width: 100%;
-
   padding: 20px;
   color: #333;
   text-transform: uppercase;
@@ -116,17 +135,10 @@
   -o-user-select: none;
   user-select: none;
   box-sizing: border-box;
+  opacity: 1;
+  transition: opacity 1s ease-in-out
 }
 
-.NavList li:first-of-type {
-  text-transform: none;
-  padding-top: 50px;
-  cursor: default !important;
-}
-
-.NavList li:last-of-type {
-  padding-bottom: 20px;
-}
 
 .NavList li:first-of-type:hover {
   color: #333;
@@ -154,32 +166,27 @@
 @media only screen and (max-width: 481px) {
   .NavList {
     width: 100vw;
-    opacity: 1;
-    box-shadow: none;
-    position: absolute;
-    left:0
-  }
-
-  .slide {
-    position: relative;
-    right: -550px;
-    z-index: -100;
-  }
-
-
-}
-
-@media only screen and (max-height: 481px) {
-  .NavList {
-    width: 100vw;
+    
     opacity: 1;
     box-shadow: none;
     
+    left:0
   }
 
-  .slide {
+  .slide{
+    transform: translateX(500px);
+
+  }
+
+  /* .slide {
     position: relative;
     right: -1050px;
     z-index: -100;
-  }
+  } */
+
+
 }
+
+
+
+

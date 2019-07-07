@@ -155,16 +155,15 @@
 }
 
 .loginButton {
-  /* border-radius: 20px; */
+
   border: 1px solid rgb(50, 119, 231);
   background-color: rgb(50, 119, 231);
   color: #ffffff;
-  /* font-size: 12px; */
-  /* font-weight: bold; */
+  margin-left: 10px;
+
 
   letter-spacing: 1px;
-  /* text-transform: uppercase; */
-  transition: transform 80ms ease-in;
+   transition: transform 80ms ease-in;
   margin-top: 10px;
   -webkit-box-shadow: 3px 3px 2px 0px rgba(184, 184, 184, 1);
   -moz-box-shadow: 3px 3px 2px 0px rgba(184, 184, 184, 1);
@@ -180,7 +179,7 @@ button:active {
 }
 
 button:hover {
-  /* border: 1px solid rgb(218, 26, 45); */
+  
   background-color: rgb(26, 93, 218);
 }
 
@@ -203,6 +202,10 @@ button:hover {
 
 .blue:hover {
   cursor: pointer;
+}
+
+.loginButtonContainer{
+  display:flex
 }
 
 @media only screen and (max-height: 410px) {

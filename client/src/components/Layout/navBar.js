@@ -22,6 +22,25 @@ const NavBar = props => {
     logout();
   };
 
+  useEffect(()=>{
+    
+    if(showMenu){
+      window.addEventListener('scroll', function(){
+        setShowMenu(false)
+      }, true)
+
+    } else{
+      window.removeEventListener('scroll', function(){
+        setShowMenu(false)
+      }, true)
+
+    } 
+  }, [showMenu])
+
+  
+    
+  
+
   useEffect(() => {
     const handleClickOutside = e => {
       if (
@@ -44,8 +63,9 @@ const NavBar = props => {
     };
   }, [showMenu]);
 
+
   return (
-    <nav className="navBar">
+    <nav className="navBar" >
       <div className="navBarLogo">
         <p className="navBarLogoText">
           <Link to="/">Kitchen Catalogue</Link>
@@ -61,11 +81,11 @@ const NavBar = props => {
         </div>
         <div className="navBarListContainer">
           <ul className={`NavList ${!showMenu ? "slide" : ""}`}>
-            <li className="">
+            {/* <li className="">
               <h2 className="pacifico">Kitchen Catalogue</h2>
             </li>
+            <hr className="navBarDivider" /> */}
             <hr className="navBarDivider" />
-
             <li className="">
               <Link to="/recipe/new" onClick={() => setShowMenu(false)}>
                 Create A Recipe

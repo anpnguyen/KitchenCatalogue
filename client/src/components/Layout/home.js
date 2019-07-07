@@ -19,8 +19,11 @@ const Home = props => {
     searchText: ""
   });
 
+  
+  
+
   return (
-    <Fragment>
+    <Fragment >
       <NavBar />
       <SearchBar setIsSearch={setIsSearch} {...props} />
       <Alert />
@@ -32,7 +35,7 @@ const Home = props => {
         showAll={true}
         {...props}
         isSearch={isSearch}
-      />
+              />
 
       <Footer />
     </Fragment>
