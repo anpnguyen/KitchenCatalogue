@@ -151,6 +151,7 @@
   padding: 12px 15px;
   margin: 8px 0;
   width: 100%;
+  box-sizing: border-box
 }
 
 .loginButton {
@@ -207,20 +208,28 @@ button:hover {
 @media only screen and (max-height: 400px) {
 
 
-	body, html, .App{
-		min-height: 400px
+	body, html, .App, .login{
+		min-height: 500px
 	}
 
+	.LoginLogo{
+		display: block
+	}
 	.loginContainer{
-		min-width:100vw;
-		min-height:400px
+		min-width:100vw !important;
+		min-height:500px !important
+	}
+	
+	.loginInput{
+		width:60%
 	}
 
 	.loginForm{
-		/* justify-content: flex-start; */
-		/* margin-top: 4rem ; */
-		/* margin-bottom: 4rem; */
-		min-height:400px;
+		min-height: 500px !important;
+		height:100% !important;
+		justify-content: flex-start;
+		padding: 1rem
+		
 		/* overflow: auto */}
 
 		.loginOverlay {
@@ -230,10 +239,6 @@ button:hover {
   .loginOverlay-container {
     display: none;
   }
-  .loginContainer {
-    width: 480px;
-    margin: 0 10px;
-  }
 
   .loginSign-up-container {
     width: 100%;
@@ -242,6 +247,15 @@ button:hover {
     width: 100%;
   }
 
+  .loginContainer.right-panel-active .loginSign-up-container {
+    transform: translateX(0%);
+    opacity: 1;
+    z-index: 5;
+    animation: show 0.6s;
+    display: flex;
+    justify-content: center;
+  }
+  
 	
 
 
@@ -260,38 +274,14 @@ button:hover {
 	}
 
 	.loginForm{
-		/* justify-content: flex-start; */
-		/* margin-top: 4rem ; */
-		/* margin-bottom: 4rem; */
+
 		min-height:100vh
-		/* overflow: auto */
+	
 
 	
 
 }
 
-.loginContainer.right-panel-active .loginSign-up-container {
-    transform: translateX(0%);
-    opacity: 1;
-    z-index: 5;
-    animation: show 0.6s;
-    display: flex;
-    justify-content: center;
-  }
-
-  .loginForm-container {
-    width: 100%;
-    transition: none;
-    transition: opacity 1s ease-in-out;
-  }
-  .opacity {
-    opacity: 0;
-  }
-  
-
-  .loginContainer{
-	  border-radius: 0px
-  }
 
 }
 
@@ -357,6 +347,10 @@ button:hover {
 @media only screen and (max-width: 480px) {
   .LoginLogo {
     font-size: 1.7rem;
+  }
+
+  .loginForm{
+	  padding: 0 16px
   }
 
   .loginForm h2 {
