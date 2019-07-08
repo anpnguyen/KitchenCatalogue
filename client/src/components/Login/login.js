@@ -66,7 +66,9 @@ const Login = (props) => {
 
   let style={
     backgroundImage : `url(${backgroundImage})`,
-    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'auto 100%',
+
 
   }
 
