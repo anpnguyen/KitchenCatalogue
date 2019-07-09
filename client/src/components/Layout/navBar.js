@@ -22,24 +22,27 @@ const NavBar = props => {
     logout();
   };
 
-  useEffect(()=>{
-    
-    if(showMenu){
-      window.addEventListener('scroll', function(){
-        setShowMenu(false)
-      }, true)
-
-    } if(!showMenu){
-      window.removeEventListener('scroll', function(){
-        setShowMenu(false)
-      }, true)
-
-    } 
-  }, [showMenu])
-
+  useEffect(() => {
+    const scrollFunction = () => {
+      setShowMenu(false);
+      };
   
-    
-  
+
+    if (showMenu === true) {
+      window.addEventListener(
+        "scroll",
+        scrollFunction,
+        true
+      );
+    }
+    else {
+      window.removeEventListener(
+        "scroll",
+        scrollFunction,
+        true
+      );
+    }
+  }, [showMenu]);
 
   useEffect(() => {
     const handleClickOutside = e => {
@@ -63,9 +66,8 @@ const NavBar = props => {
     };
   }, [showMenu]);
 
-
   return (
-    <nav className="navBar" >
+    <nav className="navBar">
       <div className="navBarLogo">
         <p className="navBarLogoText">
           <Link to="/">Kitchen Catalogue</Link>
