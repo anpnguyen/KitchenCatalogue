@@ -3,7 +3,6 @@ import LoginContainer from "./components/Login/loginContainer";
 import PrivateRoute from "./components/routing/PrivateRoute";
 import IndexContainer from "./components/Layout/indexContainer";
 import IndividualRecipe from "./components/Recipes/individualRecipe";
-import NewRecipeContainer from "./components/Recipes/newRecipeContainer";
 import EditIndividualRecipe from "./components/Recipes/EditIndividualRecipe";
 import SearchContainer from "./components/Layout/searchContainer";
 import NotFound from "./components/Layout/notFound";
@@ -44,6 +43,7 @@ const App = () => {
               exact
               path="/recipe/new"
               component={EditIndividualRecipe}
+              option='newRecipe'
             />
 
             <PrivateRoute

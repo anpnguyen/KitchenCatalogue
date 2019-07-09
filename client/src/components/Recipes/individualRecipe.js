@@ -5,14 +5,15 @@ import Spinner from "../Layout/spinner";
 import Footer from "../Layout/footer";
 import Alert from "../Layout/alert";
 import DeleteConfimation from "./deleteConfirmation";
-import uuid from "uuid/v4";
 import { getRecipeById, deleteRecipe } from "../../actions/recipe";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClock, faUtensils } from "@fortawesome/free-solid-svg-icons";
+
 import "./individualRecipe.css";
+import ViewRecipeDetails from "./viewRecipeDetails";
+import ViewRecipeIngredients from "./viewRecipeIngredients";
+import ViewRecipeInstructions from "./viewRecipeInstructions";
 
 const IndividualRecipe = (props) => {
   const { match, getRecipeById, deleteRecipe, history } = props;
@@ -67,26 +68,11 @@ const IndividualRecipe = (props) => {
 
           <main className="individualRecipe" id="individualRecipe">
             <h1 className="">{title}</h1>
-            <section className="recipeDetails ">
-              <div className="">
-                <p>
-                  <span className="bold">By: </span> {user.username}{" "}
-                </p>
-                <p>
-                  <span className="spanMargin">
-                    <span className="bold">
-                      <FontAwesomeIcon icon={faUtensils} /> Serves{" "}
-                    </span>{" "}
-                    {servings}
-                  </span>{" "}
-                  <span className="bold">
-                    <FontAwesomeIcon icon={faClock} />
-                    Cooking Time:
-                  </span>{" "}
-                  {time}
-                </p>
-              </div>
-            </section>
+            <ViewRecipeDetails
+              user={user}
+              servings={servings}
+              time={time}  
+            />
 
             <div className="saveButton">
               <Link to={`/recipe/${_id}/edit`}>
@@ -107,38 +93,13 @@ const IndividualRecipe = (props) => {
             <hr className="width80" />
 
             <div className="recipeText">
-              <section className="ingredients ">
-                <ul className="">
-                  <li className=" ">
-                    <h3>Ingredients</h3>{" "}
-                  </li>
-                  {ingredients.map((ingredient, index) => (
-                    <Fragment key={ingredient + index}>
-                      {/* <li> {`${ingredient.quantity} ${ingredient.unit} of ${ingredient.ingredientName}`}</li> */}
-                      <li>{ingredient}</li>
-                    </Fragment>
-                  ))}
-                </ul>
-              </section>
-              <section className="instructions ">
-                <ul className="individualRecipeInstructions">
-                  <li className="individualRecipeList bold color">
-                    <h3>Instructions</h3>{" "}
-                  </li>
-
-                  {instructions.map((instruction, index) => (
-                    <Fragment key={uuid()}>
-                      <li className="individualRecipeListInstructions">
-                        <div className="number">
-                          <span className="bold">{index + 1}. </span>
-                        </div>
-                        <div>{instruction}</div>
-                      </li>
-                      <hr className="width80" />
-                    </Fragment>
-                  ))}
-                </ul>
-              </section>
+              <ViewRecipeIngredients
+                ingredients = {ingredients}
+                
+              />
+              <ViewRecipeInstructions
+                instructions = {instructions}  
+              />
             </div>
           </main>
         </div>

@@ -7,7 +7,7 @@ function recipeIngredients(props) {
     handleToBack,
     setRecipeIngredients,
     recipeIngredients,
-    option
+    
 
   } = props;
 
