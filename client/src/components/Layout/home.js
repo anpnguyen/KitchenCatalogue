@@ -5,15 +5,19 @@ import ContentBox from "./contentBox";
 import Footer from "./footer";
 import Alert from "./alert";
 import { getRecipes } from "../../actions/recipe";
+import { getCookbooks } from "../../actions/cookbook";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 const Home = props => {
-  const { getRecipes } = props;
+  const { getRecipes, getCookbooks } = props;
 
   useEffect(() => {
     getRecipes();
-  }, [getRecipes]);
+    getCookbooks();
+  }, [getRecipes, getCookbooks]);
+
+
   const [isSearch, setIsSearch] = useState({
     searchStatus: false,
     searchText: ""
@@ -27,7 +31,7 @@ const Home = props => {
       <NavBar />
       <SearchBar setIsSearch={setIsSearch} {...props} />
       <Alert />
-      {/* {isSearch.searchStatus? <h1>{isSearch.searchText}</h1>: <h1>not searching</h1>       } */}
+      
 
       <ContentBox
         title="My Recipes"
@@ -47,7 +51,8 @@ const Home = props => {
 Home.propTypes = {
   // getCurrentProfile: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  getRecipes: PropTypes.func.isRequired
+  getRecipes: PropTypes.func.isRequired,
+  getCookbooks: PropTypes.func.isRequired
 };
 
 // this is the state that the current component has available to it
@@ -59,5 +64,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getRecipes }
+  { getRecipes, getCookbooks }
 )(Home);

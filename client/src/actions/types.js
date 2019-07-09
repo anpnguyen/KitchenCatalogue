@@ -24,6 +24,9 @@ export const CLEAR_ERROR = 'CLEAR_ERROR'
 export const SEARCH = 'SEARCH'
 export const SEARCH_ERROR = 'SEARCH_ERROR'
 
+export const GET_COOKBOOKS = 'GET_COOKBOOKS'
+export const GET_COOKBOOKS_ERROR = 'GET_COOKBOOKS'
+
 
 
 
