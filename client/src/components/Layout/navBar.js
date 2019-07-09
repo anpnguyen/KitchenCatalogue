@@ -29,7 +29,7 @@ const NavBar = props => {
         setShowMenu(false)
       }, true)
 
-    } else{
+    } if(!showMenu){
       window.removeEventListener('scroll', function(){
         setShowMenu(false)
       }, true)

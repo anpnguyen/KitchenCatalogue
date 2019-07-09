@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import LoginContainer from "./components/Login/loginContainer";
-
 import PrivateRoute from "./components/routing/PrivateRoute";
 import IndexContainer from "./components/Layout/indexContainer";
 import IndividualRecipe from "./components/Recipes/individualRecipe";
@@ -20,6 +19,7 @@ if (localStorage.token) {
 }
 
 const App = () => {
+  
   useEffect(() => {
     store.dispatch(loadUser());
   }, []);
@@ -43,7 +43,7 @@ const App = () => {
             <PrivateRoute
               exact
               path="/recipe/new"
-              component={NewRecipeContainer}
+              component={EditIndividualRecipe}
             />
 
             <PrivateRoute
@@ -56,7 +56,9 @@ const App = () => {
               exact
               path="/recipe/:recipe_id/edit"
               component={EditIndividualRecipe}
+              option='edit'
             />
+
 
             <PrivateRoute path="*" component={NotFound} />
           </Switch>
@@ -64,6 +66,8 @@ const App = () => {
       </Provider>
     </div>
   );
-}
+};
+
+
 
 export default App;
