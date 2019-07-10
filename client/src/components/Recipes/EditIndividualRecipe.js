@@ -18,12 +18,6 @@ const EditIndividualRecipe = props => {
   const { editRecipePut, history, recipe, auth, option, createRecipe, match } = props;
   const { user } = auth;
 
-  // const initialData = {
-  //   title: option === "edit" || recipe.loading ? recipe.recipe.title : "",
-  //   imageUrl: option === "edit" || recipe.loading ? recipe.recipe.imageUrl : "",
-  //   servings: option === "edit" || recipe.loading ? recipe.recipe.servings : "",
-  //   time: option === "edit" || recipe.loading ? recipe.recipe.time : ""
-  // };
 
   const initialData = {
     title:  "",
@@ -36,13 +30,11 @@ const EditIndividualRecipe = props => {
   const { title, imageUrl, servings, time } = recipeDetails;
   const [recipeIngredients, setRecipeIngredients] = useState(
     [""]
-    // option === "edit" || recipe.loading ? recipe.recipe.ingredients : [""]
-    // recipe.recipe.ingredients
+  
   );
   const [recipeInstructions, setRecipeInstructions] = useState(
     [""]
-    // option === "edit" || recipe.loading ? recipe.recipe.instructions : [""]
-    // recipe.recipe.instructions
+
   );
   const [newRecipeStage, setNewRecipeStage] = useState(1);
 
