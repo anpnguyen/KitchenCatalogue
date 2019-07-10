@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -22,33 +22,24 @@ const NavBar = props => {
     logout();
   };
 
-  useEffect(() => {
-    const scrollFunction = () => {
-      setShowMenu(false);
-      };
-  
+  const memoSetMenu = useCallback(() => {
+    setShowMenu(false);
+  });
 
-    if (showMenu === true) {
-      window.addEventListener(
-        "scroll",
-        scrollFunction,
-        true
-      );
-    }
-    else {
-      window.removeEventListener(
-        "scroll",
-        scrollFunction,
-        true
-      );
-    }
-  }, [showMenu]);
+  useEffect(() => {
+    window.addEventListener("scroll", memoSetMenu, true);
+
+    return () => {
+      window.removeEventListener("scroll", memoSetMenu, true);
+    };
+  });
 
   useEffect(() => {
     const handleClickOutside = e => {
       if (
         node.current.contains(e.target || <div className="navBarButton " />)
       ) {
+        console.log(showMenu);
         return;
       }
 
