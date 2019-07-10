@@ -17,21 +17,16 @@ const Home = props => {
     getCookbooks();
   }, [getRecipes, getCookbooks]);
 
-
   const [isSearch, setIsSearch] = useState({
     searchStatus: false,
     searchText: ""
   });
 
-  
-  
-
   return (
-    <Fragment >
+    <Fragment>
       <NavBar />
       <SearchBar setIsSearch={setIsSearch} {...props} />
       <Alert />
-      
 
       <ContentBox
         title="My Recipes"
@@ -39,18 +34,17 @@ const Home = props => {
         showAll={true}
         {...props}
         isSearch={isSearch}
-              />
+      />
 
       <Footer />
     </Fragment>
   );
 };
 
-// export default Home
+
 
 Home.propTypes = {
-  // getCurrentProfile: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
+    auth: PropTypes.object.isRequired,
   getRecipes: PropTypes.func.isRequired,
   getCookbooks: PropTypes.func.isRequired
 };

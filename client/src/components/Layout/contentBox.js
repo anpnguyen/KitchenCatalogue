@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useEffect} from "react";
+import uuid from 'uuid/v4'
 import ContentCard from "./contentCard";
 import Spinner from "./spinner";
 import PropTypes from "prop-types";
@@ -24,8 +25,6 @@ const ContentBox = props => {
     setNavigation({start: 0, end: pageLimit, current: 1 })
   }, [setNavigation, pageLimit]);
 
-  
-
 
 
   const handleRedirect = () => {
@@ -39,7 +38,7 @@ const ContentBox = props => {
           recipe={recipe}
           showAll={showAll}
           text={text}
-          key={recipe._id}
+          key={!isSearch? uuid(): uuid()+ 'search'}
         />
       );
     } else if (
@@ -53,7 +52,7 @@ const ContentBox = props => {
           recipe={recipe}
           showAll={showAll}
           text={text}
-          key={recipe._id}
+          key={!isSearch? uuid(): uuid()+ 'search'}
         />
       );
     } else if (
@@ -68,18 +67,18 @@ const ContentBox = props => {
             recipe={recipe}
             showAll={showAll}
             text={text}
-            key={recipe._id}
+            key={!isSearch? uuid(): uuid()+ 'search'}
           />
           <ContentCard
             {...props}
             titleText="Create New Recipe"
             onClick={handleRedirect}
-            key={recipe._id + "create"}
+            key={!isSearch? uuid(): uuid()+ 'search'}
           />
         </>
       );
     } else {
-      return <Fragment key={recipe._id} />;
+      return <Fragment key={!isSearch? uuid(): uuid()+ 'search'} />;
     }
   });
 

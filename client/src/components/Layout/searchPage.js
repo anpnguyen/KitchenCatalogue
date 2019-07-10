@@ -7,6 +7,7 @@ import Alert from "./alert";
 import { getRecipes } from "../../actions/recipe";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import uuid from 'uuid/v4'
 
 const SearchPage = props => {
   const { getRecipes, search } = props;
@@ -27,6 +28,7 @@ const SearchPage = props => {
         showAll={true}
         {...props}
         isSearch={true}
+        key={uuid() + 'search'}
       />
 
       <Footer />
