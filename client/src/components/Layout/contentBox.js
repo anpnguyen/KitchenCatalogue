@@ -1,9 +1,10 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect} from "react";
 import ContentCard from "./contentCard";
 import Spinner from "./spinner";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import "./contentBox.css";
+import PageNavigation from "./pageNavigation";
 
 const ContentBox = props => {
   const { title, text, recipe, showAll, history, isSearch, search } = props;
@@ -17,61 +18,15 @@ const ContentBox = props => {
   const totalItems = recipes.length;
   const totalPages = Math.floor(recipes.length / pageLimit) + 1;
 
-  // need to fix with useCallbakc
+
+  
   useEffect(() => {
-    setNavigation({ ...navigation, start: 0, end: pageLimit, current: 1 });
-  }, [pageLimit]);
+    setNavigation({start: 0, end: pageLimit, current: 1 })
+  }, [setNavigation, pageLimit]);
 
-  const setFirst = () => {
-    if (navigation.current !== 1) {
-      setNavigation({ start: 0, end: pageLimit, current: 1 });
-    }
-  };
+  
 
-  const setNext = () => {
-    if (navigation.current !== totalPages) {
-      let newNavigation = {
-        start: navigation.start + pageLimit,
-        end: navigation.end + pageLimit,
-        current: navigation.current + 1
-      };
-      setNavigation(newNavigation);
-    }
-  };
 
-  const setBack = () => {
-    if (navigation.current !== 1) {
-      let newNavigation = {
-        start: navigation.start - pageLimit,
-        end: navigation.end - pageLimit,
-        current: navigation.current - 1
-      };
-      setNavigation(newNavigation);
-    }
-  };
-
-  const setLast = () => {
-    if (navigation.current !== totalPages) {
-      let newNavigation = {
-        start: (totalPages - 1) * pageLimit,
-        end: totalPages * pageLimit,
-        current: totalPages
-      };
-      setNavigation(newNavigation);
-    }
-  };
-
-  const handleNavigationClick = (e, i) => {
-    if (e.target.value !== navigation.current) {
-      let newNavigation = {
-        start: i * pageLimit,
-        end: (i + 1) * pageLimit,
-        current: i + 1
-      };
-
-      setNavigation(newNavigation);
-    }
-  };
 
   const handleRedirect = () => {
     history.push("/recipe/new");
@@ -128,26 +83,7 @@ const ContentBox = props => {
     }
   });
 
-  const navigationNumbers = () => {
-    let navItems = [];
-
-    for (let i = 0; i < totalPages; i++) {
-      if (i < totalPages && i >= 0)
-        navItems.push(
-          <div
-            className={` arrows ${navigation.current === i + 1 &&
-              "navigationActive"}`}
-            key={i + "navButton"}
-            onClick={e => handleNavigationClick(e, i)}
-            value={i + 1}
-          >
-            {" "}
-            {i + 1}{" "}
-          </div>
-        );
-    }
-    return navItems;
-  };
+ 
 
   return loading ? (
     <Spinner />
@@ -195,41 +131,13 @@ const ContentBox = props => {
           <hr className="width80" />
         </section>
 
-        <nav className="contentBoxNavigation">
-          <div
-            className={` arrows  ${navigation.current === 1 &&
-              "navigationDisable"}`}
-            onClick={setFirst}
-          >
-            {" "}
-            {"<<"}{" "}
-          </div>
-          <div
-            className={` arrows mr2 ${navigation.current === 1 &&
-              "navigationDisable"}`}
-            onClick={setBack}
-          >
-            {" "}
-            {"<"}{" "}
-          </div>
-          {navigationNumbers()}
-          <div
-            className={` arrows ml2 ${navigation.current === totalPages &&
-              "navigationDisable"}`}
-            onClick={setNext}
-          >
-            {" "}
-            >{" "}
-          </div>
-          <div
-            className={` arrows  ${navigation.current === totalPages &&
-              "navigationDisable"}`}
-            onClick={setLast}
-          >
-            {" "}
-            >>{" "}
-          </div>
-        </nav>
+       <PageNavigation
+        pageLimit={pageLimit}
+        totalPages={totalPages}  
+        navigation= {navigation}
+        setNavigation={setNavigation}
+
+      />
       </div>
     </main>
   );

@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import NavBar from "../Layout/navBar";
 import Alert from "../Layout/alert";
@@ -19,19 +19,20 @@ const EditIndividualRecipe = props => {
   const { user } = auth;
 
   const initialData = {
-    title: option === 'edit' || recipe.loading ? recipe.recipe.title  : "",
-    imageUrl: option === 'edit' || recipe.loading ? recipe.recipe.imageUrl  : "",
-    servings: option === 'edit' || recipe.loading ? recipe.recipe.servings  : "",
-    time: option === 'edit' || recipe.loading ? recipe.recipe.time  : "",
-   
+    title: option === "edit" || recipe.loading ? recipe.recipe.title : "",
+    imageUrl: option === "edit" || recipe.loading ? recipe.recipe.imageUrl : "",
+    servings: option === "edit" || recipe.loading ? recipe.recipe.servings : "",
+    time: option === "edit" || recipe.loading ? recipe.recipe.time : ""
   };
-  
+
   const [recipeDetails, setRecipeDetails] = useState(initialData);
   const { title, imageUrl, servings, time } = recipeDetails;
-  const [recipeIngredients, setRecipeIngredients] = useState(option ==='edit' || recipe.loading ? recipe.recipe.ingredients : ['']
+  const [recipeIngredients, setRecipeIngredients] = useState(
+    option === "edit" || recipe.loading ? recipe.recipe.ingredients : [""]
     // recipe.recipe.ingredients
   );
-  const [recipeInstructions, setRecipeInstructions] = useState(option ==='edit' || recipe.loading ? recipe.recipe.instructions : ['']
+  const [recipeInstructions, setRecipeInstructions] = useState(
+    option === "edit" || recipe.loading ? recipe.recipe.instructions : [""]
     // recipe.recipe.instructions
   );
   const [newRecipeStage, setNewRecipeStage] = useState(1);
@@ -44,16 +45,13 @@ const EditIndividualRecipe = props => {
       instructions: recipeInstructions
     };
 
-    if(option === 'edit'){
+    if (option === "edit") {
       editRecipePut(formData, history, recipe.recipe._id);
-    } else{
+    } else {
       createRecipe(formData, history);
     }
-
-    
   };
 
-  
   const handleToNext = e => {
     e.preventDefault();
     setNewRecipeStage(newRecipeStage + 1);
@@ -64,27 +62,26 @@ const EditIndividualRecipe = props => {
     setNewRecipeStage(newRecipeStage - 1);
   };
 
-
- 
-
-  useEffect(()=>{
-    if(recipe.recipe.title === undefined){
-      let localRecipe = JSON.parse(localStorage.getItem('recipe'))
+  useEffect(() => {
+    if (recipe.recipe.title === undefined) {
+      let localRecipe = JSON.parse(localStorage.getItem("recipe"));
       // console.log(localRecipe)
-      let {title, servings, imageUrl, time, ingredients, instructions} = localRecipe
-      setRecipeDetails({title, servings, imageUrl,time})
-      setRecipeIngredients(ingredients)
-      setRecipeInstructions(instructions)
+      let {
+        title,
+        servings,
+        imageUrl,
+        time,
+        ingredients,
+        instructions
+      } = localRecipe;
+      setRecipeDetails({ title, servings, imageUrl, time });
+      setRecipeIngredients(ingredients);
+      setRecipeInstructions(instructions);
       // console.log(recipeDetails)
-      
-      
     }
+  }, [recipe.recipe.title]);
 
-
-  },[recipe.recipe.title])
-
-
-
+  console.log("render");
   return (
     <>
       <NavBar />
@@ -95,11 +92,11 @@ const EditIndividualRecipe = props => {
         <div className="contentBox ">
           <div className="contentBoxContent ">
             <main className="editRecipe" id="editRecipe">
-              
-              {option === 'edit'? 
-              <h1 className="text-center">Edit Recipe</h1>:
-              <h1 className="text-center">New Recipe</h1>
-            }
+              {option === "edit" ? (
+                <h1 className="text-center">Edit Recipe</h1>
+              ) : (
+                <h1 className="text-center">New Recipe</h1>
+              )}
 
               <hr className="width80" />
               <PreviewContainer
