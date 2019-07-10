@@ -1,10 +1,9 @@
-import React , {Fragment}from "react";
-import PropTypes from "prop-types";
+import React, { Fragment } from "react";
 
 function ViewRecipeIngredients(props) {
-    const {ingredients} = props
+  const { ingredients } = props;
 
-    return (
+  return (
     <>
       <section className="ingredients ">
         <ul className="">
@@ -22,6 +21,5 @@ function ViewRecipeIngredients(props) {
     </>
   );
 }
-
 
 export default ViewRecipeIngredients;

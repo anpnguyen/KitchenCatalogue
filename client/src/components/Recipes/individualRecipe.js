@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment, useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import NavBar from "../Layout/navBar";
 import Spinner from "../Layout/spinner";
@@ -30,8 +30,11 @@ const IndividualRecipe = (props) => {
   const { loading } = props.recipe;
   const [isDelete, setIsDelete] = useState(false);
 
+
+  
   useEffect(() => {
     getRecipeById(match.params.recipe_id, history);
+  
   }, [getRecipeById, history, match]);
 
   const handleDelete = () => {

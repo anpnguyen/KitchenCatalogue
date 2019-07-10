@@ -24,7 +24,7 @@ const NavBar = props => {
 
   const memoSetMenu = useCallback(() => {
     setShowMenu(false);
-  });
+  },[]);
 
   useEffect(() => {
     window.addEventListener("scroll", memoSetMenu, true);
@@ -32,7 +32,7 @@ const NavBar = props => {
     return () => {
       window.removeEventListener("scroll", memoSetMenu, true);
     };
-  });
+  },[memoSetMenu]);
 
   useEffect(() => {
     const handleClickOutside = e => {

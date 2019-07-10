@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
 import PropTypes from "prop-types";
 import NavBar from "../Layout/navBar";
 import Alert from "../Layout/alert";
@@ -15,22 +15,23 @@ import RecipeInstructions from "./recipeInstructions";
 import "./newRecipe.css";
 
 const EditIndividualRecipe = props => {
-  const { editRecipePut, history, recipe, auth, getRecipeById, match, option, createRecipe } = props;
+  const { editRecipePut, history, recipe, auth, option, createRecipe } = props;
   const { user } = auth;
 
   const initialData = {
-    title: "",
-    imageUrl: "",
-    servings: "",
-    time: ""
+    title: option === 'edit' || recipe.loading ? recipe.recipe.title  : "",
+    imageUrl: option === 'edit' || recipe.loading ? recipe.recipe.imageUrl  : "",
+    servings: option === 'edit' || recipe.loading ? recipe.recipe.servings  : "",
+    time: option === 'edit' || recipe.loading ? recipe.recipe.time  : "",
+   
   };
-
+  
   const [recipeDetails, setRecipeDetails] = useState(initialData);
   const { title, imageUrl, servings, time } = recipeDetails;
-  const [recipeIngredients, setRecipeIngredients] = useState([""]
+  const [recipeIngredients, setRecipeIngredients] = useState(option ==='edit' || recipe.loading ? recipe.recipe.ingredients : ['']
     // recipe.recipe.ingredients
   );
-  const [recipeInstructions, setRecipeInstructions] = useState([""]
+  const [recipeInstructions, setRecipeInstructions] = useState(option ==='edit' || recipe.loading ? recipe.recipe.instructions : ['']
     // recipe.recipe.instructions
   );
   const [newRecipeStage, setNewRecipeStage] = useState(1);
@@ -63,39 +64,26 @@ const EditIndividualRecipe = props => {
     setNewRecipeStage(newRecipeStage - 1);
   };
 
-  useEffect(() => {
 
-    if(option === 'edit'){
-    getRecipeById(match.params.recipe_id);
-    setRecipeDetails({
-      title: recipe.loading || !recipe.recipe.title ? "" : recipe.recipe.title,
-      imageUrl:
-        recipe.loading || !recipe.recipe.imageUrl ? "" : recipe.recipe.imageUrl,
-      servings:
-        recipe.loading || !recipe.recipe.servings ? "" : recipe.recipe.servings,
-      time: recipe.loading || !recipe.recipe.time ? "" : recipe.recipe.time
-    });
-    // need to fix using useCallback
-    setRecipeIngredients(
-      !recipe.recipe.ingredients ? "" : recipe.recipe.ingredients
-    );
-    setRecipeInstructions(
-      !recipe.recipe.instructions ? "" : recipe.recipe.instructions
-    )} else{
-      setRecipeDetails(initialData);
-      setRecipeIngredients([""]);
-      setRecipeInstructions([''])
+ 
 
-    };
-  }, [
-    getRecipeById,
-    recipe.loading,
-    recipe.recipe.title,
-    recipe.recipe.imageUrl,
-    recipe.recipe.time,
-    recipe.recipe.servings,
-    match.params.recipe_id
-  ]);
+  useEffect(()=>{
+    if(recipe.recipe.title === undefined){
+      let localRecipe = JSON.parse(localStorage.getItem('recipe'))
+      // console.log(localRecipe)
+      let {title, servings, imageUrl, time, ingredients, instructions} = localRecipe
+      setRecipeDetails({title, servings, imageUrl,time})
+      setRecipeIngredients(ingredients)
+      setRecipeInstructions(instructions)
+      // console.log(recipeDetails)
+      
+      
+    }
+
+
+  },[recipe.recipe.title])
+
+
 
   return (
     <>

@@ -54,6 +54,7 @@ export const clearRecipe = () => async dispatch => {
 export const getRecipeById = (recipeId, history) => async dispatch => {
   try {
     const res = await axios.get(`/api/recipe/${recipeId}`);
+    localStorage.setItem('recipe', JSON.stringify(res.data))
 
     dispatch({
       type: GET_RECIPE,
