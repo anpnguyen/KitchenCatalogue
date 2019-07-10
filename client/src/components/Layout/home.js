@@ -8,6 +8,8 @@ import { getRecipes } from "../../actions/recipe";
 import { getCookbooks } from "../../actions/cookbook";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+// import { faUserInjured } from "@fortawesome/free-solid-svg-icons";
+import uuid from 'uuid/v4'
 
 const Home = props => {
   const { getRecipes, getCookbooks } = props;
@@ -34,6 +36,7 @@ const Home = props => {
         showAll={true}
         {...props}
         isSearch={isSearch}
+        key={uuid() + ' home'}
       />
 
       <Footer />

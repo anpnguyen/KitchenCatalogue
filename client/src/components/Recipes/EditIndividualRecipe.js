@@ -15,7 +15,7 @@ import RecipeInstructions from "./recipeInstructions";
 import "./newRecipe.css";
 
 const EditIndividualRecipe = props => {
-  const { editRecipePut, history, recipe, auth, option, createRecipe } = props;
+  const { editRecipePut, history, recipe, auth, option, createRecipe, match } = props;
   const { user } = auth;
 
   const initialData = {
@@ -46,7 +46,7 @@ const EditIndividualRecipe = props => {
     };
 
     if (option === "edit") {
-      editRecipePut(formData, history, recipe.recipe._id);
+      editRecipePut(formData, history, match.params.recipe_id);
     } else {
       createRecipe(formData, history);
     }
@@ -63,7 +63,7 @@ const EditIndividualRecipe = props => {
   };
 
   useEffect(() => {
-    if (recipe.recipe.title === undefined) {
+    if (recipe.recipe.title === undefined && option === 'edit') {
       let localRecipe = JSON.parse(localStorage.getItem("recipe"));
       // console.log(localRecipe)
       let {
@@ -77,11 +77,12 @@ const EditIndividualRecipe = props => {
       setRecipeDetails({ title, servings, imageUrl, time });
       setRecipeIngredients(ingredients);
       setRecipeInstructions(instructions);
-      // console.log(recipeDetails)
-    }
-  }, [recipe.recipe.title]);
+    
+    } 
+  }, [recipe.recipe.title, option]);
 
-  console.log("render");
+
+
   return (
     <>
       <NavBar />

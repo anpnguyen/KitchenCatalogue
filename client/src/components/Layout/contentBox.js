@@ -19,7 +19,6 @@ const ContentBox = props => {
   const totalItems = recipes.length;
   const totalPages = Math.floor(recipes.length / pageLimit) + 1;
 
-
   
   useEffect(() => {
     setNavigation({start: 0, end: pageLimit, current: 1 })
@@ -32,17 +31,8 @@ const ContentBox = props => {
   };
 
   const mappedData = recipes.map((recipe, index) => {
-    if (!showAll && index < 4) {
-      return (
-        <ContentCard
-          recipe={recipe}
-          showAll={showAll}
-          text={text}
-          key={!isSearch? uuid(): uuid()+ 'search'}
-        />
-      );
-    } else if (
-      showAll &&
+    if (
+      
       index < navigation.end &&
       index >= navigation.start &&
       index !== totalItems - 1
@@ -52,33 +42,38 @@ const ContentBox = props => {
           recipe={recipe}
           showAll={showAll}
           text={text}
-          key={!isSearch? uuid(): uuid()+ 'search'}
+          key={uuid() + 'first'}
         />
       );
     } else if (
-      showAll &&
+      
       index < navigation.end &&
       index >= navigation.start &&
       index === totalItems - 1
     ) {
       return (
-        <>
+        
+        <Fragment key={uuid()}>
           <ContentCard
             recipe={recipe}
             showAll={showAll}
             text={text}
-            key={!isSearch? uuid(): uuid()+ 'search'}
+            key={uuid() + 'second'}
           />
+
           <ContentCard
             {...props}
             titleText="Create New Recipe"
             onClick={handleRedirect}
-            key={!isSearch? uuid(): uuid()+ 'search'}
+            key={uuid() + "create"}
           />
-        </>
+
+        </Fragment>
+      
+        
       );
     } else {
-      return <Fragment key={!isSearch? uuid(): uuid()+ 'search'} />;
+      return <Fragment key={uuid()} />;
     }
   });
 
@@ -120,11 +115,14 @@ const ContentBox = props => {
         <section className="contentBoxCard">
           {mappedData}
           {recipes.length === 0 && (
+            
             <ContentCard
-              {...props}
-              titleText="Create New Recipe"
-              onClick={handleRedirect}
-            />
+            {...props}
+            titleText="Create New Recipe"
+            onClick={handleRedirect}
+            key={uuid() + "create"}
+          />
+            
           )}
 
           <hr className="width80" />

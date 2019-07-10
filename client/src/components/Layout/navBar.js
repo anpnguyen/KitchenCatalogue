@@ -39,7 +39,6 @@ const NavBar = props => {
       if (
         node.current.contains(e.target || <div className="navBarButton " />)
       ) {
-        console.log(showMenu);
         return;
       }
 
