@@ -200,14 +200,69 @@
   margin-right: 20px;
 }
 
+
+
+.addFavourite {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background: #f8f8f8;
+  height: 200px;
+  width: 500px;
+  padding: 20px;
+  text-align: center;
+  border-radius: 20px;
+  -webkit-box-shadow: 3px 3px 5px -1px rgba(207, 195, 207, 1);
+  -moz-box-shadow: 3px 3px 5px -1px rgba(207, 195, 207, 1);
+  box-shadow: 3px 3px 5px -1px rgba(207, 195, 207, 1);
+  border: 1px solid #ddd;
+  }
+  
+  .addFavourite h2{
+  width:80%;
+  margin: 0 auto;
+  padding-bottom: 20px
+  }
+  .addFavourite select{
+  height:50px;
+  width: 80%;
+  font-family: inherit;
+  overflow-y: scroll;
+  transition: height 0.2s ease-in-out;
+  z-index: 50
+  }
+  
+  .addHeight{
+  height: 250px !important
+  }
+  
+  .addFavourite option{
+  display: flex;
+  align-items: center;
+  height:50px
+  }
+  
+  .hideButtons{
+  opacity: 0 !important
+  }
+  
+  .favouriteButtons{
+  opacity: 1;
+  transition: all 0.2s ease-in-out;
+  display:flex;
+  align-content: center;
+  justify-content: center;
+  margin: 10px 0
+  
+  }
+
 @media only screen and (max-width: 768px) {
   .recipeText {
     flex-direction: column;
     padding: 0;
   }
-  .ingredients {
-    /* padding: 20px */
-  }
+
 
   .instructions {
     padding: 0px;
@@ -260,9 +315,7 @@
   #individualRecipe h1 {
     font-size: 1.7rem;
   }
-  #individualRecipe .image {
-    /* max-width: 95%; */
-  }
+
   .isDelete {
     width: 85%;
     margin: 0 auto;

@@ -5,6 +5,7 @@ import Spinner from "../Layout/spinner";
 import Footer from "../Layout/footer";
 import Alert from "../Layout/alert";
 import DeleteConfimation from "./deleteConfirmation";
+import AddToCookbook from "./addToCookbook";
 import { getRecipeById, deleteRecipe } from "../../actions/recipe";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
@@ -15,7 +16,7 @@ import ViewRecipeDetails from "./viewRecipeDetails";
 import ViewRecipeIngredients from "./viewRecipeIngredients";
 import ViewRecipeInstructions from "./viewRecipeInstructions";
 
-const IndividualRecipe = (props) => {
+const IndividualRecipe = props => {
   const { match, getRecipeById, deleteRecipe, history } = props;
   const {
     title,
@@ -30,11 +31,8 @@ const IndividualRecipe = (props) => {
   const { loading } = props.recipe;
   const [isDelete, setIsDelete] = useState(false);
 
-
-  
   useEffect(() => {
     getRecipeById(match.params.recipe_id, history);
-  
   }, [getRecipeById, history, match]);
 
   const handleDelete = () => {
@@ -47,6 +45,12 @@ const IndividualRecipe = (props) => {
 
   const handleDeleteConfirmation = () => {
     deleteRecipe(history, match.params.recipe_id);
+  };
+
+  const [isFavourite, setIsFavourite] = useState(false);
+
+  const handleCookbookClick = () => {
+    setIsFavourite(true);
   };
 
   return loading ? (
@@ -69,13 +73,15 @@ const IndividualRecipe = (props) => {
         <div className="contentBoxContent ">
           <Alert />
 
+          {isFavourite && 
+          <AddToCookbook 
+            setIsFavourite = {setIsFavourite}
+            
+          />}
+
           <main className="individualRecipe" id="individualRecipe">
             <h1 className="">{title}</h1>
-            <ViewRecipeDetails
-              user={user}
-              servings={servings}
-              time={time}  
-            />
+            <ViewRecipeDetails user={user} servings={servings} time={time} />
 
             <div className="saveButton">
               <Link to={`/recipe/${_id}/edit`}>
@@ -83,6 +89,9 @@ const IndividualRecipe = (props) => {
               </Link>
               <button className="blueButton" onClick={handleDelete}>
                 Delete
+              </button>
+              <button className="blueButton" onClick={handleCookbookClick}>
+                Add to cookbook
               </button>
             </div>
 
@@ -96,13 +105,8 @@ const IndividualRecipe = (props) => {
             <hr className="width80" />
 
             <div className="recipeText">
-              <ViewRecipeIngredients
-                ingredients = {ingredients}
-                
-              />
-              <ViewRecipeInstructions
-                instructions = {instructions}  
-              />
+              <ViewRecipeIngredients ingredients={ingredients} />
+              <ViewRecipeInstructions instructions={instructions} />
             </div>
           </main>
         </div>
@@ -110,7 +114,7 @@ const IndividualRecipe = (props) => {
       <Footer />
     </>
   );
-}
+};
 
 IndividualRecipe.propTypes = {
   getRecipeById: PropTypes.func.isRequired,
