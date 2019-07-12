@@ -23,7 +23,7 @@ export const getCookbooks = ()  => async dispatch => {
   } catch (err) {
     dispatch({
       type: GET_COOKBOOKS_ERROR,
-      payload: { msg: "server error", status: "server error" }
+      payload: { msg: "server error from getCookbooks", status: "server error" }
     });
   }
 };
@@ -38,36 +38,19 @@ export const loadCookbookRecipes = (selectedCookbook, history)  => async dispatc
       type: LOAD_COOKBOOK_RECIPES,
       payload: selectedCookbook
     });
-    localStorage.setItem('selectedcookbook', JSON.stringify(selectedCookbook))
+    // localStorage.setItem('selectedcookbook', JSON.stringify(selectedCookbook))
     history.push(`/cookbook/${selectedCookbook._id}`)
 
 
   } catch (err) {
     dispatch({
       type: GET_COOKBOOKS_ERROR,
-      payload: { msg: "server error", status: "server error" }
+      payload: { msg: "server error from loadcookbook", status: "server error" }
     });
   }
 };
 
-export const reloadCookbookRecipes = (selectedCookbook)  => async dispatch => {
-  try {
-     
-    
-    dispatch({
-      type: LOAD_COOKBOOK_RECIPES,
-      payload: selectedCookbook
-    });
-    
 
-
-  } catch (err) {
-    dispatch({
-      type: GET_COOKBOOKS_ERROR,
-      payload: { msg: "server error", status: "server error" }
-    });
-  }
-};
 
 // GET cookbook by ID  - if refresh
 
@@ -85,7 +68,7 @@ export const getCookbookById = (cookbook_id)  => async dispatch => {
   } catch (err) {
     dispatch({
       type: GET_COOKBOOKS_ERROR,
-      payload: { msg: "server error", status: "server error" }
+      payload: { msg: "server error from get byID", status: "server error" }
     });
   }
 };

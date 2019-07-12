@@ -18,14 +18,16 @@ const Home = props => {
   useEffect(() => {
     getRecipes();
     getCookbooks();
-  }, [getRecipes, getCookbooks]);
+  }, []);
 
 
   useEffect(()=>{
     
-    individualCookbook.loading && getCookbookById(match.params.cookbook_id)
+    individualCookbook.loading && match.params.cookbook_id && getCookbookById(match.params.cookbook_id)
 
   },[])
+
+ 
 
   const [isSearch, setIsSearch] = useState({
     searchStatus: false,
@@ -39,7 +41,7 @@ const Home = props => {
       <SearchBar setIsSearch={setIsSearch} {...props} />
       <Alert />
       
-      {option === 'cookbook'&&
+      {option === 'cookbook' && !cookbook.loading  && cookbook != null &&
       <CookbookContentBox
         title="My Cookbooks"
         cookbook={cookbook}
@@ -52,7 +54,7 @@ const Home = props => {
       />
       }
 
-      {option === 'recipe'&& 
+      {option === 'recipe'&& !recipe.loading &&
       <ContentBox
       title="My Recipes"
       recipes={recipe.recipes}
