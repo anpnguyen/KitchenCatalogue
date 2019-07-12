@@ -6,7 +6,7 @@ import Footer from "./footer";
 import Alert from "./alert";
 import CookbookContentBox from '../cookbook/cookBookContent'
 import { getRecipes } from "../../actions/recipe";
-import { getCookbooks } from "../../actions/cookbook";
+import { getCookbooks, getCookbookById } from "../../actions/cookbook";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import uuid from 'uuid/v4'
@@ -21,7 +21,11 @@ const Home = props => {
   }, [getRecipes, getCookbooks]);
 
 
+  useEffect(()=>{
+    
+    individualCookbook.loading && getCookbookById(match.params.cookbook_id)
 
+  },[])
 
   const [isSearch, setIsSearch] = useState({
     searchStatus: false,
@@ -62,7 +66,7 @@ const Home = props => {
       />
       }
 
-{option === 'cookbookRecipes'&& 
+{option === 'cookbookRecipes'&& !individualCookbook.loading &&
       <ContentBox
       
         title={individualCookbook.individualCookbook.cookbookTitle}
@@ -107,5 +111,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getRecipes, getCookbooks }
+  { getRecipes, getCookbooks, getCookbookById }
 )(Home);

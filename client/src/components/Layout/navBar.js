@@ -83,12 +83,17 @@ const NavBar = props => {
                 Create A Recipe
               </Link>
             </li>
+            <hr className="navBarDivider" />
             <li className="">
               <Link to="/recipe" onClick={() => setShowMenu(false)}>
                 View All Recipes
               </Link>
             </li>
-            <hr className="navBarDivider" />
+            <li className="">
+              <Link to="/cookbook" onClick={() => setShowMenu(false)}>
+                View All Cookbooks
+              </Link>
+            </li>
             <li className="navBarListItem" onClick={handleLogout}>
               <Link to="/login" onClick={() => setShowMenu(false)}>
                 LOGOUT

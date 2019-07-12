@@ -29,7 +29,7 @@ let pushedCookbook = {...selectedCookbook, savedRecipes: expandedRecipes}
 
 loadCookbookRecipes(pushedCookbook, history)
 // console.log(pushedCookbook)
-history.push(`/cookbook/${_id}`)
+// history.push(`/cookbook/${_id}`)
 
 };
 return (

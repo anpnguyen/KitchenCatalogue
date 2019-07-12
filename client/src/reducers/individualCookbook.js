@@ -22,6 +22,14 @@ import {
              individualCookbook: payload,
              loading: false
            };
+
+           case  GET_COOKBOOK:
+           return {
+             ...state,
+             individualCookbook: payload,
+             loading: false
+           };
+     
      
      
          default:
