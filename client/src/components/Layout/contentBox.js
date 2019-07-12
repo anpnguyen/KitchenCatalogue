@@ -8,8 +8,8 @@ import "./contentBox.css";
 import PageNavigation from "./pageNavigation";
 
 const ContentBox = props => {
-  const { title, text, recipe, showAll, history, isSearch, search } = props;
-  const { recipes, loading } = recipe;
+  const { title, text, showAll, history, isSearch, search, recipes, isLoading } = props;
+  // const { recipes, loading } = recipe;
   const [pageLimit, setPageLimit] = useState(12);
   const [navigation, setNavigation] = useState({
     start: 0,
@@ -79,7 +79,7 @@ const ContentBox = props => {
 
  
 
-  return loading ? (
+  return isLoading ? (
     <Spinner />
   ) : (
     <main className="contentBox ">
@@ -113,8 +113,8 @@ const ContentBox = props => {
         <hr className="width80" />
 
         <section className="contentBoxCard">
-          {mappedData}
-          {recipes.length === 0  && (
+          
+          {recipes.length === 0 || null ? (
             
             <ContentCard
             {...props}
@@ -124,7 +124,8 @@ const ContentBox = props => {
             individualRecipe=''
           />
             
-          )}
+          ):
+          mappedData}
 
           <hr className="width80" />
         </section>

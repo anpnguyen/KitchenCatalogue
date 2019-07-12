@@ -4,6 +4,7 @@ import PrivateRoute from "./components/routing/PrivateRoute";
 import IndexContainer from "./components/Layout/indexContainer";
 import IndividualRecipe from "./components/Recipes/individualRecipe";
 import EditIndividualRecipe from "./components/Recipes/EditIndividualRecipe";
+import Home from "./components/Layout/home";
 import SearchContainer from "./components/Layout/searchContainer";
 import NotFound from "./components/Layout/notFound";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
@@ -34,7 +35,8 @@ const App = () => {
             <PrivateRoute 
               exact 
               path="/recipe" 
-              component={IndexContainer} 
+              component={Home} 
+              option ='recipe'
             />
 
             <PrivateRoute
@@ -66,8 +68,14 @@ const App = () => {
             <PrivateRoute 
               exact 
               path="/cookbook" 
-              component={IndexContainer} 
+              component={Home} 
               option = 'cookbook'
+            />
+            <PrivateRoute 
+              exact 
+              path="/cookbook/:cookbook_id" 
+              component={Home} 
+              option = 'cookbookRecipes'
             />
 
 

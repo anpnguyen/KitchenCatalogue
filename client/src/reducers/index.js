@@ -5,6 +5,7 @@ import auth from "./auth";
 import recipe from "./recipe";
 import search from "./search";
 import cookbook from "./cookbook";
+import individualCookbook from "./individualCookbook";
 
 // this sets the name of the state
 export default combineReducers({
@@ -12,5 +13,6 @@ export default combineReducers({
   auth,
   recipe,
   search,
-  cookbook
+  cookbook,
+  individualCookbook
 });

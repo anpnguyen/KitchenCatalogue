@@ -11,26 +11,31 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import uuid from 'uuid/v4'
 
+
 const Home = props => {
-  const { getRecipes, getCookbooks, search, option, recipe, cookbook} = props;
+  const { getRecipes, getCookbooks, search, option, recipe, cookbook, match, individualCookbook, getCookbookById} = props;
 
   useEffect(() => {
     getRecipes();
     getCookbooks();
   }, [getRecipes, getCookbooks]);
 
+
+
+
   const [isSearch, setIsSearch] = useState({
     searchStatus: false,
     searchText: ""
   });
 
+  
   return (
     <Fragment>
       <NavBar />
       <SearchBar setIsSearch={setIsSearch} {...props} />
       <Alert />
-
-      {option === 'cookbook'? 
+      
+      {option === 'cookbook'&&
       <CookbookContentBox
         title="My Cookbooks"
         cookbook={cookbook}
@@ -41,10 +46,13 @@ const Home = props => {
         isSearch={isSearch}
         key={uuid() + ' home'}
       />
-      :
+      }
+
+      {option === 'recipe'&& 
       <ContentBox
-        title="My Recipes"
-        recipe={recipe}
+      title="My Recipes"
+      recipes={recipe.recipes}
+        isLoading = {recipe.loading}
         search={search}
         text={true}
         showAll={true}
@@ -53,6 +61,24 @@ const Home = props => {
         key={uuid() + ' home'}
       />
       }
+
+{option === 'cookbookRecipes'&& 
+      <ContentBox
+      
+        title={individualCookbook.individualCookbook.cookbookTitle}
+        recipes={individualCookbook.individualCookbook.savedRecipes}
+        isLoading = {recipe.loading}
+        search={search}
+        text={true}
+        showAll={true}
+        {...props}
+        isSearch={isSearch}
+        key={uuid() + ' home'}
+      />
+      }
+
+
+      
 
       
 
@@ -73,7 +99,9 @@ Home.propTypes = {
 const mapStateToProps = state => ({
   auth: state.auth,
   recipe: state.recipe,
-  search: state.search
+  search: state.search,
+  cookbook: state.cookbook,
+  individualCookbook: state.individualCookbook
   // profile: state.profile
 });
 

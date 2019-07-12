@@ -5,9 +5,9 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import "../Layout/contentBox.css";
 import PageNavigation from "../Layout/pageNavigation";
-// import CookbookCard from "./cookbookCard";
+import CookbookCard from "./cookbookCard";
 import {getCookbooks} from '../../actions/cookbook';
-// import CreateNewCookbook from './createNewCookBook'
+import CreateCookbook from './createCookbook'
 
 const CookbookContent = props => {
   const {
@@ -16,7 +16,7 @@ const CookbookContent = props => {
     isSearch,
     search,    
     cookbook,
-    getCookbooks
+    
   } = props;
 
   const { cookbooks } = cookbook;
@@ -67,7 +67,7 @@ const CookbookContent = props => {
       return (
       <>
       <CookbookCard c={c} i={i} key={uuid()}/>
-      <CreateNewCookbook/>
+      <CreateCookbook/>
       
       
       </>)
@@ -124,7 +124,7 @@ const CookbookContent = props => {
         <section className="contentBoxCard">
           {cookbookData}
 
-          {totalItems === 0 && <CreateNewCookbook/>}
+          {totalItems === 0 && <CreateCookbook/>}
 
          
 
