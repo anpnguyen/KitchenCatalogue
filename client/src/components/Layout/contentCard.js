@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import "./contentCard.css";
 
 const ContentCard = props => {
-  const { text, clearRecipe } = props;
+  const { text, clearRecipe} = props;
   const { title, imageUrl, _id, servings, time } = props.recipe;
 
   const handleClicker = () => {

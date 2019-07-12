@@ -114,13 +114,14 @@ const ContentBox = props => {
 
         <section className="contentBoxCard">
           {mappedData}
-          {recipes.length === 0 && (
+          {recipes.length === 0  && (
             
             <ContentCard
             {...props}
             titleText="Create New Recipe"
             onClick={handleRedirect}
             key={uuid() + "create"}
+            individualRecipe=''
           />
             
           )}
@@ -145,8 +146,8 @@ ContentBox.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  recipe: state.recipe,
-  search: state.search
+  // recipe: state.recipe,
+  // search: state.search
 });
 
 export default connect(

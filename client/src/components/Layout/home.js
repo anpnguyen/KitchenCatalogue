@@ -8,11 +8,10 @@ import { getRecipes } from "../../actions/recipe";
 import { getCookbooks } from "../../actions/cookbook";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-// import { faUserInjured } from "@fortawesome/free-solid-svg-icons";
 import uuid from 'uuid/v4'
 
 const Home = props => {
-  const { getRecipes, getCookbooks } = props;
+  const { getRecipes, getCookbooks, recipe, search} = props;
 
   useEffect(() => {
     getRecipes();
@@ -32,6 +31,8 @@ const Home = props => {
 
       <ContentBox
         title="My Recipes"
+        recipe={recipe}
+        search={search}
         text={true}
         showAll={true}
         {...props}
@@ -55,7 +56,8 @@ Home.propTypes = {
 // this is the state that the current component has available to it
 const mapStateToProps = state => ({
   auth: state.auth,
-  recipe: state.recipe
+  recipe: state.recipe,
+  search: state.search
   // profile: state.profile
 });
 
