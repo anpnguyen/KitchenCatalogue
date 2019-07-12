@@ -11,7 +11,7 @@ import { connect } from "react-redux";
 import uuid from 'uuid/v4'
 
 const Home = props => {
-  const { getRecipes, getCookbooks, recipe, search} = props;
+  const { getRecipes, getCookbooks, search, option, recipe} = props;
 
   useEffect(() => {
     getRecipes();
@@ -29,6 +29,18 @@ const Home = props => {
       <SearchBar setIsSearch={setIsSearch} {...props} />
       <Alert />
 
+      {option === 'cookbook'? 
+      <ContentBox
+        title="My Cookbooks"
+        recipe={recipe}
+        search={search}
+        text={true}
+        showAll={true}
+        {...props}
+        isSearch={isSearch}
+        key={uuid() + ' home'}
+      />
+      :
       <ContentBox
         title="My Recipes"
         recipe={recipe}
@@ -39,6 +51,9 @@ const Home = props => {
         isSearch={isSearch}
         key={uuid() + ' home'}
       />
+      }
+
+      
 
       <Footer />
     </Fragment>

@@ -31,7 +31,11 @@ const App = () => {
             <Route exact path="/" render={LoginContainer} />
             <Route exact path="/login" render={LoginContainer} />
 
-            <PrivateRoute exact path="/recipe" component={IndexContainer} />
+            <PrivateRoute 
+              exact 
+              path="/recipe" 
+              component={IndexContainer} 
+            />
 
             <PrivateRoute
               exact
@@ -57,6 +61,13 @@ const App = () => {
               path="/recipe/:recipe_id/edit"
               component={EditIndividualRecipe}
               option='edit'
+            />
+
+            <PrivateRoute 
+              exact 
+              path="/cookbook" 
+              component={IndexContainer} 
+              option = 'cookbook'
             />
 
 
