@@ -4,6 +4,7 @@ import SearchBar from "./searchBar";
 import ContentBox from "./contentBox";
 import Footer from "./footer";
 import Alert from "./alert";
+import CookbookContentBox from '../cookbook/cookBookContent'
 import { getRecipes } from "../../actions/recipe";
 import { getCookbooks } from "../../actions/cookbook";
 import PropTypes from "prop-types";
@@ -11,7 +12,7 @@ import { connect } from "react-redux";
 import uuid from 'uuid/v4'
 
 const Home = props => {
-  const { getRecipes, getCookbooks, search, option, recipe} = props;
+  const { getRecipes, getCookbooks, search, option, recipe, cookbook} = props;
 
   useEffect(() => {
     getRecipes();
@@ -30,9 +31,9 @@ const Home = props => {
       <Alert />
 
       {option === 'cookbook'? 
-      <ContentBox
+      <CookbookContentBox
         title="My Cookbooks"
-        recipe={recipe}
+        cookbook={cookbook}
         search={search}
         text={true}
         showAll={true}
