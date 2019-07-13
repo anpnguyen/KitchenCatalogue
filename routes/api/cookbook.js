@@ -35,8 +35,7 @@ router.post(
       await cookbook.save();
       res.json(cookbook);
     } catch (err) {
-      console.log(typeof err.code);
-      console.error(err.message);
+            console.error(err.message);
       if (err.code === 11000) {
         res.json({ error: "please choose a unique name" });
       } else {
@@ -49,7 +48,7 @@ router.post(
 // *** get all cookbooks *** working
 router.get("/", authMiddleware, async (req, res) => {
   try {
-    console.log(req.user.id);
+    
     const cookbooks = await Cookbook.find({ user: req.user.id });
     res.json(cookbooks);
   } catch (err) {
@@ -61,7 +60,7 @@ router.get("/", authMiddleware, async (req, res) => {
 // ** get an individual cookbook *** working
 router.get("/:cookbook_id", authMiddleware, async (req, res) => {
   try {
-    // console.log(req.params.cookbook_id)
+    
     const cookbook = await Cookbook.findOne({
       _id: req.params.cookbook_id
     }).populate("savedRecipes", ["title", "imageUrl"]);
@@ -111,7 +110,7 @@ router.put(
       await cookbook.save();
       res.json(cookbook);
     } catch (err) {
-      console.log(typeof err.code);
+      
       console.error(err.message);
       if (err.code === 11000) {
         res.json({ error: "please choose a unique name" });
@@ -139,16 +138,11 @@ router.delete("/:cookbook_id", authMiddleware, async (req, res) => {
 // this will update multiple cookbooks
 router.put(
   "/",
-  
-    authMiddleware
-   
+  authMiddleware
   ,
+  async (req, res) => { 
 
-  async (req, res) => {
-    
-
-    // const { data } = req.body;
-    const {cookbookIds, recipeId} = req.body
+      const {cookbookIds, recipeId} = req.body
 
     try{
       cookbook = await Cookbook.updateMany(
@@ -156,12 +150,10 @@ router.put(
         { $push: { savedRecipes : recipeId} } 
      )
       res.json({ msg: "Successfully added to cookbook" });
-    }
-
-   
+    }   
     catch (err) {
-      console.log(err);
-      // console.error(err.message);
+      
+      
       if (err.code === 11000) {
         res.json({ error: "please choose a unique name" });
       } else {
@@ -170,6 +162,41 @@ router.put(
     }
   }
 );
+
+// this fire when a recipe gets delete, it will remove this entry from all coook books
+
+
+router.put(
+  "/deleteRecipe/deleteRecipe",  
+    authMiddleware   
+  ,
+
+  async  (req, res) => {    
+
+    const {recipeToDelete} = req.body     
+      
+      console.log(recipeToDelete) 
+
+    try{
+      cookbook = await Cookbook.updateMany(
+        { $pull: { savedRecipes : {$in: recipeToDelete} } }
+        
+     )      
+
+     res.status(200)
+
+  }catch (err) {
+      
+      console.log(err)
+    if (err.code === 11000) {
+      res.json({ error: "please choose a unique name" });
+    } else {
+      res.status(500).send("Server Error - cannot update cookbook");
+    }
+  }
+ }
+);
+
 
 
 module.exports = router;

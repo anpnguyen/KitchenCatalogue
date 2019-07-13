@@ -147,7 +147,16 @@ export const editRecipePut = (
 
 export const deleteRecipe = (history, recipeId) => async dispatch => {
   try {
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    };
+
+    let data = {recipeToDelete: recipeId}
     await axios.delete(`/api/recipe/${recipeId}`);
+    await axios.put("/api/cookbook/deleteRecipe/deleteRecipe", data, config)
 
     dispatch({
       type: DELETE_RECIPE

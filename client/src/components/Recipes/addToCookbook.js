@@ -31,8 +31,9 @@ function AddToCookbook(props) {
 
     // sends cookbookIds and recipeId
 
-    console.log({cookbookIds:cookbookIds, recipeId:recipeId})
-    // addRecipeToCookbook({cookbookIds:{cookbookIds}, recipeId:{recipeId}})
+    let data = {cookbookIds:cookbookIds, recipeId:recipeId}
+    addRecipeToCookbook(data)
+    setIsFavourite(false)
 
   };
 

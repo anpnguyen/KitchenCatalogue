@@ -1,5 +1,5 @@
 import axios from "axios";
-// import { setAlert } from "../actions/alert";
+import { setAlert } from "../actions/alert";
 
 import {
     GET_COOKBOOKS,
@@ -79,6 +79,7 @@ export const getCookbookById = (cookbook_id)  => async dispatch => {
 export const addRecipeToCookbook = (data)  => async dispatch => {
   try {
     
+    
     const config = {
       headers: {
         "Content-Type": "application/json"
@@ -86,12 +87,9 @@ export const addRecipeToCookbook = (data)  => async dispatch => {
     };
 
     const res = await axios.put(`/api/cookbook/`, data, config);
-    
-    dispatch({
-      type: UPDATE_COOKBOOKS,
-      payload: res.data
-    });
+    // getCookbooks()
 
+    dispatch(setAlert("Recipe Sucessfully Added", "RecipeEditSuccess"));
 
   } catch (err) {
     dispatch({
