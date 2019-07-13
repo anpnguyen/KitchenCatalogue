@@ -8,6 +8,7 @@ import PageNavigation from "../Layout/pageNavigation";
 import CookbookCard from "./cookbookCard";
 import {getCookbooks} from '../../actions/cookbook';
 import CreateCookbook from './createCookbook'
+import CreateCookbookModal from "./createCookbookModal";
 
 const CookbookContent = props => {
   const {
@@ -28,6 +29,8 @@ const CookbookContent = props => {
   });
   const totalItems = cookbooks.length;
   const totalPages = Math.floor(cookbooks.length / pageLimit) + 1;
+
+  const [createCookbookModal, setCreateCookbookModal] = useState(false)
 
   useEffect(() => {
     setNavigation({ start: 0, end: pageLimit, current: 1 });
@@ -67,7 +70,9 @@ const CookbookContent = props => {
       return (
       <>
       <CookbookCard c={c} i={i} key={uuid()}/>
-      <CreateCookbook/>
+      <CreateCookbook
+        setCreateCookbookModal = {setCreateCookbookModal}
+      />
       
       
       </>)
@@ -86,7 +91,14 @@ const CookbookContent = props => {
   return cookbook.loading ? (
     <Spinner />
   ) : (
+
+
     <div className="contentBox ">
+      {createCookbookModal &&
+        <CreateCookbookModal
+        setCreateCookbookModal = {setCreateCookbookModal}
+        />
+      }
       <div className="contentBoxContent">
         {showAll && (
           <>
@@ -124,7 +136,9 @@ const CookbookContent = props => {
         <section className="contentBoxCard">
           {cookbookData}
 
-          {totalItems === 0 && <CreateCookbook/>}
+          {totalItems === 0 &&  <CreateCookbook
+        setCreateCookbookModal = {setCreateCookbookModal}
+      />}
 
          
 

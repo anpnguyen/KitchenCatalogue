@@ -99,6 +99,33 @@ export const addRecipeToCookbook = (data)  => async dispatch => {
   }
 };
 
+// create new cookboko
+
+// const createNewCookbook = (cookbookName)=>{
+//   try {
+    
+    
+//     const config = {
+//       headers: {
+//         "Content-Type": "application/json"
+//       }
+//     };
+
+//     const res = await axios.post(`/api/cookbook/`, cookbookName, config);
+//     // getCookbooks()
+
+//     dispatch(setAlert("Recipe Sucessfully Added", "RecipeEditSuccess"));
+
+//   } catch (err) {
+//     dispatch({
+//       type: GET_COOKBOOKS_ERROR,
+//       payload: { msg: "server error from get updateCookbooks", status: "server error" }
+//     });
+//   }
+// };
+
+
+
 
 
    

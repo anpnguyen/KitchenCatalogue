@@ -1,0 +1,21 @@
+.createCookBookModal{
+    position: absolute;
+    top: 100px;
+    margin:auto;
+    left:0;
+    right:0;
+    height:400px;
+    width:400px;
+    background:white;
+    border-radius: 20px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid black
+}
+
+.createCookBookModal h1{
+    width:80%
+}
+
