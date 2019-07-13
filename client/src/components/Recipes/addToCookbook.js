@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import "../Recipes/individualRecipe.css";
 import AddToCookbookSelect from "./addToCookbookSelect";
+import {addRecipeToCookbook} from '../../actions/cookbook'
 
 function AddToCookbook(props) {
-  const { setIsFavourite,  recipeId , cookbook} = props;
+  const { setIsFavourite,  recipeId , cookbook, addRecipeToCookbook} = props;
   
   const [size, setSize] = useState(1);
 
@@ -17,30 +18,22 @@ function AddToCookbook(props) {
   };
 
   const handleAddToCookbook = () => {
+    // formats the state
     let selectedCookbooks = addedCookbooks.map( addedCookbook => (addedCookbook.value))
     console.log(selectedCookbooks)
 
-    let toAdd = selectedCookbooks.filter(cookbook => cookbook.savedRecipes.includes(recipeId) === false)
+    // selects cookbooks that dont have this recipe
+    let cookbooksToSend = selectedCookbooks.filter(cookbook => cookbook.savedRecipes.includes(recipeId) === false)
 
-    console.log(toAdd)
+    // formats to only have cookbookIds
+    let cookbookIds = cookbooksToSend.map( cookbookId => cookbookId._id  )
+    console.log(cookbookIds)
 
+    // sends cookbookIds and recipeId
 
+    console.log({cookbookIds:cookbookIds, recipeId:recipeId})
+    // addRecipeToCookbook({cookbookIds:{cookbookIds}, recipeId:{recipeId}})
 
-    // recipe ID
-    // cookbook id
-    // take cookbook ID, loook in saved recipes, if present, do nothin - 
-    // if not present, add to mongo pUT requet
-
-    // let positiveCookbooks = cookbook.cookbooks.filter( individualCookbook => individualCookbook.savedRecipes.includes(recipeId) )
-    // this should print out all cookbook that have this 
-    // console.log(positiveCookbooks)
-
-
-
-    // 
-    // client side seach
-    
-    // add recipe to cookbooks
   };
 
   
@@ -71,5 +64,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  {}
+  {addRecipeToCookbook}
 )(AddToCookbook);

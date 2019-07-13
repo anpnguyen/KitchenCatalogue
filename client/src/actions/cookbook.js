@@ -5,7 +5,8 @@ import {
     GET_COOKBOOKS,
     GET_COOKBOOKS_ERROR,
     LOAD_COOKBOOK_RECIPES,
-    GET_COOKBOOK
+    GET_COOKBOOK,
+    UPDATE_COOKBOOKS
      } from "../actions/types";
 
 // GET the all the users recipes
@@ -72,3 +73,34 @@ export const getCookbookById = (cookbook_id)  => async dispatch => {
     });
   }
 };
+
+// add recipe/ recipes to cookbook
+
+export const addRecipeToCookbook = (data)  => async dispatch => {
+  try {
+    
+    const config = {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    };
+
+    const res = await axios.put(`/api/cookbook/`, data, config);
+    
+    dispatch({
+      type: UPDATE_COOKBOOKS,
+      payload: res.data
+    });
+
+
+  } catch (err) {
+    dispatch({
+      type: GET_COOKBOOKS_ERROR,
+      payload: { msg: "server error from get updateCookbooks", status: "server error" }
+    });
+  }
+};
+
+
+
+   

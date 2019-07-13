@@ -134,4 +134,42 @@ router.delete("/:cookbook_id", authMiddleware, async (req, res) => {
   }
 });
 
+
+
+// this will update multiple cookbooks
+router.put(
+  "/",
+  
+    authMiddleware
+   
+  ,
+
+  async (req, res) => {
+    
+
+    // const { data } = req.body;
+    const {cookbookIds, recipeId} = req.body
+
+    try{
+      cookbook = await Cookbook.updateMany(
+        { _id: { $in: cookbookIds } },
+        { $push: { savedRecipes : recipeId} } 
+     )
+      res.json({ msg: "Successfully added to cookbook" });
+    }
+
+   
+    catch (err) {
+      console.log(err);
+      // console.error(err.message);
+      if (err.code === 11000) {
+        res.json({ error: "please choose a unique name" });
+      } else {
+        res.status(500).send("Server Error - cannot update cookbook");
+      }
+    }
+  }
+);
+
+
 module.exports = router;
