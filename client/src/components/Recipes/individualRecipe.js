@@ -76,6 +76,7 @@ const IndividualRecipe = props => {
           {isFavourite && 
           <AddToCookbook 
             setIsFavourite = {setIsFavourite}
+            recipeId = {match.params.recipe_id}
             
           />}
 

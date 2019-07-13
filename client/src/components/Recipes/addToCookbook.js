@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import "../Recipes/individualRecipe.css";
+import AddToCookbookSelect from "./addToCookbookSelect";
 
 function AddToCookbook(props) {
-  const { setIsFavourite , cookbook } = props;
+  const { setIsFavourite, cookbook, recipeId } = props;
+  const { cookbooks } = cookbook;
   const [size, setSize] = useState(1);
-  
+
+  const [cookbooksIn, setCookbooksIn] = useState();
+
   const handleIsFavourite = () => {
     setIsFavourite(false);
   };
@@ -13,20 +17,18 @@ function AddToCookbook(props) {
   const handleAddToCookbook = () => {
     alert("add to cookbook");
   };
+
   useEffect(() => {
-    if (cookbook.cookbooks.length < 5) setSize(cookbook.cookbooks.length);
-  }, []);
-  const options = cookbook.cookbooks.map(cookbookOption => {
-    return (
-      <option value={cookbookOption.cookbookTitle}>
-        {cookbookOption.cookbookTitle}
-      </option>
+    const result = cookbooks.filter(individualCookbook =>
+      individualCookbook.savedRecipes.includes(recipeId)
     );
-  });
+    setCookbooksIn(result);
+  }, []);
+
   return (
     <div className="addFavourite">
       <h2>Which cook book do you want to add this to?</h2>
-      
+      <AddToCookbookSelect cookbooksIn={cookbooksIn} />
 
       <div className={`${size === 5 ? "hideButtons" : ""} favouriteButtons`}>
         <button className="blueButton" onClick={handleAddToCookbook}>
