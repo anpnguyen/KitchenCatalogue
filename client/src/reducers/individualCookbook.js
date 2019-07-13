@@ -1,7 +1,8 @@
 import {
     
-    LOAD_COOKBOOK_RECIPES, GET_COOKBOOK
+    LOAD_COOKBOOK_RECIPES, GET_COOKBOOK, UPDATE_COOKBOOK
      } from "../actions/types";
+
      
      // import {Redirect} from 'react-router-dom'
      
@@ -29,7 +30,16 @@ import {
              individualCookbook: payload,
              loading: false
            };
-     
+
+
+           case UPDATE_COOKBOOK:
+          return {
+            ...state,
+            individualCookbook: {...state.individualCookbook, savedRecipes: state.individualCookbook.savedRecipes.filter(recipe => recipe._id !== payload.recipeDeleted)},
+            
+            loading: false
+          };
+
      
      
          default:

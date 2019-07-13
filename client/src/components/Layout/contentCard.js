@@ -4,11 +4,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faUtensils } from "@fortawesome/free-solid-svg-icons";
 import { withRouter } from "react-router-dom";
 import { clearRecipe } from "../../actions/recipe";
+import { removeRecipeFromCookbook } from "../../actions/cookbook";
 import { connect } from "react-redux";
 import "./contentCard.css";
 
 const ContentCard = props => {
-  const { text, clearRecipe} = props;
+  const { text, clearRecipe, option, match,removeRecipeFromCookbook} = props;
   const { title, imageUrl, _id, servings, time } = props.recipe;
 
   const handleClicker = () => {
@@ -20,9 +21,24 @@ const ContentCard = props => {
     }
   };
 
+  const removeFromCookbook = (e)=>{
+    e.stopPropagation();
+    // pass thorugh cookbook Id 
+    let data = {cookbookId : match.params.cookbook_id, recipeId : _id}
+    removeRecipeFromCookbook(data)
+  }
+
+
   return (
     <article className="contentCard " onClick={handleClicker}>
-      {/* <div> */}
+
+        {option === 'cookbookRecipes' && 
+        <div className='removeFromCookbook' onClick={removeFromCookbook}>
+            Remove from Cookbook
+          </div>
+      
+        }
+
         <div className="ContentCardImage">
           {!imageUrl && props.titleText && (
             <div className="fillerImgCreate"> + </div>
@@ -66,6 +82,6 @@ ContentCard.propTypes = {
 export default withRouter(
   connect(
     null,
-    { clearRecipe }
+    { clearRecipe, removeRecipeFromCookbook }
   )(ContentCard)
 );

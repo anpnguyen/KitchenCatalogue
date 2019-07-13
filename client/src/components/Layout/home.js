@@ -87,6 +87,7 @@ const Home = props => {
         {...props}
         isSearch={isSearch}
         key={uuid() + ' home'}
+        option={option}
       />
       }
 

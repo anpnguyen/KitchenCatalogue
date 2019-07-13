@@ -82,43 +82,35 @@ router.get("/:cookbook_id", authMiddleware, async (req, res) => {
   }
 });
 
+// Edit a Cookbook
+
+
 router.put(
   "/:cookbook_id",
-  [
-    authMiddleware,
-    [
-      check("cookbookTitle", "A title for your cookbook is required")
-        .not()
-        .isEmpty()
-    ]
-  ],
+  
+    authMiddleware
+    
+  ,
 
   async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
 
-    const { cookbookTitle, cookbookImage, savedRecipes } = req.body;
+    const {cookbookId, recipeId} = req.body
 
-    const cookbookFields = {};
-    cookbookFields.user = req.user.id;
-    if (cookbookTitle) cookbookFields.cookbookTitle = cookbookTitle;
-    if (cookbookImage) cookbookFields.cookbookImage = cookbookImage;
-    if (savedRecipes) cookbookFields.savedRecipes = savedRecipes;
+    
+    // const { cookbookTitle, cookbookImage, savedRecipes } = req.body;
+
+    
 
     try {
-      cookbook = new Cookbook(cookbookFields);
-      await cookbook.save();
-      res.json(cookbook);
+      let cookbook = await Cookbook.findOneAndUpdate({_id:cookbookId}, {$pull : {savedRecipes: recipeId}})
+      
+      res.json({recipeDeleted: recipeId});
     } catch (err) {
       
       console.error(err.message);
-      if (err.code === 11000) {
-        res.json({ error: "please choose a unique name" });
-      } else {
-        res.status(500).send("Server Error - cannot create a new cookbook");
-      }
+      
+        res.status(500).send("Server Error - cannot remove recipe from cookbook");
+      
     }
   }
 );

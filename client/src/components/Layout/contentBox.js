@@ -8,8 +8,8 @@ import "./contentBox.css";
 import PageNavigation from "./pageNavigation";
 
 const ContentBox = props => {
-  const { title, text, showAll, history, isSearch, searchData, recipes, isLoading } = props;
-  // const { recipes, loading } = recipe;
+  const { title, text, showAll, history, isSearch, searchData, recipes, isLoading, option } = props;
+  
   const [pageLimit, setPageLimit] = useState(12);
   const [navigation, setNavigation] = useState({
     start: 0,
@@ -43,6 +43,7 @@ const ContentBox = props => {
           showAll={showAll}
           text={text}
           key={uuid() + 'first'}
+          option={option}
         />
       );
     } else if (
@@ -59,6 +60,7 @@ const ContentBox = props => {
             showAll={showAll}
             text={text}
             key={uuid() + 'second'}
+            option={option}
           />
 
           <ContentCard
@@ -66,6 +68,7 @@ const ContentBox = props => {
             titleText="Create New Recipe"
             onClick={handleRedirect}
             key={uuid() + "create"}
+            option={option}
           />
 
         </Fragment>

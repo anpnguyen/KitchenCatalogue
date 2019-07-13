@@ -8,7 +8,8 @@ import {
     GET_COOKBOOK,
     UPDATE_COOKBOOKS,
     CREATE_COOKBOOK,
-    DELETE_COOKBOOK
+    DELETE_COOKBOOK,
+    UPDATE_COOKBOOK
      } from "../actions/types";
 
 // GET the all the users recipes
@@ -101,12 +102,11 @@ export const addRecipeToCookbook = (data)  => async dispatch => {
   }
 };
 
-// create new cookboko
+// create new cookbook
 
 export const createNewCookbook = (cookbookTitle)  => async dispatch => {
   try {
-    
-    
+       
     const config = {
       headers: {
         "Content-Type": "application/json"
@@ -120,7 +120,6 @@ export const createNewCookbook = (cookbookTitle)  => async dispatch => {
       payload: res.data
     });
     
-
     dispatch(setAlert("Recipe Sucessfully Added", "RecipeEditSuccess"));
 
   } catch (err) {
@@ -151,6 +150,41 @@ export const deleteCookbook = (cookbook_id)  => async dispatch => {
     dispatch({
       type: GET_COOKBOOKS_ERROR,
       payload: { msg: "server error from get createCookbook", status: "server error" }
+    });
+  }
+};
+
+
+export const removeRecipeFromCookbook = (data)  => async dispatch => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
+
+
+  try {
+        
+    console.log(data.cookbook_Id)
+    console.log(data)
+    const res = await axios.put(`/api/cookbook/${data.cookbook_Id}`, data, config);
+
+    dispatch({
+      type: UPDATE_COOKBOOK,
+      payload: res.data
+    });
+
+    console.log(res.data)
+
+    
+    
+
+    dispatch(setAlert("recipe removed", "RecipeEditSuccess"));
+
+  } catch (err) {
+    dispatch({
+      type: GET_COOKBOOKS_ERROR,
+      payload: { msg: "server error from remove recipe from cookbook", status: "server error" }
     });
   }
 };

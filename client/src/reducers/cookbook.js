@@ -3,7 +3,8 @@ import {
  GET_COOKBOOKS_ERROR,
  UPDATE_COOKBOOKS,
  CREATE_COOKBOOK,
- DELETE_COOKBOOK
+ DELETE_COOKBOOK,
+ UPDATE_COOKBOOK
  
   } from "../actions/types";
   
@@ -37,6 +38,14 @@ import {
           return {
             ...state,
             cookbooks: [...state.cookbooks, payload],
+            
+            loading: false
+          };
+
+          case UPDATE_COOKBOOK:
+          return {
+            ...state,
+            // cookbooks: [...state.cookbooks, payload],
             
             loading: false
           };
