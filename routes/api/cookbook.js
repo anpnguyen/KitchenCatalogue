@@ -32,7 +32,7 @@ router.post(
 
     try {
       cookbook = new Cookbook(cookbookFields);
-      await cookbook.save()
+      await cookbook.save();
       console.log(cookbook);
       res.json(cookbook);
     } catch (err) {
@@ -126,9 +126,12 @@ router.put(
 //  **** delete a cook book *** working
 
 router.delete("/:cookbook_id", authMiddleware, async (req, res) => {
+
+  console.log(req.params.cookbook_id)
+
   try {
-    await Recipe.deleteOne({ _id: req.params.cookbook_id });
-    res.json({ msg: "Recipe  deleted" });
+    await Cookbook.deleteOne({ _id: req.params.cookbook_id });
+    res.json({ deletedCookbookId: req.params.cookbook_id });
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error - cannot delete recipe");

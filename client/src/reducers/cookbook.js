@@ -2,7 +2,8 @@ import {
  GET_COOKBOOKS,
  GET_COOKBOOKS_ERROR,
  UPDATE_COOKBOOKS,
- CREATE_COOKBOOK
+ CREATE_COOKBOOK,
+ DELETE_COOKBOOK
  
   } from "../actions/types";
   
@@ -39,6 +40,14 @@ import {
             
             loading: false
           };
+
+          case DELETE_COOKBOOK:
+            return {
+              ...state,
+              cookbooks: [...state.cookbooks.filter(cookbook => cookbook._id !== payload)],
+              
+              loading: false
+            };
   
   
       default:

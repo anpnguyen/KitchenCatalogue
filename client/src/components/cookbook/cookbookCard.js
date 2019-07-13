@@ -1,12 +1,12 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { loadCookbookRecipes } from "../../actions/cookbook";
+import { loadCookbookRecipes, deleteCookbook } from "../../actions/cookbook";
 
 import "../Layout/contentCard.css";
 
 function CookbookCard(props) {
-  const { loadCookbookRecipes, history, cookbook, recipe } = props;
+  const { loadCookbookRecipes, history, cookbook, recipe, deleteCookbook } = props;
   const { cookbookTitle, cookbookImage, _id } = props.c;
   // const { clearCookbook, getCookbookById ,history, title} = props
 
@@ -29,7 +29,11 @@ function CookbookCard(props) {
   };
   return (
     <article className="contentCard " onClick={e => handleCookbookClicker(e)}>
-      {/* <div> */}
+      <div className='removeFromCookbook' onClick={(e)=> {
+        e.stopPropagation();
+        deleteCookbook(_id)}}>
+        X
+      </div>
       <div className="ContentCardImage">
         {!cookbookImage ? (
           <div className="fillerImg"> </div>
@@ -57,6 +61,6 @@ const mapStateToProps = state => ({
 export default withRouter(
   connect(
     mapStateToProps,
-    { loadCookbookRecipes }
+    { loadCookbookRecipes, deleteCookbook }
   )(CookbookCard)
 );

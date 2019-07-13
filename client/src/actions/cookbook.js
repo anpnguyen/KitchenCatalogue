@@ -7,7 +7,8 @@ import {
     LOAD_COOKBOOK_RECIPES,
     GET_COOKBOOK,
     UPDATE_COOKBOOKS,
-    CREATE_COOKBOOK
+    CREATE_COOKBOOK,
+    DELETE_COOKBOOK
      } from "../actions/types";
 
 // GET the all the users recipes
@@ -121,6 +122,30 @@ export const createNewCookbook = (cookbookTitle)  => async dispatch => {
     
 
     dispatch(setAlert("Recipe Sucessfully Added", "RecipeEditSuccess"));
+
+  } catch (err) {
+    dispatch({
+      type: GET_COOKBOOKS_ERROR,
+      payload: { msg: "server error from get createCookbook", status: "server error" }
+    });
+  }
+};
+
+export const deleteCookbook = (cookbook_id)  => async dispatch => {
+  try {
+    
+    
+    const res = await axios.delete(`/api/cookbook/${cookbook_id}`);
+
+    dispatch({
+      type: DELETE_COOKBOOK,
+      payload: res.data.deletedCookbookId
+    });
+
+    
+    
+
+    dispatch(setAlert("Cookbook Deleted", "RecipeEditSuccess"));
 
   } catch (err) {
     dispatch({
