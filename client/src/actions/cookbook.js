@@ -6,7 +6,8 @@ import {
     GET_COOKBOOKS_ERROR,
     LOAD_COOKBOOK_RECIPES,
     GET_COOKBOOK,
-    UPDATE_COOKBOOKS
+    UPDATE_COOKBOOKS,
+    CREATE_COOKBOOK
      } from "../actions/types";
 
 // GET the all the users recipes
@@ -101,28 +102,33 @@ export const addRecipeToCookbook = (data)  => async dispatch => {
 
 // create new cookboko
 
-// const createNewCookbook = (cookbookName)=>{
-//   try {
+export const createNewCookbook = (cookbookTitle)  => async dispatch => {
+  try {
     
     
-//     const config = {
-//       headers: {
-//         "Content-Type": "application/json"
-//       }
-//     };
+    const config = {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    };
 
-//     const res = await axios.post(`/api/cookbook/`, cookbookName, config);
-//     // getCookbooks()
+    const res = await axios.post(`/api/cookbook/`, cookbookTitle, config);
 
-//     dispatch(setAlert("Recipe Sucessfully Added", "RecipeEditSuccess"));
+    dispatch({
+      type: CREATE_COOKBOOK,
+      payload: res.data
+    });
+    
 
-//   } catch (err) {
-//     dispatch({
-//       type: GET_COOKBOOKS_ERROR,
-//       payload: { msg: "server error from get updateCookbooks", status: "server error" }
-//     });
-//   }
-// };
+    dispatch(setAlert("Recipe Sucessfully Added", "RecipeEditSuccess"));
+
+  } catch (err) {
+    dispatch({
+      type: GET_COOKBOOKS_ERROR,
+      payload: { msg: "server error from get createCookbook", status: "server error" }
+    });
+  }
+};
 
 
 

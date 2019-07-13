@@ -32,9 +32,11 @@ router.post(
 
     try {
       cookbook = new Cookbook(cookbookFields);
-      await cookbook.save();
+      await cookbook.save()
+      console.log(cookbook);
       res.json(cookbook);
     } catch (err) {
+      console.log(err)
             console.error(err.message);
       if (err.code === 11000) {
         res.json({ error: "please choose a unique name" });

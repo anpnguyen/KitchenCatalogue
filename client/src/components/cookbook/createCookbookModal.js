@@ -1,15 +1,18 @@
 import React, {useState} from 'react'
+import {connect} from 'react-redux'
+import {createNewCookbook} from '../../actions/cookbook'
 import './createCookbookModal.css'
 
 function CreateCookbookModal(props) {
 
-    const {setCreateCookbookModal} = props    
+    const {setCreateCookbookModal, createNewCookbook} = props    
 
-    const [formData, setFormData] = useState({cookbookName:""})
+    const [formData, setFormData] = useState({cookbookTitle:""})
 
     const handleFormSubmit = (e)=>{
         e.preventDefault()
-        console.log(formData.cookbookName)
+        console.log(formData)
+        createNewCookbook(formData)
     }
 
     const handleFormChange = e => {
@@ -24,8 +27,8 @@ function CreateCookbookModal(props) {
                 type="text" 
                 placeholder='cookbook name' 
                 onChange={handleFormChange} 
-                name='cookbookName' 
-                value={formData.cookbookName}/>
+                name='cookbookTitle' 
+                value={formData.cookbookTitle}/>
                  <button >Create cook book</button>
         </form>
 
@@ -40,5 +43,5 @@ function CreateCookbookModal(props) {
 
 
 
-export default CreateCookbookModal
+export default connect(null, {createNewCookbook}) (CreateCookbookModal)
 

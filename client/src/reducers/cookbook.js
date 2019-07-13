@@ -1,7 +1,8 @@
 import {
  GET_COOKBOOKS,
  GET_COOKBOOKS_ERROR,
- UPDATE_COOKBOOKS
+ UPDATE_COOKBOOKS,
+ CREATE_COOKBOOK
  
   } from "../actions/types";
   
@@ -31,6 +32,13 @@ import {
           loading: false
         };
       
+        case CREATE_COOKBOOK:
+          return {
+            ...state,
+            cookbooks: [...state.cookbooks, payload],
+            
+            loading: false
+          };
   
   
       default:
