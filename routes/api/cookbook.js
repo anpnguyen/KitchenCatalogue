@@ -183,7 +183,8 @@ router.put(
         
      )      
 
-     res.status(200)
+     res.json({ msg: "Successfully added to cookbook" });
+    //  console.log('called')
 
   }catch (err) {
       
