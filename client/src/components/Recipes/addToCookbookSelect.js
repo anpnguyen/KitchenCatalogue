@@ -9,26 +9,36 @@ const animatedComponents = makeAnimated();
 
 const AddToCookbookSelect = (props)=> {
 
-    const {cookbook, match} = props
-    const [defaultCookbooks, setDefaultCookbooks] = useState();
+    const {cookbook, setAddedCookbooks} = props
+    
     const [selectOptions, setSelectOptions] = useState();
+    
+
+    const handleSelectChange = (e)=>{
+      
+      
+      setAddedCookbooks(e)
+      
+     
+    }
+
+    
 
     useEffect(() => {
-      const result = cookbook.cookbooks.filter(individualCookbook =>
-        individualCookbook.savedRecipes.includes(match.params.recipe_id)
-      );
+      // const result = cookbook.cookbooks.filter(individualCookbook =>
+      //   individualCookbook.savedRecipes.includes(match.params.recipe_id)
+      // );
       
-      const defaultOptions = result.map(defaultCookbook => ({value: defaultCookbook._id, label:defaultCookbook.cookbookTitle })) 
+      // const defaultOptions = result.map(defaultCookbook => ({value: defaultCookbook._id, label:defaultCookbook.cookbookTitle })) 
       // console.log(defaultOptions)
-      setDefaultCookbooks(defaultOptions)
+      // setDefaultCookbooks(defaultOptions)
 
 
       // cookbooksIn !== undefined && console.log(cookbooksIn)
 
-      let options = cookbook.cookbooks.map(individualCookbook => ({value: individualCookbook._id, label:individualCookbook.cookbookTitle }))
-      // console.log(options)
+      let options = cookbook.cookbooks.map(individualCookbook => ({value: individualCookbook, label:individualCookbook.cookbookTitle }))
       setSelectOptions(options)
-      console.log(options)
+      // console.log(options)
      
     }, []);
 
@@ -39,23 +49,22 @@ const AddToCookbookSelect = (props)=> {
 
 
     
-let options2 = [
-    { value: 'Color', label: 'Yellow' },
-    { value: 'Fruit', label: 'Apple' },
-    { value: 'Tool', label: 'Spanner' },
-  ]
+// let options2 = [
+//     { value: 'Color', label: 'Yellow' },
+//     { value: 'Fruit', label: 'Apple' },
+//     { value: 'Tool', label: 'Spanner' },
+//   ]
   return (
 
-    selectOptions !== undefined && defaultCookbooks!== undefined &&
+    selectOptions !== undefined  &&
     <Select
-      closeMenuOnSelect={false}
+      closeMenuOnSelect={true}
       components={animatedComponents}
-      
-      // defaultValue={[options[0], options[1]]}
-      defaultValue={defaultCookbooks}
+         
       isMulti
       options={selectOptions}
-    //   onChange={()=> alert('has been changed')}
+      onChange= {e=> handleSelectChange(e)}
+  
     />
   
   )
