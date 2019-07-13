@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 import SearchBack from "../../images/searchback_crop.jpg";
 import { connect } from "react-redux";
 import { getRecipes } from "../../actions/recipe";
-import { searchRecipes } from "../../actions/search";
+import { getSearchRecipes } from "../../actions/search";
 import "./searchBar.css";
 
 const SearchBar = props => {
-  const { history, searchRecipes } = props;
+  const { history, getSearchRecipes } = props;
 
   let styles = {
     backgroundImage: `url(${SearchBack})`,
@@ -23,7 +23,7 @@ const SearchBar = props => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    formData && searchRecipes(formData, history);
+    formData && getSearchRecipes(formData, history);
   }
 
   return (
@@ -55,5 +55,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getRecipes, searchRecipes }
+  { getRecipes, getSearchRecipes }
 )(SearchBar);

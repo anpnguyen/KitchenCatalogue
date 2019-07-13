@@ -7,17 +7,24 @@ import Alert from "./alert";
 import CookbookContentBox from '../cookbook/cookBookContent'
 import { getRecipes } from "../../actions/recipe";
 import { getCookbooks, getCookbookById } from "../../actions/cookbook";
+import { getSearchRecipes } from "../../actions/search";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import uuid from 'uuid/v4'
 
 
 const Home = props => {
-  const { getRecipes, getCookbooks, search, option, recipe, cookbook, match, individualCookbook, getCookbookById} = props;
+  const { getRecipes, getCookbooks, search, option, recipe, cookbook, match, individualCookbook, getCookbookById, getSearchRecipes} = props;
 
   useEffect(() => {
     getRecipes();
     getCookbooks();
+  }, []);
+
+  useEffect(() => {
+    option === 'search' &&
+    getSearchRecipes(search.searchData);
+    console.log('calling')
   }, []);
 
 
@@ -83,7 +90,21 @@ const Home = props => {
       />
       }
 
+{option === 'search'&& !search.loading &&
+<ContentBox
 
+  title='search'
+  recipes={search.searchRecipes}
+  isLoading = {search.loading}
+  searchData = {search.searchData}
+  // search={search}
+  text={true}
+  showAll={true}
+  {...props}
+  isSearch={true}
+  key={uuid() + ' home'}
+/>
+}
       
 
       
@@ -113,5 +134,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getRecipes, getCookbooks, getCookbookById }
+  { getRecipes, getCookbooks, getCookbookById, getSearchRecipes }
 )(Home);

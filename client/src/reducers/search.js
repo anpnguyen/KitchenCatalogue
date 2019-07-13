@@ -1,7 +1,8 @@
-import { SEARCH, SEARCH_ERROR } from "../actions/types";
+import { SEARCH, SEARCH_ERROR, GET_SEARCH_RECIPES } from "../actions/types";
 
 const initialState = {
   searchData: [],
+  searchRecipes:[],
   loading: true,
   error: {}
 };
@@ -21,6 +22,13 @@ export default function(state = initialState, action) {
       return {
         ...state,
         error: payload,
+        loading: false
+      };
+
+      case GET_SEARCH_RECIPES:
+      return {
+        ...state,
+        searchRecipes: payload,
         loading: false
       };
     default:

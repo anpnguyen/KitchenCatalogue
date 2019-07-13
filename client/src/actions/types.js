@@ -23,6 +23,7 @@ export const CLEAR_RECIPE = 'CLEAR_RECIPE'
 export const CLEAR_ERROR = 'CLEAR_ERROR'
 export const SEARCH = 'SEARCH'
 export const SEARCH_ERROR = 'SEARCH_ERROR'
+export const GET_SEARCH_RECIPES = 'GET_SEARCH_RECIPES'
 
 export const GET_COOKBOOKS = 'GET_COOKBOOKS'
 export const GET_COOKBOOK = 'GET_COOKBOOK'

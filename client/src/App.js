@@ -42,7 +42,8 @@ const App = () => {
             <PrivateRoute
               exact
               path="/recipe/search"
-              component={SearchContainer}
+              component={Home}
+              option = 'search'
             />
 
             <PrivateRoute

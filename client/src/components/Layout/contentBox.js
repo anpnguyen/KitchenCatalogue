@@ -8,7 +8,7 @@ import "./contentBox.css";
 import PageNavigation from "./pageNavigation";
 
 const ContentBox = props => {
-  const { title, text, showAll, history, isSearch, search, recipes, isLoading } = props;
+  const { title, text, showAll, history, isSearch, searchData, recipes, isLoading } = props;
   // const { recipes, loading } = recipe;
   const [pageLimit, setPageLimit] = useState(12);
   const [navigation, setNavigation] = useState({
@@ -93,7 +93,7 @@ const ContentBox = props => {
             <p className="searchNumber">
               {" "}
               {totalItems} {totalItems === 1 ? "recipe" : "recipes"} found{" "}
-              {isSearch === true && ` for '${search.searchData}'`}
+              {isSearch === true && ` for '${searchData}'`}
             </p>
           </div>
           <div>
