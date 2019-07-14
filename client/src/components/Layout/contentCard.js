@@ -78,8 +78,7 @@ const ContentCard = props => {
     const handleClickOutsideSettings = e => {
       e.stopPropagation()
       let tester  = document.getElementById('tester')
-      console.log(e.target.id)
-      console.log(tester.id)
+      
       
       if (
         settingsMenuRef.current.contains(e.target) || e.target.id === tester.id
@@ -90,7 +89,7 @@ const ContentCard = props => {
       } else{
         
         
-        console.log('calling from useEffect')
+        // console.log('calling from useEffect')
         setSettingsMenu(false);
       }
       

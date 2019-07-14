@@ -100,12 +100,9 @@
   top:0;
   background:#f8f8f8;
   right:0;
-  height:40px;
-  
-  
+  height:40px;  
   width:40px;
   opacity:1;
-  /* color:rgb(184, 185, 185); */
   color:gray;
   font-size: 30px;
   font-weight: bold;
@@ -117,21 +114,17 @@
   
 }
 
-
-
 .removeFromCookbook svg{
   margin: auto auto;
   padding: 5px 5px 3px 5px
-  /* transition: color 2s ease-in-out */
+  
 }
 
 .removeFromCookbook:hover{
   color:green;
  opacity:1 !important;
- /* color: green; */
- /* transform: scale(1.1); */
  transition: color 0.2s ease-in-out;
- /* background: #f8f8f8 */
+
 }
 
 

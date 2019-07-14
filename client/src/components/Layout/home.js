@@ -21,6 +21,9 @@ const Home = props => {
     getCookbooks();
   }, []);
 
+  
+
+
   useEffect(() => {
     option === 'search' &&
     getSearchRecipes(search.searchData);

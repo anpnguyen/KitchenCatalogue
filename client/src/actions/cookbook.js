@@ -9,7 +9,8 @@ import {
     UPDATE_COOKBOOKS,
     CREATE_COOKBOOK,
     DELETE_COOKBOOK,
-    UPDATE_COOKBOOK
+    UPDATE_COOKBOOK,
+    RENAME_COOKBOOK
      } from "../actions/types";
 
 // GET the all the users recipes
@@ -162,7 +163,6 @@ export const removeRecipeFromCookbook = (data)  => async dispatch => {
     }
   };
 
-
   try {
         
     console.log(data.cookbook_Id)
@@ -189,6 +189,39 @@ export const removeRecipeFromCookbook = (data)  => async dispatch => {
   }
 };
 
+
+export const renameCookbookById = (data)  => async dispatch => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
+
+  try {
+        
+    
+    const res = await axios.put(`/api/cookbook/${data.cookbookId}`, data, config);
+    console.log(res.data)
+    dispatch({
+      type: RENAME_COOKBOOK,
+      payload: res.data
+    });
+
+    
+
+    
+    
+
+    dispatch(setAlert("cookbook Updated", "RecipeEditSuccess"));
+
+  } catch (err) {
+    console.log(err)
+    dispatch({
+      type: GET_COOKBOOKS_ERROR,
+      payload: { msg: "renameCOokbook", status: "server error" }
+    });
+  }
+};
 
 
 

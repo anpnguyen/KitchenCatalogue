@@ -1,20 +1,59 @@
-import React from "react";
+  import React, {useState} from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { loadCookbookRecipes, deleteCookbook } from "../../actions/cookbook";
+import { loadCookbookRecipes, deleteCookbook, renameCookbookById } from "../../actions/cookbook";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCog } from "@fortawesome/free-solid-svg-icons";
+import ConfirmModal from '../Layout/confirmModal'
+
 
 import "../Layout/contentCard.css";
 
 function CookbookCard(props) {
-  const { loadCookbookRecipes, history, cookbook, recipe, deleteCookbook } = props;
+  const { loadCookbookRecipes, history, cookbook, recipe, deleteCookbook, renameCookbookById, c } = props;
   const { cookbookTitle, cookbookImage, _id } = props.c;
-  // const { clearCookbook, getCookbookById ,history, title} = props
+  const [settingsMenu, setSettingsMenu] = useState(false)
+  const [deleteModal, setDeleteModal] = useState(false)
+  const [renameModal, setRenameModal] = useState(false)
+
+
+
+  const handleSettingsMenuClick = (e)=>{
+    e.stopPropagation();
+    setSettingsMenu(!settingsMenu)
+  }
+
+  const handleDeleteClick= (e)=>{
+    e.stopPropagation();
+    setDeleteModal(!deleteModal)
+  }
+
+  const handleRenameClick= (e)=>{
+    e.stopPropagation();
+    setRenameModal(!renameModal)
+  }
+
+  const handleRenameConfirm = ()=>{
+    setRenameModal(false);
+    let data = {
+      cookbookId: c._id,
+      newCookbookTitle: 'this is the new title'
+    }
+    renameCookbookById(data)
+  }
+
+
+  // make the modal,
+  // click outside listener
+
+
+
 
   const handleCookbookClicker = e => {
     e.preventDefault();
     let selectedCookbook = cookbook.cookbooks.find(o => o._id === _id);
     let expandedRecipes =
-      //     !selectedCookbook.savedRecipes  ? ['this is working'] :
+     
       selectedCookbook.savedRecipes.map(mappedRecipe =>
         recipe.recipes.find(o => o._id === mappedRecipe)
       );
@@ -24,16 +63,43 @@ function CookbookCard(props) {
     let pushedCookbook = { ...selectedCookbook, savedRecipes: expandedRecipes };
 
     loadCookbookRecipes(pushedCookbook, history);
-    // console.log(pushedCookbook)
-    // history.push(`/cookbook/${_id}`)
+
   };
   return (
+<>  
+
+{deleteModal && 
+    <ConfirmModal
+    confirmAction={()=>alert('confirm from delete')}
+    closeAction={()=>alert('close from delete')}
+    />
+      }
+
+{renameModal && 
+    <ConfirmModal
+      confirmAction={handleRenameConfirm}
+      closeAction={()=>alert('close')}
+    />
+      }
+
     <article className="contentCard " onClick={e => handleCookbookClicker(e)}>
-      <div className='removeFromCookbook' onClick={(e)=> {
-        e.stopPropagation();
-        deleteCookbook(_id)}}>
-        X
+      <div className='removeFromCookbook' onClick={handleSettingsMenuClick}>
+        {settingsMenu? 'x ' : <FontAwesomeIcon icon={faCog} />}
       </div>
+  
+     
+  
+     
+
+    {settingsMenu &&
+      <div className='settingsMenu'>
+
+          <p onClick={handleDeleteClick}>delete</p>
+          <p onClick={handleRenameClick}> rename</p>
+      </div>
+      }
+
+
       <div className="ContentCardImage">
         {!cookbookImage ? (
           <div className="fillerImg"> </div>
@@ -50,6 +116,7 @@ function CookbookCard(props) {
         <div />
       </div>
     </article>
+    </>
   );
 }
 
@@ -61,6 +128,6 @@ const mapStateToProps = state => ({
 export default withRouter(
   connect(
     mapStateToProps,
-    { loadCookbookRecipes, deleteCookbook }
+    { loadCookbookRecipes, deleteCookbook, renameCookbookById }
   )(CookbookCard)
 );
