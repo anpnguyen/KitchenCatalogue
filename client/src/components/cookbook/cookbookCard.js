@@ -42,6 +42,12 @@ function CookbookCard(props) {
     renameCookbookById(data)
   }
 
+  const handleDeleteConfirm = ()=>{
+    console.log('calling')
+    setDeleteModal(false);
+    deleteCookbook(_id)
+
+  }
 
   // make the modal,
   // click outside listener
@@ -69,16 +75,19 @@ function CookbookCard(props) {
 <>  
 
 {deleteModal && 
+  <>
     <ConfirmModal
-    confirmAction={()=>alert('confirm from delete')}
-    closeAction={()=>alert('close from delete')}
+    confirmAction={handleDeleteConfirm}
+    closeAction={()=>setDeleteModal(false)}
     />
+   
+    </>
       }
 
 {renameModal && 
     <ConfirmModal
       confirmAction={handleRenameConfirm}
-      closeAction={()=>alert('close')}
+      closeAction={()=>setRenameModal(false)}
     />
       }
 
