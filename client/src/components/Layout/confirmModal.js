@@ -1,14 +1,16 @@
 import React from 'react'
 import './confirmModal.css'
 
-function ConfirmModal(props) {
+const ConfirmModal = props => {
+
+    
 
     const {closeAction, confirmAction} = props
     return (
         <div className='confirmModal'>
             {/* <h1>this is the confirmModal</h1> */}
-
-            <h1>rename</h1>
+            {props.children}
+            
             <button onClick={confirmAction}>Confirm</button>
             <button onClick={closeAction}>CLose</button>
             
