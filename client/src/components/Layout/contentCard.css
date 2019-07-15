@@ -18,7 +18,7 @@
 }
 
 .contentCard:hover {
-  transform: scale(0.98);
+  transform: scale(0.99);
   /* opacity: 0.95; */
   -webkit-box-shadow: 1px 1px 3px -1px rgba(207, 195, 207, 1);
   -moz-box-shadow: 1px 1px 3px -1px rgba(207, 195, 207, 1);
@@ -98,7 +98,7 @@
 .removeFromCookbook{
   position:absolute;
   top:0;
-  background:#f8f8f8;
+  background: transparent;
   right:0;
   height:40px;  
   width:100%;
@@ -146,7 +146,7 @@
 }
 
 
-.settingsMenu{
+/* .settingsMenu{
   margin-top: -2px;
 
   position: absolute;
@@ -160,13 +160,13 @@
   transition: opacity 0.2s ease-in-out;
   opacity:0
 
-}
+} */
 
-.settingsMenu.settingsMenuActive{
+/* .settingsMenu.settingsMenuActive{
   transform: scale(1);
   opacity: 1
-}
-
+} */
+/* 
 .settingsMenu p{
   height:30px;
   display:flex;
@@ -177,7 +177,7 @@
   letter-spacing: 2px;
   text-transform: uppercase
 
-}
+} */
 
 
 

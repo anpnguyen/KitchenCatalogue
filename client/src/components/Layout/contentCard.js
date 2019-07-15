@@ -1,15 +1,18 @@
 import React, { Fragment, useState , useRef, useEffect, useCallback} from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClock, faUtensils, faCog } from "@fortawesome/free-solid-svg-icons";
+import { faClock, faUtensils, faCog, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { withRouter } from "react-router-dom";
 import { clearRecipe } from "../../actions/recipe";
 import { removeRecipeFromCookbook } from "../../actions/cookbook";
 import { connect } from "react-redux";
 import "./contentCard.css";
 // import CardSettingsIcon from "./cardSettingsIcon";
-import CardSettingsMenu from "./cardSettingsMenu";
-import CardDeleteModal from "./cardDeleteModal";
+// import CardSettingsMenu from "./cardSettingsMenu";
+// import CardDeleteModal from "./cardDeleteModal";
+
+import ConfirmModal from './confirmModal'
+import CardSettingMenu from "../cookbook/cardSettingsMenu";
 
 const ContentCard = props => {
   const { text, clearRecipe, option, match, removeRecipeFromCookbook } = props;
@@ -77,7 +80,7 @@ const ContentCard = props => {
   useEffect(() => {
     const handleClickOutsideSettings = e => {
       e.stopPropagation()
-      let tester  = document.getElementById('tester')
+      let tester  = document.getElementById('cookbookCogRecipe')
       
       
       if (
@@ -89,7 +92,7 @@ const ContentCard = props => {
       } else{
         
         
-        // console.log('calling from useEffect')
+        
         setSettingsMenu(false);
       }
       
@@ -110,31 +113,34 @@ const ContentCard = props => {
 
   return (
     <>
-    {deleteRecipeModal &&
-    <span ref={deleteModalRef}>
-    <CardDeleteModal
-      removeFromCookbook = {removeFromCookbook}
-      setDeleteRecipeModal = {setDeleteRecipeModal}
-      id='tester'
-           
+   
+       <ConfirmModal
+          confirmAction={removeFromCookbook}
+          closeAction={() => setDeleteRecipeModal(false)}
+          id='deleteCookbookModal'
+          ref={deleteModalRef}
+          title={`Remove Recipe From Cookbook`}
+          text={`Are you sure you want to remove this recipe from this cookbook?`}
+          confirmationText='Remove'
+          isShowing={deleteRecipeModal}
+        />
 
-    />
-    </span>
-    }
+
+
     <article className="contentCard " onClick={handleClicker}>
-      {option === "cookbookRecipes" && (
-        <div
+    {option === 'cookbookRecipes' &&
+    <CardSettingMenu
           onClick={handleSettingsClick}
-          className={`removeFromCookbook ${settingsMenu ? "invertColor": ''}`}
-          id='tester'
+          ref={settingsMenuRef}
+          isShowing={settingsMenu}
+          id='cookbookCogRecipe'
         >
-          
-          {settingsMenu? 'x': <FontAwesomeIcon icon={faCog} />}
-        </div>
-      )}
-      <div onClick={handleDeleteClick} ref={settingsMenuRef}>
-        {settingsMenu === true && <CardSettingsMenu />}
-      </div>
+
+          <span onClick={ ()=> setDeleteRecipeModal(true)}>
+          <FontAwesomeIcon icon={faTrash} />
+          </span>
+          </CardSettingMenu>
+          }
 
       <div className="ContentCardImage">
         {!imageUrl && props.titleText && (
