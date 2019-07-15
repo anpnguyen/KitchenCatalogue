@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import {
@@ -28,6 +28,10 @@ function CookbookCard(props) {
   const [renameModal, setRenameModal] = useState(false);
   const [renameForm, setRenameForm] = useState({newName:""});
 
+  const deleteModalRef = useRef()
+  const renameModalRef = useRef()
+  const settingCogRef = useRef()
+
   const handleSettingsMenuClick = e => {
     e.stopPropagation();
     setSettingsMenu(!settingsMenu);
@@ -35,11 +39,13 @@ function CookbookCard(props) {
 
   const handleDeleteClick = e => {
     e.stopPropagation();
+    setSettingsMenu(false);
     setDeleteModal(!deleteModal);
   };
 
   const handleRenameClick = e => {
     e.stopPropagation();
+    setSettingsMenu(false);
     setRenameModal(!renameModal);
   };
 
@@ -53,7 +59,6 @@ function CookbookCard(props) {
   };
 
   const handleDeleteConfirm = () => {
-    console.log("calling");
     setDeleteModal(false);
     deleteCookbook(_id);
   };
@@ -62,37 +67,121 @@ function CookbookCard(props) {
     setRenameForm({...renameForm, [e.target.name]:e.target.value })
   }
 
-  // make the modal,
-  // click outside listener
+  useEffect(() => {
+    const handleClickOutsideSettings = e => {
+      e.stopPropagation()
+                 
+      if (
+        deleteModalRef.current.contains(e.target)            
+      ) {
+         return;
+      } else{
+        setDeleteModal(false);
+      }
+      
+    };
 
+    if (deleteModal) {
+      document.addEventListener("mousedown", handleClickOutsideSettings);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutsideSettings);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutsideSettings);
+    };
+  }, [deleteModal]);
+
+  useEffect(() => {
+    const handleClickOutsideSettings = e => {
+      e.stopPropagation()
+                 
+      if (
+       renameModalRef.current.contains(e.target)            
+      ) {
+         return;
+      } else{
+        setRenameModal(false);
+      }
+      
+    };
+
+    if (renameModal) {
+      document.addEventListener("mousedown", handleClickOutsideSettings);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutsideSettings);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutsideSettings);
+    };
+  }, [renameModal]);
+
+  useEffect(() => {
+    const handleClickOutsideSettings = e => {
+      e.stopPropagation()
+      console.log(e.target)
+      if (
+       settingCogRef.current.contains(e.target)            
+      ) {
+         return;
+      } else{
+        setSettingsMenu(false);
+      }
+      
+    };
+
+    if (settingsMenu) {
+      document.addEventListener("mousedown", handleClickOutsideSettings);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutsideSettings);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutsideSettings);
+    };
+  }, [settingsMenu]);
+
+
+
+
+
+// it will identify the clicked book and load the indivdual cookbook State
   const handleCookbookClicker = e => {
     e.preventDefault();
     let selectedCookbook = cookbook.cookbooks.find(o => o._id === _id);
     let expandedRecipes = selectedCookbook.savedRecipes.map(mappedRecipe =>
       recipe.recipes.find(o => o._id === mappedRecipe)
     );
-
     console.log(selectedCookbook);
-
     let pushedCookbook = { ...selectedCookbook, savedRecipes: expandedRecipes };
-
     loadCookbookRecipes(pushedCookbook, history);
   };
+
+
+
+
   return (
     <>
       {deleteModal && (
+        // <span ref={deleteModalRef}>
         <ConfirmModal
           confirmAction={handleDeleteConfirm}
           closeAction={() => setDeleteModal(false)}
+          id='deleteCookbookModal'
+          ref={deleteModalRef}
         >
           <h1>this is come</h1>
         </ConfirmModal>
+        // </span>
       )}
 
       {renameModal && (
         <ConfirmModal
           confirmAction={handleRenameConfirm}
           closeAction={() => setRenameModal(false)}
+          id='renameCookbookModal'
+          ref={renameModalRef}
         >
           <form >
             <input value={renameForm.newName} name='newName' onChange={handleRenameChange}/>
@@ -101,7 +190,7 @@ function CookbookCard(props) {
       )}
 
       <article className="contentCard " onClick={e => handleCookbookClicker(e)}>
-        <div className="removeFromCookbook" onClick={handleSettingsMenuClick}>
+        <div className="removeFromCookbook" onClick={handleSettingsMenuClick} id='cookbookCog' ref={settingCogRef}>
           {settingsMenu ? "x " : <FontAwesomeIcon icon={faCog} />}
         </div>
 

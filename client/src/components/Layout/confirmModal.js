@@ -1,13 +1,13 @@
 import React from 'react'
 import './confirmModal.css'
 
-const ConfirmModal = props => {
+const ConfirmModal = React.forwardRef((props,ref)=>{
 
     
 
-    const {closeAction, confirmAction} = props
+    const {closeAction, confirmAction, id} = props
     return (
-        <div className='confirmModal'>
+        <div className='confirmModal'  ref={ref}>
             {/* <h1>this is the confirmModal</h1> */}
             {props.children}
             
@@ -17,6 +17,7 @@ const ConfirmModal = props => {
         </div>
     )
 }
+)
 
 
 
