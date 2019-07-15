@@ -1,25 +1,34 @@
-import React from 'react'
-import './confirmModal.css'
+import React from "react";
+import "./confirmModal.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
-const ConfirmModal = React.forwardRef((props,ref)=>{
-
-    
-
-    const {closeAction, confirmAction, id} = props
-    return (
-        <div className='confirmModal'  ref={ref}>
-            {/* <h1>this is the confirmModal</h1> */}
-            {props.children}
-            
-            <button onClick={confirmAction}>Confirm</button>
-            <button onClick={closeAction}>CLose</button>
-            
+const ConfirmModal = React.forwardRef((props, ref) => {
+  const { closeAction, confirmAction, title, text, confirmationText, isShowing} = props;
+  return (
+    <>
+      <div className={`confirmModal ${isShowing? " confirmModalShowing": ""}`} ref={ref}>
+        <div className="confirmModalTitle">
+          <h2>{title}</h2>
         </div>
-    )
-}
-)
+        <p>{text}</p>
+        {props.children}
+        <span onClick={closeAction}>
+          <FontAwesomeIcon icon={faTimes} />
+        </span>
+        <div>
+          <button onClick={confirmAction} className="blueButton confirmButton">
+            {confirmationText}
+          </button>
+          <button onClick={closeAction} className="confirmButton">
+            Cancel
+          </button>
+        </div>
+      </div>
 
+      <div className={`confirmOverlay ${isShowing? " confirmModalShowing": ""}`} />
+    </>
+  );
+});
 
-
-export default ConfirmModal
-
+export default ConfirmModal;
