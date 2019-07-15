@@ -8,9 +8,10 @@ import CookbookContentBox from "../cookbook/cookBookContent";
 import {Redirect} from 'react-router-dom';
 import {
   getRecipes,
-  clearRecipe
+  clearRecipe,
+  updateFromLS
 } from "../../actions/recipe";
-import { getCookbooks, getCookbookById } from "../../actions/cookbook";
+import { getCookbooks, getCookbookById, updateCookbookFromLS } from "../../actions/cookbook";
 import { getSearchRecipes } from "../../actions/search";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -29,14 +30,32 @@ const Home = props => {
     getCookbookById,
     getSearchRecipes,
     history,
-    clearRecipe
+    clearRecipe,
+    updateFromLS,
+    updateCookbookFromLS
   
     
   } = props;
 
   useEffect(() => {
-    getRecipes();
-    getCookbooks();
+    !localStorage.recipeState && getRecipes();
+    !localStorage.cookbookState && getCookbooks();
+       
+    if(localStorage.recipeState && recipe.loading){
+      let oldState = JSON.parse(localStorage.getItem('recipeState'))
+      updateFromLS(oldState)
+      
+    } 
+
+    if(localStorage.cookbookState && cookbook.loading){
+      let oldState = JSON.parse(localStorage.getItem('cookbookState'))
+      updateCookbookFromLS(oldState)
+      
+    } 
+    
+    
+
+    
   }, []);
 
   useEffect(() => {
@@ -156,6 +175,8 @@ export default connect(
     getCookbooks,
     getCookbookById,
     getSearchRecipes,
-    clearRecipe
+    clearRecipe,
+    updateFromLS,
+    updateCookbookFromLS
   }
 )(Home);

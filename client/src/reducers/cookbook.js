@@ -68,6 +68,15 @@ export default function(state = initialState, action) {
         loading: false
       };
 
+
+      case 'UPDATE_COOKBOOK_LS':
+      return {
+        ...state,
+        cookbooks: payload,
+
+        loading: false
+      };
+
     default:
       return state;
   }

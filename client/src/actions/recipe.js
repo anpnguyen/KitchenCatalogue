@@ -30,7 +30,7 @@ export const getRecipes = searchParams => async dispatch => {
       payload: res.data
     });
 
-    localStorage.setItem('recipe', JSON.stringify(res.data))
+    localStorage.setItem("recipeState", JSON.stringify(res.data));
   } catch (err) {
     dispatch({
       type: RECIPE_ERROR,
@@ -39,20 +39,70 @@ export const getRecipes = searchParams => async dispatch => {
   }
 };
 
-export const updateRecipesFromLocalStorage = (savedState)=> async dispatch =>{
+export const updateFromLS = (oldState) => async dispatch => {
+
   try {
-  dispatch({
-    type: UPDATE_RECIPES_LS,
-    payload:savedState
-  });
-  
-  }catch(err){
+   
+    dispatch({
+      type: UPDATE_RECIPES_LS,
+      payload: oldState
+    });
+    
+  } catch (err) {
     dispatch({
       type: RECIPE_ERROR,
       payload: { msg: "server error", status: "server error" }
     });
   }
+
+
+
 }
+
+// GET and individual Recipe
+export const getRecipeById = (recipeId, history) => async dispatch => {
+  try {
+    const res = await axios.get(`/api/recipe/${recipeId}`);
+    // this saves the recipe to local storage - so on edit refresh, it desont need to send another request
+    // localStorage.setItem("recipe", JSON.stringify(res.data))
+    
+    var  accessedRecipes = JSON.parse(localStorage.getItem('acessedRecipes'))
+    
+   
+        
+              
+    //   localStorage.setItem("acessedRecipes", JSON.stringify([...accessedRecipes, res.data]))
+      
+ 
+    
+    
+
+    dispatch({
+      type: GET_RECIPE,
+      payload: res.data
+    });
+  } catch (err) {
+    dispatch({
+      type: RECIPE_ERROR
+    });
+
+    // history.push("/recipe");
+  }
+};
+
+export const updateRecipesFromLocalStorage = savedState => async dispatch => {
+  try {
+    dispatch({
+      type: UPDATE_RECIPES_LS,
+      payload: savedState
+    });
+  } catch (err) {
+    dispatch({
+      type: RECIPE_ERROR,
+      payload: { msg: "server error", status: "server error" }
+    });
+  }
+};
 
 // Clear Recipe from State
 export const clearRecipe = () => async dispatch => {
@@ -69,24 +119,6 @@ export const clearRecipe = () => async dispatch => {
 };
 
 // **** Get an individual RECIPE
-export const getRecipeById = (recipeId, history) => async dispatch => {
-  try {
-    const res = await axios.get(`/api/recipe/${recipeId}`);
-    // this saves the recipe to local storage - so on edit refresh, it desont need to send another request
-    localStorage.setItem('recipe', JSON.stringify(res.data))
-
-    dispatch({
-      type: GET_RECIPE,
-      payload: res.data
-    });
-  } catch (err) {
-    dispatch({
-      type: RECIPE_ERROR,
-    });
-
-    // history.push("/recipe");
-  }
-};
 
 // create Recipe
 
@@ -166,16 +198,15 @@ export const editRecipePut = (
 
 export const deleteRecipe = (history, recipeId) => async dispatch => {
   try {
-
     const config = {
       headers: {
         "Content-Type": "application/json"
       }
     };
 
-    let data = {recipeToDelete: recipeId}
+    let data = { recipeToDelete: recipeId };
     await axios.delete(`/api/recipe/${recipeId}`);
-    await axios.put("/api/cookbook/deleteRecipe/deleteRecipe", data, config)
+    await axios.put("/api/cookbook/deleteRecipe/deleteRecipe", data, config);
 
     dispatch({
       type: DELETE_RECIPE
