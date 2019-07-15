@@ -43,17 +43,17 @@ function CookbookCard(props) {
     setSettingsMenu(!settingsMenu);
   };
 
-  const handleDeleteClick = e => {
-    e.stopPropagation();
-    setSettingsMenu(false);
-    setDeleteModal(!deleteModal);
-  };
+  // const handleDeleteClick = e => {
+  //   e.stopPropagation();
+  //   setSettingsMenu(false);
+  //   setDeleteModal(!deleteModal);
+  // };
 
-  const handleRenameClick = e => {
-    e.stopPropagation();
-    setSettingsMenu(false);
-    setRenameModal(!renameModal);
-  };
+  // const handleRenameClick = e => {
+  //   e.stopPropagation();
+  //   setSettingsMenu(false);
+  //   setRenameModal(!renameModal);
+  // };
 
   const handleRenameConfirm = e => {
     e.preventDefault();
@@ -189,7 +189,7 @@ function CookbookCard(props) {
         </form>
       </ConfirmModal>
 
-      <article className="contentCard " onClick={e => handleCookbookClicker(e)}>
+      <article className="contentCard cookbook" onClick={e => handleCookbookClicker(e)}>
         <CardSettingsMenu
           onClick={handleSettingsMenuClick}
           ref={settingCogRef}
@@ -212,12 +212,11 @@ function CookbookCard(props) {
           )}
         </div>
 
-        <div className="ContentCardText ">
+        <div className="ContentCardText cookbook ">
           <div className="contentCardTitleContainer ">
             <h3>{cookbookTitle}</h3>
           </div>
-
-          <div />
+          
         </div>
       </article>
     </>

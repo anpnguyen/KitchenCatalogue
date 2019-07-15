@@ -2,6 +2,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  
 }
 
 .contentBoxContent {
@@ -16,6 +17,7 @@
   justify-content: flex-start;
   margin-top: 20px;
   box-sizing: border-box;
+  min-height: 400px
 }
 
 .searchNumber {

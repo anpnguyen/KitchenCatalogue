@@ -5,7 +5,7 @@ import ContentBox from "./contentBox";
 import Footer from "./footer";
 import Alert from "./alert";
 import CookbookContentBox from '../cookbook/cookBookContent'
-import { getRecipes } from "../../actions/recipe";
+import { getRecipes, updateRecipesFromLocalStorage } from "../../actions/recipe";
 import { getCookbooks, getCookbookById } from "../../actions/cookbook";
 import { getSearchRecipes } from "../../actions/search";
 import PropTypes from "prop-types";
@@ -14,10 +14,23 @@ import uuid from 'uuid/v4'
 
 
 const Home = props => {
-  const { getRecipes, getCookbooks, search, option, recipe, cookbook, match, individualCookbook, getCookbookById, getSearchRecipes} = props;
+  const { getRecipes, getCookbooks, search, option, recipe, cookbook, match, individualCookbook, getCookbookById, getSearchRecipes, updateRecipesFromLocalStorage} = props;
+
+  // useEffect(() => {
+  //   !localStorage.recipe && recipe.loading && getRecipes();
+
+  //   console.log(JSON.parse(localStorage.recipe))
+  //   localStorage.recipe && recipe.loading && updateRecipesFromLocalStorage(JSON.parse(localStorage.recipe))
+    
+ 
+  // }, []);
+
+// when you create a new recipe -> add to data base, get back the item, push to sate, update local storage then shot the new recipe
 
   useEffect(() => {
-    getRecipes();
+    
+    
+    getRecipes()
     getCookbooks();
   }, []);
 
@@ -27,10 +40,28 @@ const Home = props => {
   useEffect(() => {
     option === 'search' &&
     getSearchRecipes(search.searchData);
-    console.log('calling')
+    
   }, []);
 
+  // useEffect(() => {
+  //   window.addEventListener('beforeunload', (e)=>{
+  //     e.preventDefault()
+  //     localStorage.setItem('working', JSON.stringify(cookbook))})
+  // }, []);
+//   const exitConfirmation = ()=>{
+//     localStorage.setItem('cookbook', JSON.stringify(cookbook))
+//     localStorage.setItem('recipe', JSON.stringify(recipe))
+//     localStorage.setItem('individualCookbook', JSON.stringify(individualCookbook))
+//     localStorage.setItem('search', JSON.stringify(search))
+//     console.log('calling localstorage save')
+//  }
+//   window.onbeforeunload = exitConfirmation()
 
+  
+
+
+
+// loads up the individual cookbook
   useEffect(()=>{
     
     individualCookbook.loading && match.params.cookbook_id && getCookbookById(match.params.cookbook_id)
@@ -133,10 +164,10 @@ const mapStateToProps = state => ({
   search: state.search,
   cookbook: state.cookbook,
   individualCookbook: state.individualCookbook
-  // profile: state.profile
+  
 });
 
 export default connect(
   mapStateToProps,
-  { getRecipes, getCookbooks, getCookbookById, getSearchRecipes }
+  { getRecipes, getCookbooks, getCookbookById, getSearchRecipes , updateRecipesFromLocalStorage}
 )(Home);

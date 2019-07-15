@@ -16,6 +16,8 @@
   position: relative;
 }
 
+
+
 .contentCard:hover {
   transform: scale(0.99);
   /* opacity: 0.95; */
@@ -70,9 +72,10 @@
   min-height: 45%;
   box-sizing: border-box;
   margin-bottom: 10px;
-
   border-radius: 0 0 10px 10px;
 }
+
+
 
 .recipeText {
   margin: 10px 0;
@@ -145,48 +148,8 @@
 }
 
 
-/* .settingsMenu{
-  margin-top: -2px;
-
-  position: absolute;
-  top:40px;
-  left:-10px;
-  width:calc(100% + 10px);
-  text-align:center;
-  background: rgb(50, 119, 231);
-  box-sizing: content-box;
-  transform: scale(0);
-  transition: opacity 0.2s ease-in-out;
-  opacity:0
-
-} */
-
-/* .settingsMenu.settingsMenuActive{
-  transform: scale(1);
-  opacity: 1
-} */
-/* 
-.settingsMenu p{
-  height:30px;
-  display:flex;
-  align-items: center;
-  justify-content: center;
-  color: #f8f8f8;
-  font-weight: 600;
-  letter-spacing: 2px;
-  text-transform: uppercase
-
-} */
 
 
-
-.cardDeleteModal{
-  position: absolute;
-  top :100px;
-  width:500px;
-  height: 500px;
-  background: pink
-}
 
 
 @media only screen and (max-width: 1000px) {

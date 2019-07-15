@@ -10,7 +10,8 @@ import {
   CLEAR_ERROR,
   CREATE_RECIPE,
   EDIT_RECIPE,
-  DELETE_RECIPE
+  DELETE_RECIPE,
+  UPDATE_RECIPES_LS
 } from "../actions/types";
 
 // GET the all the users recipes
@@ -28,6 +29,8 @@ export const getRecipes = searchParams => async dispatch => {
       type: GET_RECIPES,
       payload: res.data
     });
+
+    localStorage.setItem('recipe', JSON.stringify(res.data))
   } catch (err) {
     dispatch({
       type: RECIPE_ERROR,
@@ -35,6 +38,21 @@ export const getRecipes = searchParams => async dispatch => {
     });
   }
 };
+
+export const updateRecipesFromLocalStorage = (savedState)=> async dispatch =>{
+  try {
+  dispatch({
+    type: UPDATE_RECIPES_LS,
+    payload:savedState
+  });
+  
+  }catch(err){
+    dispatch({
+      type: RECIPE_ERROR,
+      payload: { msg: "server error", status: "server error" }
+    });
+  }
+}
 
 // Clear Recipe from State
 export const clearRecipe = () => async dispatch => {
@@ -54,7 +72,7 @@ export const clearRecipe = () => async dispatch => {
 export const getRecipeById = (recipeId, history) => async dispatch => {
   try {
     const res = await axios.get(`/api/recipe/${recipeId}`);
-    localStorage.setItem('recipe', JSON.stringify(res.data))
+    // localStorage.setItem('recipe', JSON.stringify(res.data))
 
     dispatch({
       type: GET_RECIPE,

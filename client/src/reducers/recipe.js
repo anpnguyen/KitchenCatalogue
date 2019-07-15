@@ -5,7 +5,8 @@ import {
   GET_RECIPES,
   CLEAR_RECIPE,
   EDIT_RECIPE,
-  DELETE_RECIPE
+  DELETE_RECIPE,
+  UPDATE_RECIPES_LS
 } from "../actions/types";
 
 // import {Redirect} from 'react-router-dom'
@@ -63,6 +64,12 @@ export default function(state = initialState, action) {
         ...state,
         recipe: "",
         loading: true
+      };
+    case UPDATE_RECIPES_LS:
+      return {
+        ...state,
+        recipes: payload,
+        loading: false
       };
 
     default:

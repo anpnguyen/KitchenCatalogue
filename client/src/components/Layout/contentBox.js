@@ -62,7 +62,7 @@ const ContentBox = props => {
             key={uuid() + 'second'}
             option={option}
           />
-
+          
           <ContentCard
             {...props}
             titleText="Create New Recipe"
@@ -70,6 +70,7 @@ const ContentBox = props => {
             key={uuid() + "create"}
             option={option}
           />
+        
 
         </Fragment>
       
@@ -119,6 +120,8 @@ const ContentBox = props => {
           
           {recipes.length === 0 || null ? (
             
+              option !== 'cookbookRecipes' && 
+
             <ContentCard
             {...props}
             titleText="Create New Recipe"
@@ -130,9 +133,9 @@ const ContentBox = props => {
           ):
           mappedData}
 
-          <hr className="width80" />
+          
         </section>
-
+        <hr className="width80" />
        <PageNavigation
         pageLimit={pageLimit}
         totalPages={totalPages}  
