@@ -6,11 +6,12 @@ import {
   deleteCookbook,
   renameCookbookById
 } from "../../actions/cookbook";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCog, faTimes } from "@fortawesome/free-solid-svg-icons";
-import ConfirmModal from "../Layout/confirmModal";
 
+import ConfirmModal from "../Layout/confirmModal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCog, faTimes, faPencilAlt, faTrash } from "@fortawesome/free-solid-svg-icons";
 import "../Layout/contentCard.css";
+import CardSettingsMenu from "./cardSettingsMenu";
 
 function CookbookCard(props) {
   const {
@@ -197,16 +198,23 @@ function CookbookCard(props) {
       
 
       <article className="contentCard " onClick={e => handleCookbookClicker(e)}>
-        <div className="removeFromCookbook" onClick={handleSettingsMenuClick} id='cookbookCog' ref={settingCogRef}>
-          {settingsMenu ?<FontAwesomeIcon icon={faTimes} /> : <FontAwesomeIcon icon={faCog} />}
-        </div>
 
-        {settingsMenu && (
-          <div className="settingsMenu">
-            <p onClick={handleDeleteClick} id='deleteMenu'>delete</p>
-            <p onClick={handleRenameClick} id='renameMenu'> rename</p>
-          </div>
-        )}
+
+       <CardSettingsMenu
+          onClick={handleSettingsMenuClick}
+          ref={settingCogRef}
+          isShowing={settingsMenu}
+          id='cookbookCog'
+        >
+        <span onClick={()=> setRenameModal(true)}> 
+         <FontAwesomeIcon icon={faPencilAlt} />
+         </span>
+         <span onClick={()=> setDeleteModal(true)}> 
+         <FontAwesomeIcon icon={faTrash} /> 
+         </span>
+       </CardSettingsMenu>
+
+       
 
         <div className="ContentCardImage">
           {!cookbookImage ? (

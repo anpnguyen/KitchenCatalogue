@@ -101,49 +101,85 @@
   background:#f8f8f8;
   right:0;
   height:40px;  
-  width:40px;
+  width:100%;
   opacity:1;
   color:gray;
   font-size: 30px;
   font-weight: bold;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
-  opacity: 0.8;
-  /* z-index: 1000 !important */
-  
+  transition: color 0.2s ease-in-out;
+  cursor: default;
+  text-align: right;
+  padding-top: 5px
+  /* opacity: 0.8; */
+     
+}
+
+.removeFromCookbook.invertColor{
+  background: rgb(50, 119, 231);
+  color:#f8f8f8 !important
+}
+
+.removeFromCookbook.invertColor svg{
+  padding: 0px 15px 3px 5px;
+}
+
+.removeFromCookbook.invertColor svg:hover{
+  color: #333
 }
 
 .removeFromCookbook svg{
-  margin: auto auto;
-  padding: 5px 5px 3px 5px
+  /* margin-left: auto; */
+  padding: 5px 10px 3px 5px;
+  cursor: pointer;
+  transform: scale(0.6)
   
 }
 
 .removeFromCookbook:hover{
-  color:green;
+  color:rgb(50, 119, 231);
  opacity:1 !important;
- transition: color 0.2s ease-in-out;
+ 
 
 }
 
 
 .settingsMenu{
+  margin-top: -2px;
 
   position: absolute;
   top:40px;
   left:-10px;
-  /* padding-left: 20px; */
   width:calc(100% + 10px);
   text-align:center;
-  background: green;
-  box-sizing: content-box
+  background: rgb(50, 119, 231);
+  box-sizing: content-box;
+  transform: scale(0);
+  transition: opacity 0.2s ease-in-out;
+  opacity:0
+
 }
 
-.invertColor{
-  background:green !important;
-  color:#f8f8f8 !important
+.settingsMenu.settingsMenuActive{
+  transform: scale(1);
+  opacity: 1
 }
+
+.settingsMenu p{
+  height:30px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  color: #f8f8f8;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase
+
+}
+
+
 
 .cardDeleteModal{
   position: absolute;
@@ -152,6 +188,8 @@
   height: 500px;
   background: pink
 }
+
+
 @media only screen and (max-width: 1000px) {
   .contentCard {
     width: 31%;
