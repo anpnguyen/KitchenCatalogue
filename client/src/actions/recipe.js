@@ -84,7 +84,7 @@ export const getRecipeById = (recipeId, history) => async dispatch => {
       type: RECIPE_ERROR,
     });
 
-    history.push("/recipe");
+    // history.push("/recipe");
   }
 };
 

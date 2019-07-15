@@ -5,9 +5,10 @@ import ContentBox from "./contentBox";
 import Footer from "./footer";
 import Alert from "./alert";
 import CookbookContentBox from "../cookbook/cookBookContent";
+import {Redirect} from 'react-router-dom';
 import {
   getRecipes,
-  updateRecipesFromLocalStorage
+  clearRecipe
 } from "../../actions/recipe";
 import { getCookbooks, getCookbookById } from "../../actions/cookbook";
 import { getSearchRecipes } from "../../actions/search";
@@ -27,7 +28,10 @@ const Home = props => {
     individualCookbook,
     getCookbookById,
     getSearchRecipes,
-    updateRecipesFromLocalStorage
+    history,
+    clearRecipe
+  
+    
   } = props;
 
   useEffect(() => {
@@ -52,7 +56,17 @@ const Home = props => {
     searchText: ""
   });
 
+   
+
+  // if(search.error.msg !== undefined){
+  //   clearRecipe()
+  //   return(
+  //     <Redirect to='/recipe'/>
+  //   )
+  // }
+
   return (
+      
     <Fragment>
       <NavBar />
       <SearchBar setIsSearch={setIsSearch} {...props} />
@@ -142,6 +156,6 @@ export default connect(
     getCookbooks,
     getCookbookById,
     getSearchRecipes,
-    updateRecipesFromLocalStorage
+    clearRecipe
   }
 )(Home);

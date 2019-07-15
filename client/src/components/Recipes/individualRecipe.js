@@ -34,7 +34,7 @@ const IndividualRecipe = props => {
 
   useEffect(() => {
     getRecipeById(match.params.recipe_id, history);
-  }, [getRecipeById, history, match]);
+  }, []);
 
   useEffect(() => {
     title === undefined &&
