@@ -7,6 +7,7 @@ import Alert from "../Layout/alert";
 import DeleteConfimation from "./deleteConfirmation";
 import AddToCookbook from "./addToCookbook";
 import { getRecipeById, deleteRecipe } from "../../actions/recipe";
+import {getCookbooks } from "../../actions/cookbook";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
@@ -17,7 +18,7 @@ import ViewRecipeIngredients from "./viewRecipeIngredients";
 import ViewRecipeInstructions from "./viewRecipeInstructions";
 
 const IndividualRecipe = props => {
-  const { match, getRecipeById, deleteRecipe, history } = props;
+  const { match, getRecipeById, deleteRecipe, history, cookbook, getCookbooks } = props;
   const {
     title,
     imageUrl,
@@ -34,6 +35,16 @@ const IndividualRecipe = props => {
   useEffect(() => {
     getRecipeById(match.params.recipe_id, history);
   }, [getRecipeById, history, match]);
+
+  useEffect(() => {
+    title === undefined &&
+    getRecipeById(match.params.recipe_id, history);
+  }, []);
+
+  useEffect(() => {
+    cookbook.loading &&
+    getCookbooks()
+  }, []);
 
   const handleDelete = () => {
     setIsDelete(true);
@@ -53,7 +64,12 @@ const IndividualRecipe = props => {
     setIsFavourite(true);
   };
 
-  return loading ? (
+  // console.log(props.recipe.recipe)
+  // props.recipe.recipe === {} && console.log('this was called')
+  // props.recipe.recipe.title === undefined && console.log('this was undefined')
+  // props.recipe.recipe === null && console.log('this was null')
+
+  return loading ||  title === undefined ? (
     <>
       <NavBar />
       <Spinner />
@@ -126,12 +142,13 @@ IndividualRecipe.propTypes = {
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  recipe: state.recipe
+  recipe: state.recipe,
+  cookbook: state.cookbook
 });
 
 export default withRouter(
   connect(
     mapStateToProps,
-    { getRecipeById, deleteRecipe }
+    { getRecipeById, deleteRecipe, getCookbooks }
   )(IndividualRecipe)
 );

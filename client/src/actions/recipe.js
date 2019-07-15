@@ -72,7 +72,8 @@ export const clearRecipe = () => async dispatch => {
 export const getRecipeById = (recipeId, history) => async dispatch => {
   try {
     const res = await axios.get(`/api/recipe/${recipeId}`);
-    // localStorage.setItem('recipe', JSON.stringify(res.data))
+    // this saves the recipe to local storage - so on edit refresh, it desont need to send another request
+    localStorage.setItem('recipe', JSON.stringify(res.data))
 
     dispatch({
       type: GET_RECIPE,
@@ -80,7 +81,7 @@ export const getRecipeById = (recipeId, history) => async dispatch => {
     });
   } catch (err) {
     dispatch({
-      type: CLEAR_RECIPE
+      type: RECIPE_ERROR,
     });
 
     history.push("/recipe");
