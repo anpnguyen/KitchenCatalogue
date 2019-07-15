@@ -50,7 +50,8 @@ function CookbookCard(props) {
     setRenameModal(!renameModal);
   };
 
-  const handleRenameConfirm = () => {
+  const handleRenameConfirm = (e) => {
+    e.preventDefault()
     setRenameModal(false);
     let data = {
       cookbookId: c._id,
@@ -191,7 +192,7 @@ function CookbookCard(props) {
           confirmationText='Rename'
           isShowing={renameModal}
         >
-          <form >
+          <form onSubmit={handleRenameConfirm}>
             <input value={renameForm.newName} name='newName' onChange={handleRenameChange} placeholder='Cookbook name' />
           </form>
         </ConfirmModal>
