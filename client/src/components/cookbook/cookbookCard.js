@@ -9,7 +9,12 @@ import {
 
 import ConfirmModal from "../Layout/confirmModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCog, faTimes, faPencilAlt, faTrash } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCog,
+  faTimes,
+  faPencilAlt,
+  faTrash
+} from "@fortawesome/free-solid-svg-icons";
 import "../Layout/contentCard.css";
 import CardSettingsMenu from "./cardSettingsMenu";
 
@@ -27,11 +32,11 @@ function CookbookCard(props) {
   const [settingsMenu, setSettingsMenu] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
   const [renameModal, setRenameModal] = useState(false);
-  const [renameForm, setRenameForm] = useState({newName: cookbookTitle});
+  const [renameForm, setRenameForm] = useState({ newName: cookbookTitle });
 
-  const deleteModalRef = useRef()
-  const renameModalRef = useRef()
-  const settingCogRef = useRef()
+  const deleteModalRef = useRef();
+  const renameModalRef = useRef();
+  const settingCogRef = useRef();
 
   const handleSettingsMenuClick = e => {
     e.stopPropagation();
@@ -50,8 +55,8 @@ function CookbookCard(props) {
     setRenameModal(!renameModal);
   };
 
-  const handleRenameConfirm = (e) => {
-    e.preventDefault()
+  const handleRenameConfirm = e => {
+    e.preventDefault();
     setRenameModal(false);
     let data = {
       cookbookId: c._id,
@@ -65,22 +70,19 @@ function CookbookCard(props) {
     deleteCookbook(_id);
   };
 
-  const handleRenameChange =  e =>{
-    setRenameForm({...renameForm, [e.target.name]:e.target.value })
-  }
+  const handleRenameChange = e => {
+    setRenameForm({ ...renameForm, [e.target.name]: e.target.value });
+  };
 
   useEffect(() => {
     const handleClickOutsideSettings = e => {
-      e.stopPropagation()
-                 
-      if (
-        deleteModalRef.current.contains(e.target)            
-      ) {
-         return;
-      } else{
+      e.stopPropagation();
+
+      if (deleteModalRef.current.contains(e.target)) {
+        return;
+      } else {
         setDeleteModal(false);
       }
-      
     };
 
     if (deleteModal) {
@@ -96,16 +98,13 @@ function CookbookCard(props) {
 
   useEffect(() => {
     const handleClickOutsideSettings = e => {
-      e.stopPropagation()
-                 
-      if (
-       renameModalRef.current.contains(e.target)            
-      ) {
-         return;
-      } else{
+      e.stopPropagation();
+
+      if (renameModalRef.current.contains(e.target)) {
+        return;
+      } else {
         setRenameModal(false);
       }
-      
     };
 
     if (renameModal) {
@@ -121,16 +120,17 @@ function CookbookCard(props) {
 
   useEffect(() => {
     const handleClickOutsideSettings = e => {
-      e.stopPropagation()
-      
+      e.stopPropagation();
+
       if (
-       settingCogRef.current.contains(e.target)  || e.target.id === 'deleteMenu' || e.target.id ===  'renameMenu'            
+        settingCogRef.current.contains(e.target) ||
+        e.target.id === "deleteMenu" ||
+        e.target.id === "renameMenu"
       ) {
-         return;
-      } else{
+        return;
+      } else {
         setSettingsMenu(false);
       }
-      
     };
 
     if (settingsMenu) {
@@ -144,11 +144,7 @@ function CookbookCard(props) {
     };
   }, [settingsMenu]);
 
-
-
-
-
-// it will identify the clicked book and load the indivdual cookbook State
+  // it will identify the clicked book and load the indivdual cookbook State
   const handleCookbookClicker = e => {
     e.preventDefault();
     let selectedCookbook = cookbook.cookbooks.find(o => o._id === _id);
@@ -160,62 +156,53 @@ function CookbookCard(props) {
     loadCookbookRecipes(pushedCookbook, history);
   };
 
-
-
-
   return (
     <>
-      
-        <ConfirmModal
-          confirmAction={handleDeleteConfirm}
-          closeAction={() => setDeleteModal(false)}
-          id='deleteCookbookModal'
-          ref={deleteModalRef}
-          title={`Delete Cookbook`}
-          text={`Are you sure you want to delete this cookbook?`}
-          confirmationText='Delete'
-          isShowing={deleteModal}
-        >
-          
-        </ConfirmModal>
-        
-      
+      <ConfirmModal
+        confirmAction={handleDeleteConfirm}
+        closeAction={() => setDeleteModal(false)}
+        id="deleteCookbookModal"
+        ref={deleteModalRef}
+        title={`Delete Cookbook`}
+        text={`Are you sure you want to delete this cookbook?`}
+        confirmationText="Delete"
+        isShowing={deleteModal}
+      />
 
-      
-        <ConfirmModal
-          confirmAction={handleRenameConfirm}
-          closeAction={() => setRenameModal(false)}
-          id='renameCookbookModal'
-          ref={renameModalRef}
-          title={`Rename Cookbook`}
-          text={`Please enter the new name of this cookbook`}
-          confirmationText='Rename'
-          isShowing={renameModal}
-        >
-          <form onSubmit={handleRenameConfirm}>
-            <input value={renameForm.newName} name='newName' onChange={handleRenameChange} placeholder='Cookbook name' />
-          </form>
-        </ConfirmModal>
-      
+      <ConfirmModal
+        confirmAction={handleRenameConfirm}
+        closeAction={() => setRenameModal(false)}
+        id="renameCookbookModal"
+        ref={renameModalRef}
+        title={`Rename Cookbook`}
+        text={`Please enter the new name of this cookbook`}
+        confirmationText="Rename"
+        isShowing={renameModal}
+      >
+        <form onSubmit={handleRenameConfirm}>
+          <input
+            value={renameForm.newName}
+            name="newName"
+            onChange={handleRenameChange}
+            placeholder="Cookbook name"
+          />
+        </form>
+      </ConfirmModal>
 
       <article className="contentCard " onClick={e => handleCookbookClicker(e)}>
-
-
-       <CardSettingsMenu
+        <CardSettingsMenu
           onClick={handleSettingsMenuClick}
           ref={settingCogRef}
           isShowing={settingsMenu}
-          id='cookbookCog'
+          id="cookbookCog"
         >
-        <span onClick={()=> setRenameModal(true)}> 
-         <FontAwesomeIcon icon={faPencilAlt} />
-         </span>
-         <span onClick={()=> setDeleteModal(true)}> 
-         <FontAwesomeIcon icon={faTrash} /> 
-         </span>
-       </CardSettingsMenu>
-
-       
+          <span onClick={() => setRenameModal(true)}>
+            <FontAwesomeIcon icon={faPencilAlt} />
+          </span>
+          <span onClick={() => setDeleteModal(true)}>
+            <FontAwesomeIcon icon={faTrash} />
+          </span>
+        </CardSettingsMenu>
 
         <div className="ContentCardImage">
           {!cookbookImage ? (

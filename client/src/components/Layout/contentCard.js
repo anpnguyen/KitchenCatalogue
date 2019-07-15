@@ -1,7 +1,18 @@
-import React, { Fragment, useState , useRef, useEffect, useCallback} from "react";
+import React, {
+  Fragment,
+  useState,
+  useRef,
+  useEffect,
+  useCallback
+} from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClock, faUtensils, faCog, faTrash } from "@fortawesome/free-solid-svg-icons";
+import {
+  faClock,
+  faUtensils,
+  faCog,
+  faTrash
+} from "@fortawesome/free-solid-svg-icons";
 import { withRouter } from "react-router-dom";
 import { clearRecipe } from "../../actions/recipe";
 import { removeRecipeFromCookbook } from "../../actions/cookbook";
@@ -11,7 +22,7 @@ import "./contentCard.css";
 // import CardSettingsMenu from "./cardSettingsMenu";
 // import CardDeleteModal from "./cardDeleteModal";
 
-import ConfirmModal from './confirmModal'
+import ConfirmModal from "./confirmModal";
 import CardSettingMenu from "../cookbook/cardSettingsMenu";
 
 const ContentCard = props => {
@@ -41,25 +52,19 @@ const ContentCard = props => {
 
   const handleSettingsClick = e => {
     e.stopPropagation();
-    
+
     setSettingsMenu(!settingsMenu);
-    
   };
- 
 
   const handleDeleteClick = e => {
     e.stopPropagation();
     setSettingsMenu(false);
-    setDeleteRecipeModal(true)
-    
+    setDeleteRecipeModal(true);
   };
-
 
   useEffect(() => {
     const handleClickOutsideDelete = e => {
-      if (
-        deleteModalRef.current.contains(e.target )
-      ) {
+      if (deleteModalRef.current.contains(e.target)) {
         return;
       }
 
@@ -79,23 +84,17 @@ const ContentCard = props => {
 
   useEffect(() => {
     const handleClickOutsideSettings = e => {
-      e.stopPropagation()
-      let tester  = document.getElementById('cookbookCogRecipe')
-      
-      
+      e.stopPropagation();
+      let tester = document.getElementById("cookbookCogRecipe");
+
       if (
-        settingsMenuRef.current.contains(e.target) || e.target.id === tester.id
-       
+        settingsMenuRef.current.contains(e.target) ||
+        e.target.id === tester.id
       ) {
- 
         return;
-      } else{
-        
-        
-        
+      } else {
         setSettingsMenu(false);
       }
-      
     };
 
     if (settingsMenu) {
@@ -109,72 +108,68 @@ const ContentCard = props => {
     };
   }, [settingsMenu]);
 
- 
-
   return (
     <>
-   
-       <ConfirmModal
-          confirmAction={removeFromCookbook}
-          closeAction={() => setDeleteRecipeModal(false)}
-          id='deleteCookbookModal'
-          ref={deleteModalRef}
-          title={`Remove Recipe From Cookbook`}
-          text={`Are you sure you want to remove this recipe from this cookbook?`}
-          confirmationText='Remove'
-          isShowing={deleteRecipeModal}
-        />
+      <ConfirmModal
+        confirmAction={removeFromCookbook}
+        closeAction={() => setDeleteRecipeModal(false)}
+        id="deleteCookbookModal"
+        ref={deleteModalRef}
+        title={`Remove Recipe From Cookbook`}
+        text={`Are you sure you want to remove this recipe from this cookbook?`}
+        confirmationText="Remove"
+        isShowing={deleteRecipeModal}
+      />
 
+      <article className="contentCard " onClick={handleClicker}>
+        {option === "cookbookRecipes" && !props.titleText &&
+           
 
-
-    <article className="contentCard " onClick={handleClicker}>
-    {option === 'cookbookRecipes' &&
-    <CardSettingMenu
-          onClick={handleSettingsClick}
-          ref={settingsMenuRef}
-          isShowing={settingsMenu}
-          id='cookbookCogRecipe'
-        >
-
-          <span onClick={ ()=> setDeleteRecipeModal(true)}>
-          <FontAwesomeIcon icon={faTrash} />
-          </span>
+          <CardSettingMenu
+            onClick={handleSettingsClick}
+            ref={settingsMenuRef}
+            isShowing={settingsMenu}
+            id="cookbookCogRecipe"
+          >
+            <span onClick={() => setDeleteRecipeModal(true)}>
+              <FontAwesomeIcon icon={faTrash} />
+            </span>
           </CardSettingMenu>
-          }
+        }
 
-      <div className="ContentCardImage">
-        {!imageUrl && props.titleText && (
-          <div className="fillerImgCreate"> + </div>
-        )}
-        {!imageUrl && !props.titleText && <div className="fillerImg" />}
-        {imageUrl && <img className="" src={imageUrl} alt="" />}
-      </div>
-
-      <div className="ContentCardText ">
-        <div className="contentCardTitleContainer ">
-          {props.titleText && <h3> {props.titleText}</h3>}
-          <h3>{title}</h3>
+        <div className="ContentCardImage">
+          {!imageUrl && props.titleText && (
+            <div className="fillerImgCreate"> + </div>
+          )}
+          {!imageUrl && !props.titleText && <div className="fillerImg" />}
+          {imageUrl && <img className="" src={imageUrl} alt="" />}
         </div>
 
-        {text && !props.titleText && (
-          <Fragment>
-            <p className=" recipeText">
-              <span className="bold">
-                <FontAwesomeIcon icon={faUtensils} /> Servings:{" "}
-              </span>{" "}
-              {servings}
-            </p>
-            <p className=" recipeText">
-              <span className="bold">
-                <FontAwesomeIcon icon={faClock} /> Cooking Time:{" "}
-              </span>{" "}
-              {time}
-            </p>
-          </Fragment>
-        )}
-      </div>
-      {/* </div> */}
-    </article>
+        <div className="ContentCardText ">
+          <div className="contentCardTitleContainer ">
+            {props.titleText && <h3> {props.titleText}</h3>}
+            <h3>{title}</h3>
+          </div>
+
+          {text && !props.titleText && (
+            <Fragment>
+              <p className=" recipeText">
+                <span className="bold">
+                  <FontAwesomeIcon icon={faUtensils} /> Servings:{" "}
+                </span>{" "}
+                {servings}
+              </p>
+              <p className=" recipeText">
+                <span className="bold">
+                  <FontAwesomeIcon icon={faClock} /> Cooking Time:{" "}
+                </span>{" "}
+                {time}
+              </p>
+            </Fragment>
+          )}
+        </div>
+        {/* </div> */}
+      </article>
     </>
   );
 };
