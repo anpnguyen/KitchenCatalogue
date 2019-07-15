@@ -120,9 +120,10 @@ function CookbookCard(props) {
   useEffect(() => {
     const handleClickOutsideSettings = e => {
       e.stopPropagation()
-      console.log(e.target)
+      console.log(e.target.id)
+      console.log(settingCogRef)
       if (
-       settingCogRef.current.contains(e.target)            
+       settingCogRef.current.contains(e.target)  || e.target.id === 'deleteMenu' || 'renameMenu'            
       ) {
          return;
       } else{
@@ -196,8 +197,8 @@ function CookbookCard(props) {
 
         {settingsMenu && (
           <div className="settingsMenu">
-            <p onClick={handleDeleteClick}>delete</p>
-            <p onClick={handleRenameClick}> rename</p>
+            <p onClick={handleDeleteClick} id='deleteMenu'>delete</p>
+            <p onClick={handleRenameClick} id='renameMenu'> rename</p>
           </div>
         )}
 
