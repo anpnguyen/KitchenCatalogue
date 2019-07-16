@@ -28,6 +28,8 @@ export const getRecipeById = (recipeId, history) => async dispatch => {
         type: GET_RECIPE,
         payload: res.data
       });
+
+      console.log(res.data)
     } catch (err) {
       dispatch({
         type: RECIPE_ERROR
@@ -100,7 +102,7 @@ export const getRecipeById = (recipeId, history) => async dispatch => {
       };
   
       const res = await axios.put(`/api/recipe/${recipeId}`, formData, config);
-  
+      localStorage.removeItem("recipeState");
   
   
       dispatch({

@@ -13,9 +13,10 @@ import RecipeDetails from "./receipeDetails";
 import RecipeIngredients from "./recipeIngredients";
 import RecipeInstructions from "./recipeInstructions";
 import "./newRecipe.css";
+import individualRecipe from "../../reducers/individualRecipe";
 
 const EditIndividualRecipe = props => {
-  const { editRecipePut, history, recipe, auth, option, createRecipe, match } = props;
+  const { editRecipePut, history, recipe, auth, option, createRecipe, match, individualRecipe } = props;
   const { user } = auth;
 
 
@@ -64,8 +65,13 @@ const EditIndividualRecipe = props => {
   };
 
   useEffect(() => {
+
+    
     if (option === 'edit') {
-      let localRecipe = JSON.parse(localStorage.getItem("recipe"));
+      let localRecipes = JSON.parse(localStorage.getItem("recipeState"));
+      let foundRecipe = localRecipes.find(
+        recipe => recipe._id === match.params.recipe_id
+      );
       // console.log(localRecipe)
       let {
         title,
@@ -74,13 +80,13 @@ const EditIndividualRecipe = props => {
         time,
         ingredients,
         instructions
-      } = localRecipe;
+      } = foundRecipe;
       setRecipeDetails({ title, servings, imageUrl, time });
       setRecipeIngredients(ingredients);
       setRecipeInstructions(instructions);
     
     } 
-  }, [recipe.recipe.title, option]);
+  }, [individualRecipe.recipe.title, option]);
 
 
 
@@ -171,7 +177,8 @@ EditIndividualRecipe.propTypes = {
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  recipe: state.recipe
+  recipe: state.recipe,
+  individualRecipe: state.individualRecipe
 });
 export default withRouter(
   connect(
