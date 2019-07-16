@@ -13,7 +13,7 @@ import {
 
 const initialState = {
   recipes: [],
-  recipe: {},
+  // recipe: {},
   loading: true,
   error: {}
 };
@@ -36,35 +36,35 @@ export default function(state = initialState, action) {
         loading: false
       };
 
-    case GET_RECIPE:
-      return {
-        ...state,
-        recipe: payload,
-        loading: false
-      };
+    // case GET_RECIPE:
+    //   return {
+    //     ...state,
+    //     recipe: payload,
+    //     loading: false
+    //   };
 
-    case CLEAR_RECIPE:
-      return {
-        ...state,
-        loading: true
-      };
+    // case CLEAR_RECIPE:
+    //   return {
+    //     ...state,
+    //     loading: true
+    //   };
 
-    case CREATE_RECIPE:
-      return {
-        ...state,
-        loading: false
-      };
-    case EDIT_RECIPE:
-      return {
-        ...state,
-        loading: true
-      };
-    case DELETE_RECIPE:
-      return {
-        ...state,
-        recipe: "",
-        loading: true
-      };
+    // case CREATE_RECIPE:
+    //   return {
+    //     ...state,
+    //     loading: true
+    //   };
+    // case EDIT_RECIPE:
+    //   return {
+    //     ...state,
+    //     loading: true
+    //   };
+    // case DELETE_RECIPE:
+    //   return {
+    //     ...state,
+    //     recipe: "",
+    //     loading: true
+    //   };
     case UPDATE_RECIPES_LS:
       return {
         ...state,

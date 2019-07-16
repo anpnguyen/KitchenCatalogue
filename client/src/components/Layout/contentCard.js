@@ -35,7 +35,7 @@ const ContentCard = props => {
   const settingsMenuRef = useRef();
 
   const handleClicker = () => {
-    clearRecipe();
+    // clearRecipe();
     if (!_id) {
       props.history.push(`/recipe/new`);
     } else {

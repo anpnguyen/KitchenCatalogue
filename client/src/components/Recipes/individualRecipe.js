@@ -6,8 +6,9 @@ import Footer from "../Layout/footer";
 import Alert from "../Layout/alert";
 import DeleteConfimation from "./deleteConfirmation";
 import AddToCookbook from "./addToCookbook";
-import { getRecipeById, deleteRecipe } from "../../actions/recipe";
-import {getCookbooks } from "../../actions/cookbook";
+import { getRecipeById, deleteRecipe, updateRecipe_LS } from "../../actions/individualRecipe";
+import { updateFromLS} from "../../actions/recipe";
+import {getCookbooks, updateCookbookFromLS } from "../../actions/cookbook";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
@@ -18,8 +19,28 @@ import ViewRecipeIngredients from "./viewRecipeIngredients";
 import ViewRecipeInstructions from "./viewRecipeInstructions";
 
 const IndividualRecipe = props => {
-  const { match, getRecipeById, deleteRecipe, history, cookbook, getCookbooks } = props;
-  const {
+  
+
+  const { match, getRecipeById, deleteRecipe, history, cookbook, getCookbooks, updateCookbookFromLS,updateFromLS , individualRecipe,updateRecipe_LS} = props;
+ 
+  
+
+
+  const { loading } = individualRecipe;
+  const [isDelete, setIsDelete] = useState(false);
+
+  const [recipeData, setRecipeData] = useState({
+    title:"",
+    imageUrl:"",
+    servings:"",
+    time:"",
+    ingredients:[],
+    instructions:[],
+    user:"",
+
+  })
+
+  let {
     title,
     imageUrl,
     servings,
@@ -28,23 +49,70 @@ const IndividualRecipe = props => {
     instructions,
     user,
     _id
-  } = props.recipe.recipe;
-  const { loading } = props.recipe;
-  const [isDelete, setIsDelete] = useState(false);
+  } = recipeData
 
   useEffect(() => {
+    let localRecipes = JSON.parse(localStorage.getItem('recipeState'))
+    console.log(localRecipes)
+    let foundRecipe = localRecipes.find(recipe => recipe._id === match.params.recipe_id )
+    console.log(foundRecipe)
+
+    if (foundRecipe){ 
+      
+      setRecipeData({    
+        title: foundRecipe.title,
+        imageUrl : foundRecipe.imageUrl ,
+        servings  :foundRecipe.servings,
+        time :foundRecipe.time,
+        ingredients :foundRecipe.ingredients,
+        instructions :foundRecipe.instructions,
+        user :foundRecipe.user,
+        _id :foundRecipe._id ,
+
+      })
+
+      updateRecipe_LS(foundRecipe)
+    // getRecipeById(match.params.recipe_id, history);
+  }
+
+    else {
+
     getRecipeById(match.params.recipe_id, history);
+  }
   }, []);
 
-  useEffect(() => {
-    title === undefined &&
-    getRecipeById(match.params.recipe_id, history);
-  }, []);
+  
+  // useEffect(() => {
+    // title === undefined &&
+  //   getRecipeById(match.params.recipe_id, history);
+  // }, []);
+
+  // useEffect(() => {
+
+  //   if(localStorage.recipeState && loading ){
+  //     let oldState = JSON.parse(localStorage.getItem('recipeState'))
+  //     updateFromLS(oldState)
+      
+  //   } 
+  
+  // }, []);
+
 
   useEffect(() => {
-    cookbook.loading &&
-    getCookbooks()
+
+    if(localStorage.cookbookState && cookbook.loading){
+      let oldState = JSON.parse(localStorage.getItem('cookbookState'))
+      updateCookbookFromLS(oldState)
+      
+    } else{
+      cookbook.loading &&
+      getCookbooks()
+    }
+    
   }, []);
+
+     
+  
 
   const handleDelete = () => {
     setIsDelete(true);
@@ -143,12 +211,13 @@ IndividualRecipe.propTypes = {
 const mapStateToProps = state => ({
   auth: state.auth,
   recipe: state.recipe,
-  cookbook: state.cookbook
+  cookbook: state.cookbook,
+  individualRecipe: state.individualRecipe
 });
 
 export default withRouter(
   connect(
     mapStateToProps,
-    { getRecipeById, deleteRecipe, getCookbooks }
+    { getRecipeById, deleteRecipe, getCookbooks , updateCookbookFromLS,updateFromLS, updateRecipe_LS}
   )(IndividualRecipe)
 );
