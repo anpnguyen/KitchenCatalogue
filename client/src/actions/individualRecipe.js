@@ -31,7 +31,7 @@ export const getRecipeById = (recipeId, history) => async dispatch => {
       type: GET_RECIPE_ERROR
     });
 
-    // history.push("/recipe");
+    history.push("/recipe");
   }
 };
 export const updateRecipe_LS = foundRecipe => async dispatch => {
@@ -142,8 +142,10 @@ export const deleteRecipe = (history, recipeId) => async dispatch => {
     });
 
     dispatch(setAlert("Recipe Sucessfully Deleted", "RecipeEditSuccess"));
-
+    
+    console.log(history)
     history.goBack()
+
   } catch (err) {
     dispatch({
       type: DELETE_RECIPE_ERROR,

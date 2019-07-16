@@ -73,11 +73,11 @@ const Home = props => {
 
   // loads up the individual cookbook
 
-  useEffect(() => {
-    individualCookbook.loading &&
-      match.params.cookbook_id &&
-      getCookbookById(match.params.cookbook_id);
-  }, []);
+  // useEffect(() => {
+  //   individualCookbook.loading &&
+  //     match.params.cookbook_id &&
+  //     getCookbookById(match.params.cookbook_id);
+  // }, []);
 
 
 
@@ -88,12 +88,11 @@ const Home = props => {
 
    
 
-  // if(search.error.msg !== undefined){
-  //   clearRecipe()
-  //   return(
-  //     <Redirect to='/recipe'/>
-  //   )
-  // }
+if(individualCookbook.loading &&
+  match.params.cookbook_id ){
+  console.log('individual recipe calling')
+  getCookbookById(match.params.cookbook_id)
+}
 
   return (
       
