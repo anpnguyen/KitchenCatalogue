@@ -1,0 +1,17 @@
+
+  .contentSelect {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+  }
+  .contentSelectSelect {
+    margin-right: 100px;
+    height: 30px;
+  }
+
+  .contentSelectText {
+    margin-left: 100px;
+    font-weight: bold;
+    height: 100%;
+    padding-top: 5px;
+  }

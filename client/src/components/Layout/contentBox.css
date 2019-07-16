@@ -1,9 +1,9 @@
-.contentBox {
+/* .contentBox {
   width: 100%;
   display: flex;
   justify-content: center;
   
-}
+} */
 
 .contentBoxContent {
   flex-basis: 1000px;
@@ -16,16 +16,11 @@
   flex-wrap: wrap;
   justify-content: flex-start;
   margin-top: 20px;
-  box-sizing: border-box;
+  box-sizing: border-box
   /* min-height: 400px */
 }
 
-.searchNumber {
-  margin-left: 100px;
-  font-weight: bold;
-  height: 100%;
-  padding-top: 5px;
-}
+
 
 .contentBoxNavigation {
   display: flex;
@@ -70,15 +65,7 @@
   cursor: default !important;
 }
 
-.contentBoxHeader {
-  display: flex;
-  justify-content: space-between;
-  margin: 5px 0;
-}
-.navigationSelect {
-  margin-right: 100px;
-  height: 30px;
-}
+
 
 @media only screen and (max-width: 768px) {
   .contentBoxContent {

@@ -1,0 +1,44 @@
+
+.contentBoxNavigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    height: 30px;
+    margin-bottom: 10px;
+  }
+  
+  .arrows {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #bbbbbb;
+    width: 20px;
+    text-align: center;
+    margin: 0 5px;
+  }
+  
+  .arrows:hover {
+    color: rgb(218, 26, 45);
+    cursor: pointer;
+  }
+  
+  .ml2 {
+    margin-left: 25px;
+  }
+  .mr2 {
+    margin-right: 25px;
+  }
+  
+  .navigationActive {
+    color: rgb(218, 26, 45);
+  }
+  
+  .navigationDisable {
+    color: white;
+  }
+  
+  .navigationDisable:hover {
+    color: white !important;
+    cursor: default !important;
+  }
+  

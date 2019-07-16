@@ -1,0 +1,13 @@
+.content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.contentContainer {
+  flex-basis: 1000px;
+}
+
+.contentContainer h1{
+    text-align: center;
+  }

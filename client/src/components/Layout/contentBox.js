@@ -88,32 +88,9 @@ const ContentBox = props => {
   ) : (
     <main className="contentBox ">
       <div className="contentBoxContent">
-        <h1 className="text-center">
-          {isSearch === true ? "Search Results" : title}
-        </h1>
-        <hr className="width80" />
-        <div className="contentBoxHeader">
-          <div>
-            <p className="searchNumber">
-              {" "}
-              {totalItems} {totalItems === 1 ? "recipe" : "recipes"} found{" "}
-              {isSearch === true && ` for '${searchData}'`}
-            </p>
-          </div>
-          <div>
-            <select
-              className="navigationSelect"
-              name="itemsPerPage"
-              onChange={e => setPageLimit(parseInt(e.target.value))}
-              value={pageLimit}
-            >
-              <option value={12}>12 items per page</option>
-              <option value={16}>16 items per page</option>
-              <option value={20}>20 items per page</option>
-              <option value={48}>48 items per page</option>
-            </select>
-          </div>
-        </div>
+      
+        
+        
         <hr className="width80" />
 
         <section className="contentBoxCard">

@@ -13,6 +13,7 @@ import store from "./store";
 import { loadUser } from "./actions/auth";
 import setAuthToken from "./utils/setAuthToken";
 import "./App.css";
+import MyRecipes from './components/Layout/MyRecipes'
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -32,51 +33,59 @@ const App = () => {
             <Route exact path="/" render={LoginContainer} />
             <Route exact path="/login" render={LoginContainer} />
 
-            <PrivateRoute 
+            {/* <PrivateRoute 
               exact 
               path="/recipe" 
               component={Home} 
               option ='recipe'
-            />
+            /> */}
 
-            <PrivateRoute
+            {/* <PrivateRoute
               exact
               path="/recipe/search"
               component={Home}
               option = 'search'
-            />
+            /> */}
 
-            <PrivateRoute
+            {/* <PrivateRoute
               exact
               path="/recipe/new"
               component={EditIndividualRecipe}
               option='newRecipe'
-            />
+            /> */}
 
-            <PrivateRoute
+            {/* <PrivateRoute
               exact
               path="/recipe/:recipe_id"
               component={IndividualRecipe}
-            />
+            /> */}
 
-            <PrivateRoute
+            {/* <PrivateRoute
               exact
               path="/recipe/:recipe_id/edit"
               component={EditIndividualRecipe}
               option='edit'
-            />
+            /> */}
 
-            <PrivateRoute 
+            {/* <PrivateRoute 
               exact 
               path="/cookbook" 
               component={Home} 
               option = 'cookbook'
-            />
-            <PrivateRoute 
+            /> */}
+            {/* <PrivateRoute 
               exact 
               path="/cookbook/:cookbook_id" 
               component={Home} 
               option = 'cookbookRecipes'
+            /> */}
+
+
+            <PrivateRoute 
+              exact 
+              path="/a"
+              component={MyRecipes} 
+              
             />
 
 
