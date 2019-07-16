@@ -71,7 +71,7 @@ const IndividualRecipe = props => {
       _id: individualRecipe.recipe._id
     });
 
-    console.log(individualRecipe);
+    
   }, [individualRecipe]);
   useEffect(() => {
     var localRecipes = JSON.parse(localStorage.getItem("recipeState"));

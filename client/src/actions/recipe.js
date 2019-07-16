@@ -27,6 +27,7 @@ export const getRecipes = searchParams => async dispatch => {
     });
 
     localStorage.setItem("recipeState", JSON.stringify(res.data));
+    console.log('getREcipes called')
   } catch (err) {
     dispatch({
       type: GET_RECIPES_ERROR,

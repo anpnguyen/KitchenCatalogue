@@ -1,5 +1,6 @@
 import axios from "axios";
 import { setAlert } from "../actions/alert";
+import {getRecipes} from '../actions/recipe'
 
 import {
   GET_RECIPE,
@@ -58,12 +59,12 @@ export const createRecipe = (formData, history) => async dispatch => {
 
     // clears the local stoage, so home page rerenders
     localStorage.removeItem("recipeState");
-
+    dispatch(getRecipes())
     dispatch({
       type: CREATE_RECIPE,
       payload: res.data
     });
-
+    getRecipes()
     dispatch(setAlert("Recipe Created", "RecipeEditSuccess"));
 
     history.push(`/recipe/${res.data._id}`);
@@ -99,9 +100,10 @@ export const editRecipePut = (
       type: EDIT_RECIPE,
       payload: res.data
     });
-
+    
+    console.log('called from action edit')
     dispatch(setAlert("Recipe Sucessfully Edited", "RecipeEditSuccess"));
-
+    dispatch(getRecipes())
     history.push(`/recipe/${recipeId}`);
   } catch (err) {
     const errors = err.response.data;

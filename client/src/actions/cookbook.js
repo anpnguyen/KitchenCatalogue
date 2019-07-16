@@ -64,6 +64,7 @@ export const addRecipeToCookbook = data => async dispatch => {
 
     const res = await axios.put(`/api/cookbook/`, data, config);
     localStorage.removeItem("cookbookState");
+    dispatch(getCookbooks())
 
     dispatch({
       type: ADD_RECIPE_TO_COOKBOOKS
@@ -93,6 +94,7 @@ export const createNewCookbook = cookbookTitle => async dispatch => {
 
     const res = await axios.post(`/api/cookbook/`, cookbookTitle, config);
     localStorage.removeItem("cookbookState");
+    dispatch(getCookbooks())
     dispatch({
       type: CREATE_COOKBOOK,
       payload: res.data
@@ -119,6 +121,7 @@ export const deleteCookbook = cookbook_id => async dispatch => {
       payload: res.data.deletedCookbookId
     });
     localStorage.removeItem("cookbookState");
+    dispatch(getCookbooks())
     dispatch(setAlert("Cookbook Deleted", "RecipeEditSuccess"));
   } catch (err) {
     dispatch({
@@ -145,6 +148,7 @@ export const renameCookbookById = data => async dispatch => {
       config
     );
     localStorage.removeItem("cookbookState");
+    dispatch(getCookbooks())
     dispatch({
       type: RENAME_COOKBOOK,
       payload: res.data
