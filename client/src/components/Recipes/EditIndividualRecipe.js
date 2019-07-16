@@ -84,7 +84,7 @@ const EditIndividualRecipe = props => {
       setRecipeDetails({ title, servings, imageUrl, time });
       setRecipeIngredients(ingredients);
       setRecipeInstructions(instructions);
-    
+          
     } 
   }, [individualRecipe.recipe.title, option]);
 

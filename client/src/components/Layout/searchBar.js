@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import SearchBack from "../../images/searchback_crop.jpg";
 import { connect } from "react-redux";
-import { getRecipes } from "../../actions/recipe";
+
 import { getSearchRecipes } from "../../actions/search";
 import "./searchBar.css";
 
@@ -45,8 +45,8 @@ const SearchBar = props => {
 };
 
 SearchBar.propTypes = {
-  getRecipes: PropTypes.func.isRequired,
-  searchRecipes: PropTypes.func.isRequired
+  
+  getSearchRecipes: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -55,5 +55,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getRecipes, getSearchRecipes }
+  { getSearchRecipes }
 )(SearchBar);

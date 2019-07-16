@@ -11,7 +11,8 @@ import {
   clearRecipe,
   updateFromLS
 } from "../../actions/recipe";
-import { getCookbooks, getCookbookById, updateCookbookFromLS } from "../../actions/cookbook";
+import { getCookbooks, updateCookbookFromLS } from "../../actions/cookbook";
+import {  getCookbookById} from "../../actions/individualCookbook";
 import { getSearchRecipes , updateFromSearchLS} from "../../actions/search";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";

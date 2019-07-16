@@ -1,14 +1,18 @@
 import {
   GET_COOKBOOKS,
   GET_COOKBOOKS_ERROR,
-  UPDATE_COOKBOOKS,
+  UPDATE_COOKBOOKS_LS,
+  UPDATE_COOKBOOKS_LS_ERROR,
+  ADD_RECIPE_TO_COOKBOOKS,
+  ADD_RECIPE_TO_COOKBOOKS_ERROR,
   CREATE_COOKBOOK,
+  CREATE_COOKBOOK_ERROR,
   DELETE_COOKBOOK,
-  UPDATE_COOKBOOK,
-  RENAME_COOKBOOK
+  DELETE_COOKBOOK_ERROR,
+  RENAME_COOKBOOK,
+  RENAME_COOKBOOK_ERROR
 } from "../actions/types";
 
-// import {Redirect} from 'react-router-dom'
 
 const initialState = {
   cookbooks: [],
@@ -27,10 +31,10 @@ export default function(state = initialState, action) {
         loading: false
       };
 
-    case GET_COOKBOOKS_ERROR:
+    case UPDATE_COOKBOOKS_LS:
       return {
         ...state,
-        error: payload,
+        cookbooks: payload,
         loading: false
       };
 
@@ -38,23 +42,6 @@ export default function(state = initialState, action) {
       return {
         ...state,
         cookbooks: [...state.cookbooks, payload],
-
-        loading: false
-      };
-
-    case RENAME_COOKBOOK:
-      return {
-        ...state,
-        cookbooks: 
-          state.cookbooks.map(mappedCookbook => {
-            if (mappedCookbook._id === payload._id) {
-              return payload;
-            } else {
-              return mappedCookbook
-            }
-          })
-        ,
-
         loading: false
       };
 
@@ -64,16 +51,32 @@ export default function(state = initialState, action) {
         cookbooks: [
           ...state.cookbooks.filter(cookbook => cookbook._id !== payload)
         ],
-
         loading: false
       };
 
-
-      case 'UPDATE_COOKBOOK_LS':
+    case RENAME_COOKBOOK:
       return {
         ...state,
-        cookbooks: payload,
+        cookbooks: state.cookbooks.map(mappedCookbook => {
+          if (mappedCookbook._id === payload._id) {
+            return payload;
+          } else {
+            return mappedCookbook;
+          }
+        }),
+        loading: false
+      };
 
+    case GET_COOKBOOKS_ERROR,
+    UPDATE_COOKBOOKS_LS_ERROR,
+    CREATE_COOKBOOK_ERROR,
+    DELETE_COOKBOOK_ERROR,
+    RENAME_COOKBOOK_ERROR,
+    ADD_RECIPE_TO_COOKBOOKS_ERROR,
+    ADD_RECIPE_TO_COOKBOOKS:
+      return {
+        ...state,
+        error: payload,
         loading: false
       };
 

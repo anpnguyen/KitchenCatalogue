@@ -1,7 +1,6 @@
 import { SET_ALERT, REMOVE_ALERT, CLEAR_ALERTS } from "./types";
 import uuid from "uuid/v4";
 
-
 export const clearAlerts = () => dispatch => {
   dispatch({
     type: CLEAR_ALERTS

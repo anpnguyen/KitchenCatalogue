@@ -15,12 +15,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { withRouter } from "react-router-dom";
 import { clearRecipe } from "../../actions/recipe";
-import { removeRecipeFromCookbook } from "../../actions/cookbook";
+import { removeRecipeFromCookbook } from "../../actions/individualCookbook";
 import { connect } from "react-redux";
 import "./contentCard.css";
-// import CardSettingsIcon from "./cardSettingsIcon";
-// import CardSettingsMenu from "./cardSettingsMenu";
-// import CardDeleteModal from "./cardDeleteModal";
+
 
 import ConfirmModal from "./confirmModal";
 import CardSettingMenu from "../cookbook/cardSettingsMenu";

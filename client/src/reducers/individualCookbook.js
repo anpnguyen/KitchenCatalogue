@@ -1,6 +1,6 @@
 import {
     
-    LOAD_COOKBOOK_RECIPES, GET_COOKBOOK, UPDATE_COOKBOOK
+    LOAD_COOKBOOK_RECIPES, GET_COOKBOOK, GET_COOKBOOK_ERROR, REMOVE_RECIPE
      } from "../actions/types";
 
      
@@ -32,7 +32,7 @@ import {
            };
 
 
-           case UPDATE_COOKBOOK:
+           case REMOVE_RECIPE:
           return {
             ...state,
             individualCookbook: {...state.individualCookbook, savedRecipes: state.individualCookbook.savedRecipes.filter(recipe => recipe._id !== payload.recipeDeleted)},

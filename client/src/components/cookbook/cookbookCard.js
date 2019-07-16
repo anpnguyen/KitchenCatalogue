@@ -3,9 +3,12 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import {
   loadCookbookRecipes,
-  deleteCookbook,
-  renameCookbookById
-} from "../../actions/cookbook";
+
+  
+} from "../../actions/individualCookbook";
+
+
+import {deleteCookbook, renameCookbookById} from '../../actions/cookbook'
 
 import ConfirmModal from "../Layout/confirmModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -43,17 +46,6 @@ function CookbookCard(props) {
     setSettingsMenu(!settingsMenu);
   };
 
-  // const handleDeleteClick = e => {
-  //   e.stopPropagation();
-  //   setSettingsMenu(false);
-  //   setDeleteModal(!deleteModal);
-  // };
-
-  // const handleRenameClick = e => {
-  //   e.stopPropagation();
-  //   setSettingsMenu(false);
-  //   setRenameModal(!renameModal);
-  // };
 
   const handleRenameConfirm = e => {
     e.preventDefault();

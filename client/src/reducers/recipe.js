@@ -1,19 +1,14 @@
 import {
-  GET_RECIPE,
-  RECIPE_ERROR,
-  CREATE_RECIPE,
   GET_RECIPES,
+  GET_RECIPES_ERROR,
+  UPDATE_RECIPES_LS,
+  UPDATE_RECIPES_LS_ERROR,
   CLEAR_RECIPE,
-  EDIT_RECIPE,
-  DELETE_RECIPE,
-  UPDATE_RECIPES_LS
+  CLEAR_ERROR
 } from "../actions/types";
-
-// import {Redirect} from 'react-router-dom'
 
 const initialState = {
   recipes: [],
-  // recipe: {},
   loading: true,
   error: {}
 };
@@ -29,42 +24,12 @@ export default function(state = initialState, action) {
         loading: false
       };
 
-    case RECIPE_ERROR:
+    case CLEAR_RECIPE:
       return {
         ...state,
-        error: payload,
-        loading: false
+        loading: true
       };
-
-    // case GET_RECIPE:
-    //   return {
-    //     ...state,
-    //     recipe: payload,
-    //     loading: false
-    //   };
-
-    // case CLEAR_RECIPE:
-    //   return {
-    //     ...state,
-    //     loading: true
-    //   };
-
-    // case CREATE_RECIPE:
-    //   return {
-    //     ...state,
-    //     loading: true
-    //   };
-    // case EDIT_RECIPE:
-    //   return {
-    //     ...state,
-    //     loading: true
-    //   };
-    // case DELETE_RECIPE:
-    //   return {
-    //     ...state,
-    //     recipe: "",
-    //     loading: true
-    //   };
+  
     case UPDATE_RECIPES_LS:
       return {
         ...state,
@@ -72,6 +37,14 @@ export default function(state = initialState, action) {
         loading: false
       };
 
+    case GET_RECIPES_ERROR, UPDATE_RECIPES_LS_ERROR, CLEAR_ERROR:
+      return {
+        ...state,
+        error: payload,
+        loading: false
+      };
+
+      
     default:
       return state;
   }

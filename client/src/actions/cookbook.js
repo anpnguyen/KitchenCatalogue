@@ -4,13 +4,16 @@ import { setAlert } from "../actions/alert";
 import {
   GET_COOKBOOKS,
   GET_COOKBOOKS_ERROR,
-  LOAD_COOKBOOK_RECIPES,
-  GET_COOKBOOK,
-  UPDATE_COOKBOOKS,
+  UPDATE_COOKBOOKS_LS,
+  UPDATE_COOKBOOKS_LS_ERROR,
+  ADD_RECIPE_TO_COOKBOOKS,
+  ADD_RECIPE_TO_COOKBOOKS_ERROR,
   CREATE_COOKBOOK,
+  CREATE_COOKBOOK_ERROR,
   DELETE_COOKBOOK,
-  UPDATE_COOKBOOK,
-  RENAME_COOKBOOK
+  DELETE_COOKBOOK_ERROR,
+  RENAME_COOKBOOK,
+  RENAME_COOKBOOK_ERROR
 } from "../actions/types";
 
 // GET the all the users recipes
@@ -23,7 +26,7 @@ export const getCookbooks = () => async dispatch => {
       payload: res.data
     });
 
-    localStorage.setItem('cookbookState', JSON.stringify(res.data))
+    localStorage.setItem("cookbookState", JSON.stringify(res.data));
   } catch (err) {
     dispatch({
       type: GET_COOKBOOKS_ERROR,
@@ -32,65 +35,25 @@ export const getCookbooks = () => async dispatch => {
   }
 };
 
-export const updateCookbookFromLS = (oldState) => async dispatch => {
-
+// If the user refreshes, this will update the state from local storage
+export const updateCookbookFromLS = oldState => async dispatch => {
   try {
-   
     dispatch({
-      type: 'UPDATE_COOKBOOK_LS',
+      type: UPDATE_COOKBOOKS_LS,
       payload: oldState
     });
-    
   } catch (err) {
     dispatch({
-      type: GET_COOKBOOKS_ERROR,
-      payload: { msg: "server error", status: "server error" }
-    });
-  }
-}
-
-
-// Load the users selected cookbook
-
-export const loadCookbookRecipes = (
-  selectedCookbook,
-  history
-) => async dispatch => {
-  try {
-    dispatch({
-      type: LOAD_COOKBOOK_RECIPES,
-      payload: selectedCookbook
-    });
-    // localStorage.setItem('selectedcookbook', JSON.stringify(selectedCookbook))
-    history.push(`/cookbook/${selectedCookbook._id}`);
-  } catch (err) {
-    dispatch({
-      type: GET_COOKBOOKS_ERROR,
-      payload: { msg: "server error from loadcookbook", status: "server error" }
+      type: UPDATE_COOKBOOKS_LS_ERROR,
+      payload: {
+        msg: "server error from updateCookbooksLS",
+        status: "server error"
+      }
     });
   }
 };
 
-// GET cookbook by ID  - if refresh
-
-export const getCookbookById = cookbook_id => async dispatch => {
-  try {
-    const res = await axios.get(`/api/cookbook/${cookbook_id}`);
-
-    dispatch({
-      type: GET_COOKBOOK,
-      payload: res.data
-    });
-  } catch (err) {
-    dispatch({
-      type: GET_COOKBOOKS_ERROR,
-      payload: { msg: "server error from get byID", status: "server error" }
-    });
-  }
-};
-
-// add recipe/ recipes to cookbook
-
+// add recipe/s to cookbooks
 export const addRecipeToCookbook = data => async dispatch => {
   try {
     const config = {
@@ -102,12 +65,16 @@ export const addRecipeToCookbook = data => async dispatch => {
     const res = await axios.put(`/api/cookbook/`, data, config);
     localStorage.removeItem("cookbookState");
 
+    dispatch({
+      type: ADD_RECIPE_TO_COOKBOOKS
+    });
+
     dispatch(setAlert("Recipe Sucessfully Added", "RecipeEditSuccess"));
   } catch (err) {
     dispatch({
-      type: GET_COOKBOOKS_ERROR,
+      type: ADD_RECIPE_TO_COOKBOOKS_ERROR,
       payload: {
-        msg: "server error from get updateCookbooks",
+        msg: "server error from get addRecipeToCokbooks",
         status: "server error"
       }
     });
@@ -125,9 +92,7 @@ export const createNewCookbook = cookbookTitle => async dispatch => {
     };
 
     const res = await axios.post(`/api/cookbook/`, cookbookTitle, config);
-
-    localStorage.removeItem('cookbookState')
-
+    localStorage.removeItem("cookbookState");
     dispatch({
       type: CREATE_COOKBOOK,
       payload: res.data
@@ -136,7 +101,7 @@ export const createNewCookbook = cookbookTitle => async dispatch => {
     dispatch(setAlert("Recipe Sucessfully Added", "RecipeEditSuccess"));
   } catch (err) {
     dispatch({
-      type: GET_COOKBOOKS_ERROR,
+      type: CREATE_COOKBOOK_ERROR,
       payload: {
         msg: "server error from get createCookbook",
         status: "server error"
@@ -153,49 +118,13 @@ export const deleteCookbook = cookbook_id => async dispatch => {
       type: DELETE_COOKBOOK,
       payload: res.data.deletedCookbookId
     });
-    localStorage.removeItem('cookbookState')
+    localStorage.removeItem("cookbookState");
     dispatch(setAlert("Cookbook Deleted", "RecipeEditSuccess"));
   } catch (err) {
     dispatch({
-      type: GET_COOKBOOKS_ERROR,
+      type: DELETE_COOKBOOK_ERROR,
       payload: {
         msg: "server error from get createCookbook",
-        status: "server error"
-      }
-    });
-  }
-};
-
-export const removeRecipeFromCookbook = data => async dispatch => {
-  const config = {
-    headers: {
-      "Content-Type": "application/json"
-    }
-  };
-
-  try {
-    console.log(data.cookbook_Id);
-    console.log(data);
-    const res = await axios.put(
-      `/api/cookbook/${data.cookbook_Id}`,
-      data,
-      config
-    );
-
-    localStorage.removeItem('cookbookState')
-    dispatch({
-      type: UPDATE_COOKBOOK,
-      payload: res.data
-    });
-
-    console.log(res.data);
-
-    dispatch(setAlert("recipe removed", "RecipeEditSuccess"));
-  } catch (err) {
-    dispatch({
-      type: GET_COOKBOOKS_ERROR,
-      payload: {
-        msg: "server error from remove recipe from cookbook",
         status: "server error"
       }
     });
@@ -215,7 +144,7 @@ export const renameCookbookById = data => async dispatch => {
       data,
       config
     );
-    localStorage.removeItem('cookbookState')
+    localStorage.removeItem("cookbookState");
     dispatch({
       type: RENAME_COOKBOOK,
       payload: res.data
@@ -225,7 +154,7 @@ export const renameCookbookById = data => async dispatch => {
   } catch (err) {
     console.log(err);
     dispatch({
-      type: GET_COOKBOOKS_ERROR,
+      type: RENAME_COOKBOOK_ERROR,
       payload: { msg: "renameCOokbook", status: "server error" }
     });
   }
