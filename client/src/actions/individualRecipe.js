@@ -135,6 +135,7 @@ export const deleteRecipe = (history, recipeId) => async dispatch => {
 
     // clears the local stoage, so home page rerenders
     localStorage.removeItem("recipeState");
+    dispatch(getRecipes)
 
     dispatch({
       type: DELETE_RECIPE
@@ -142,7 +143,7 @@ export const deleteRecipe = (history, recipeId) => async dispatch => {
 
     dispatch(setAlert("Recipe Sucessfully Deleted", "RecipeEditSuccess"));
 
-    history.push(`/recipe`);
+    history.goBack()
   } catch (err) {
     dispatch({
       type: DELETE_RECIPE_ERROR,

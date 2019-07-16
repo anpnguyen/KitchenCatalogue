@@ -79,6 +79,8 @@ const Home = props => {
       getCookbookById(match.params.cookbook_id);
   }, []);
 
+
+
   const [isSearch, setIsSearch] = useState({
     searchStatus: false,
     searchText: ""
@@ -127,7 +129,7 @@ const Home = props => {
         />
       )}
 
-      {option === "cookbookRecipes" && !individualCookbook.loading && (
+      {option === "cookbookRecipes" && !individualCookbook.loading ? (
         <ContentBox
           title={individualCookbook.individualCookbook.cookbookTitle}
           recipes={individualCookbook.individualCookbook.savedRecipes}
@@ -140,7 +142,7 @@ const Home = props => {
           key={uuid() + " home"}
           option={option}
         />
-      )}
+      ): <h1>this is loading</h1>}
 
       {option === "search" && !search.loading && (
         <ContentBox

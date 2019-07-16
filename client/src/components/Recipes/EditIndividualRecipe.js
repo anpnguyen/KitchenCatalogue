@@ -6,7 +6,7 @@ import Footer from "../Layout/footer";
 import Spinner from "../Layout/spinner";
 import { editRecipePut, getRecipeById , createRecipe } from "../../actions/individualRecipe";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 // import { createRecipe } from "../../actions/recipe";
 import PreviewContainer from "./previewContainer";
 import RecipeDetails from "./receipeDetails";
@@ -68,24 +68,36 @@ const EditIndividualRecipe = props => {
 
     
     if (option === 'edit') {
-      let localRecipes = JSON.parse(localStorage.getItem("recipeState"));
-      let foundRecipe = localRecipes.find(
+      var localRecipes = JSON.parse(localStorage.getItem("recipeState"));
+      if(localRecipes===null){
+        console.log('called')
+        history.push('/recipe')
+      }else{
+      var foundRecipe = localRecipes.find(
         recipe => recipe._id === match.params.recipe_id
       );
+
+      if(!foundRecipe){
+      history.push('/recipe')
+      } else{
+        var {
+          title,
+          servings,
+          imageUrl,
+          time,
+          ingredients,
+          instructions
+        } = foundRecipe;
+        setRecipeDetails({ title, servings, imageUrl, time });
+        setRecipeIngredients(ingredients);
+        setRecipeInstructions(instructions);
+
+      }
+      
       // console.log(localRecipe)
-      let {
-        title,
-        servings,
-        imageUrl,
-        time,
-        ingredients,
-        instructions
-      } = foundRecipe;
-      setRecipeDetails({ title, servings, imageUrl, time });
-      setRecipeIngredients(ingredients);
-      setRecipeInstructions(instructions);
+     
           
-    } 
+    }} 
   }, [individualRecipe.recipe.title, option]);
 
 
