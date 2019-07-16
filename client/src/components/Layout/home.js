@@ -12,7 +12,7 @@ import {
   updateFromLS
 } from "../../actions/recipe";
 import { getCookbooks, getCookbookById, updateCookbookFromLS } from "../../actions/cookbook";
-import { getSearchRecipes } from "../../actions/search";
+import { getSearchRecipes , updateFromSearchLS} from "../../actions/search";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import uuid from "uuid/v4";
@@ -32,7 +32,8 @@ const Home = props => {
     history,
     clearRecipe,
     updateFromLS,
-    updateCookbookFromLS
+    updateCookbookFromLS,
+    updateFromSearchLS
   
     
   } = props;
@@ -59,7 +60,14 @@ const Home = props => {
   }, []);
 
   useEffect(() => {
-    option === "search" && getSearchRecipes(search.searchData);
+    
+    option === "search" && !localStorage.searchState && getSearchRecipes(search.searchData)
+    
+    if(option === "search" && localStorage.searchState && search.loading){
+      let oldState = JSON.parse(localStorage.getItem('searchState'))
+      updateFromSearchLS(oldState)
+      
+    } 
   }, []);
 
   // loads up the individual cookbook
@@ -177,6 +185,7 @@ export default connect(
     getSearchRecipes,
     clearRecipe,
     updateFromLS,
-    updateCookbookFromLS
+    updateCookbookFromLS,
+    updateFromSearchLS
   }
 )(Home);

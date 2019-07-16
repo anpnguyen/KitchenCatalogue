@@ -11,12 +11,12 @@ export default function(state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
-    case SEARCH:
-      return {
-        ...state,
-        searchData: payload,
-        loading: false
-      };
+    // case SEARCH:
+    //   return {
+    //     ...state,
+    //     searchData: payload,
+    //     loading: false
+    //   };
 
     case SEARCH_ERROR:
       return {
@@ -28,7 +28,15 @@ export default function(state = initialState, action) {
       case GET_SEARCH_RECIPES:
       return {
         ...state,
-        searchRecipes: payload,
+        searchRecipes: payload.searchRecipes,
+        searchData: [payload.searchData],
+        loading: false
+      };
+      case 'UPDATE_SEARCH_LS':
+      return {
+        ...state,
+        searchRecipes: payload.searchRecipes,
+        searchData: [payload.searchData],
         loading: false
       };
     default:

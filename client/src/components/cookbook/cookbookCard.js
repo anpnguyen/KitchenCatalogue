@@ -144,7 +144,9 @@ function CookbookCard(props) {
     };
   }, [settingsMenu]);
 
+  // find cook book from the state, 
   // it will identify the clicked book and load the indivdual cookbook State
+  // push to cookbook/id
   const handleCookbookClicker = e => {
     e.preventDefault();
     let selectedCookbook = cookbook.cookbooks.find(o => o._id === _id);
