@@ -48,7 +48,7 @@ router.post(
 // *** get all cookbooks *** working
 router.get("/", authMiddleware, async (req, res) => {
   try {
-    const cookbooks = await Cookbook.find({ user: req.user.id });
+    const cookbooks = await Cookbook.find({ user: req.user.id }).populate("savedRecipes", ["imageUrl"]);
     res.json(cookbooks);
   } catch (err) {
     res.status(500).send("Server Error - cannot fetch user cookbooks");

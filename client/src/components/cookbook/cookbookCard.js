@@ -24,7 +24,7 @@ function CookbookCard(props) {
     c
   } = props;
 
-  const { cookbookTitle, cookbookImage, _id } = props.c;
+  const { cookbookTitle, cookbookImage, _id ,savedRecipes} = props.c;
   const [settingsMenu, setSettingsMenu] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
   const [renameModal, setRenameModal] = useState(false);
@@ -34,6 +34,8 @@ function CookbookCard(props) {
   const deleteModalRef = useRef();
   const renameModalRef = useRef();
   const settingCogRef = useRef();
+
+ 
 
   const handleSettingsMenuClick = e => {
     e.stopPropagation();
@@ -58,6 +60,8 @@ function CookbookCard(props) {
   const handleRenameChange = e => {
     setRenameForm({ ...renameForm, [e.target.name]: e.target.value });
   };
+
+   
 
   useEffect(() => {
     const handleClickOutsideSettings = e => {
@@ -138,10 +142,13 @@ function CookbookCard(props) {
 
     // this identifies selected cookbook
     let selectedCookbook = cookbook.cookbooks.find(o => o._id === _id);
+    console.log(selectedCookbook)
     // this fills the selected cookbook with recipes from recipe State
     let expandedRecipes = selectedCookbook.savedRecipes.map(mappedRecipe =>
-      recipe.recipes.find(o => o._id === mappedRecipe)
+      recipe.recipes.find(o => o._id === mappedRecipe._id)
     );
+
+    console.log(expandedRecipes)
 
     // this loads the cookbook into the individualCookbookState
     let pushedCookbook = { ...selectedCookbook, savedRecipes: expandedRecipes };
@@ -212,12 +219,21 @@ function CookbookCard(props) {
         
 
         <div className="recipeCardImage cookbook">
+          {savedRecipes[0] !== undefined && savedRecipes[0].imageUrl !== undefined  ? 
+          <img className="" src={savedRecipes[0].imageUrl } alt="" />:
+          <div className="fillerImg"> </div>
+          
+            
+          }
+        </div>
+
+        {/* <div className="recipeCardImage cookbook">
           {!cookbookImage ? (
             <div className="fillerImg"> </div>
           ) : (
             <img className="" src={cookbookImage} alt="" />
           )}
-        </div>
+        </div> */}
 
         <div className="recipeCardText cookbook ">
           <div className="recipeCardTextTitle ">
