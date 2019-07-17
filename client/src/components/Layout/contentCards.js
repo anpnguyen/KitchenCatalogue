@@ -1,5 +1,6 @@
 import React from 'react'
 import RecipeCard from './recipeCard'
+import CreateNewRecipeCard from './createNewRecipeCard'
 
 function ContentCards(props) {
     
@@ -11,6 +12,7 @@ function ContentCards(props) {
         return( <RecipeCard
 
             recipe={recipe}
+            key={recipe._id}
             // title={recipe.title}
             // imageUrl={recipe.imageUrl}
             // _id={recipe._id}
@@ -23,6 +25,7 @@ function ContentCards(props) {
     return (
         <div className="contentBoxCard">
             {mappedData}
+            <CreateNewRecipeCard/>
         </div>
     )
 }
