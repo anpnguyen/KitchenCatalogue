@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import NavBar from "../Layout/navBar";
+import Content from "../Layout/content";
 import Spinner from "../Layout/spinner";
-import Footer from "../Layout/footer";
-import Alert from "../Layout/alert";
+
 import DeleteConfimation from "./deleteConfirmation";
 import AddToCookbook from "./addToCookbook";
 import {
@@ -37,6 +36,7 @@ const IndividualRecipe = props => {
 
   const { loading } = individualRecipe;
   const [isDelete, setIsDelete] = useState(false);
+  const [isFavourite, setIsFavourite] = useState(false);
 
   const [recipeData, setRecipeData] = useState({
     title: "",
@@ -60,20 +60,6 @@ const IndividualRecipe = props => {
   } = recipeData;
 
   useEffect(() => {
-    setRecipeData({
-      title: individualRecipe.recipe.title,
-      imageUrl: individualRecipe.recipe.imageUrl,
-      servings: individualRecipe.recipe.servings,
-      time: individualRecipe.recipe.time,
-      ingredients: individualRecipe.recipe.ingredients,
-      instructions: individualRecipe.recipe.instructions,
-      user: individualRecipe.recipe.user,
-      _id: individualRecipe.recipe._id
-    });
-
-    
-  }, [individualRecipe]);
-  useEffect(() => {
     var localRecipes = JSON.parse(localStorage.getItem("recipeState"));
 
     if (!localRecipes) {
@@ -96,18 +82,30 @@ const IndividualRecipe = props => {
       });
 
       updateRecipe_LS(foundRecipe);
-    } 
-  }, []);
-
-
-  useEffect(() => {
-    if (localStorage.cookbookState && cookbook.loading) {
-      let oldState = JSON.parse(localStorage.getItem("cookbookState"));
-      updateCookbookFromLS(oldState);
-    } else {
-      cookbook.loading && getCookbooks();
     }
   }, []);
+
+  useEffect(() => {
+    setRecipeData({
+      title: individualRecipe.recipe.title,
+      imageUrl: individualRecipe.recipe.imageUrl,
+      servings: individualRecipe.recipe.servings,
+      time: individualRecipe.recipe.time,
+      ingredients: individualRecipe.recipe.ingredients,
+      instructions: individualRecipe.recipe.instructions,
+      user: individualRecipe.recipe.user,
+      _id: individualRecipe.recipe._id
+    });
+  }, [individualRecipe]);
+
+  // useEffect(() => {
+  //   if (localStorage.cookbookState && cookbook.loading) {
+  //     let oldState = JSON.parse(localStorage.getItem("cookbookState"));
+  //     updateCookbookFromLS(oldState);
+  //   } else {
+  //     cookbook.loading && getCookbooks();
+  //   }
+  // }, []);
 
   const handleDelete = () => {
     setIsDelete(true);
@@ -121,74 +119,71 @@ const IndividualRecipe = props => {
     deleteRecipe(history, match.params.recipe_id);
   };
 
-  const [isFavourite, setIsFavourite] = useState(false);
-
   const handleCookbookClick = () => {
     setIsFavourite(true);
   };
 
-
-  return loading || title === undefined ? (
-    <>
-      <NavBar />
-      <Spinner />
-    </>
-  ) : (
-    <>
-      <NavBar />
-
-      <div className="contentBox ">
-        {isDelete && (
-          <DeleteConfimation
-            handleStateChange={handleStateChange}
-            handleDeleteConfirmation={handleDeleteConfirmation}
-            isDelete={isDelete}
-          />
-        )}
-        <div className="contentBoxContent ">
-          <Alert />
-
-          {isFavourite && (
-            <AddToCookbook
-              setIsFavourite={setIsFavourite}
-              recipeId={match.params.recipe_id}
-            />
-          )}
-
-          <main className="individualRecipe" id="individualRecipe">
-            <h1 className="">{title}</h1>
-            <ViewRecipeDetails user={user} servings={servings} time={time} />
-
-            <div className="saveButton">
-              <Link to={`/recipe/${_id}/edit`}>
-                <button className="blueButton">Edit</button>
-              </Link>
-              <button className="blueButton" onClick={handleDelete}>
-                Delete
-              </button>
-              <button className="blueButton" onClick={handleCookbookClick}>
-                Add to cookbook
-              </button>
-            </div>
-
-            <section className="imageContainer ">
-              {!imageUrl ? (
-                <div className="fillerImg" />
-              ) : (
-                <img className="image" src={imageUrl} alt={title} />
+  return (
+    <Content {...props}>
+      {loading || title === undefined ? (
+        <Spinner />
+      ) : (
+        <>
+          <div className="contentBox ">
+            {isDelete && (
+              <DeleteConfimation
+                handleStateChange={handleStateChange}
+                handleDeleteConfirmation={handleDeleteConfirmation}
+                isDelete={isDelete}
+              />
+            )}
+            <div className="contentBoxContent ">
+              {isFavourite && (
+                <AddToCookbook
+                  setIsFavourite={setIsFavourite}
+                  recipeId={match.params.recipe_id}
+                />
               )}
-            </section>
-            <hr className="width80" />
 
-            <div className="recipeText">
-              <ViewRecipeIngredients ingredients={ingredients} />
-              <ViewRecipeInstructions instructions={instructions} />
+              <main className="individualRecipe" id="individualRecipe">
+                <h1 className="">{title}</h1>
+                <ViewRecipeDetails
+                  user={user}
+                  servings={servings}
+                  time={time}
+                />
+
+                <div className="saveButton">
+                  <Link to={`/recipe/${_id}/edit`}>
+                    <button className="blueButton">Edit</button>
+                  </Link>
+                  <button className="blueButton" onClick={handleDelete}>
+                    Delete
+                  </button>
+                  <button className="blueButton" onClick={handleCookbookClick}>
+                    Add to cookbook
+                  </button>
+                </div>
+
+                <section className="imageContainer ">
+                  {!imageUrl ? (
+                    <div className="fillerImg" />
+                  ) : (
+                    <img className="image" src={imageUrl} alt={title} />
+                  )}
+                </section>
+                <hr className="width80" />
+
+                <div className="recipeText">
+                  <ViewRecipeIngredients ingredients={ingredients} />
+                  <ViewRecipeInstructions instructions={instructions} />
+                </div>
+              </main>
             </div>
-          </main>
-        </div>
-      </div>
-      <Footer />
-    </>
+          </div>
+        </>
+      )}
+    </Content>
   );
 };
 

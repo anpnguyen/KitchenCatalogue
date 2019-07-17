@@ -18,6 +18,7 @@ import MyCookbooks from "./components/Layout/MyCookbooks";
 import MyCookbookRecipes from "./components/Layout/MyCookbookRecipes";
 import MySearchRecipes from "./components/Layout/MySearchRecipes";
 
+
 if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
@@ -57,11 +58,11 @@ const App = () => {
               option='newRecipe'
             /> */}
 
-            {/* <PrivateRoute
+            <PrivateRoute
               exact
               path="/recipe/:recipe_id"
               component={IndividualRecipe}
-            /> */}
+            />
 
             {/* <PrivateRoute
               exact
@@ -82,6 +83,12 @@ const App = () => {
               component={MyCookbookRecipes} 
               
             />
+            {/* <PrivateRoute 
+              exact 
+              path="/a" 
+              component={ViewRecipe} 
+              
+            /> */}
 
 
 

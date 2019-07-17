@@ -31,8 +31,8 @@ function MySearchRecipes(props) {
           arr= {search.searchRecipes}
           option='search'
         >
-            <h1>this is myRecipes</h1>
-            <Link to='/b'>Cookbooks</Link>
+            <h1>Search Results</h1>
+            
         </HomePage>}
         </Content>
     )
