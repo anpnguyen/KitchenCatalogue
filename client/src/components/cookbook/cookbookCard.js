@@ -2,15 +2,11 @@ import React, { useState, useEffect, useRef, memo } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { loadCookbookRecipes } from "../../actions/individualCookbook";
-
 import { deleteCookbook, renameCookbookById } from "../../actions/cookbook";
-
 import ConfirmModal from "../Layout/confirmModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencilAlt, faTrash } from "@fortawesome/free-solid-svg-icons";
-
 import CardSettingsMenu from "./cardSettingsMenu";
-
 import "./cookbookCard.css";
 
 function CookbookCard(props) {
@@ -24,7 +20,7 @@ function CookbookCard(props) {
     c
   } = props;
 
-  const { cookbookTitle, cookbookImage, _id ,savedRecipes} = props.c;
+  const { cookbookTitle, _id, savedRecipes } = props.c;
   const [settingsMenu, setSettingsMenu] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
   const [renameModal, setRenameModal] = useState(false);
@@ -34,8 +30,6 @@ function CookbookCard(props) {
   const deleteModalRef = useRef();
   const renameModalRef = useRef();
   const settingCogRef = useRef();
-
- 
 
   const handleSettingsMenuClick = e => {
     e.stopPropagation();
@@ -61,25 +55,20 @@ function CookbookCard(props) {
     setRenameForm({ ...renameForm, [e.target.name]: e.target.value });
   };
 
-   
-
   useEffect(() => {
     const handleClickOutsideSettings = e => {
       e.stopPropagation();
-
       if (deleteModalRef.current.contains(e.target)) {
         return;
       } else {
         setDeleteModal(false);
       }
     };
-
     if (deleteModal) {
       document.addEventListener("mousedown", handleClickOutsideSettings);
     } else {
       document.removeEventListener("mousedown", handleClickOutsideSettings);
     }
-
     return () => {
       document.removeEventListener("mousedown", handleClickOutsideSettings);
     };
@@ -101,7 +90,6 @@ function CookbookCard(props) {
     } else {
       document.removeEventListener("mousedown", handleClickOutsideSettings);
     }
-
     return () => {
       document.removeEventListener("mousedown", handleClickOutsideSettings);
     };
@@ -110,8 +98,6 @@ function CookbookCard(props) {
   useEffect(() => {
     const handleClickOutsideSettings = e => {
       e.stopPropagation();
-      console.log(settingCogRef);
-      console.log(e.target);
       if (
         settingCogRef.current.contains(e.target) ||
         e.target.id === "deleteMenu" ||
@@ -134,23 +120,13 @@ function CookbookCard(props) {
     };
   }, [settingsMenu]);
 
-  // find cook book from the state,
-  // it will identify the clicked book and load the indivdual cookbook State
-  // push to cookbook/id
   const handleCookbookClicker = e => {
     e.preventDefault();
-
-    // this identifies selected cookbook
     let selectedCookbook = cookbook.cookbooks.find(o => o._id === _id);
-    console.log(selectedCookbook)
-    // this fills the selected cookbook with recipes from recipe State
     let expandedRecipes = selectedCookbook.savedRecipes.map(mappedRecipe =>
       recipe.recipes.find(o => o._id === mappedRecipe._id)
     );
 
-    console.log(expandedRecipes)
-
-    // this loads the cookbook into the individualCookbookState
     let pushedCookbook = { ...selectedCookbook, savedRecipes: expandedRecipes };
     loadCookbookRecipes(pushedCookbook, history);
   };
@@ -160,7 +136,7 @@ function CookbookCard(props) {
   };
   const handleMouseLeave = () => {
     setMouseOver(false);
-    setSettingsMenu(false)
+    setSettingsMenu(false);
   };
 
   return (
@@ -202,42 +178,31 @@ function CookbookCard(props) {
         onMouseOver={handleMouseOver}
         onMouseLeave={handleMouseLeave}
       >
-        
-          <CardSettingsMenu
-            onClick={handleSettingsMenuClick}
-            ref={settingCogRef}
-            isShowing={settingsMenu}
-            id="cookbookCog"
-            isOpacity={mouseOver}
-          >
-            <span onClick={() => setRenameModal(true)}>
-              <FontAwesomeIcon icon={faPencilAlt} />
-            </span>
-            <span onClick={() => setDeleteModal(true)}>
-              <FontAwesomeIcon icon={faTrash} />
-            </span>
-          </CardSettingsMenu>
-        
+        <CardSettingsMenu
+          onClick={handleSettingsMenuClick}
+          ref={settingCogRef}
+          isShowing={settingsMenu}
+          id="cookbookCog"
+          isOpacity={mouseOver}
+        >
+          <span onClick={() => setRenameModal(true)}>
+            <FontAwesomeIcon icon={faPencilAlt} />
+          </span>
+          <span onClick={() => setDeleteModal(true)}>
+            <FontAwesomeIcon icon={faTrash} />
+          </span>
+        </CardSettingsMenu>
 
         <div className="recipeCardImage cookbook">
-          {savedRecipes[0] !== undefined && savedRecipes[0].imageUrl !== undefined  ? 
-          <img className="" src={savedRecipes[0].imageUrl } alt="" />:
-          <div className="fillerImg"> </div>
-          
-            
-          }
-        </div>
-
-        {/* <div className="recipeCardImage cookbook">
-          {!cookbookImage ? (
-            <div className="fillerImg"> </div>
+          {savedRecipes[0] !== undefined &&
+          savedRecipes[0].imageUrl !== undefined ? (
+            <img className="" src={savedRecipes[0].imageUrl} alt="" />
           ) : (
-            <img className="" src={cookbookImage} alt="" />
+            <div className="fillerImg"> </div>
           )}
-        </div> */}
-
+        </div>
         <div className="recipeCardText cookbook ">
-          <div className="recipeCardTextTitle ">
+          <div className="recipeCardTextTitle cookbook">
             <h3>{cookbookTitle}</h3>
           </div>
         </div>

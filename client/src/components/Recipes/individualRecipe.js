@@ -108,7 +108,8 @@ const IndividualRecipe = props => {
       {loading || title === undefined ? (
         <Spinner />
       ) : (
-        <>
+        <main className="content">
+        <div className="contentContainer">
           <div className="contentBox ">
             <ConfirmModal
               confirmAction={handleDeleteConfirmation}
@@ -171,7 +172,8 @@ const IndividualRecipe = props => {
               </main>
             </div>
           </div>
-        </>
+        </div>
+        </main>
       )}
     </Content>
   );

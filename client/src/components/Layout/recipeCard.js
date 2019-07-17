@@ -1,5 +1,4 @@
 import React, { Fragment, useState, useRef, useEffect } from "react";
-import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faClock,
@@ -7,7 +6,6 @@ import {
   faTrash
 } from "@fortawesome/free-solid-svg-icons";
 import { withRouter } from "react-router-dom";
-import { clearRecipe } from "../../actions/recipe";
 import { removeRecipeFromCookbook } from "../../actions/individualCookbook";
 import { connect } from "react-redux";
 import "./recipeCard.css";
@@ -16,7 +14,7 @@ import ConfirmModal from "./confirmModal";
 import CardSettingMenu from "../cookbook/cardSettingsMenu";
 
 const RecipeCard = props => {
-  const { clearRecipe, match, removeRecipeFromCookbook, option } = props;
+  const { match, removeRecipeFromCookbook, option } = props;
   const { title, imageUrl, _id, servings, time } = props.recipe;
 
   const [settingsMenu, setSettingsMenu] = useState(false);
@@ -165,13 +163,11 @@ const RecipeCard = props => {
   );
 };
 
-RecipeCard.propTypes = {
-  clearRecipe: PropTypes.func.isRequired
-};
+
 
 export default withRouter(
   connect(
     null,
-    { clearRecipe, removeRecipeFromCookbook }
+    { removeRecipeFromCookbook }
   )(RecipeCard)
 );

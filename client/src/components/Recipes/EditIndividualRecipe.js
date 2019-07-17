@@ -109,6 +109,8 @@ const EditIndividualRecipe = props => {
         {individualRecipe.loading === true && option === 'edit' ? (
           <Spinner />
         ) : (
+          <main className="content">
+          <div className="contentContainer">
           <div className="contentBox ">
             <div className="contentBoxContent ">
               <main className="editRecipe" id="editRecipe">
@@ -169,6 +171,8 @@ const EditIndividualRecipe = props => {
               </main>
             </div>
           </div>
+          </div>
+          </main>
         )}
       </Content>
     </>
