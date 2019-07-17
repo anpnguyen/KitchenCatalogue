@@ -17,7 +17,8 @@ import {
 
 function MyCookbookRecipes(props) {
 
- const {individualCookbook, match} = props
+const {individualCookbook, match} = props
+
 
  useEffect(()=>{
   getRecipes()
@@ -34,7 +35,7 @@ function MyCookbookRecipes(props) {
           arr= {individualCookbook.individualCookbook.savedRecipes}
           option='cookbookRecipe'
         >
-            <h1>Mycookbook Recipes</h1>
+            <h1>{individualCookbook.individualCookbook.cookbookTitle}</h1>
             {/* <Link to='/b'>Cookbooks</Link> */}
         </HomePage>}
         </Content>

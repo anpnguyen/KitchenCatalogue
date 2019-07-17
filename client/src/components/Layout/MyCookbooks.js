@@ -37,7 +37,7 @@ function MyCookbooks(props) {
           arr= {cookbook.cookbooks}
           option='cookbook'
         >
-            
+            <h1>My Cookbooks</h1>
         </HomePage>}
         </Content>
     )

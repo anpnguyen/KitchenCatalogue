@@ -34,7 +34,7 @@ function MyRecipes(props) {
           arr= {recipe.recipes}
           option='recipe'
         >
-            <h1>this is myRecipes</h1>
+            <h1>My Recipes</h1>
             <Link to='/b'>Cookbooks</Link>
         </HomePage>}
         </Content>
