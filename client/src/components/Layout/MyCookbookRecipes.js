@@ -17,7 +17,7 @@ import {
 
 function MyCookbookRecipes(props) {
 
- const {individualCookbook} = props
+ const {individualCookbook, match} = props
 
  useEffect(()=>{
   getRecipes()
@@ -27,7 +27,7 @@ function MyCookbookRecipes(props) {
 
 
     return (
-      <Content>
+      <Content {...props}>
         <SearchBar />
       {individualCookbook.loading? <h1>This is loading</h1> : 
         <HomePage 
@@ -35,7 +35,7 @@ function MyCookbookRecipes(props) {
           option='cookbookRecipe'
         >
             <h1>Mycookbook Recipes</h1>
-            <Link to='/b'>Cookbooks</Link>
+            {/* <Link to='/b'>Cookbooks</Link> */}
         </HomePage>}
         </Content>
     )

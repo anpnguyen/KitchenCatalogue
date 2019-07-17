@@ -24,7 +24,7 @@ function MySearchRecipes(props) {
 
 
     return (
-      <Content>
+      <Content {...props}>
         <SearchBar />
       {search.loading? <h1>This is loading</h1> : 
         <HomePage 

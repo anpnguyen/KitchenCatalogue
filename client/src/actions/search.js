@@ -26,8 +26,8 @@ export const getSearchRecipes = (searchParams, history) => async dispatch => {
     });
 
 
-    // history.push(`/recipe/search`);
-    history.push('/d');
+    history.push(`/recipe/search`);
+    // history.push('/d');
   } catch (err) {
     console.log(err)
     dispatch({

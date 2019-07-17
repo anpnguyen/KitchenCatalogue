@@ -36,19 +36,19 @@ const App = () => {
             <Route exact path="/" render={LoginContainer} />
             <Route exact path="/login" render={LoginContainer} />
 
-            {/* <PrivateRoute 
+            <PrivateRoute 
               exact 
               path="/recipe" 
-              component={Home} 
-              option ='recipe'
-            /> */}
+              component={MyRecipes} 
+              
+            />
 
-            {/* <PrivateRoute
+            <PrivateRoute
               exact
               path="/recipe/search"
-              component={Home}
+              component={MySearchRecipes}
               option = 'search'
-            /> */}
+            />
 
             {/* <PrivateRoute
               exact
@@ -70,44 +70,20 @@ const App = () => {
               option='edit'
             /> */}
 
-            {/* <PrivateRoute 
+            <PrivateRoute 
               exact 
               path="/cookbook" 
-              component={Home} 
-              option = 'cookbook'
-            /> */}
-            {/* <PrivateRoute 
-              exact 
-              path="/cookbook/:cookbook_id" 
-              component={Home} 
-              option = 'cookbookRecipes'
-            /> */}
-
-
-            <PrivateRoute 
-              exact 
-              path="/a"
-              component={MyRecipes} 
-              
-            />
-            <PrivateRoute 
-              exact 
-              path="/b"
               component={MyCookbooks} 
               
             />
             <PrivateRoute 
               exact 
-              path="/c"
+              path="/cookbook/:cookbook_id" 
               component={MyCookbookRecipes} 
               
             />
-            <PrivateRoute 
-              exact 
-              path="/d"
-              component={MySearchRecipes} 
-              
-            />
+
+
 
 
             <PrivateRoute path="*" component={NotFound} />

@@ -19,15 +19,15 @@ function MyRecipes(props) {
 
  const {getRecipes, recipe} = props
 
- useEffect(()=>{
-  getRecipes()
- }, [])
+//  useEffect(()=>{
+//   getRecipes()
+//  }, [])
 
- console.log(recipe.recipes)
+ 
 
 
     return (
-      <Content>
+      <Content {...props}>
         <SearchBar />
       {recipe.loading? <h1>This is loading</h1> : 
         <HomePage 

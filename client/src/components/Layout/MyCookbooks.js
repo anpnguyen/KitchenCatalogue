@@ -18,9 +18,9 @@ import { getCookbooks, updateCookbookFromLS } from "../../actions/cookbook";
 
 function MyCookbooks(props) {
     const {getCookbooks, cookbook} = props
-    useEffect(()=>{
-        getCookbooks()
-    },[])
+    // useEffect(()=>{
+    //     getCookbooks()
+    // },[])
 
  
 
@@ -30,7 +30,7 @@ function MyCookbooks(props) {
 
 
     return (
-      <Content>
+      <Content {...props}>
         <SearchBar />
       {cookbook.loading? <h1>This is loading</h1> : 
         <HomePage 
