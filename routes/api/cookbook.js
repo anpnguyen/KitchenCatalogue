@@ -60,7 +60,7 @@ router.get("/:cookbook_id", authMiddleware, async (req, res) => {
   try {
     const cookbook = await Cookbook.findOne({
       _id: req.params.cookbook_id
-    }).populate("savedRecipes", ["title", "imageUrl"]);
+    }).populate("savedRecipes");
 
     if (!cookbook) {
       return res.status(400).json({ msg: "cookbook not found - from try" });

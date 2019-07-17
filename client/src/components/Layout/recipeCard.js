@@ -51,6 +51,7 @@ const RecipeCard = props => {
   };
   const handleMouseLeave = () => {
     setMouseOver(false);
+    setSettingsMenu(false);
   };
 
   useEffect(() => {
@@ -147,15 +148,15 @@ const RecipeCard = props => {
           <Fragment>
             <p className=" recipeCardText">
               <span className="bold">
-                <FontAwesomeIcon icon={faUtensils} /> Servings:{" "}
-              </span>{" "}
-              {servings}
+                <FontAwesomeIcon icon={faUtensils} /> Servings:
+              </span>
+              {`  ${servings}`}
             </p>
             <p className=" recipeCardText">
               <span className="bold">
-                <FontAwesomeIcon icon={faClock} /> Cooking Time:{" "}
-              </span>{" "}
-              {time}
+                <FontAwesomeIcon icon={faClock} /> Cooking Time:
+              </span>
+              {`  ${time}`}
             </p>
           </Fragment>
         </div>

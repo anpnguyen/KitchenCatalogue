@@ -160,6 +160,7 @@ function CookbookCard(props) {
   };
   const handleMouseLeave = () => {
     setMouseOver(false);
+    setSettingsMenu(false)
   };
 
   return (

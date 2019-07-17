@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Content from "../Layout/content";
 import Spinner from "../Layout/spinner";
-import DeleteConfimation from "./deleteConfirmation";
-import AddToCookbook from "./addToCookbook";
+import AddToCookbookSelect from "./addToCookbookSelect";
+
 import {
   getRecipeById,
   deleteRecipe,
   updateRecipe_LS
 } from "../../actions/individualRecipe";
+
+import { addRecipeToCookbook } from "../../actions/cookbook";
+
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -16,6 +19,7 @@ import "./individualRecipe.css";
 import ViewRecipeDetails from "./viewRecipeDetails";
 import ViewRecipeIngredients from "./viewRecipeIngredients";
 import ViewRecipeInstructions from "./viewRecipeInstructions";
+import ConfirmModal from "../Layout/confirmModal";
 
 const IndividualRecipe = props => {
   const {
@@ -24,12 +28,14 @@ const IndividualRecipe = props => {
     deleteRecipe,
     history,
     individualRecipe,
-    updateRecipe_LS
+    updateRecipe_LS,
+    addRecipeToCookbook
   } = props;
 
   const { loading } = individualRecipe;
   const [isDelete, setIsDelete] = useState(false);
   const [isFavourite, setIsFavourite] = useState(false);
+  const [addedCookbooks, setAddedCookbooks] = useState([]);
 
   let {
     title,
@@ -45,7 +51,7 @@ const IndividualRecipe = props => {
   useEffect(() => {
     var localRecipes = JSON.parse(localStorage.getItem("recipeState"));
 
-    console.log(localRecipes)
+    console.log(localRecipes);
 
     if (!localRecipes) {
       getRecipeById(match.params.recipe_id, history);
@@ -56,11 +62,12 @@ const IndividualRecipe = props => {
         recipe => recipe._id === match.params.recipe_id
       );
 
-      if(!foundRecipe){
-        history.push('/recipe')
-      } else{updateRecipe_LS(foundRecipe)}
+      if (!foundRecipe) {
+        history.push("/recipe");
+      } else {
+        updateRecipe_LS(foundRecipe);
+      }
 
-      
       console.log("updated recipe from LS");
     }
   }, []);
@@ -69,10 +76,23 @@ const IndividualRecipe = props => {
     setIsDelete(true);
   };
 
-  const handleStateChange = value => {
-    setIsDelete(value);
-  };
+  const handleAddToCookbook = () => {
+    // this picks out the selected cookbooks
+    let selectedCookbooks = addedCookbooks.map(
+      addedCookbook => addedCookbook.value
+    );
+    console.log(selectedCookbooks);
 
+    let cookbooksToSend = selectedCookbooks.filter(
+      cookbook => cookbook.savedRecipes.includes(_id) === false
+    );
+    console.log(cookbooksToSend);
+
+    let cookbookIds = cookbooksToSend.map(cookbookId => cookbookId._id);
+
+    let data = { cookbookIds: cookbookIds, recipeId: _id };
+    addRecipeToCookbook(data);
+  };
   const handleDeleteConfirmation = () => {
     deleteRecipe(history, match.params.recipe_id);
   };
@@ -88,20 +108,35 @@ const IndividualRecipe = props => {
       ) : (
         <>
           <div className="contentBox ">
-            {isDelete && (
-              <DeleteConfimation
-                handleStateChange={handleStateChange}
-                handleDeleteConfirmation={handleDeleteConfirmation}
-                isDelete={isDelete}
-              />
-            )}
+            <ConfirmModal
+              confirmAction={handleDeleteConfirmation}
+              closeAction={() => setIsDelete(false)}
+              id="confirmDeleteRecipe"
+              // ref={deleteModalRef}
+              title={`Delete Recipe`}
+              text={`Are you sure you want to delete this recipe?`}
+              confirmationText="Delete"
+              isShowing={isDelete}
+            />
+
             <div className="contentBoxContent ">
-              {isFavourite && (
-                <AddToCookbook
+              <ConfirmModal
+                confirmAction={handleAddToCookbook}
+                closeAction={() => setIsFavourite(false)}
+                id="confirmDeleteRecipe"
+                // ref={deleteModalRef}
+                title={`Add Recipe To Cookbook`}
+                text={`Which cookbook would you like to add this recipe to?`}
+                confirmationText="Add"
+                isShowing={isFavourite}
+              >
+                <AddToCookbookSelect setAddedCookbooks={setAddedCookbooks} />
+              </ConfirmModal>
+
+              {/* <AddToCookbook
                   setIsFavourite={setIsFavourite}
                   recipeId={match.params.recipe_id}
-                />
-              )}
+                /> */}
 
               <main className="individualRecipe" id="individualRecipe">
                 <h1 className="">{title}</h1>
@@ -161,6 +196,7 @@ export default connect(
   {
     getRecipeById,
     deleteRecipe,
-    updateRecipe_LS
+    updateRecipe_LS,
+    addRecipeToCookbook
   }
 )(IndividualRecipe);
