@@ -14,6 +14,8 @@ import { loadUser } from "./actions/auth";
 import setAuthToken from "./utils/setAuthToken";
 import "./App.css";
 import MyRecipes from './components/Layout/MyRecipes'
+import MyCookbooks from "./components/Layout/MyCookbooks";
+import MyCookbookRecipes from "./components/Layout/MyCookbookRecipes";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -85,6 +87,18 @@ const App = () => {
               exact 
               path="/a"
               component={MyRecipes} 
+              
+            />
+            <PrivateRoute 
+              exact 
+              path="/b"
+              component={MyCookbooks} 
+              
+            />
+            <PrivateRoute 
+              exact 
+              path="/c"
+              component={MyCookbookRecipes} 
               
             />
 

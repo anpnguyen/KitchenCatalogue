@@ -12,6 +12,7 @@ function CreateCookbookModal(props) {
     const handleFormSubmit = (e)=>{
         e.preventDefault()
         console.log(formData)
+        setCreateCookbookModal(false)
         createNewCookbook(formData)
     }
 

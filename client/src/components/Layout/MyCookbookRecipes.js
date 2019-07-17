@@ -15,26 +15,26 @@ import {
 
 
 
-function MyRecipes(props) {
+function MyCookbookRecipes(props) {
 
- const {getRecipes, recipe} = props
+ const {individualCookbook} = props
 
  useEffect(()=>{
   getRecipes()
  }, [])
 
- console.log(recipe.recipes)
+ console.log(individualCookbook.individualCookbook.savedRecipes)
 
 
     return (
       <Content>
         <SearchBar />
-      {recipe.loading? <h1>This is loading</h1> : 
+      {individualCookbook.loading? <h1>This is loading</h1> : 
         <HomePage 
-          arr= {recipe.recipes}
-          option='recipe'
+          arr= {individualCookbook.individualCookbook.savedRecipes}
+          option='cookbookRecipe'
         >
-            <h1>this is myRecipes</h1>
+            <h1>Mycookbook Recipes</h1>
             <Link to='/b'>Cookbooks</Link>
         </HomePage>}
         </Content>
@@ -44,7 +44,7 @@ function MyRecipes(props) {
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  recipe: state.recipe,
+  individualCookbook: state.individualCookbook,
  });
 
 
@@ -55,4 +55,4 @@ export default connect(
       updateFromLS,
      
     }
-  )(MyRecipes);
+  )(MyCookbookRecipes);

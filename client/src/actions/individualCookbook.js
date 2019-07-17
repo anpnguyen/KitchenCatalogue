@@ -41,7 +41,8 @@ export const loadCookbookRecipes = (
       payload: selectedCookbook
     });
     // localStorage.setItem('selectedcookbook', JSON.stringify(selectedCookbook))
-    history.push(`/cookbook/${selectedCookbook._id}`);
+    // history.push(`/cookbook/${selectedCookbook._id}`);
+    history.push(`/c`);
   } catch (err) {
     dispatch({
       type: LOAD_COOKBOOK_RECIPES_ERROR,

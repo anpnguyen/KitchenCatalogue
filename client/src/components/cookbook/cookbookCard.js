@@ -141,11 +141,16 @@ function CookbookCard(props) {
   // push to cookbook/id
   const handleCookbookClicker = e => {
     e.preventDefault();
+    
+    // this identifies selected cookbook
     let selectedCookbook = cookbook.cookbooks.find(o => o._id === _id);
+    // this fills the selected cookbook with recipes from recipe State
     let expandedRecipes = selectedCookbook.savedRecipes.map(mappedRecipe =>
       recipe.recipes.find(o => o._id === mappedRecipe)
     );
     console.log(selectedCookbook);
+
+    // this loads the cookbook into the individualCookbookState
     let pushedCookbook = { ...selectedCookbook, savedRecipes: expandedRecipes };
     loadCookbookRecipes(pushedCookbook, history);
   };

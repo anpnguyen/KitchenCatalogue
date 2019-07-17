@@ -15,3 +15,15 @@
     height: 100%;
     padding-top: 5px;
   }
+
+
+  @media only screen and (max-width: 560px) {
+  .contentSelectText {
+    margin-left: 20px !important;
+  }
+
+  .contentSelectSelect {
+    margin-right: 20px !important;
+  } 
+
+}

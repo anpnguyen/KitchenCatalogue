@@ -16,13 +16,14 @@ import React, {
   import { clearRecipe } from "../../actions/recipe";
   import { removeRecipeFromCookbook } from "../../actions/individualCookbook";
   import { connect } from "react-redux";
-  import "./contentCard.css";
+  import './recipeCard.css'
+  
   
   import ConfirmModal from "./confirmModal";
   import CardSettingMenu from "../cookbook/cardSettingsMenu";
   
   const RecipeCard = props => {
-    const {  clearRecipe, match, removeRecipeFromCookbook } = props;
+    const {  clearRecipe, match, removeRecipeFromCookbook , option} = props;
     const { title, imageUrl, _id, servings, time } = props.recipe;
     
     const [settingsMenu, setSettingsMenu] = useState(false);
@@ -111,8 +112,8 @@ import React, {
           isShowing={deleteRecipeModal}
         />
   
-        <div className="contentCard " onClick={handleClicker}>
-          {/* {option === "cookbookRecipes" && !props.titleText &&
+        <div className="recipeCard " onClick={handleClicker}>
+          {option === "cookbookRecipes" && !props.titleText &&
              
   
             <CardSettingMenu
@@ -125,26 +126,26 @@ import React, {
                 <FontAwesomeIcon icon={faTrash} />
               </span>
             </CardSettingMenu>
-          } */}
+          }
   
-            <div className="ContentCardImage">
+            <div className="recipeCardImage">
                 {!imageUrl ? <div className="fillerImg" />: <img className="" src={imageUrl} alt="" />}
             </div>
   
-          <div className="ContentCardText ">
-            <div className="contentCardTitleContainer ">
+          <div className="recipeCardTextBox ">
+            <div className="recipeCardTextTitle ">
                     <h3>{title}</h3>
             </div>
   
          
               <Fragment>
-                <p className=" recipeText">
+                <p className=" recipeCardText">
                   <span className="bold">
                     <FontAwesomeIcon icon={faUtensils} /> Servings:{" "}
                   </span>{" "}
                   {servings}
                 </p>
-                <p className=" recipeText">
+                <p className=" recipeCardText">
                   <span className="bold">
                     <FontAwesomeIcon icon={faClock} /> Cooking Time:{" "}
                   </span>{" "}

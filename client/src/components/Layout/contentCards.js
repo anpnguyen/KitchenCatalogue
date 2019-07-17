@@ -1,35 +1,67 @@
-import React from 'react'
-import RecipeCard from './recipeCard'
-import CreateNewRecipeCard from './createNewRecipeCard'
+import React , {useState}from "react";
+import RecipeCard from "./recipeCard";
+import CookbookCard from "../cookbook/cookbookCard";
+import CreateNewRecipeCard from "./createNewRecipeCard";
+import CreateCookbook from "../cookbook/createCookbook";
+import CreateCookbookModal from "../cookbook/createCookbookModal";
 
 function ContentCards(props) {
-    
-    
-    const {data,navigation, totalPages, pageLimit} = props
-    console.log(data)
-    
-    const mappedData = data.map(recipe => {
-        return( <RecipeCard
+  // put the confirmModals and settings menu Here
 
-            recipe={recipe}
-            key={recipe._id}
-            // title={recipe.title}
-            // imageUrl={recipe.imageUrl}
-            // _id={recipe._id}
-            // servings={recipe.servings}
-            // time={recipe.time}
+  const { data, navigation, totalPages, pageLimit, option } = props;
+  console.log(data);
+  const [createCookbookModal, setCreateCookbookModal] = useState(false)
 
-        />  )
-    })
+  
 
+  if (option === "recipe") {
     return (
+      <>
         <div className="contentBoxCard">
-            {mappedData}
-            <CreateNewRecipeCard/>
+          {data.map(recipe => {
+            return (
+              <RecipeCard recipe={recipe} key={recipe._id} option={option} />
+            );
+          })}
+            <CreateNewRecipeCard />
         </div>
-    )
+      </>
+    );
+  }
+
+  if (option === "cookbookRecipe") {
+    return (
+      <>
+        <div className="contentBoxCard">
+          {data.map(recipe => {
+            return (
+              <RecipeCard recipe={recipe} key={recipe._id} option={option} />
+            );
+          })}
+            {/* <CreateNewRecipeCard /> */}
+        </div>
+      </>
+    );
+  }
+
+  if(option === 'cookbook'){
+      return(
+    <>
+    <div className="contentBoxCard">
+    {createCookbookModal &&
+        <CreateCookbookModal
+        setCreateCookbookModal = {setCreateCookbookModal}
+        />
+      }
+      {data.map(cookbook => {
+        return (
+          <CookbookCard c={cookbook} key={cookbook._id} option={option} />
+        );
+      })}
+        <CreateCookbook setCreateCookbookModal = {setCreateCookbookModal}  />
+    </div>
+  </>)
+  }
 }
 
-
-export default ContentCards
-
+export default ContentCards;
