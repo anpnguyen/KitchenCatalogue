@@ -80,6 +80,17 @@
   justify-content: center;
 }
 
+.fillerImgCreate {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10rem;
+  color: rgb(153, 153, 153);
+  background: white;
+}
+
 @media only screen and (max-width: 1000px) {
   .recipeCard {
     width: 31%;

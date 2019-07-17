@@ -18,8 +18,10 @@ import {
   faPencilAlt,
   faTrash
 } from "@fortawesome/free-solid-svg-icons";
-import "../Layout/contentCard.css";
+
 import CardSettingsMenu from "./cardSettingsMenu";
+
+import './cookbookCard.css'
 
 function CookbookCard(props) {
   const {
@@ -188,7 +190,7 @@ function CookbookCard(props) {
         </form>
       </ConfirmModal>
 
-      <article className="contentCard cookbook" onClick={e => handleCookbookClicker(e)}>
+      <article className="recipeCard cookbook" onClick={e => handleCookbookClicker(e)}>
         <CardSettingsMenu
           onClick={handleSettingsMenuClick}
           ref={settingCogRef}
@@ -203,7 +205,7 @@ function CookbookCard(props) {
           </span>
         </CardSettingsMenu>
 
-        <div className="ContentCardImage">
+        <div className="recipeCardImage cookbook">
           {!cookbookImage ? (
             <div className="fillerImg"> </div>
           ) : (
@@ -211,8 +213,8 @@ function CookbookCard(props) {
           )}
         </div>
 
-        <div className="ContentCardText cookbook ">
-          <div className="contentCardTitleContainer ">
+        <div className="recipeCardText cookbook ">
+          <div className="recipeCardTextTitle ">
             <h3>{cookbookTitle}</h3>
           </div>
           

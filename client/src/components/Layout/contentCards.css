@@ -1,0 +1,9 @@
+.contentBoxCard {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-top: 20px;
+    box-sizing: border-box
+    /* min-height: 400px */
+  }

@@ -9,13 +9,13 @@ function CreateNewRecipeCard(props) {
   };
 
   return (
-    <div className="contentCard" onClick={handleClick}>
-      <div className="ContentCardImage">
+    <div className="recipeCard" onClick={handleClick}>
+      <div className="recipeCardImage">
         <div className="fillerImgCreate"> + </div>
       </div>
 
-      <div className="ContentCardText ">
-        <div className="contentCardTitleContainer ">
+      <div className="recipeCardText ">
+        <div className="recipeCardTextTitle">
           <h3>Create A New Recipe</h3>
         </div>
       </div>

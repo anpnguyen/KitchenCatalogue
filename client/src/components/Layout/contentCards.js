@@ -4,6 +4,7 @@ import CookbookCard from "../cookbook/cookbookCard";
 import CreateNewRecipeCard from "./createNewRecipeCard";
 import CreateCookbook from "../cookbook/createCookbook";
 import CreateCookbookModal from "../cookbook/createCookbookModal";
+import './contentCards.css'
 
 function ContentCards(props) {
   // put the confirmModals and settings menu Here
