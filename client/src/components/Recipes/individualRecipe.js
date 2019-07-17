@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Content from "../Layout/content";
 import Spinner from "../Layout/spinner";
-
 import DeleteConfimation from "./deleteConfirmation";
 import AddToCookbook from "./addToCookbook";
 import {
@@ -10,11 +9,8 @@ import {
   deleteRecipe,
   updateRecipe_LS
 } from "../../actions/individualRecipe";
-import { updateFromLS } from "../../actions/recipe";
-import { getCookbooks, updateCookbookFromLS } from "../../actions/cookbook";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { withRouter } from "react-router-dom";
 
 import "./individualRecipe.css";
 import ViewRecipeDetails from "./viewRecipeDetails";
@@ -27,9 +23,6 @@ const IndividualRecipe = props => {
     getRecipeById,
     deleteRecipe,
     history,
-    cookbook,
-    getCookbooks,
-    updateCookbookFromLS,
     individualRecipe,
     updateRecipe_LS
   } = props;
@@ -37,16 +30,6 @@ const IndividualRecipe = props => {
   const { loading } = individualRecipe;
   const [isDelete, setIsDelete] = useState(false);
   const [isFavourite, setIsFavourite] = useState(false);
-
-  const [recipeData, setRecipeData] = useState({
-    title: "",
-    imageUrl: "",
-    servings: "",
-    time: "",
-    ingredients: [],
-    instructions: [],
-    user: ""
-  });
 
   let {
     title,
@@ -57,7 +40,7 @@ const IndividualRecipe = props => {
     instructions,
     user,
     _id
-  } = recipeData;
+  } = individualRecipe.recipe;
 
   useEffect(() => {
     var localRecipes = JSON.parse(localStorage.getItem("recipeState"));
@@ -70,42 +53,11 @@ const IndividualRecipe = props => {
       let foundRecipe = localRecipes.find(
         recipe => recipe._id === match.params.recipe_id
       );
-      setRecipeData({
-        title: foundRecipe.title,
-        imageUrl: foundRecipe.imageUrl,
-        servings: foundRecipe.servings,
-        time: foundRecipe.time,
-        ingredients: foundRecipe.ingredients,
-        instructions: foundRecipe.instructions,
-        user: foundRecipe.user,
-        _id: foundRecipe._id
-      });
 
       updateRecipe_LS(foundRecipe);
+      console.log("updated recipe from LS");
     }
   }, []);
-
-  useEffect(() => {
-    setRecipeData({
-      title: individualRecipe.recipe.title,
-      imageUrl: individualRecipe.recipe.imageUrl,
-      servings: individualRecipe.recipe.servings,
-      time: individualRecipe.recipe.time,
-      ingredients: individualRecipe.recipe.ingredients,
-      instructions: individualRecipe.recipe.instructions,
-      user: individualRecipe.recipe.user,
-      _id: individualRecipe.recipe._id
-    });
-  }, [individualRecipe]);
-
-  // useEffect(() => {
-  //   if (localStorage.cookbookState && cookbook.loading) {
-  //     let oldState = JSON.parse(localStorage.getItem("cookbookState"));
-  //     updateCookbookFromLS(oldState);
-  //   } else {
-  //     cookbook.loading && getCookbooks();
-  //   }
-  // }, []);
 
   const handleDelete = () => {
     setIsDelete(true);
@@ -190,26 +142,19 @@ const IndividualRecipe = props => {
 IndividualRecipe.propTypes = {
   getRecipeById: PropTypes.func.isRequired,
   deleteRecipe: PropTypes.func.isRequired,
-  recipe: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  recipe: state.recipe,
-  cookbook: state.cookbook,
   individualRecipe: state.individualRecipe
 });
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    {
-      getRecipeById,
-      deleteRecipe,
-      getCookbooks,
-      updateCookbookFromLS,
-      updateRecipe_LS
-    }
-  )(IndividualRecipe)
-);
+export default connect(
+  mapStateToProps,
+  {
+    getRecipeById,
+    deleteRecipe,
+    updateRecipe_LS
+  }
+)(IndividualRecipe);
