@@ -43,6 +43,20 @@ function ContentCards(props) {
       </>
     );
   }
+  if (option === "search") {
+    return (
+      <>
+        <div className="contentBoxCard">
+          {data.map(recipe => {
+            return (
+              <RecipeCard recipe={recipe} key={recipe._id} option={option} />
+            );
+          })}
+            {/* <CreateNewRecipeCard /> */}
+        </div>
+      </>
+    );
+  }
 
   if(option === 'cookbook'){
       return(

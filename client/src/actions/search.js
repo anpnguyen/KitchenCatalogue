@@ -25,14 +25,11 @@ export const getSearchRecipes = (searchParams, history) => async dispatch => {
       payload: searchState
     });
 
-    // // this will save the search params to state
-    // dispatch({
-    //   type: SEARCH,
-    //   payload: searchParams
-    // });
 
-    history.push(`/recipe/search`);
+    // history.push(`/recipe/search`);
+    history.push('/d');
   } catch (err) {
+    console.log(err)
     dispatch({
       type: SEARCH_ERROR,
       payload: { msg: "server error", status: "server error" }

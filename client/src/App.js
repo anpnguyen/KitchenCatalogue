@@ -16,6 +16,7 @@ import "./App.css";
 import MyRecipes from './components/Layout/MyRecipes'
 import MyCookbooks from "./components/Layout/MyCookbooks";
 import MyCookbookRecipes from "./components/Layout/MyCookbookRecipes";
+import MySearchRecipes from "./components/Layout/MySearchRecipes";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -99,6 +100,12 @@ const App = () => {
               exact 
               path="/c"
               component={MyCookbookRecipes} 
+              
+            />
+            <PrivateRoute 
+              exact 
+              path="/d"
+              component={MySearchRecipes} 
               
             />
 
