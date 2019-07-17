@@ -1,4 +1,4 @@
-import React , {useState}from "react";
+import React , {useState, memo}from "react";
 import RecipeCard from "./recipeCard";
 import CookbookCard from "../cookbook/cookbookCard";
 import CreateNewRecipeCard from "./createNewRecipeCard";
@@ -79,4 +79,4 @@ function ContentCards(props) {
   }
 }
 
-export default ContentCards;
+export default memo(ContentCards);
