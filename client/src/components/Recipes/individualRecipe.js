@@ -78,7 +78,8 @@ const IndividualRecipe = props => {
 
   const handleAddToCookbook = () => {
     // this picks out the selected cookbooks
-    let selectedCookbooks = addedCookbooks.map(
+    console.log(addedCookbooks)
+    let selectedCookbooks = [addedCookbooks].map(
       addedCookbook => addedCookbook.value
     );
     console.log(selectedCookbooks);
@@ -92,6 +93,7 @@ const IndividualRecipe = props => {
 
     let data = { cookbookIds: cookbookIds, recipeId: _id };
     addRecipeToCookbook(data);
+    setIsFavourite(false);
   };
   const handleDeleteConfirmation = () => {
     deleteRecipe(history, match.params.recipe_id);
@@ -132,11 +134,6 @@ const IndividualRecipe = props => {
               >
                 <AddToCookbookSelect setAddedCookbooks={setAddedCookbooks} />
               </ConfirmModal>
-
-              {/* <AddToCookbook
-                  setIsFavourite={setIsFavourite}
-                  recipeId={match.params.recipe_id}
-                /> */}
 
               <main className="individualRecipe" id="individualRecipe">
                 <h1 className="">{title}</h1>

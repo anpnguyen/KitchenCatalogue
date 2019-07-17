@@ -257,6 +257,17 @@
   
   }
 
+  .favouriteSelect{
+    width:100%;
+    /* display: flex; */
+    /* flex-direction: row */
+  }
+/* 
+  .favouriteSelect div:first-of-type{
+    width:100%;
+  }
+    */
+
 @media only screen and (max-width: 768px) {
   .recipeText {
     flex-direction: column;

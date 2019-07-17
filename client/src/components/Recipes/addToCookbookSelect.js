@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Select from "react-select";
-import makeAnimated from "react-select/animated";
-const animatedComponents = makeAnimated();
+// import makeAnimated from "react-select/animated";
+import './individualRecipe.css'
+// const animatedComponents = makeAnimated();
+
 
 const AddToCookbookSelect = props => {
   const { cookbook, setAddedCookbooks } = props;
@@ -12,6 +14,7 @@ const AddToCookbookSelect = props => {
 
   // this sets the selected cookbooks into an array
   const handleSelectChange = e => {
+    
     setAddedCookbooks(e);
     
   };
@@ -25,15 +28,22 @@ const AddToCookbookSelect = props => {
     setSelectOptions(options);
   }, []);
 
+
+
+
+
   return (
     selectOptions !== undefined && (
+      <div className='favouriteSelect'>
       <Select
         closeMenuOnSelect={true}
-        components={animatedComponents}
-        isMulti
+        // components={animatedComponents}
+        // isMulti
         options={selectOptions}
         onChange={e => handleSelectChange(e)}
+        
       />
+      </div>
     )
   );
 };

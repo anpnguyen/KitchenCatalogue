@@ -148,15 +148,15 @@ const RecipeCard = props => {
           <Fragment>
             <p className=" recipeCardText">
               <span className="bold">
-                <FontAwesomeIcon icon={faUtensils} /> Servings:
+                <FontAwesomeIcon icon={faUtensils} /> Servings: 
               </span>
-              {`  ${servings}`}
+              {servings?`  ${servings}`: ''}
             </p>
             <p className=" recipeCardText">
               <span className="bold">
                 <FontAwesomeIcon icon={faClock} /> Cooking Time:
               </span>
-              {`  ${time}`}
+              {time?`  ${time}`: ''}
             </p>
           </Fragment>
         </div>
