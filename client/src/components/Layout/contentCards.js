@@ -10,7 +10,7 @@ function ContentCards(props) {
   // put the confirmModals and settings menu Here
 
   const { data, navigation, totalPages, pageLimit, option } = props;
-  console.log(data);
+  
   const [createCookbookModal, setCreateCookbookModal] = useState(false)
 
   

@@ -1,4 +1,4 @@
-import { SEARCH, SEARCH_ERROR, GET_SEARCH_RECIPES } from "../actions/types";
+import { SEARCH_ERROR, GET_SEARCH_RECIPES } from "../actions/types";
 
 const initialState = {
   searchData: [],
@@ -11,12 +11,6 @@ export default function(state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
-    // case SEARCH:
-    //   return {
-    //     ...state,
-    //     searchData: payload,
-    //     loading: false
-    //   };
 
     case SEARCH_ERROR:
       return {

@@ -8,8 +8,7 @@ import React, {
   import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
   import {
     faClock,
-    faUtensils,
-    faCog,
+    faUtensils,    
     faTrash
   } from "@fortawesome/free-solid-svg-icons";
   import { withRouter } from "react-router-dom";

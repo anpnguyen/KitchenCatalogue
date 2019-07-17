@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from "react";
-import Content from "./content";
-import SearchBar from "./searchBar";
 import ContentSelect from "./contentSelect";
 import PageNavigation from "./pageNavigation";
 import ContentCards from "./contentCards";
 import "./content.css";
 
 function HomePage(props) {
-  const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
   const { title, searchParams, arr, option } = props;
 
-  console.log(arr);
   // Page Limit
   const [pageLimit, setPageLimit] = useState(12);
   // Navigation

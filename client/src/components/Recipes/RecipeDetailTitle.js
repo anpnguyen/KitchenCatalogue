@@ -1,12 +1,7 @@
 import React, { memo } from "react";
-import PropTypes from "prop-types";
 
 function RecipeDetailTitle(props) {
   const { title, handleDetailChange } = props;
-
-const handleChange = ()=>{
-  
-}
 
   return (
     <div className="recipeDetailsItem ">
