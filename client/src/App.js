@@ -51,12 +51,12 @@ const App = () => {
               option = 'search'
             />
 
-            {/* <PrivateRoute
+            <PrivateRoute
               exact
               path="/recipe/new"
               component={EditIndividualRecipe}
               option='newRecipe'
-            /> */}
+            />
 
             <PrivateRoute
               exact
@@ -64,12 +64,12 @@ const App = () => {
               component={IndividualRecipe}
             />
 
-            {/* <PrivateRoute
+            <PrivateRoute
               exact
               path="/recipe/:recipe_id/edit"
               component={EditIndividualRecipe}
               option='edit'
-            /> */}
+            />
 
             <PrivateRoute 
               exact 

@@ -69,10 +69,10 @@ router.get("/", authMiddleware, async (req, res) => {
       const recipes = await Recipe.find({
         user: req.user.id,
         title: { $regex: req.query.search, $options: "i" }
-      });
+      }).populate('user', ['username']);
       res.json(recipes);
     } else {
-      const recipes = await Recipe.find({ user: req.user.id });
+      const recipes = await Recipe.find({ user: req.user.id }).populate('user', ['username']);
       res.json(recipes);
     }
   } catch (err) {

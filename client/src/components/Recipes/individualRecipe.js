@@ -45,6 +45,8 @@ const IndividualRecipe = props => {
   useEffect(() => {
     var localRecipes = JSON.parse(localStorage.getItem("recipeState"));
 
+    console.log(localRecipes)
+
     if (!localRecipes) {
       getRecipeById(match.params.recipe_id, history);
     }
@@ -54,7 +56,11 @@ const IndividualRecipe = props => {
         recipe => recipe._id === match.params.recipe_id
       );
 
-      updateRecipe_LS(foundRecipe);
+      if(!foundRecipe){
+        history.push('/recipe')
+      } else{updateRecipe_LS(foundRecipe)}
+
+      
       console.log("updated recipe from LS");
     }
   }, []);

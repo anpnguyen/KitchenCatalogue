@@ -6,9 +6,7 @@ function recipeIngredients(props) {
     handleToNext,
     handleToBack,
     setRecipeIngredients,
-    recipeIngredients,
-    
-
+    recipeIngredients
   } = props;
 
   const handleIngredientNameChange = (e, index) => {
@@ -45,10 +43,7 @@ function recipeIngredients(props) {
                 <div className="NewRecipeName">Ingredient Name</div>
               </div>
             </div>
-        {
-          
-        
-            recipeIngredients.map((recipeIngredient, index) => {
+            {recipeIngredients.map((recipeIngredient, index) => {
               return (
                 <div key={`${index}ingredient`} className="ingredientsItem">
                   <div className="ingredientsItemsLeft">
@@ -76,10 +71,7 @@ function recipeIngredients(props) {
                   </div>
                 </div>
               );
-            })
-            
-            
-            }
+            })}
 
             <div className="ingredientsItem addIngredientButton">
               <button className=" " onClick={e => handleIngredientAdd(e)}>

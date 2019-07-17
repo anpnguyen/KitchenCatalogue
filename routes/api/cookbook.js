@@ -33,11 +33,9 @@ router.post(
     try {
       cookbook = new Cookbook(cookbookFields);
       await cookbook.save();
-      console.log(cookbook);
+
       res.json(cookbook);
     } catch (err) {
-      console.log(err);
-      console.error(err.message);
       if (err.code === 11000) {
         res.json({ error: "please choose a unique name" });
       } else {
@@ -53,7 +51,6 @@ router.get("/", authMiddleware, async (req, res) => {
     const cookbooks = await Cookbook.find({ user: req.user.id });
     res.json(cookbooks);
   } catch (err) {
-    console.error(err.message);
     res.status(500).send("Server Error - cannot fetch user cookbooks");
   }
 });
@@ -72,7 +69,6 @@ router.get("/:cookbook_id", authMiddleware, async (req, res) => {
       res.json(cookbook);
     }
   } catch (err) {
-    console.error(err.message);
     if (err.kind == "ObjectId") {
       return res.status(400).json({ msg: "cookbok not found - from catch" });
     }
@@ -80,44 +76,32 @@ router.get("/:cookbook_id", authMiddleware, async (req, res) => {
   }
 });
 
-// Edit a Cookbook - 
+// Edit a Cookbook -
 
 router.put("/:cookbook_id", authMiddleware, async (req, res) => {
   const { cookbookId, recipeId, newCookbookTitle } = req.body;
 
-  
-
-
-
   try {
-  // this will a remove a recipe from a cookbook
-    if(!newCookbookTitle){
-    let cookbook = await Cookbook.findOneAndUpdate(
-      { _id: cookbookId },
-      { $pull: { savedRecipes: recipeId } }
-    );
+    // this will a remove a recipe from a cookbook
+    if (!newCookbookTitle) {
+      let cookbook = await Cookbook.findOneAndUpdate(
+        { _id: cookbookId },
+        { $pull: { savedRecipes: recipeId } }
+      );
 
-    res.json({ recipeDeleted: recipeId });
-   } 
-  //  this will rename a cookbook
-   else{
+      res.json({ recipeDeleted: recipeId });
+    }
+    //  this will rename a cookbook
+    else {
+      let cookbookUpdated = await Cookbook.findOneAndUpdate(
+        { _id: cookbookId },
+        { cookbookTitle: newCookbookTitle },
+        { new: true }
+      );
 
-    let cookbookUpdated = await Cookbook.findOneAndUpdate(
-      { _id: cookbookId },
-      { cookbookTitle: newCookbookTitle },
-      {new: true} 
-    );
-
-
-      console.log(cookbookUpdated)
-    res.json(cookbookUpdated);
-
-
-   }
-
+      res.json(cookbookUpdated);
+    }
   } catch (err) {
-    console.error(err.message);
-
     res.status(500).send("Server Error - cannot remove recipe from cookbook");
   }
 });
@@ -125,13 +109,10 @@ router.put("/:cookbook_id", authMiddleware, async (req, res) => {
 //  **** delete a cook book *** working
 
 router.delete("/:cookbook_id", authMiddleware, async (req, res) => {
-  console.log(req.params.cookbook_id);
-
   try {
     await Cookbook.deleteOne({ _id: req.params.cookbook_id });
     res.json({ deletedCookbookId: req.params.cookbook_id });
   } catch (err) {
-    console.error(err.message);
     res.status(500).send("Server Error - cannot delete recipe");
   }
 });
@@ -160,17 +141,13 @@ router.put("/", authMiddleware, async (req, res) => {
 router.put("/deleteRecipe/deleteRecipe", authMiddleware, async (req, res) => {
   const { recipeToDelete } = req.body;
 
-  console.log(recipeToDelete);
-
   try {
     cookbook = await Cookbook.updateMany({
       $pull: { savedRecipes: { $in: recipeToDelete } }
     });
 
     res.json({ msg: "Successfully added to cookbook" });
-    //  console.log('called')
   } catch (err) {
-    console.log(err);
     if (err.code === 11000) {
       res.json({ error: "please choose a unique name" });
     } else {

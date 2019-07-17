@@ -1,43 +1,82 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import NavBar from "../Layout/navBar";
-import Alert from "../Layout/alert";
-import Footer from "../Layout/footer";
+import Content from "../Layout/content";
 import Spinner from "../Layout/spinner";
-import { editRecipePut, getRecipeById , createRecipe } from "../../actions/individualRecipe";
+import {
+  editRecipePut,
+  getRecipeById,
+  createRecipe,
+  updateRecipe_LS
+} from "../../actions/individualRecipe";
 import { connect } from "react-redux";
-import { withRouter, Redirect } from "react-router-dom";
-// import { createRecipe } from "../../actions/recipe";
+// import { withRouter } from "react-router-dom";
 import PreviewContainer from "./previewContainer";
 import RecipeDetails from "./receipeDetails";
 import RecipeIngredients from "./recipeIngredients";
 import RecipeInstructions from "./recipeInstructions";
 import "./newRecipe.css";
-import individualRecipe from "../../reducers/individualRecipe";
+import PreviewUsername from "./PreviewUsername";
+import PreviewText from "./PreviewText";
+import PreviewImage from "./PreviewImage";
+import PreviewTitle from "./PreviewTitle";
 
 const EditIndividualRecipe = props => {
-  const { editRecipePut, history, recipe, auth, option, createRecipe, match, individualRecipe } = props;
-  const { user } = auth;
-
+  const {
+    editRecipePut,
+    history,
+    option,
+    createRecipe,
+    match,
+    individualRecipe,
+    updateRecipe_LS,
+    getRecipeById
+  } = props;
 
   const initialData = {
-    title:  "",
-    imageUrl:  "",
-    servings:  "",
-    time:  ""
+    title: "",
+    imageUrl: "",
+    servings: "",
+    time: "",
+    user: ""
   };
 
   const [recipeDetails, setRecipeDetails] = useState(initialData);
-  const { title, imageUrl, servings, time } = recipeDetails;
-  const [recipeIngredients, setRecipeIngredients] = useState(
-    [""]
-  
-  );
-  const [recipeInstructions, setRecipeInstructions] = useState(
-    [""]
-
-  );
+  const { title, imageUrl, servings, time, user } = recipeDetails;
+  const [recipeIngredients, setRecipeIngredients] = useState([""]);
+  const [recipeInstructions, setRecipeInstructions] = useState([""]);
   const [newRecipeStage, setNewRecipeStage] = useState(1);
+
+  // if item is in local storage
+  useEffect(() => {
+    if (option === "edit") {
+      var localRecipes = JSON.parse(localStorage.getItem("recipeState"));
+      if (localRecipes === null) {
+        getRecipeById(match.params.recipe_id);
+      } else {
+        var foundRecipe = localRecipes.find(
+          recipe => recipe._id === match.params.recipe_id
+        );
+
+        if (!foundRecipe) {
+          getRecipeById(match.params.recipe_id);
+        } else {
+          let {
+            title,
+            servings,
+            imageUrl,
+            time,
+            ingredients,
+            instructions,
+            user
+          } = foundRecipe;
+          setRecipeDetails({ title, servings, imageUrl, time, user });
+          setRecipeIngredients(ingredients);
+          setRecipeInstructions(instructions);
+          updateRecipe_LS(foundRecipe);
+        }
+      }
+    }
+  }, []);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -63,119 +102,75 @@ const EditIndividualRecipe = props => {
     e.preventDefault();
     setNewRecipeStage(newRecipeStage - 1);
   };
-
-  useEffect(() => {
-
-    
-    if (option === 'edit') {
-      var localRecipes = JSON.parse(localStorage.getItem("recipeState"));
-      if(localRecipes===null){
-        console.log('called')
-        history.push('/recipe')
-      }else{
-      var foundRecipe = localRecipes.find(
-        recipe => recipe._id === match.params.recipe_id
-      );
-
-      if(!foundRecipe){
-      history.push('/recipe')
-      } else{
-        var {
-          title,
-          servings,
-          imageUrl,
-          time,
-          ingredients,
-          instructions
-        } = foundRecipe;
-        setRecipeDetails({ title, servings, imageUrl, time });
-        setRecipeIngredients(ingredients);
-        setRecipeInstructions(instructions);
-
-      }
-      
-      // console.log(localRecipe)
-     
-          
-    }} 
-  }, [individualRecipe.recipe.title, option]);
-
-
-
   return (
     <>
-      <NavBar />
-      <Alert />
-      {recipe.loading === true && recipe.recipe === {} ? (
-        <Spinner />
-      ) : (
-        <div className="contentBox ">
-          <div className="contentBoxContent ">
-            <main className="editRecipe" id="editRecipe">
-              {option === "edit" ? (
-                <h1 className="text-center">Edit Recipe</h1>
-              ) : (
-                <h1 className="text-center">New Recipe</h1>
-              )}
+      <Content {...props}>
+        
+        {individualRecipe.loading === true && option === 'edit' ? (
+          <Spinner />
+        ) : (
+          <div className="contentBox ">
+            <div className="contentBoxContent ">
+              <main className="editRecipe" id="editRecipe">
+                {option === "edit" ? (
+                  <h1 className="text-center">Edit Recipe</h1>
+                ) : (
+                  <h1 className="text-center">New Recipe</h1>
+                )}
 
-              <hr className="width80" />
-              <PreviewContainer
-                newRecipeStage={newRecipeStage}
-                user={user}
-                title={title}
-                servings={servings}
-                time={time}
-                imageUrl={imageUrl}
-                option={option}
-              />
+                <hr className="width80" />
+                <PreviewContainer newRecipeStage={newRecipeStage}>
+                  <PreviewTitle title={title} />
+                  <PreviewUsername user={user} />
+                  <PreviewText servings={servings} time={time} />
+                  <PreviewImage imageUrl={imageUrl} title={title} />
+                </PreviewContainer>
 
-              <div className="recipeForm">
-                <form onSubmit={handleSubmit}>
-                  <RecipeDetails
-                    newRecipeStage={newRecipeStage}
-                    user={user}
-                    title={title}
-                    servings={servings}
-                    time={time}
-                    imageUrl={imageUrl}
-                    setRecipeDetails={setRecipeDetails}
-                    recipeDetails={recipeDetails}
-                    handleToNext={handleToNext}
-                    option={option}
-                  />
+                <div className="recipeForm">
+                  <form onSubmit={handleSubmit}>
+                    <RecipeDetails
+                      newRecipeStage={newRecipeStage}
+                      user={user}
+                      title={title}
+                      servings={servings}
+                      time={time}
+                      imageUrl={imageUrl}
+                      setRecipeDetails={setRecipeDetails}
+                      recipeDetails={recipeDetails}
+                      handleToNext={handleToNext}
+                    />
 
-                  <RecipeIngredients
-                    newRecipeStage={newRecipeStage}
-                    handleToNext={handleToNext}
-                    handleToBack={handleToBack}
-                    setRecipeIngredients={setRecipeIngredients}
-                    recipeIngredients={recipeIngredients}
-                    option={option}
-                  />
+                    <RecipeIngredients
+                      newRecipeStage={newRecipeStage}
+                      handleToNext={handleToNext}
+                      handleToBack={handleToBack}
+                      setRecipeIngredients={setRecipeIngredients}
+                      recipeIngredients={recipeIngredients}
+                    />
 
-                  {/* instruction */}
+                    {/* instruction */}
 
-                  <RecipeInstructions
-                    newRecipeStage={newRecipeStage}
-                    user={user}
-                    title={title}
-                    servings={servings}
-                    time={time}
-                    imageUrl={imageUrl}
-                    setRecipeInstructions={setRecipeInstructions}
-                    recipeInstructions={recipeInstructions}
-                    handleToNext={handleToNext}
-                    handleToBack={handleToBack}
-                    handleSubmit={handleSubmit}
-                    option={option}
-                  />
-                </form>
-              </div>
-            </main>
+                    <RecipeInstructions
+                      newRecipeStage={newRecipeStage}
+                      user={user}
+                      title={title}
+                      servings={servings}
+                      time={time}
+                      imageUrl={imageUrl}
+                      setRecipeInstructions={setRecipeInstructions}
+                      recipeInstructions={recipeInstructions}
+                      handleToNext={handleToNext}
+                      handleToBack={handleToBack}
+                      handleSubmit={handleSubmit}
+                      option={option}
+                    />
+                  </form>
+                </div>
+              </main>
+            </div>
           </div>
-        </div>
-      )}
-      <Footer />
+        )}
+      </Content>
     </>
   );
 };
@@ -192,9 +187,7 @@ const mapStateToProps = state => ({
   recipe: state.recipe,
   individualRecipe: state.individualRecipe
 });
-export default withRouter(
-  connect(
-    mapStateToProps,
-    { editRecipePut, getRecipeById, createRecipe }
-  )(EditIndividualRecipe)
-);
+export default connect(
+  mapStateToProps,
+  { editRecipePut, getRecipeById, createRecipe, updateRecipe_LS }
+)(EditIndividualRecipe);

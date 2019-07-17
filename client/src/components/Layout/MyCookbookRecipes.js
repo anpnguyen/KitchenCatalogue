@@ -24,7 +24,7 @@ const {individualCookbook, match} = props
   getRecipes()
  }, [])
 
- console.log(individualCookbook.individualCookbook.savedRecipes)
+ 
 
 
     return (
@@ -36,7 +36,7 @@ const {individualCookbook, match} = props
           option='cookbookRecipe'
         >
             <h1>{individualCookbook.individualCookbook.cookbookTitle}</h1>
-            {/* <Link to='/b'>Cookbooks</Link> */}
+            
         </HomePage>}
         </Content>
     )

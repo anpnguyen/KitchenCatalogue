@@ -19,13 +19,6 @@ function MyRecipes(props) {
 
  const {getRecipes, recipe} = props
 
-//  useEffect(()=>{
-//   getRecipes()
-//  }, [])
-
- 
-
-
     return (
       <Content {...props}>
         <SearchBar />
