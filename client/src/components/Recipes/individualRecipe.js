@@ -3,23 +3,20 @@ import PropTypes from "prop-types";
 import Content from "../Layout/content";
 import Spinner from "../Layout/spinner";
 import AddToCookbookSelect from "./addToCookbookSelect";
-
+import ViewRecipeDetails from "./viewRecipeDetails";
+import ViewRecipeIngredients from "./viewRecipeIngredients";
+import ViewRecipeInstructions from "./viewRecipeInstructions";
+import ConfirmModal from "../Layout/confirmModal";
 import {
   getRecipeById,
   deleteRecipe,
   updateRecipe_LS
 } from "../../actions/individualRecipe";
-
 import { addRecipeToCookbook } from "../../actions/cookbook";
-
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-
 import "./individualRecipe.css";
-import ViewRecipeDetails from "./viewRecipeDetails";
-import ViewRecipeIngredients from "./viewRecipeIngredients";
-import ViewRecipeInstructions from "./viewRecipeInstructions";
-import ConfirmModal from "../Layout/confirmModal";
+
 
 const IndividualRecipe = props => {
   const {
@@ -51,8 +48,7 @@ const IndividualRecipe = props => {
   useEffect(() => {
     var localRecipes = JSON.parse(localStorage.getItem("recipeState"));
 
-    console.log(localRecipes);
-
+    
     if (!localRecipes) {
       getRecipeById(match.params.recipe_id, history);
     }
@@ -78,35 +74,26 @@ const IndividualRecipe = props => {
 
   const handleAddToCookbook = () => {
     // this picks out the selected cookbooks
-    
-    let selectedCookbook =  addedCookbooks.value
-    ;
-    console.log(selectedCookbook)
+
+    let selectedCookbook = addedCookbooks.value;
+    console.log(selectedCookbook);
     // check if recipe is already in cookbook
 
-// find id not equal to recipe
-    let IsRecipeAlreadyInside = selectedCookbook.savedRecipes.find(o=> o._id ===_id)
+    // find id not equal to recipe
+    let IsRecipeAlreadyInside = selectedCookbook.savedRecipes.find(
+      o => o._id === _id
+    );
 
-    console.log(IsRecipeAlreadyInside)
-    
-    if(IsRecipeAlreadyInside === undefined){
+    console.log(IsRecipeAlreadyInside);
+
+    if (IsRecipeAlreadyInside === undefined) {
       let data = { cookbookId: selectedCookbook._id, recipeId: _id };
-      console.log(data)
-      addRecipeToCookbook(data)
+      console.log(data);
+      addRecipeToCookbook(data);
+      setIsFavourite(false);
+    } else {
+      setIsFavourite(false);
     }
-
-    
-    // console.log(data)
-    // IsRecipeAlreadyInside !== undefined? 
-    
-    // alert('recipe already inside this cookbook')
-
-
-    
-
-    
-    
-    // setIsFavourite(false);
   };
   const handleDeleteConfirmation = () => {
     deleteRecipe(history, match.params.recipe_id);
@@ -122,70 +109,73 @@ const IndividualRecipe = props => {
         <Spinner />
       ) : (
         <main className="content">
-        <div className="contentContainer">
-          <div className="contentBox ">
-            <ConfirmModal
-              confirmAction={handleDeleteConfirmation}
-              closeAction={() => setIsDelete(false)}
-              id="confirmDeleteRecipe"
-              // ref={deleteModalRef}
-              title={`Delete Recipe`}
-              text={`Are you sure you want to delete this recipe?`}
-              confirmationText="Delete"
-              isShowing={isDelete}
-            />
-
-            <div className="contentBoxContent ">
+          <div className="contentContainer">
+            <div className="contentBox ">
               <ConfirmModal
-                confirmAction={handleAddToCookbook}
-                closeAction={() => setIsFavourite(false)}
+                confirmAction={handleDeleteConfirmation}
+                closeAction={() => setIsDelete(false)}
                 id="confirmDeleteRecipe"
                 // ref={deleteModalRef}
-                title={`Add Recipe To Cookbook`}
-                text={`Which cookbook would you like to add this recipe to?`}
-                confirmationText="Add"
-                isShowing={isFavourite}
-              >
-                <AddToCookbookSelect setAddedCookbooks={setAddedCookbooks} />
-              </ConfirmModal>
+                title={`Delete Recipe`}
+                text={`Are you sure you want to delete this recipe?`}
+                confirmationText="Delete"
+                isShowing={isDelete}
+              />
 
-              <main className="individualRecipe" id="individualRecipe">
-                <h1 className="">{title}</h1>
-                <ViewRecipeDetails
-                  user={user}
-                  servings={servings}
-                  time={time}
-                />
+              <div className="contentBoxContent ">
+                <ConfirmModal
+                  confirmAction={handleAddToCookbook}
+                  closeAction={() => setIsFavourite(false)}
+                  id="confirmDeleteRecipe"
+                  // ref={deleteModalRef}
+                  title={`Add Recipe To Cookbook`}
+                  text={`Which cookbook would you like to add this recipe to?`}
+                  confirmationText="Add"
+                  isShowing={isFavourite}
+                >
+                  <AddToCookbookSelect setAddedCookbooks={setAddedCookbooks} />
+                </ConfirmModal>
 
-                <div className="saveButton">
-                  <Link to={`/recipe/${_id}/edit`}>
-                    <button className="blueButton">Edit</button>
-                  </Link>
-                  <button className="blueButton" onClick={handleDelete}>
-                    Delete
-                  </button>
-                  <button className="blueButton" onClick={handleCookbookClick}>
-                    Add to cookbook
-                  </button>
-                </div>
+                <main className="individualRecipe" id="individualRecipe">
+                  <h1 className="">{title}</h1>
+                  <ViewRecipeDetails
+                    user={user}
+                    servings={servings}
+                    time={time}
+                  />
 
-                <section className="imageContainer ">
-                  {!imageUrl ? (
-                    <div className="fillerImg" />
-                  ) : (
-                    <img className="image" src={imageUrl} alt={title} />
-                  )}
-                </section>
-                <hr className="width80" />
+                  <div className="saveButton">
+                    <Link to={`/recipe/${_id}/edit`}>
+                      <button className="blueButton">Edit</button>
+                    </Link>
+                    <button className="blueButton" onClick={handleDelete}>
+                      Delete
+                    </button>
+                    <button
+                      className="blueButton"
+                      onClick={handleCookbookClick}
+                    >
+                      Add to cookbook
+                    </button>
+                  </div>
 
-                <div className="recipeText">
-                  <ViewRecipeIngredients ingredients={ingredients} />
-                  <ViewRecipeInstructions instructions={instructions} />
-                </div>
-              </main>
+                  <section className="imageContainer ">
+                    {!imageUrl ? (
+                      <div className="fillerImg" />
+                    ) : (
+                      <img className="image" src={imageUrl} alt={title} />
+                    )}
+                  </section>
+                  <hr className="width80" />
+
+                  <div className="recipeText">
+                    <ViewRecipeIngredients ingredients={ingredients} />
+                    <ViewRecipeInstructions instructions={instructions} />
+                  </div>
+                </main>
+              </div>
             </div>
           </div>
-        </div>
         </main>
       )}
     </Content>

@@ -1,4 +1,4 @@
-import React, { useState, memo } from "react";
+import React, { useState, memo, Fragment } from "react";
 import { connect } from "react-redux";
 import RecipeCard from "./recipeCard";
 import CookbookCard from "../cookbook/cookbookCard";
@@ -12,7 +12,7 @@ import "./contentCards.css";
 function ContentCards(props) {
   // put the confirmModals and settings menu Here
 
-  const { data, navigation, totalPages, pageLimit, option, createNewCookbook} = props;
+  const { data, navigation, totalItems, pageLimit, option, createNewCookbook} = props;
 
   const [createCookbookModal, setCreateCookbookModal] = useState(false);
   const [formData, setFormData] = useState({ cookbookTitle: "" });
@@ -28,16 +28,30 @@ function ContentCards(props) {
   const handleFormChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  
+  console.log(navigation)
+  console.log(totalItems)
 
   if (option === "recipe") {
     return (
       <>
         <div className="contentBoxCard">
-          {data.map(recipe => {
+          {data.map((recipe,index) => {
+            
+            if(
+            index < navigation.end -1 &&
+            index >= navigation.start &&
+            index !== totalItems){          
             return (
+
+
               <RecipeCard recipe={recipe} key={recipe._id} option={option} />
-            );
-          })}
+            )} }
+            
+            
+            
+          
+          )}
           <CreateNewRecipeCard />
         </div>
       </>
@@ -116,3 +130,5 @@ export default memo(
     { createNewCookbook }
   )(ContentCards)
 );
+
+

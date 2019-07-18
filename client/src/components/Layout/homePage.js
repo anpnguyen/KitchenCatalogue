@@ -38,6 +38,7 @@ function HomePage(props) {
             searchParams={searchParams}
             setPageLimit={setPageLimit}
             pageLimit={pageLimit}
+            
           />
 
           <hr className="width80" />
@@ -50,6 +51,7 @@ function HomePage(props) {
             pageLimit={pageLimit}
             data={arr}
             option={option}
+            totalItems={totalItems}
           />
 
           <PageNavigation
