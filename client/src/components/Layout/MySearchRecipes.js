@@ -3,6 +3,7 @@ import HomePage from "./homePage";
 import Content from "./content";
 import SearchBar from "./searchBar";
 import { connect } from "react-redux";
+import Spinner from '../Layout/spinner'
 
 function MySearchRecipes(props) {
   const { search, match , nav} = props;
@@ -11,7 +12,7 @@ function MySearchRecipes(props) {
     <Content {...props}>
       <SearchBar />
       {search.loading ? (
-        <h1>This is loading</h1>
+         <Spinner/>
       ) : (
         <HomePage arr={search.searchRecipes} option="search" title='Search Results' searchParams={search.searchData} match={match} nav={nav}>
           {/* <h1>Search Results</h1> */}

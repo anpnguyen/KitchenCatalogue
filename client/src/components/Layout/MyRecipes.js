@@ -3,6 +3,7 @@ import HomePage from "./homePage";
 import Content from "./content";
 import SearchBar from "./searchBar";
 import { connect } from "react-redux";
+import Spinner from '../Layout/spinner'
 
 // make the request and send data through
 
@@ -14,7 +15,7 @@ function MyRecipes(props) {
     <Content {...props}>
       <SearchBar />
       {recipe.loading ? (
-        <h1>This is loading</h1>
+         <Spinner/>
       ) : (
         <HomePage arr={recipe.recipes} option="recipe" title='My Recipes' match={match} nav={nav}>
           {/* <h1>My Recipes</h1> */}

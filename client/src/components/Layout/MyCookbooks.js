@@ -4,6 +4,7 @@ import Content from "./content";
 import SearchBar from "./searchBar";
 import { connect } from "react-redux";
 import { getCookbooks } from "../../actions/cookbook";
+import Spinner from '../Layout/spinner'
 
 function MyCookbooks(props) {
   const { cookbook, match, nav } = props;
@@ -12,7 +13,7 @@ function MyCookbooks(props) {
     <Content {...props}>
       <SearchBar />
       {cookbook.loading ? (
-        <h1>This is loading</h1>
+         <Spinner/>
       ) : (
         <HomePage arr={cookbook.cookbooks} option="cookbook" title='My Cookbooks' match={match} nav={nav}> 
           {/* <h1>My Cookbooks</h1> */}
