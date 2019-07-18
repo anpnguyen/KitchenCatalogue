@@ -38,6 +38,7 @@ function HomePage(props) {
             searchParams={searchParams}
             setPageLimit={setPageLimit}
             pageLimit={pageLimit}
+            option={option}
             
           />
 

@@ -1,13 +1,19 @@
 import React from "react";
 import "./contentSelect.css";
 function ContentSelect(props) {
-  const { totalItems, searchParams, setPageLimit, pageLimit } = props;
+  const { totalItems, searchParams, setPageLimit, pageLimit, option } = props;
+
+  let selectTextCookbook = `${totalItems} ${totalItems ===1? 'cookbook': 'cookbooks'} found`
+  let selectTextRecipe = `${totalItems} ${totalItems === 1 ? "recipe" : "recipes"} found`
   return (
     <div className="contentSelect">
       <div>
         <p className="contentSelectText">
-          {" "}
-          {totalItems} {totalItems === 1 ? "recipe" : "recipes"} found{" "}
+          
+          {option === 'cookbook'? selectTextCookbook : selectTextRecipe}
+          
+            
+          
           {searchParams && `for ${searchParams}`}
         </p>
       </div>

@@ -12,7 +12,14 @@ import "./contentCards.css";
 function ContentCards(props) {
   // put the confirmModals and settings menu Here
 
-  const { data, navigation, totalItems, pageLimit, option, createNewCookbook} = props;
+  const {
+    data,
+    navigation,
+    totalItems,
+    pageLimit,
+    option,
+    createNewCookbook
+  } = props;
 
   const [createCookbookModal, setCreateCookbookModal] = useState(false);
   const [formData, setFormData] = useState({ cookbookTitle: "" });
@@ -22,36 +29,31 @@ function ContentCards(props) {
     console.log(formData);
     setCreateCookbookModal(false);
     createNewCookbook(formData);
-    setFormData({ cookbookTitle: "" })
+    setFormData({ cookbookTitle: "" });
   };
 
   const handleFormChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  
-  console.log(navigation)
-  console.log(totalItems)
+
+  console.log(navigation);
+  console.log(totalItems);
 
   if (option === "recipe") {
     return (
       <>
         <div className="contentBoxCard">
-          {data.map((recipe,index) => {
-            
-            if(
-            index < navigation.end -1 &&
-            index >= navigation.start &&
-            index !== totalItems){          
-            return (
-
-
-              <RecipeCard recipe={recipe} key={recipe._id} option={option} />
-            )} }
-            
-            
-            
-          
-          )}
+          {data.map((recipe, index) => {
+            if (
+              index < navigation.end - 1 &&
+              index >= navigation.start &&
+              index !== totalItems
+            ) {
+              return (
+                <RecipeCard recipe={recipe} key={recipe._id} option={option} />
+              );
+            }
+          })}
           <CreateNewRecipeCard />
         </div>
       </>
@@ -62,10 +64,16 @@ function ContentCards(props) {
     return (
       <>
         <div className="contentBoxCard">
-          {data.map(recipe => {
-            return (
-              <RecipeCard recipe={recipe} key={recipe._id} option={option} />
-            );
+          {data.map((recipe, index) => {
+            if (
+              index < navigation.end &&
+              index >= navigation.start &&
+              index !== totalItems
+            ) {
+              return (
+                <RecipeCard recipe={recipe} key={recipe._id} option={option} />
+              );
+            }
           })}
           {/* <CreateNewRecipeCard /> */}
         </div>
@@ -76,10 +84,16 @@ function ContentCards(props) {
     return (
       <>
         <div className="contentBoxCard">
-          {data.map(recipe => {
-            return (
-              <RecipeCard recipe={recipe} key={recipe._id} option={option} />
-            );
+          {data.map((recipe, index) => {
+            if (
+              index < navigation.end &&
+              index >= navigation.start &&
+              index !== totalItems
+            ) {
+              return (
+                <RecipeCard recipe={recipe} key={recipe._id} option={option} />
+              );
+            }
           })}
           {/* <CreateNewRecipeCard /> */}
         </div>
@@ -101,7 +115,6 @@ function ContentCards(props) {
             isShowing={createCookbookModal}
           >
             <form onSubmit={handleFormSubmit}>
-              
               <input
                 type="text"
                 placeholder="Cookbook name"
@@ -112,10 +125,16 @@ function ContentCards(props) {
             </form>
           </ConfirmModal>
 
-          {data.map(cookbook => {
-            return (
-              <CookbookCard c={cookbook} key={cookbook._id} option={option} />
-            );
+          {data.map((cookbook, index) => {
+            if (
+              index < navigation.end &&
+              index >= navigation.start &&
+              index !== totalItems
+            ) {
+              return (
+                <CookbookCard c={cookbook} key={cookbook._id} option={option} />
+              );
+            }
           })}
           <CreateCookbook setCreateCookbookModal={setCreateCookbookModal} />
         </div>
@@ -130,5 +149,3 @@ export default memo(
     { createNewCookbook }
   )(ContentCards)
 );
-
-
