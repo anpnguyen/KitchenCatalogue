@@ -119,13 +119,16 @@ router.delete("/:cookbook_id", authMiddleware, async (req, res) => {
 
 // this will update multiple cookbooks
 router.put("/", authMiddleware, async (req, res) => {
-  const { cookbookIds, recipeId } = req.body;
+  const { cookbookId, recipeId } = req.body;
+
 
   try {
-    cookbook = await Cookbook.updateMany(
-      { _id: { $in: cookbookIds } },
+    cookbook = await Cookbook.findOneAndUpdate(
+      { _id:  cookbookId  },
       { $push: { savedRecipes: recipeId } }
+      
     );
+    
     res.json({ msg: "Successfully added to cookbook" });
   } catch (err) {
     if (err.code === 11000) {

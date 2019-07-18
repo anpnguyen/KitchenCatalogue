@@ -78,22 +78,35 @@ const IndividualRecipe = props => {
 
   const handleAddToCookbook = () => {
     // this picks out the selected cookbooks
-    console.log(addedCookbooks)
-    let selectedCookbooks = [addedCookbooks].map(
-      addedCookbook => addedCookbook.value
-    );
-    console.log(selectedCookbooks);
+    
+    let selectedCookbook =  addedCookbooks.value
+    ;
+    console.log(selectedCookbook)
+    // check if recipe is already in cookbook
 
-    let cookbooksToSend = selectedCookbooks.filter(
-      cookbook => cookbook.savedRecipes.includes(_id) === false
-    );
-    console.log(cookbooksToSend);
+// find id not equal to recipe
+    let IsRecipeAlreadyInside = selectedCookbook.savedRecipes.find(o=> o._id ===_id)
 
-    let cookbookIds = cookbooksToSend.map(cookbookId => cookbookId._id);
+    console.log(IsRecipeAlreadyInside)
+    
+    if(IsRecipeAlreadyInside === undefined){
+      let data = { cookbookId: selectedCookbook._id, recipeId: _id };
+      console.log(data)
+      addRecipeToCookbook(data)
+    }
 
-    let data = { cookbookIds: cookbookIds, recipeId: _id };
-    addRecipeToCookbook(data);
-    setIsFavourite(false);
+    
+    // console.log(data)
+    // IsRecipeAlreadyInside !== undefined? 
+    
+    // alert('recipe already inside this cookbook')
+
+
+    
+
+    
+    
+    // setIsFavourite(false);
   };
   const handleDeleteConfirmation = () => {
     deleteRecipe(history, match.params.recipe_id);

@@ -15,8 +15,8 @@ function MyRecipes(props) {
       {recipe.loading ? (
         <h1>This is loading</h1>
       ) : (
-        <HomePage arr={recipe.recipes} option="recipe">
-          <h1>My Recipes</h1>
+        <HomePage arr={recipe.recipes} option="recipe" title='My Recipes'>
+          {/* <h1>My Recipes</h1> */}
           
         </HomePage>
       )}

@@ -14,8 +14,8 @@ function MyCookbooks(props) {
       {cookbook.loading ? (
         <h1>This is loading</h1>
       ) : (
-        <HomePage arr={cookbook.cookbooks} option="cookbook">
-          <h1>My Cookbooks</h1>
+        <HomePage arr={cookbook.cookbooks} option="cookbook" title='My Cookbooks'>
+          {/* <h1>My Cookbooks</h1> */}
         </HomePage>
       )}
     </Content>

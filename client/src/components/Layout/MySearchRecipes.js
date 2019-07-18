@@ -13,8 +13,8 @@ function MySearchRecipes(props) {
       {search.loading ? (
         <h1>This is loading</h1>
       ) : (
-        <HomePage arr={search.searchRecipes} option="search">
-          <h1>Search Results</h1>
+        <HomePage arr={search.searchRecipes} option="search" title='Search Results' searchParams={search.searchData}>
+          {/* <h1>Search Results</h1> */}
         </HomePage>
       )}
     </Content>

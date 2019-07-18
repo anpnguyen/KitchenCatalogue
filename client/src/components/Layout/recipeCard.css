@@ -2,7 +2,7 @@
 .recipeCard {
   width: 23%;
   margin: 0 1%;
-  padding: 0 10px;
+  padding:  10px;
   overflow: hidden;
   margin-bottom: 30px;
   box-sizing: border-box;
@@ -32,7 +32,6 @@
   max-height: 50%;
   box-sizing: border-box;
   overflow: hidden;
-  margin-top: 10px;
   display: flex;
   justify-content: center;
   align-content: center;

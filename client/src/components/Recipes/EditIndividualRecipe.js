@@ -47,6 +47,8 @@ const EditIndividualRecipe = props => {
   const [newRecipeStage, setNewRecipeStage] = useState(1);
 
   // if item is in local storage
+
+
   useEffect(() => {
     if (option === "edit") {
       var localRecipes = JSON.parse(localStorage.getItem("recipeState"));

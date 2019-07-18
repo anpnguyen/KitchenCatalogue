@@ -18,8 +18,9 @@ function MyCookbookRecipes(props) {
         <HomePage
           arr={individualCookbook.individualCookbook.savedRecipes}
           option="cookbookRecipe"
+          title={individualCookbook.individualCookbook.cookbookTitle}
         >
-          <h1>{individualCookbook.individualCookbook.cookbookTitle}</h1>
+          {/* <h1>{individualCookbook.individualCookbook.cookbookTitle}</h1> */}
         </HomePage>
       )}
     </Content>
