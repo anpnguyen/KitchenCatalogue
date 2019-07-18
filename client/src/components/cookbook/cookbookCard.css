@@ -1,7 +1,7 @@
 .recipeCard.cookbook {
   width: 23%;
   margin: 0 1%;
-  padding:  10px;
+  padding: 10px;
   overflow: hidden;
   margin-bottom: 30px;
   box-sizing: border-box;
@@ -32,7 +32,7 @@
   max-height: 60%;
   box-sizing: border-box;
   overflow: hidden;
-  margin-bottom:15px;
+  margin-bottom: 15px;
   display: flex;
   justify-content: center;
   align-content: center;
@@ -45,7 +45,7 @@
   box-sizing: border-box;
 }
 
-.fillerImg {
+.fillerImg.cookbook {
   min-height: 180px;
   min-width: 100%;
   max-width: 100%;
@@ -61,16 +61,14 @@
 }
 
 .recipeCardText.cookbook {
-  margin:  0;
+  margin: 0;
   font-size: 0.8rem;
   padding-left: 10px;
   text-align: left;
 }
 
-.recipeCardText.cookbook h3{
-  
+.recipeCardText.cookbook h3 {
   font-size: 1.17rem;
-  
 }
 
 .recipeCardText svg {
@@ -132,7 +130,6 @@
 
 .removeFromCookbook.invertColor svg:hover {
   color: #333;
-
 }
 
 .removeFromCookbook svg {
@@ -141,22 +138,18 @@
   transform: scale(0.6);
 }
 
-
-
 .removeFromCookbook:hover {
   color: rgb(50, 119, 231);
-  
-  
 }
 
 @media only screen and (max-width: 1000px) {
-  .recipeCard.cookbook  {
+  .recipeCard.cookbook {
     width: 31%;
   }
 }
 
 @media only screen and (max-width: 768px) {
-  .recipeCard.cookbook  {
+  .recipeCard.cookbook {
     width: 48%;
   }
   .recipeCardImage.cookbook img {
@@ -165,29 +158,38 @@
 }
 
 @media only screen and (max-width: 480px) {
-  .recipeCard.cookbook  {
+  .recipeCard.cookbook {
     width: 96%;
     margin: 0px 2% 10px 2%;
   }
-  .recipeCardText.cookbook  {
+  .recipeCardText.cookbook {
     min-height: 30%;
     justify-content: flex-start;
   }
-  .recipeCardImage.cookbook  {
+  .recipeCardImage.cookbook {
     max-height: 300px;
     border-radius: 10px !important;
   }
 
-  .recipeCardImage.cookbook  img {
+  .recipeCardImage.cookbook img {
     max-height: 150px;
   }
 
-  .recipeCardTextTitle.cookbook  {
+  .recipeCardTextTitle.cookbook {
     height: 30px;
     padding-top: 0;
     box-shadow: none;
   }
-  .individualRecipeImageContainer.cookbook  .image {
+  .individualRecipeImageContainer.cookbook .image {
     box-shadow: none !important;
+  }
+
+  .fillerImg.cookbook {
+    min-height: 150px;
+  }
+
+  .fillerImgCreate.cookbook {
+    min-height: 100px;
+    max-height: 150px;
   }
 }

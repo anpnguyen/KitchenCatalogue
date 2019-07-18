@@ -17,6 +17,7 @@ import MyRecipes from './components/Layout/MyRecipes'
 import MyCookbooks from "./components/Layout/MyCookbooks";
 import MyCookbookRecipes from "./components/Layout/MyCookbookRecipes";
 import MySearchRecipes from "./components/Layout/MySearchRecipes";
+import CreateRecipe from "./components/Recipes/createRecipe";
 
 
 if (localStorage.token) {
@@ -54,7 +55,7 @@ const App = () => {
             <PrivateRoute
               exact
               path="/recipe/new"
-              component={EditIndividualRecipe}
+              component={CreateRecipe}
               option='newRecipe'
             />
 

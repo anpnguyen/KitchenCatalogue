@@ -198,7 +198,7 @@ function CookbookCard(props) {
           savedRecipes[0].imageUrl !== undefined ? (
             <img className="" src={savedRecipes[0].imageUrl} alt="" />
           ) : (
-            <div className="fillerImg"> </div>
+            <div className="fillerImg cookbook"> </div>
           )}
         </div>
         <div className="recipeCardText cookbook ">

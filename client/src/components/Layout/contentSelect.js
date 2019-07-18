@@ -14,7 +14,7 @@ function ContentSelect(props) {
           
             
           
-          {searchParams && `for ${searchParams}`}
+          {searchParams && ` for ${searchParams}`}
         </p>
       </div>
       <div>

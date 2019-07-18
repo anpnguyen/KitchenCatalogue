@@ -20,7 +20,7 @@ import PreviewText from "./PreviewText";
 import PreviewImage from "./PreviewImage";
 import PreviewTitle from "./PreviewTitle";
 
-const EditIndividualRecipe = props => {
+const CreateRecipe = props => {
   const {
     editRecipePut,
     history,
@@ -188,7 +188,7 @@ const EditIndividualRecipe = props => {
   );
 };
 
-EditIndividualRecipe.propTypes = {
+CreateRecipe.propTypes = {
   auth: PropTypes.object.isRequired,
   recipe: PropTypes.object.isRequired,
   editRecipePut: PropTypes.func.isRequired,
@@ -203,4 +203,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { editRecipePut, getRecipeById, createRecipe, updateRecipe_LS }
-)(EditIndividualRecipe);
+)(CreateRecipe);
