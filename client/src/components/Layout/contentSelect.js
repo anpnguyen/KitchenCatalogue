@@ -18,7 +18,7 @@ function ContentSelect(props) {
         </p>
       </div>
       <div>
-        <select
+        {/* <select
           className="contentSelectSelect"
           name="itemsPerPage"
           onChange={e => setPageLimit(parseInt(e.target.value))}
@@ -28,7 +28,7 @@ function ContentSelect(props) {
           <option value={16}>16 items per page</option>
           <option value={20}>20 items per page</option>
           <option value={48}>48 items per page</option>
-        </select>
+        </select> */}
       </div>
     </div>
   );

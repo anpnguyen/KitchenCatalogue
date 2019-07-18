@@ -1,4 +1,4 @@
-import React, { useState, memo, Fragment } from "react";
+import React, { useState, memo, useEffect } from "react";
 import { connect } from "react-redux";
 import RecipeCard from "./recipeCard";
 import CookbookCard from "../cookbook/cookbookCard";
@@ -18,11 +18,16 @@ function ContentCards(props) {
     totalItems,
     pageLimit,
     option,
-    createNewCookbook
+    createNewCookbook, 
+    match
   } = props;
 
   const [createCookbookModal, setCreateCookbookModal] = useState(false);
   const [formData, setFormData] = useState({ cookbookTitle: "" });
+
+  
+
+
 
   const handleFormSubmit = e => {
     e.preventDefault();
@@ -47,7 +52,7 @@ function ContentCards(props) {
             if (
               index < navigation.end - 1 &&
               index >= navigation.start &&
-              index !== totalItems
+              index !== totalItems -1
             ) {
               return (
                 <RecipeCard recipe={recipe} key={recipe._id} option={option} />
@@ -88,7 +93,7 @@ function ContentCards(props) {
             if (
               index < navigation.end &&
               index >= navigation.start &&
-              index !== totalItems
+              index !== totalItems 
             ) {
               return (
                 <RecipeCard recipe={recipe} key={recipe._id} option={option} />
@@ -129,7 +134,7 @@ function ContentCards(props) {
             if (
               index < navigation.end &&
               index >= navigation.start &&
-              index !== totalItems
+              index !== totalItems -1
             ) {
               return (
                 <CookbookCard c={cookbook} key={cookbook._id} option={option} />

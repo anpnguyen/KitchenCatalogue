@@ -7,15 +7,16 @@ import { connect } from "react-redux";
 // make the request and send data through
 
 function MyRecipes(props) {
-  const { recipe } = props;
+  const { recipe, match , nav} = props;
 
+ 
   return (
     <Content {...props}>
       <SearchBar />
       {recipe.loading ? (
         <h1>This is loading</h1>
       ) : (
-        <HomePage arr={recipe.recipes} option="recipe" title='My Recipes'>
+        <HomePage arr={recipe.recipes} option="recipe" title='My Recipes' match={match} nav={nav}>
           {/* <h1>My Recipes</h1> */}
           
         </HomePage>

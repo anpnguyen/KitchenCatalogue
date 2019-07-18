@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 // make the request and send data through
 
 function MyCookbookRecipes(props) {
-  const { individualCookbook } = props;
+  const { individualCookbook , match, nav} = props;
 
   return (
     <Content {...props}>
@@ -19,6 +19,8 @@ function MyCookbookRecipes(props) {
           arr={individualCookbook.individualCookbook.savedRecipes}
           option="cookbookRecipe"
           title={individualCookbook.individualCookbook.cookbookTitle}
+          match={match}
+          nav={nav}
         >
           {/* <h1>{individualCookbook.individualCookbook.cookbookTitle}</h1> */}
         </HomePage>

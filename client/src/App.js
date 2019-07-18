@@ -44,12 +44,25 @@ const App = () => {
               component={MyRecipes} 
               
             />
+            <PrivateRoute 
+              exact 
+              path="/recipe/page/:page_number" 
+              component={MyRecipes} 
+              nav='recipeNavigation'              
+            />
 
             <PrivateRoute
               exact
               path="/recipe/search"
               component={MySearchRecipes}
               option = 'search'
+            />
+            <PrivateRoute
+              exact
+              path="/recipe/search/page/:page_number"
+              component={MySearchRecipes}
+              option = 'search'
+              nav = 'searchNavigation'
             />
 
             <PrivateRoute
@@ -80,18 +93,25 @@ const App = () => {
             />
             <PrivateRoute 
               exact 
+              path="/cookbook/page/:page_number" 
+              component={MyCookbooks} 
+              nav = 'cookbookNavigation'
+              
+            />
+            <PrivateRoute 
+              exact 
               path="/cookbook/:cookbook_id" 
               component={MyCookbookRecipes} 
               
             />
-            {/* <PrivateRoute 
+            <PrivateRoute 
               exact 
-              path="/a" 
-              component={ViewRecipe} 
+              path="/cookbook/:cookbook_id/page/:page_number" 
+              component={MyCookbookRecipes} 
+              nav='cookbookRecipeNavigation'
               
-            /> */}
-
-
+            />
+        
 
 
             <PrivateRoute path="*" component={NotFound} />

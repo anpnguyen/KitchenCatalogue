@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { getCookbooks } from "../../actions/cookbook";
 
 function MyCookbooks(props) {
-  const { cookbook } = props;
+  const { cookbook, match, nav } = props;
 
   return (
     <Content {...props}>
@@ -14,7 +14,7 @@ function MyCookbooks(props) {
       {cookbook.loading ? (
         <h1>This is loading</h1>
       ) : (
-        <HomePage arr={cookbook.cookbooks} option="cookbook" title='My Cookbooks'>
+        <HomePage arr={cookbook.cookbooks} option="cookbook" title='My Cookbooks' match={match} nav={nav}> 
           {/* <h1>My Cookbooks</h1> */}
         </HomePage>
       )}
