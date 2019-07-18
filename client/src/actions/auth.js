@@ -103,4 +103,12 @@ export const logout = () => dispatch => {
   dispatch({
     type: LOGOUT
   });
+  localStorage.removeItem('recipeState')
+  localStorage.removeItem('cookbookState')
+  localStorage.removeItem('searchState')
+};
+export const clearLS = () => dispatch => {
+  localStorage.removeItem('recipeState')
+  localStorage.removeItem('cookbookState')
+  localStorage.removeItem('searchState')
 };

@@ -5,11 +5,11 @@ import Alert from "../Layout/alert";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { setAlert, clearAlerts } from "../../actions/alert";
-import { login, register } from "../../actions/auth";
+import { login, register, clearLS } from "../../actions/auth";
 import "./login.css";
 
 const Login = (props) => {
-  const { register, login, setAlert, clearAlerts } = props;
+  const { register, login, setAlert, clearAlerts, clearLS } = props;
 
   const initialData = {
     username: "",
@@ -58,7 +58,9 @@ const Login = (props) => {
     isDemo &&   login({ email, password });
   }, [isDemo, email, password, login])
  
-
+  useEffect(()=>{
+    clearLS()
+  })
 
   if (props.isAuthenticated) {
     return <Redirect to="/recipe" />;
@@ -209,5 +211,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { setAlert, register, login, clearAlerts }
+  { setAlert, register, login, clearAlerts, clearLS }
 )(Login);
