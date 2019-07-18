@@ -41,8 +41,7 @@ function ContentCards(props) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  console.log(navigation);
-  console.log(totalItems);
+  
 
   if (option === "recipe") {
     return (
@@ -50,9 +49,9 @@ function ContentCards(props) {
         <div className="contentBoxCard">
           {data.map((recipe, index) => {
             if (
-              index < navigation.end - 1 &&
+              index < navigation.end  &&
               index >= navigation.start &&
-              index !== totalItems -1
+              index !== totalItems 
             ) {
               return (
                 <RecipeCard recipe={recipe} key={recipe._id} option={option} />
@@ -74,7 +73,9 @@ function ContentCards(props) {
               index < navigation.end &&
               index >= navigation.start &&
               index !== totalItems
-            ) {
+            ) 
+            
+            {
               return (
                 <RecipeCard recipe={recipe} key={recipe._id} option={option} />
               );
@@ -132,9 +133,9 @@ function ContentCards(props) {
 
           {data.map((cookbook, index) => {
             if (
-              index < navigation.end &&
+              index < navigation.end  &&
               index >= navigation.start &&
-              index !== totalItems -1
+              index !== totalItems 
             ) {
               return (
                 <CookbookCard c={cookbook} key={cookbook._id} option={option} />

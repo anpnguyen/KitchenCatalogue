@@ -8,7 +8,7 @@ function HomePage(props) {
   const { title, searchParams, arr, option, match , nav} = props;
 
   // Page Limit
-  const [pageLimit, setPageLimit] = useState(12);
+  const [pageLimit, setPageLimit] = useState(24);
   // Navigation
   const [navigation, setNavigation] = useState({
     start: 0,
@@ -69,7 +69,7 @@ function HomePage(props) {
             totalItems={totalItems}
           />
 
-          {totalItems > pageLimit-1 &&
+          {totalItems > pageLimit &&
           <PageNavigation
             navigation={navigation}
             setNavigation={setNavigation}

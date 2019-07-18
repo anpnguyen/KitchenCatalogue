@@ -28,7 +28,7 @@ function PageNavigation(props) {
         return "/recipe/page/";
 
       case "search":
-        return "/search/page/";
+        return "/recipe/search/page/";
 
       case "cookbook":
         return "/cookbook/page/";
