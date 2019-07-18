@@ -39,6 +39,7 @@ function HomePage(props) {
             setPageLimit={setPageLimit}
             pageLimit={pageLimit}
             option={option}
+            title={title}
             
           />
 
@@ -55,12 +56,13 @@ function HomePage(props) {
             totalItems={totalItems}
           />
 
+          {totalItems >11 &&
           <PageNavigation
             navigation={navigation}
             setNavigation={setNavigation}
             totalPages={totalPages}
             pageLimit={pageLimit}
-          />
+          />}
         </div>
       </main>
     </>
