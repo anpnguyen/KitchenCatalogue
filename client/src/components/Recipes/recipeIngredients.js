@@ -35,14 +35,14 @@ function recipeIngredients(props) {
             <div className="ingredientsItem">
               <h3>Ingredients</h3>
             </div>
-            <div className="ingredientsItem">
-              <div className="ingredientItemsLeft" />
-              <div className="ingredientsItemRight">
-                <div>Quantity</div>
+            {/* <div className="ingredientsItem"> */}
+              {/* <div className="ingredientItemsLeft" /> */}
+              {/* <div className="ingredientsItemRight"> */}
+                {/* <div>Quantity</div>
                 <div>Unit</div>
-                <div className="NewRecipeName">Ingredient Name</div>
-              </div>
-            </div>
+                <div className="NewRecipeName">Ingredient Name</div> */}
+              {/* </div> */}
+            {/* </div> */}
             {recipeIngredients.map((recipeIngredient, index) => {
               return (
                 <div key={`${index}ingredient`} className="ingredientsItem">
