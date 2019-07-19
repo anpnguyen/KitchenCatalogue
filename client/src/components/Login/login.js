@@ -61,7 +61,8 @@ const Login = (props) => {
  
   useEffect(()=>{
     clearLS()
-  })
+    console.log('calling')
+  },[])
 
   if (props.isAuthenticated) {
     return <Redirect to="/recipe" />;
