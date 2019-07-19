@@ -1,31 +1,26 @@
 import React, { useEffect } from "react";
 import LoginContainer from "./components/Login/loginContainer";
 import PrivateRoute from "./components/routing/PrivateRoute";
-// import IndexContainer from "./components/Layout/indexContainer";
 import IndividualRecipe from "./components/Recipes/individualRecipe";
 import EditIndividualRecipe from "./components/Recipes/EditIndividualRecipe";
-// import Home from "./components/Layout/home";
-// import SearchContainer from "./components/Layout/searchContainer";
 import NotFound from "./components/Layout/notFound";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
 import { loadUser } from "./actions/auth";
 import setAuthToken from "./utils/setAuthToken";
-import "./App.css";
-import MyRecipes from './components/Layout/MyRecipes'
+import MyRecipes from "./components/Layout/MyRecipes";
 import MyCookbooks from "./components/Layout/MyCookbooks";
 import MyCookbookRecipes from "./components/Layout/MyCookbookRecipes";
 import MySearchRecipes from "./components/Layout/MySearchRecipes";
 import CreateRecipe from "./components/Recipes/createRecipe";
-
+import "./App.css";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
 
 const App = () => {
-  
   useEffect(() => {
     store.dispatch(loadUser());
   }, []);
@@ -38,38 +33,33 @@ const App = () => {
             <Route exact path="/" render={LoginContainer} />
             <Route exact path="/login" render={LoginContainer} />
 
-            <PrivateRoute 
-              exact 
-              path="/recipe" 
-              component={MyRecipes} 
-              
-            />
-            <PrivateRoute 
-              exact 
-              path="/recipe/page/:page_number" 
-              component={MyRecipes} 
-              nav='recipeNavigation'              
+            <PrivateRoute exact path="/recipe" component={MyRecipes} />
+            <PrivateRoute
+              exact
+              path="/recipe/page/:page_number"
+              component={MyRecipes}
+              nav="recipeNavigation"
             />
 
             <PrivateRoute
               exact
               path="/recipe/search"
               component={MySearchRecipes}
-              option = 'search'
+              option="search"
             />
             <PrivateRoute
               exact
               path="/recipe/search/page/:page_number"
               component={MySearchRecipes}
-              option = 'search'
-              nav = 'searchNavigation'
+              option="search"
+              nav="searchNavigation"
             />
 
             <PrivateRoute
               exact
               path="/recipe/new"
               component={CreateRecipe}
-              option='newRecipe'
+              option="newRecipe"
             />
 
             <PrivateRoute
@@ -82,37 +72,27 @@ const App = () => {
               exact
               path="/recipe/:recipe_id/edit"
               component={EditIndividualRecipe}
-              option='edit'
+              option="edit"
             />
 
-            <PrivateRoute 
-              exact 
-              path="/cookbook" 
-              component={MyCookbooks} 
-              
+            <PrivateRoute exact path="/cookbook" component={MyCookbooks} />
+            <PrivateRoute
+              exact
+              path="/cookbook/page/:page_number"
+              component={MyCookbooks}
+              nav="cookbookNavigation"
             />
-            <PrivateRoute 
-              exact 
-              path="/cookbook/page/:page_number" 
-              component={MyCookbooks} 
-              nav = 'cookbookNavigation'
-              
+            <PrivateRoute
+              exact
+              path="/cookbook/:cookbook_id"
+              component={MyCookbookRecipes}
             />
-            <PrivateRoute 
-              exact 
-              path="/cookbook/:cookbook_id" 
-              component={MyCookbookRecipes} 
-              
+            <PrivateRoute
+              exact
+              path="/cookbook/:cookbook_id/page/:page_number"
+              component={MyCookbookRecipes}
+              nav="cookbookRecipeNavigation"
             />
-            <PrivateRoute 
-              exact 
-              path="/cookbook/:cookbook_id/page/:page_number" 
-              component={MyCookbookRecipes} 
-              nav='cookbookRecipeNavigation'
-              
-            />
-        
-
 
             <PrivateRoute path="*" component={NotFound} />
           </Switch>
@@ -121,7 +101,5 @@ const App = () => {
     </div>
   );
 };
-
-
 
 export default App;

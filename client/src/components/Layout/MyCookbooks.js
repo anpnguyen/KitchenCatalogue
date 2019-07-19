@@ -16,7 +16,7 @@ function MyCookbooks(props) {
          <Spinner/>
       ) : (
         <HomePage arr={cookbook.cookbooks} option="cookbook" title='My Cookbooks' match={match} nav={nav}> 
-          {/* <h1>My Cookbooks</h1> */}
+          
         </HomePage>
       )}
     </Content>

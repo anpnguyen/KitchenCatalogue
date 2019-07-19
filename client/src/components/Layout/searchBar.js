@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import SearchBack from "../../images/searchback_crop.jpg";
 import { connect } from "react-redux";
-import {withRouter} from 'react-router-dom'
+import { withRouter } from "react-router-dom";
 
 import { getSearchRecipes } from "../../actions/search";
 import "./searchBar.css";
@@ -16,7 +16,6 @@ const SearchBar = props => {
     backgroundPosition: "center"
   };
 
-  
   const [formData, setFormData] = useState("");
 
   function handleSearchChange(e) {
@@ -47,7 +46,6 @@ const SearchBar = props => {
 };
 
 SearchBar.propTypes = {
-  
   getSearchRecipes: PropTypes.func.isRequired
 };
 
@@ -55,7 +53,9 @@ const mapStateToProps = state => ({
   search: state.search
 });
 
-export default withRouter(connect(
-  mapStateToProps,
-  { getSearchRecipes }
-)(SearchBar));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { getSearchRecipes }
+  )(SearchBar)
+);

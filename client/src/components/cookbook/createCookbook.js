@@ -1,22 +1,14 @@
 import React from "react";
 
-// import {createNewCookbook} from '../../actions/cookbook'
-
-// import "../Layout/contentCard.css";
-
 const CreateCookbook = props => {
-    const {setCreateCookbookModal} = props
+  const { setCreateCookbookModal } = props;
 
-   
   const handleClicker = () => {
-    
-    setCreateCookbookModal(true)
-    
+    setCreateCookbookModal(true);
   };
 
   return (
-    <div className="recipeCard cookbook" onClick={handleClicker}>
-      {/* <div> */}
+    <div className="recipeCard cookbook" onClick={handleClicker}>     
       <div className="recipeCardImage cookbook">
         <div className="fillerImgCreate cookbook"> + </div>
       </div>

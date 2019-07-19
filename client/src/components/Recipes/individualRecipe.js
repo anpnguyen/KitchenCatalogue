@@ -17,7 +17,6 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import "./individualRecipe.css";
 
-
 const IndividualRecipe = props => {
   const {
     match,
@@ -48,7 +47,6 @@ const IndividualRecipe = props => {
   useEffect(() => {
     var localRecipes = JSON.parse(localStorage.getItem("recipeState"));
 
-    
     if (!localRecipes) {
       getRecipeById(match.params.recipe_id, history);
     }
@@ -63,8 +61,6 @@ const IndividualRecipe = props => {
       } else {
         updateRecipe_LS(foundRecipe);
       }
-
-      console.log("updated recipe from LS");
     }
   }, []);
 
@@ -74,21 +70,15 @@ const IndividualRecipe = props => {
 
   const handleAddToCookbook = () => {
     // this picks out the selected cookbooks
-
     let selectedCookbook = addedCookbooks.value;
-    console.log(selectedCookbook);
     // check if recipe is already in cookbook
-
     // find id not equal to recipe
     let IsRecipeAlreadyInside = selectedCookbook.savedRecipes.find(
       o => o._id === _id
     );
 
-    console.log(IsRecipeAlreadyInside);
-
     if (IsRecipeAlreadyInside === undefined) {
       let data = { cookbookId: selectedCookbook._id, recipeId: _id };
-      console.log(data);
       addRecipeToCookbook(data);
       setIsFavourite(false);
     } else {

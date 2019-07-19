@@ -13,15 +13,6 @@ function PageNavigation(props) {
     match
   } = props;
 
-  // var router= ""
-  // console.log(option)
-  // var router = []
-  // useEffect(()=>{
-
-  //   const
-
-  // },[])
-
   const router = () => {
     switch (option) {
       case "recipe":
@@ -40,10 +31,6 @@ function PageNavigation(props) {
         return "";
     }
   };
-
-  console.log(router());
-
-  //  console.log(router)
 
   const navigationNumbers = () => {
     let navItems = [];

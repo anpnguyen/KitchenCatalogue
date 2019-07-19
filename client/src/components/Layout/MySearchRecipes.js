@@ -15,7 +15,7 @@ function MySearchRecipes(props) {
          <Spinner/>
       ) : (
         <HomePage arr={search.searchRecipes} option="search" title='Search Results' searchParams={search.searchData} match={match} nav={nav}>
-          {/* <h1>Search Results</h1> */}
+          
         </HomePage>
       )}
     </Content>

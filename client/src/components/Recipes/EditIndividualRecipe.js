@@ -9,16 +9,15 @@ import {
   updateRecipe_LS
 } from "../../actions/individualRecipe";
 import { connect } from "react-redux";
-// import { withRouter } from "react-router-dom";
 import PreviewContainer from "./previewContainer";
 import RecipeDetails from "./receipeDetails";
 import RecipeIngredients from "./recipeIngredients";
 import RecipeInstructions from "./recipeInstructions";
-import "./newRecipe.css";
 import PreviewUsername from "./PreviewUsername";
 import PreviewText from "./PreviewText";
 import PreviewImage from "./PreviewImage";
 import PreviewTitle from "./PreviewTitle";
+import "./EditIndividualRecipe.css";
 
 const EditIndividualRecipe = props => {
   const {
@@ -47,7 +46,6 @@ const EditIndividualRecipe = props => {
   const [newRecipeStage, setNewRecipeStage] = useState(1);
 
   // if item is in local storage
-
 
   useEffect(() => {
     if (option === "edit") {
@@ -79,11 +77,10 @@ const EditIndividualRecipe = props => {
       }
     }
 
-    if(option=== 'newRecipe'){
+    if (option === "newRecipe") {
       setRecipeDetails(initialData);
-          setRecipeIngredients(['']);
-          setRecipeInstructions(['']);
-          
+      setRecipeIngredients([""]);
+      setRecipeInstructions([""]);
     }
   }, []);
 
@@ -114,73 +111,72 @@ const EditIndividualRecipe = props => {
   return (
     <>
       <Content {...props}>
-        
-        {individualRecipe.loading === true && option === 'edit' ? (
+        {individualRecipe.loading === true && option === "edit" ? (
           <Spinner />
         ) : (
           <main className="content">
-          <div className="contentContainer">
-          <div className="contentBox ">
-            <div className="contentBoxContent ">
-              <main className="editRecipe" id="editRecipe">
-                {option === "edit" ? (
-                  <h1 className="text-center">Edit Recipe</h1>
-                ) : (
-                  <h1 className="text-center">New Recipe</h1>
-                )}
+            <div className="contentContainer">
+              <div className="contentBox ">
+                <div className="contentBoxContent ">
+                  <main className="editRecipe" id="editRecipe">
+                    {option === "edit" ? (
+                      <h1 className="text-center">Edit Recipe</h1>
+                    ) : (
+                      <h1 className="text-center">New Recipe</h1>
+                    )}
 
-                <hr className="width80" />
-                <PreviewContainer newRecipeStage={newRecipeStage}>
-                  <PreviewTitle title={title} />
-                  <PreviewUsername user={user} />
-                  <PreviewText servings={servings} time={time} />
-                  <PreviewImage imageUrl={imageUrl} title={title} />
-                </PreviewContainer>
+                    <hr className="width80" />
+                    <PreviewContainer newRecipeStage={newRecipeStage}>
+                      <PreviewTitle title={title} />
+                      <PreviewUsername user={user} />
+                      <PreviewText servings={servings} time={time} />
+                      <PreviewImage imageUrl={imageUrl} title={title} />
+                    </PreviewContainer>
 
-                <div className="recipeForm">
-                  <form onSubmit={handleSubmit}>
-                    <RecipeDetails
-                      newRecipeStage={newRecipeStage}
-                      user={user}
-                      title={title}
-                      servings={servings}
-                      time={time}
-                      imageUrl={imageUrl}
-                      setRecipeDetails={setRecipeDetails}
-                      recipeDetails={recipeDetails}
-                      handleToNext={handleToNext}
-                    />
+                    <div className="recipeForm">
+                      <form onSubmit={handleSubmit}>
+                        <RecipeDetails
+                          newRecipeStage={newRecipeStage}
+                          user={user}
+                          title={title}
+                          servings={servings}
+                          time={time}
+                          imageUrl={imageUrl}
+                          setRecipeDetails={setRecipeDetails}
+                          recipeDetails={recipeDetails}
+                          handleToNext={handleToNext}
+                        />
 
-                    <RecipeIngredients
-                      newRecipeStage={newRecipeStage}
-                      handleToNext={handleToNext}
-                      handleToBack={handleToBack}
-                      setRecipeIngredients={setRecipeIngredients}
-                      recipeIngredients={recipeIngredients}
-                    />
+                        <RecipeIngredients
+                          newRecipeStage={newRecipeStage}
+                          handleToNext={handleToNext}
+                          handleToBack={handleToBack}
+                          setRecipeIngredients={setRecipeIngredients}
+                          recipeIngredients={recipeIngredients}
+                        />
 
-                    {/* instruction */}
+                        {/* instruction */}
 
-                    <RecipeInstructions
-                      newRecipeStage={newRecipeStage}
-                      user={user}
-                      title={title}
-                      servings={servings}
-                      time={time}
-                      imageUrl={imageUrl}
-                      setRecipeInstructions={setRecipeInstructions}
-                      recipeInstructions={recipeInstructions}
-                      handleToNext={handleToNext}
-                      handleToBack={handleToBack}
-                      handleSubmit={handleSubmit}
-                      option={option}
-                    />
-                  </form>
+                        <RecipeInstructions
+                          newRecipeStage={newRecipeStage}
+                          user={user}
+                          title={title}
+                          servings={servings}
+                          time={time}
+                          imageUrl={imageUrl}
+                          setRecipeInstructions={setRecipeInstructions}
+                          recipeInstructions={recipeInstructions}
+                          handleToNext={handleToNext}
+                          handleToBack={handleToBack}
+                          handleSubmit={handleSubmit}
+                          option={option}
+                        />
+                      </form>
+                    </div>
+                  </main>
                 </div>
-              </main>
+              </div>
             </div>
-          </div>
-          </div>
           </main>
         )}
       </Content>

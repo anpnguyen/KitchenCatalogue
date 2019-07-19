@@ -5,18 +5,15 @@ import ContentCards from "./contentCards";
 import "./content.css";
 
 function HomePage(props) {
-  const { title, searchParams, arr, option, match , nav} = props;
+  const { title, searchParams, arr, option, match, nav } = props;
 
-  // Page Limit
   const [pageLimit, setPageLimit] = useState(24);
-  // Navigation
-  const [navigation, setNavigation] = useState({
+    const [navigation, setNavigation] = useState({
     start: 0,
     end: pageLimit,
     current: 1
   });
-
-  //   Total items
+ 
   const totalItems = arr.length;
   const totalPages = Math.floor(arr.length / pageLimit) + 1;
 
@@ -25,17 +22,17 @@ function HomePage(props) {
   }, [setNavigation, pageLimit]);
 
   useEffect(() => {
-    if(match.params.page_number){
-    let currentPage= parseInt(match.params.page_number)
-    setNavigation({ start: (currentPage-1)*pageLimit , end: (currentPage-1)*pageLimit + pageLimit, current: currentPage});
-    } else{
-      setNavigation({ start: 0, end: pageLimit, current: 1 })
+    if (match.params.page_number) {
+      let currentPage = parseInt(match.params.page_number);
+      setNavigation({
+        start: (currentPage - 1) * pageLimit,
+        end: (currentPage - 1) * pageLimit + pageLimit,
+        current: currentPage
+      });
+    } else {
+      setNavigation({ start: 0, end: pageLimit, current: 1 });
     }
-    
   }, [match.params]);
-
-
-
 
   return (
     // <Content>
@@ -53,7 +50,6 @@ function HomePage(props) {
             pageLimit={pageLimit}
             option={option}
             title={title}
-            
           />
 
           <hr className="width80" />
@@ -69,15 +65,16 @@ function HomePage(props) {
             totalItems={totalItems}
           />
 
-          {totalItems > pageLimit &&
-          <PageNavigation
-            navigation={navigation}
-            setNavigation={setNavigation}
-            totalPages={totalPages}
-            pageLimit={pageLimit}
-            option={option}
-            match={match}
-          />}
+          {totalItems > pageLimit && (
+            <PageNavigation
+              navigation={navigation}
+              setNavigation={setNavigation}
+              totalPages={totalPages}
+              pageLimit={pageLimit}
+              option={option}
+              match={match}
+            />
+          )}
         </div>
       </main>
     </>

@@ -4,30 +4,23 @@ import RecipeCard from "./recipeCard";
 import CookbookCard from "../cookbook/cookbookCard";
 import CreateNewRecipeCard from "./createNewRecipeCard";
 import CreateCookbook from "../cookbook/createCookbook";
-// import CreateCookbookModal from "../cookbook/createCookbookModal";
 import ConfirmModal from "./confirmModal";
 import { createNewCookbook } from "../../actions/cookbook";
 import "./contentCards.css";
 
 function ContentCards(props) {
-  // put the confirmModals and settings menu Here
-
   const {
     data,
     navigation,
     totalItems,
     pageLimit,
     option,
-    createNewCookbook, 
+    createNewCookbook,
     match
   } = props;
 
   const [createCookbookModal, setCreateCookbookModal] = useState(false);
   const [formData, setFormData] = useState({ cookbookTitle: "" });
-
-  
-
-
 
   const handleFormSubmit = e => {
     e.preventDefault();
@@ -41,17 +34,15 @@ function ContentCards(props) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  
-
   if (option === "recipe") {
     return (
       <>
         <div className="contentBoxCard">
           {data.map((recipe, index) => {
             if (
-              index < navigation.end  &&
+              index < navigation.end &&
               index >= navigation.start &&
-              index !== totalItems 
+              index !== totalItems
             ) {
               return (
                 <RecipeCard recipe={recipe} key={recipe._id} option={option} />
@@ -73,9 +64,7 @@ function ContentCards(props) {
               index < navigation.end &&
               index >= navigation.start &&
               index !== totalItems
-            ) 
-            
-            {
+            ) {
               return (
                 <RecipeCard recipe={recipe} key={recipe._id} option={option} />
               );
@@ -94,7 +83,7 @@ function ContentCards(props) {
             if (
               index < navigation.end &&
               index >= navigation.start &&
-              index !== totalItems 
+              index !== totalItems
             ) {
               return (
                 <RecipeCard recipe={recipe} key={recipe._id} option={option} />
@@ -133,9 +122,9 @@ function ContentCards(props) {
 
           {data.map((cookbook, index) => {
             if (
-              index < navigation.end  &&
+              index < navigation.end &&
               index >= navigation.start &&
-              index !== totalItems 
+              index !== totalItems
             ) {
               return (
                 <CookbookCard c={cookbook} key={cookbook._id} option={option} />

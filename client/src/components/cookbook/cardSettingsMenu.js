@@ -2,18 +2,17 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCog,
-  faTimes,
-  faPencilAlt,
-  faTrash
+  faTimes  
 } from "@fortawesome/free-solid-svg-icons";
-// import "../Layout/contentCard.css";
 
 const CardSettingsMenu = React.forwardRef((props, ref) => {
   const { onClick, id, isShowing, isOpacity } = props;
   return (
     <>
       <div
-        className={`removeFromCookbook ${isShowing ? "invertColor" : ""} ${isOpacity? '':"lowOpacity"}`}
+        className={`removeFromCookbook ${isShowing ? "invertColor" : ""} ${
+          isOpacity ? "" : "lowOpacity"
+        }`}
         onClick={onClick}
         id={id}
         ref={ref}
@@ -28,9 +27,9 @@ const CardSettingsMenu = React.forwardRef((props, ref) => {
         )}
       </div>
 
-      <div className={`settingsMenu ${isShowing ? "settingsMenuActive" : ""}`}>
-        {/* {props.children} */}
-      </div>
+      <div
+        className={`settingsMenu ${isShowing ? "settingsMenuActive" : ""}`}
+      />
     </>
   );
 });
