@@ -20,7 +20,7 @@ const Login = (props) => {
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState(initialData);
   const { username, email, password, password2 } = formData;
-  const [isDemo, setIsDemo] = useState(false)
+  // const [isDemo, setIsDemo] = useState(false)
   
 
   const handleClick = () => {
@@ -49,14 +49,15 @@ const Login = (props) => {
 
   const handleDemoLogin = e =>{
     e.preventDefault();
-    setFormData({email: 'demo@demo.com', password: '12345678'})
-    setIsDemo(true)
+    login({email: 'demonstration@gmail.com', password: '12345678'});
+    // setFormData({email: 'demonstration@gmail.com', password: '12345678'})
+    // setIsDemo(true)
 
   }
 
-  useEffect(()=>{
-    isDemo &&   login({ email, password });
-  }, [isDemo, email, password, login])
+  // useEffect(()=>{
+  //   isDemo &&   login({ email, password });
+  // }, [isDemo, email, password, login])
  
   useEffect(()=>{
     clearLS()
