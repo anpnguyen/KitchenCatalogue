@@ -29,7 +29,8 @@ const CreateRecipe = props => {
     match,
     individualRecipe,
     updateRecipe_LS,
-    getRecipeById
+    getRecipeById,
+    auth
   } = props;
 
   const initialData = {
@@ -40,8 +41,10 @@ const CreateRecipe = props => {
     user: ""
   };
 
+  const user = auth.user
+
   const [recipeDetails, setRecipeDetails] = useState(initialData);
-  const { title, imageUrl, servings, time, user } = recipeDetails;
+  const { title, imageUrl, servings, time } = recipeDetails;
   const [recipeIngredients, setRecipeIngredients] = useState([""]);
   const [recipeInstructions, setRecipeInstructions] = useState([""]);
   const [newRecipeStage, setNewRecipeStage] = useState(1);
@@ -49,42 +52,14 @@ const CreateRecipe = props => {
   // if item is in local storage
 
   useEffect(() => {
-    if (option === "edit") {
-      var localRecipes = JSON.parse(localStorage.getItem("recipeState"));
-      if (localRecipes === null) {
-        getRecipeById(match.params.recipe_id);
-      } else {
-        var foundRecipe = localRecipes.find(
-          recipe => recipe._id === match.params.recipe_id
-        );
-
-        if (!foundRecipe) {
-          getRecipeById(match.params.recipe_id);
-        } else {
-          let {
-            title,
-            servings,
-            imageUrl,
-            time,
-            ingredients,
-            instructions,
-            user
-          } = foundRecipe;
-          setRecipeDetails({ title, servings, imageUrl, time, user });
-          setRecipeIngredients(ingredients);
-          setRecipeInstructions(instructions);
-          updateRecipe_LS(foundRecipe);
-        }
-      }
-    }
-
+    
     if (option === "newRecipe") {
-      setRecipeDetails({
+      setRecipeDetails({...recipeDetails,
         title: "",
         imageUrl: "",
         servings: "",
-        time: "",
-        user: ""
+        time: ""
+        
       });
       setRecipeIngredients([""]);
       setRecipeInstructions([""]);
@@ -118,7 +93,7 @@ const CreateRecipe = props => {
   return (
     <>
       <Content {...props}>
-        {individualRecipe.loading === true && option === "edit" ? (
+        {auth.loading? (
           <Spinner />
         ) : (
           <main className="content">
@@ -144,7 +119,7 @@ const CreateRecipe = props => {
                       <form onSubmit={handleSubmit}>
                         <RecipeDetails
                           newRecipeStage={newRecipeStage}
-                          user={user}
+                          user={user.username}
                           title={title}
                           servings={servings}
                           time={time}
