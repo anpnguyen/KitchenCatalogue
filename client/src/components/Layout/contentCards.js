@@ -1,4 +1,4 @@
-import React, { useState, memo, useEffect } from "react";
+import React, { useState, memo } from "react";
 import { connect } from "react-redux";
 import RecipeCard from "./recipeCard";
 import CookbookCard from "../cookbook/cookbookCard";
@@ -13,10 +13,10 @@ function ContentCards(props) {
     data,
     navigation,
     totalItems,
-    pageLimit,
+    // pageLimit,
     option,
-    createNewCookbook,
-    match
+    createNewCookbook
+    // match
   } = props;
 
   const [createCookbookModal, setCreateCookbookModal] = useState(false);
