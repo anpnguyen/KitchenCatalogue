@@ -1,9 +1,9 @@
 .confirmModal {
   position: absolute;
-  z-index: 10;
-  width: 400px;
+  z-index: -10;
+  width: 450px;
   background: #f8f8f8;
-  top: 200px;
+  top: 500px;
   left: 0;
   right: 0;
   margin: auto;
@@ -13,12 +13,17 @@
   align-items: center;
   justify-content: flex-start;
   border-radius: 5px;
-  transform: scale(0);
-  transition: all ease-in-out 0.2s;
+  /* transform: scale(0); */
+  /* transform: translateY(0);  */
+  transition: all ease-in-out 0.3s;
+  opacity: 0;
 }
 
 .confirmModal.confirmModalShowing {
-  transform: scale(1) !important;
+  transform: translateY(-200px);
+  opacity: 1;
+  /* transform: scale(1) !important; */
+  z-index: 10;
 }
 
 .confirmOverlay.confirmModalShowing {

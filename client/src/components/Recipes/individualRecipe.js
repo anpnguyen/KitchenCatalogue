@@ -69,6 +69,10 @@ const IndividualRecipe = props => {
   };
 
   const handleAddToCookbook = () => {
+    if (addedCookbooks.length < 1) {
+      setIsFavourite(false);
+      return;
+    }
     // this picks out the selected cookbooks
     let selectedCookbook = addedCookbooks.value;
     // check if recipe is already in cookbook
