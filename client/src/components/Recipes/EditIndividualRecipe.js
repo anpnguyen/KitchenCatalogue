@@ -47,6 +47,7 @@ const EditIndividualRecipe = props => {
 
   // if item is in local storage
 
+  
   useEffect(() => {
     if (option === "edit") {
       var localRecipes = JSON.parse(localStorage.getItem("recipeState"));
@@ -78,11 +79,17 @@ const EditIndividualRecipe = props => {
     }
 
     if (option === "newRecipe") {
-      setRecipeDetails(initialData);
+      setRecipeDetails({
+        title: "",
+        imageUrl: "",
+        servings: "",
+        time: "",
+        user: ""
+      });
       setRecipeIngredients([""]);
       setRecipeInstructions([""]);
     }
-  }, []);
+  }, [getRecipeById, updateRecipe_LS, match.params.recipe_id, option ]);
 
   const handleSubmit = e => {
     e.preventDefault();

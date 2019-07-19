@@ -26,18 +26,18 @@ function Content(props) {
 
   useEffect(() => {
     !localStorage.recipeState && getRecipes();
-    !localStorage.cookbookState && getCookbooks();
+    !localStorage.cookbookState && getCookbooks();  
 
     if (localStorage.recipeState && recipe.loading) {
       let oldState = JSON.parse(localStorage.getItem("recipeState"));
-      updateFromLS(oldState);
+      updateFromLS(oldState);      
     }
 
     if (localStorage.cookbookState && cookbook.loading) {
       let oldState = JSON.parse(localStorage.getItem("cookbookState"));
       updateCookbookFromLS(oldState);
     }
-  }, []);
+  }, [getRecipes,getCookbooks, recipe.loading, cookbook.loading, updateFromLS, updateCookbookFromLS ]);
 
   useEffect(() => {
     !localStorage.searchState && getSearchRecipes(search.searchData);
@@ -46,7 +46,7 @@ function Content(props) {
       let oldState = JSON.parse(localStorage.getItem("searchState"));
       updateFromSearchLS(oldState);
     }
-  }, []);
+  }, [updateFromSearchLS, search.loading, search.searchData  ]);
 
   if (individualCookbook.loading && match.params.cookbook_id !== undefined) {
     console.log("individual recipe calling");

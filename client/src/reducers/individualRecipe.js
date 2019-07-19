@@ -52,7 +52,27 @@ export default function(state = initialState, action) {
         recipe: "",
         loading: true
       };
-    case GET_RECIPE_ERROR,UPDATE_RECIPE_LS_ERROR,CREATE_RECIPE_ERROR,DELETE_RECIPE_ERROR, EDIT_RECIPE_ERROR:
+    case GET_RECIPE_ERROR:
+      return {
+        ...state,
+        loading: false
+      };
+    case UPDATE_RECIPE_LS_ERROR:
+      return {
+        ...state,
+        loading: false
+      };
+    case CREATE_RECIPE_ERROR:
+      return {
+        ...state,
+        loading: false
+      };
+    case DELETE_RECIPE_ERROR:
+      return {
+        ...state,
+        loading: false
+      };
+    case EDIT_RECIPE_ERROR:
       return {
         ...state,
         loading: false

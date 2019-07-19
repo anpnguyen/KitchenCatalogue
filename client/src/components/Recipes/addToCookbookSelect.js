@@ -19,7 +19,7 @@ const AddToCookbookSelect = props => {
       label: individualCookbook.cookbookTitle
     }));
     setSelectOptions(options);
-  }, []);
+  }, [cookbook.cookbooks]);
 
   return (
     selectOptions !== undefined && (

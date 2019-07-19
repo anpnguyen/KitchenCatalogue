@@ -47,7 +47,7 @@ function ContentCards(props) {
               return (
                 <RecipeCard recipe={recipe} key={recipe._id} option={option} />
               );
-            }
+            } return <></>;
           })}
           <CreateNewRecipeCard />
         </div>
@@ -68,7 +68,7 @@ function ContentCards(props) {
               return (
                 <RecipeCard recipe={recipe} key={recipe._id} option={option} />
               );
-            }
+            } else return <></>
           })}
           {/* <CreateNewRecipeCard /> */}
         </div>
@@ -88,8 +88,9 @@ function ContentCards(props) {
               return (
                 <RecipeCard recipe={recipe} key={recipe._id} option={option} />
               );
-            }
-          })}
+            } else return <></>
+          }
+          )}
           {/* <CreateNewRecipeCard /> */}
         </div>
       </>
@@ -129,7 +130,7 @@ function ContentCards(props) {
               return (
                 <CookbookCard c={cookbook} key={cookbook._id} option={option} />
               );
-            }
+            } else return <></>
           })}
           <CreateCookbook setCreateCookbookModal={setCreateCookbookModal} />
         </div>

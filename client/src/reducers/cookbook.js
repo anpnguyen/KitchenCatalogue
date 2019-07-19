@@ -67,13 +67,43 @@ export default function(state = initialState, action) {
         loading: false
       };
 
-    case GET_COOKBOOKS_ERROR,
-    UPDATE_COOKBOOKS_LS_ERROR,
-    CREATE_COOKBOOK_ERROR,
-    DELETE_COOKBOOK_ERROR,
-    RENAME_COOKBOOK_ERROR,
-    ADD_RECIPE_TO_COOKBOOKS_ERROR,
-    ADD_RECIPE_TO_COOKBOOKS:
+    case GET_COOKBOOKS_ERROR:
+      return {
+        ...state,
+        error: payload,
+        loading: false
+      };
+    case UPDATE_COOKBOOKS_LS_ERROR:
+      return {
+        ...state,
+        error: payload,
+        loading: false
+      };
+    case CREATE_COOKBOOK_ERROR:
+      return {
+        ...state,
+        error: payload,
+        loading: false
+      };
+    case DELETE_COOKBOOK_ERROR:
+      return {
+        ...state,
+        error: payload,
+        loading: false
+      };
+    case RENAME_COOKBOOK_ERROR:
+      return {
+        ...state,
+        error: payload,
+        loading: false
+      };
+    case ADD_RECIPE_TO_COOKBOOKS_ERROR:
+      return {
+        ...state,
+        error: payload,
+        loading: false
+      };
+    case ADD_RECIPE_TO_COOKBOOKS:
       return {
         ...state,
         error: payload,

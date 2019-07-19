@@ -79,11 +79,17 @@ const CreateRecipe = props => {
     }
 
     if (option === "newRecipe") {
-      setRecipeDetails(initialData);
+      setRecipeDetails({
+        title: "",
+        imageUrl: "",
+        servings: "",
+        time: "",
+        user: ""
+      });
       setRecipeIngredients([""]);
       setRecipeInstructions([""]);
     }
-  }, []);
+  }, [getRecipeById, updateRecipe_LS, match.params.recipe_id, option]);
 
   const handleSubmit = e => {
     e.preventDefault();

@@ -5,7 +5,7 @@ import ContentCards from "./contentCards";
 import "./content.css";
 
 function HomePage(props) {
-  const { title, searchParams, arr, option, match, nav } = props;
+  const { title, searchParams, arr, option, match } = props;
 
   const [pageLimit, setPageLimit] = useState(24);
     const [navigation, setNavigation] = useState({
@@ -16,6 +16,7 @@ function HomePage(props) {
  
   const totalItems = arr.length;
   const totalPages = Math.floor(arr.length / pageLimit) + 1;
+
 
   useEffect(() => {
     setNavigation({ start: 0, end: pageLimit, current: 1 });
@@ -32,7 +33,7 @@ function HomePage(props) {
     } else {
       setNavigation({ start: 0, end: pageLimit, current: 1 });
     }
-  }, [match.params]);
+  }, [match.params, pageLimit]);
 
   return (
     // <Content>

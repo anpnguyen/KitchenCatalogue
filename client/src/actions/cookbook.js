@@ -62,7 +62,7 @@ export const addRecipeToCookbook = data => async dispatch => {
       }
     };
 
-    const res = await axios.put(`/api/cookbook/`, data, config);
+    await axios.put(`/api/cookbook/`, data, config);
     localStorage.removeItem("cookbookState");
     dispatch(getCookbooks())
 

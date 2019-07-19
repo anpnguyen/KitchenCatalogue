@@ -62,7 +62,7 @@ const IndividualRecipe = props => {
         updateRecipe_LS(foundRecipe);
       }
     }
-  }, []);
+  }, [match.params.recipe_id, history, getRecipeById, updateRecipe_LS ]);
 
   const handleDelete = () => {
     setIsDelete(true);

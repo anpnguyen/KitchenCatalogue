@@ -37,7 +37,20 @@ export default function(state = initialState, action) {
         loading: false
       };
 
-    case GET_RECIPES_ERROR, UPDATE_RECIPES_LS_ERROR, CLEAR_ERROR:
+    case GET_RECIPES_ERROR:
+      return {
+        ...state,
+        error: payload,
+        loading: false
+      };
+    
+    case UPDATE_RECIPES_LS_ERROR:
+      return {
+        ...state,
+        error: payload,
+        loading: false
+      };
+    case CLEAR_ERROR:
       return {
         ...state,
         error: payload,
