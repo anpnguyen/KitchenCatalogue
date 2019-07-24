@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const config = require("config");
+// const config = require("config");
 const { check, validationResult } = require("express-validator/check");
 
 const User = require("../../models/User");
@@ -11,9 +11,23 @@ const Cookbook = require("../../models/Cookbook");
 // *** Register a new user ***
 router.post(
   "/",
-  
+  [
+    check("username", "A username is required")
+      .not()
+      .isEmpty(),
+    check("email", "Please include a valid email").isEmail(),
+    check(
+      "password",
+      "Please enter a password with 8 or more characters"
+    ).isLength({ min: 8 })
+  ],
+
   async (req, res) => {
-    
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
     const { username, email, password } = req.body;
 
     try {
@@ -50,7 +64,7 @@ router.post(
 
       jwt.sign(
         payload,
-        config.get("jwtSecret"),
+        process.env.JWTSECRET,
 
         { expiresIn: 3600 },
         (err, token) => {
@@ -59,6 +73,7 @@ router.post(
         }
       );
     } catch (err) {
+      console.log(err)
       res.status(500).send("Server error");
     }
   }
