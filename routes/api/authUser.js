@@ -44,6 +44,14 @@ router.post(
           });
       }
 
+      if (!user.confirmed) {
+        return res
+          .status(400)
+          .json({
+            errors: [{ msg: "Please validate your account first" }]
+          });
+      }
+
       const isMatch = await bcrypt.compare(password, user.password);
 
       if (!isMatch) {

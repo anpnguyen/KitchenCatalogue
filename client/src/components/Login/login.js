@@ -5,11 +5,11 @@ import Alert from "../Layout/alert";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { setAlert, clearAlerts } from "../../actions/alert";
-import { login, register, clearLS } from "../../actions/auth";
+import { login, register, clearLS, confirmUser } from "../../actions/auth";
 import "./login.css";
 
-const Login = (props) => {
-  const { register, login, setAlert, clearAlerts, clearLS } = props;
+const Login = props => {
+  const { register, login, setAlert, clearAlerts, clearLS, match, confirmUser } = props;
 
   const initialData = {
     username: "",
@@ -21,7 +21,6 @@ const Login = (props) => {
   const [formData, setFormData] = useState(initialData);
   const { username, email, password, password2 } = formData;
   // const [isDemo, setIsDemo] = useState(false)
-  
 
   const handleClick = () => {
     setFormData(initialData);
@@ -47,41 +46,35 @@ const Login = (props) => {
     }
   };
 
-  const handleDemoLogin = e =>{
+  const handleDemoLogin = e => {
     e.preventDefault();
-    login({email: 'demonstration@gmail.com', password: '12345678'});
-    // setFormData({email: 'demonstration@gmail.com', password: '12345678'})
-    // setIsDemo(true)
+    login({ email: "demonstration@gmail.com", password: "12345678" });
+  };
 
-  }
+  useEffect(() => {
+    clearLS();
+  }, []);
 
-  // useEffect(()=>{
-  //   isDemo &&   login({ email, password });
-  // }, [isDemo, email, password, login])
- 
-  useEffect(()=>{
-    clearLS()
-    console.log('calling')
-  },[])
+  useEffect(() => {
+    match.params.register_token &&
+      confirmUser({ register_token: match.params.register_token });
+      console.log(match.params.register_token)
+  }, []);
 
   if (props.isAuthenticated) {
     return <Redirect to="/recipe" />;
   }
 
-  let style={
-    backgroundImage : `url(${backgroundImage})`,
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'auto 100%',
-
-
-  }
-
-
+  let style = {
+    backgroundImage: `url(${backgroundImage})`,
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "auto 100%"
+  };
 
   return (
     <div className="login" style={style}>
       <Alert />
-     
+
       <div
         className={`loginContainer ${isLogin ? "right-panel-active" : ""}`}
         id="container"
@@ -106,12 +99,13 @@ const Login = (props) => {
               value={password}
               onChange={handleChange}
             />
-            <div className='loginButtonContainer'>
-            <button className="loginButton">Sign In</button>
-            <button className="loginButton" onClick={handleDemoLogin}>Demo </button>
-            </div>  
-           
-            
+            <div className="loginButtonContainer">
+              <button className="loginButton">Sign In</button>
+              <button className="loginButton" onClick={handleDemoLogin}>
+                Demo{" "}
+              </button>
+            </div>
+
             <p className="loginP signInP">
               Not a member? Press{" "}
               <span onClick={handleClick} className=" blue" id="span_register">
@@ -197,7 +191,7 @@ const Login = (props) => {
       </div>
     </div>
   );
-}
+};
 
 Login.propTypes = {
   setAlert: PropTypes.func.isRequired,
@@ -213,5 +207,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { setAlert, register, login, clearAlerts, clearLS }
+  { setAlert, register, login, clearAlerts, clearLS, confirmUser }
 )(Login);

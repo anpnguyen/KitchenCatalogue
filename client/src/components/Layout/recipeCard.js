@@ -38,12 +38,6 @@ const RecipeCard = props => {
     setSettingsMenu(!settingsMenu);
   };
 
-  // const handleDeleteClick = e => {
-  //   e.stopPropagation();
-  //   setSettingsMenu(false);
-  //   setDeleteRecipeModal(true);
-  // };
-
   const handleMouseOver = () => {
     setMouseOver(true);
   };

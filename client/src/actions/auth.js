@@ -46,8 +46,8 @@ export const register = ({ username, email, password }) => async dispatch => {
       type: REGISTER_SUCCESS,
       payload: res.data
     });
-
-    dispatch(loadUser());
+    dispatch(setAlert(res.data.msg, 'RecipeEditSuccess'))
+    // dispatch(loadUser());
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -94,6 +94,20 @@ export const login = ({ email, password }) => async dispatch => {
     });
   }
 };
+
+export const confirmUser =  (register_token) => async dispatch=> {
+
+ 
+  console.log('calling')
+  const res = await axios.get(`/api/registerUser/${register_token.register_token}`);
+  console.log(res.data)
+
+  dispatch({type: 'email_verified'})
+  dispatch(setAlert(res.data.msg, "RecipeEditSuccess"))
+  console.log(res.data)
+
+
+}
 
 //  *** LOGOUT ***
 export const logout = () => dispatch => {

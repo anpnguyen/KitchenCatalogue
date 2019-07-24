@@ -2,11 +2,18 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-// const config = require("config");
 const { check, validationResult } = require("express-validator/check");
-
+const nodemailer = require('nodemailer')
 const User = require("../../models/User");
-const Cookbook = require("../../models/Cookbook");
+
+// transporter for sending emails
+const transporter = nodemailer.createTransport({
+  service: "Gmail",
+  auth: {
+    user: process.env.GMAIL_USER,
+    pass: process.env.GMAIL_PASS
+  }
+});
 
 // *** Register a new user ***
 router.post(
@@ -29,6 +36,7 @@ router.post(
     }
 
     const { username, email, password } = req.body;
+    console.log(req.body)
 
     try {
       let user = await User.findOne({ email });
@@ -49,12 +57,15 @@ router.post(
         username,
         email,
         password
+        
       });
 
       const salt = await bcrypt.genSalt(10);
       user.password = await bcrypt.hash(password, salt);
 
       await user.save();
+// user has been saved
+
 
       const payload = {
         user: {
@@ -64,12 +75,24 @@ router.post(
 
       jwt.sign(
         payload,
-        process.env.JWTSECRET,
+        process.env.REGISTER_SECRET,
 
         { expiresIn: 3600 },
-        (err, token) => {
+        (err, registerToken) => {
           if (err) throw err;
-          res.json({ token });
+
+          const url = `http://localhost:3000/confirm/${registerToken}`;
+                    
+          transporter.sendMail({
+            to: user.email,
+            subject: "Please Confirm Email - Kitchen Catalogue",
+            html: `Please click this email to confirm your email: <a href="${url}">${url}</a>`
+          });
+          res.json({msg: "A confirmation email has been sent to your email address"});
+          console.log('register email sent')
+          
+
+          
         }
       );
     } catch (err) {
@@ -78,4 +101,31 @@ router.post(
     }
   }
 );
+
+
+
+router.get('/:emailToken', async (req,res)=>{
+    
+  try{
+      const decoded = jwt.verify(req.params.emailToken, process.env.REGISTER_SECRET)
+      console.log(decoded)
+
+      const confirmedUser = await User.findOneAndUpdate({_id: decoded.user.id}, {confirmed: true }, {new:true})
+      res.json({msg: "Your account has been verified"})
+  }catch (e) {
+      console.log(e)
+      res.send('error');
+    }
+
+
+})
+
+
+
+
+
+
+
+
+
 module.exports = router;

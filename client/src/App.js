@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import LoginContainer from "./components/Login/loginContainer";
+import Login from "./components/Login/login";
 import PrivateRoute from "./components/routing/PrivateRoute";
 import IndividualRecipe from "./components/Recipes/individualRecipe";
 import EditIndividualRecipe from "./components/Recipes/EditIndividualRecipe";
@@ -30,36 +31,39 @@ const App = () => {
       <Provider store={store}>
         <BrowserRouter>
           <Switch>
-            <Route exact path="/" render={LoginContainer} />
-            <Route exact path="/login" render={LoginContainer} />
+            <Route exact path="/" render={(routeProps)=><Login {...routeProps}/>} />
+            <Route exact path="/login" render={(routeProps)=><Login {...routeProps}/>} />
+            <Route exact path="/confirm/:register_token" render={(routeProps)=><Login {...routeProps}/>} />
+
+            {/* <Route exact path="/forgot/:password_token" render={LoginContainer} /> */}
 
             <PrivateRoute exact path="/recipe" component={MyRecipes} />
             <PrivateRoute
               exact
               path="/recipe/page/:page_number"
               component={MyRecipes}
-              nav="recipeNavigation"
+              // nav="recipeNavigation"
             />
 
             <PrivateRoute
               exact
               path="/recipe/search"
               component={MySearchRecipes}
-              option="search"
+              // option="search"
             />
             <PrivateRoute
               exact
               path="/recipe/search/page/:page_number"
               component={MySearchRecipes}
-              option="search"
-              nav="searchNavigation"
+              // option="search"
+              // nav="searchNavigation"
             />
 
             <PrivateRoute
               exact
               path="/recipe/new"
               component={CreateRecipe}
-              option="newRecipe"
+              // option="newRecipe"
             />
 
             <PrivateRoute
@@ -72,7 +76,7 @@ const App = () => {
               exact
               path="/recipe/:recipe_id/edit"
               component={EditIndividualRecipe}
-              option="edit"
+              // option="edit"
             />
 
             <PrivateRoute exact path="/cookbook" component={MyCookbooks} />
@@ -80,7 +84,7 @@ const App = () => {
               exact
               path="/cookbook/page/:page_number"
               component={MyCookbooks}
-              nav="cookbookNavigation"
+              // nav="cookbookNavigation"
             />
             <PrivateRoute
               exact
@@ -91,7 +95,7 @@ const App = () => {
               exact
               path="/cookbook/:cookbook_id/page/:page_number"
               component={MyCookbookRecipes}
-              nav="cookbookRecipeNavigation"
+              // nav="cookbookRecipeNavigation"
             />
 
             <PrivateRoute path="*" component={NotFound} />
