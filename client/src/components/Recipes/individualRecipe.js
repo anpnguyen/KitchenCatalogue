@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
 import Content from "../Layout/content";
 import Spinner from "../Layout/spinner";
@@ -32,6 +32,8 @@ const IndividualRecipe = props => {
   const [isDelete, setIsDelete] = useState(false);
   const [isFavourite, setIsFavourite] = useState(false);
   const [addedCookbooks, setAddedCookbooks] = useState([]);
+  const deleteModalRef = useRef();
+  const addTofavRef = useRef();
 
   let {
     title,
@@ -62,7 +64,68 @@ const IndividualRecipe = props => {
         updateRecipe_LS(foundRecipe);
       }
     }
-  }, [match.params.recipe_id, history, getRecipeById, updateRecipe_LS ]);
+  }, [match.params.recipe_id, history, getRecipeById, updateRecipe_LS]);
+  
+  useEffect(() => {
+    const handleClickOutsideSettings = e => {
+      e.stopPropagation();
+      
+      if (
+        deleteModalRef.current.contains(e.target)        
+      ) {
+        return;
+      } else {
+        setIsDelete(false);
+      }
+    };
+
+    if (isDelete) {
+      document.addEventListener("mousedown", handleClickOutsideSettings);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutsideSettings);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutsideSettings);
+    };
+  }, [isDelete]);
+
+  useEffect(() => {
+    const handleClickOutsideSettings = e => {
+      e.stopPropagation();
+      
+      if (
+        addTofavRef.current.contains(e.target)        
+      ) {
+        return;
+      } else {
+        setIsFavourite(false);
+      }
+    };
+
+    if (isFavourite) {
+      document.addEventListener("mousedown", handleClickOutsideSettings);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutsideSettings);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutsideSettings);
+    };
+  }, [isFavourite]);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   const handleDelete = () => {
     setIsDelete(true);
@@ -109,7 +172,7 @@ const IndividualRecipe = props => {
                 confirmAction={handleDeleteConfirmation}
                 closeAction={() => setIsDelete(false)}
                 id="confirmDeleteRecipe"
-                // ref={deleteModalRef}
+                ref={deleteModalRef}
                 title={`Delete Recipe`}
                 text={`Are you sure you want to delete this recipe?`}
                 confirmationText="Delete"
@@ -121,7 +184,7 @@ const IndividualRecipe = props => {
                   confirmAction={handleAddToCookbook}
                   closeAction={() => setIsFavourite(false)}
                   id="confirmDeleteRecipe"
-                  // ref={deleteModalRef}
+                  ref={addTofavRef}
                   title={`Add Recipe To Cookbook`}
                   text={`Which cookbook would you like to add this recipe to?`}
                   confirmationText="Add"
