@@ -32,7 +32,7 @@ export const loadUser = () => async dispatch => {
 };
 
 // *** REGISTER A USER ***
-export const register = ({ username, email, password }) => async dispatch => {
+export const register = ({ username, email, password }, history) => async dispatch => {
   const config = {
     headers: {
       "Content-Type": "application/json"
@@ -47,6 +47,8 @@ export const register = ({ username, email, password }) => async dispatch => {
       payload: res.data
     });
     dispatch(setAlert(res.data.msg, 'RecipeEditSuccess'))
+
+    history.push('/login')
     // dispatch(loadUser());
   } catch (err) {
     const errors = err.response.data.errors;
@@ -102,7 +104,7 @@ export const confirmUser =  (register_token) => async dispatch=> {
   const res = await axios.get(`/api/registerUser/${register_token.register_token}`);
   console.log(res.data)
 
-  dispatch({type: 'email_verified'})
+  dispatch({type: 'EMAIL_VERIFIED'})
   dispatch(setAlert(res.data.msg, "RecipeEditSuccess"))
   console.log(res.data)
 
@@ -116,13 +118,13 @@ export const passwordResetEmail = (email) => async dispatch => {
       "Content-Type": "application/json"
     }
   };
-  console.log(email)
-  const res = await axios.post(`/api/authUser/forgot`, email, config);
-  console.log(res.data)
+
+  await axios.post(`/api/authUser/forgot`, email, config);
+  dispatch({type: 'PASSWORD_RESET_SENT'})
   
 }
 
-export const passwordReset = (data) => async dispatch => {
+export const passwordReset = (data,history) => async dispatch => {
   const {password_token} = data;
   const config = {
     headers: {
@@ -130,11 +132,33 @@ export const passwordReset = (data) => async dispatch => {
     }
   };
   
-  const res = await axios.post(`/api/authUser/forgot/${password_token}`, data, config);
-  console.log(res.data)
+  await axios.post(`/api/authUser/forgot/${password_token}`, data, config);
+  dispatch({type: 'PASSWORD_RESET'})
   
-}
+  history.push('/login')
+};
 
+// resend confirmation email
+
+
+export const resendConfirmation = (email) => async dispatch =>{
+
+  try{
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    };
+
+  const res = await axios.post(`/api/registerUser/resendConfirmation`,email, config )
+
+  console.log(res.data)
+  dispatch(setAlert(res.data.msg, 'RecipeEditSuccess' ))
+  }catch(err){
+    dispatch ('RESEND_ERROR')
+  }
+}
 
 //  *** LOGOUT ***
 export const logout = () => dispatch => {

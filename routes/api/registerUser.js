@@ -120,6 +120,78 @@ router.get('/:emailToken', async (req,res)=>{
 
 })
 
+router.post('/resendConfirmation', async (req,res)=>{
+
+  const {email} = req.body
+  console.log(email)
+  try{
+
+    const user = await User.findOne({email:email})
+
+    console.log(user)
+    
+    if(!user){
+      res
+      .status(400)
+          .json({
+                msg:
+                  "That email does not exist - please register first"
+              }
+            
+          )
+
+    }
+    if(user.confirmed){
+
+      console.log('1')
+      res
+      .status(400)
+      .json({msg: 'this email address has already been registered'})
+
+
+    }
+
+    const payload = {
+      user: {
+        id: user.id
+      }
+    };
+
+    jwt.sign(
+      payload,
+      process.env.REGISTER_SECRET,
+
+      { expiresIn: 3600 },
+      (err, registerToken) => {
+        if (err) throw err;
+
+        const url = `http://localhost:3000/confirm/${registerToken}`;
+                  
+        transporter.sendMail({
+          to: user.email,
+          subject: "Please Confirm Email - Kitchen Catalogue -resent",
+          html: `Please click this email to confirm your email: <a href="${url}">${url}</a>`
+        });
+        res.json({msg: "A confirmation email has been sent to your email address"});
+        console.log('register email sent')
+        
+
+        
+      }
+    )
+    
+    
+    res.json({msg: "A confirmation email has been sent to your email address"});
+    
+
+
+
+  }catch(err){
+    
+    res.send('error')
+  }
+})
+
 
 
 
