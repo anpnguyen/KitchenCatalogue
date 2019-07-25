@@ -16,6 +16,7 @@ import MyCookbookRecipes from "./components/Layout/MyCookbookRecipes";
 import MySearchRecipes from "./components/Layout/MySearchRecipes";
 import CreateRecipe from "./components/Recipes/createRecipe";
 import "./App.css";
+import PasswordReset from "./components/Login/PasswordReset";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -35,7 +36,10 @@ const App = () => {
             <Route exact path="/login" render={(routeProps)=><Login {...routeProps}/>} />
             <Route exact path="/confirm/:register_token" render={(routeProps)=><Login {...routeProps}/>} />
 
-            {/* <Route exact path="/forgot/:password_token" render={LoginContainer} /> */}
+            <Route exact path="/forgot/:password_token" render={(routeProps)=>
+              <PasswordReset {...routeProps}/>  
+              
+              } />
 
             <PrivateRoute exact path="/recipe" component={MyRecipes} />
             <PrivateRoute

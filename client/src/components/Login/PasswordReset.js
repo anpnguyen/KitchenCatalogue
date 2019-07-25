@@ -3,81 +3,54 @@ import PropTypes from "prop-types";
 import backgroundImage from "../../images/background.jpg";
 import Alert from "../Layout/alert";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { setAlert, clearAlerts } from "../../actions/alert";
-import { login, register, clearLS, confirmUser, passwordResetEmail } from "../../actions/auth";
+import {  clearLS, passwordReset } from "../../actions/auth";
 import "./login.css";
 
-const Login = props => {
-  const {
-    register,
-    login,
-    setAlert,
-    clearAlerts,
-    clearLS,
-    match,
-    confirmUser,
-    passwordResetEmail
-  } = props;
+const PasswordReset = props => {
+  const {  login, setAlert, clearAlerts, clearLS, passwordReset, match} = props;
 
   const initialData = {
-    username: "",
-    email: "",
+    
     password: "",
     password2: ""
   };
-  const [isLogin, setIsLogin] = useState(true);
+  
   const [formData, setFormData] = useState(initialData);
-  const [isForgotPassword, setIsForgotPassword] = useState(false);
-  const { username, email, password, password2 } = formData;
+  const {  password, password2 } = formData;
+  const [isLogin, setIsLogin] = useState(true);
 
-  const handleClick = () => {
-    setFormData(initialData);
-    setIsLogin(!isLogin);
+
+
+   const handleRegister = e => {
+    e.preventDefault();
+   
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if(password !== password2){
+      setFormData(initialData);
+      clearAlerts();
+      setAlert("Your passwords are not the same")
+    }
+    
+    passwordReset({password:password, password_token: match.params.password_token})
+
   };
 
   const handleChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleLogin = e => {
-    e.preventDefault();
-    login({ email, password });
-  };
 
-  const handleRegister = e => {
-    e.preventDefault();
-    if (password !== password2) {
-      clearAlerts();
-      setAlert("Passwords to not match", "LoginDanger");
-    } else {
-      register({ username, email, password });
-    }
-  };
-
-  const handleDemoLogin = e => {
-    e.preventDefault();
-    login({ email: "demonstration@gmail.com", password: "12345678" });
-  };
-
-  const handleForgotPasswordClick = () => {
-    setIsForgotPassword(!isForgotPassword);
-  };
-
-  const handlePasswordResetClick = (e) => {
-    e.preventDefault()
-    passwordResetEmail({email:email})
-  };
 
   useEffect(() => {
     clearLS();
   }, []);
 
-  useEffect(() => {
-    match.params.register_token &&
-      confirmUser({ register_token: match.params.register_token });
-    console.log(match.params.register_token);
-  }, []);
+
 
   if (props.isAuthenticated) {
     return <Redirect to="/recipe" />;
@@ -98,70 +71,38 @@ const Login = props => {
         id="container"
       >
         <div className="loginForm-container loginSign-up-container">
-          <form className="loginForm" onSubmit={handleLogin}>
+          <form className="loginForm" onSubmit={handleSubmit}>
             <h1 className="LoginLogo signIn">Kitchen Catalogue</h1>
-            <h2>{!isForgotPassword ? "Sign in" : "Password Reset"}</h2>
+            <h2>Please Enter Your New Password</h2>
             <input
               className="loginInput"
-              type="email"
-              placeholder="Email"
-              name="email"
-              value={email}
+              type="password"
+              placeholder="Password "
+              name="password"
+              value={password}
               onChange={handleChange}
             />
-            {!isForgotPassword && (
-              <input
-                className="loginInput"
-                type="password"
-                placeholder="Password"
-                name="password"
-                value={password}
-                onChange={handleChange}
-              />
-            )}
+            <input
+              className="loginInput"
+              type="password"
+              placeholder="please re-enter your password"
+              name="password2"
+              value={password2}
+              onChange={handleChange}
+            />
             <div className="loginButtonContainer">
-              {!isForgotPassword ? (
-                <>
-                  <button className="loginButton">Sign In</button>
-                  <button className="loginButton" onClick={handleDemoLogin}>
-                    Demo{" "}
-                  </button>
-                </>
-              ) : (
-                <button
-                  className="loginButton"
-                  onClick={handlePasswordResetClick}
-                >
-                  Reset
-                </button>
-              )}
+              <button className="loginButton">Submit</button>
+              
             </div>
 
-            {!isForgotPassword && (
-              <p className="loginP signInP">
-                Not a member? Press{" "}
-                <span
-                  onClick={handleClick}
-                  className=" blue"
-                  id="span_register"
-                >
-                  {" "}
-                  here
-                </span>{" "}
-                to register
-              </p>
-            )}
             <p className="loginP signInP">
-              Forgot your password? Press{" "}
-              <span
-                onClick={handleForgotPasswordClick}
-                className=" blue"
-                id="span_register"
-              >
+              Press {" "}
+              <Link exact to='/login'>
+              <span  className=" blue" id="span_register">
                 {" "}
                 here
-              </span>{" "}
-              to reset your password
+              </span>{" "}</Link>
+              to go back to the login page.
             </p>
           </form>
         </div>
@@ -172,7 +113,7 @@ const Login = props => {
           }`}
         >
           <form className="loginForm" onSubmit={handleRegister}>
-            <h1 className="LoginLogo register">Kitchen Catalogue</h1>
+            {/* <h1 className="LoginLogo register">Kitchen Catalogue</h1>
             <h2 className="register">Create Account</h2>
             <input
               className="loginInput"
@@ -214,9 +155,7 @@ const Login = props => {
                 here{" "}
               </span>
               to continue to Kitchen Catalogue
-            </p>
-
-            <p className="register loginP">Didn't recieve your confirmation email?</p>
+            </p> */}
           </form>
         </div>
 
@@ -224,9 +163,8 @@ const Login = props => {
           <div className="loginOverlay">
             <div className="loginOverlay-panel loginOverlay-left">
               <h1 className="pacifico">Kitchen Catalogue</h1>
-              <p className="loginP">Welcome to Kitchen Catalogue! An online database for all your custom cooking recipes</p>
-              
-             
+              <p className="loginP">Welcome to Kitchen Catalogue!</p>
+              <p className="loginP">Please enter your details to login</p>
             </div>
             <div
               className={`loginOverlay-panel loginOverlay-right ${
@@ -245,7 +183,7 @@ const Login = props => {
   );
 };
 
-Login.propTypes = {
+PasswordReset.propTypes = {
   setAlert: PropTypes.func.isRequired,
   register: PropTypes.func.isRequired,
   login: PropTypes.func.isRequired,
@@ -259,5 +197,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { setAlert, register, login, clearAlerts, clearLS, confirmUser, passwordResetEmail }
-)(Login);
+  { setAlert,  clearAlerts, clearLS, passwordReset }
+)(PasswordReset);

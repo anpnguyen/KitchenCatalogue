@@ -109,6 +109,33 @@ export const confirmUser =  (register_token) => async dispatch=> {
 
 }
 
+// send password reset email
+export const passwordResetEmail = (email) => async dispatch => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
+  console.log(email)
+  const res = await axios.post(`/api/authUser/forgot`, email, config);
+  console.log(res.data)
+  
+}
+
+export const passwordReset = (data) => async dispatch => {
+  const {password_token} = data;
+  const config = {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
+  
+  const res = await axios.post(`/api/authUser/forgot/${password_token}`, data, config);
+  console.log(res.data)
+  
+}
+
+
 //  *** LOGOUT ***
 export const logout = () => dispatch => {
   dispatch({
