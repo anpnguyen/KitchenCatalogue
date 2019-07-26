@@ -135,11 +135,21 @@ router.post(
           
           
           const url = `http://localhost:3000/forgot/${passwordToken}`;
-                    
+          const emailBody =` 
+          <div style={text-align: left; color:black}>
+          <p style={color:black}>Hello,</p>
+          <p style={color:black}>We received a request to reset your password.Please click on the following link to be taken to the reset password page.</p>
+          <a href="${url}">${url}</a>
+
+          <p >Thank you, </p>                                              
+          <p >Kitchen Catalogue</p>
+          </div>`
+          
+
           transporter.sendMail({
             to: user.email,
-            subject: "Password Reset - Kitchen Catalogue",
-            html: `Please click this email to reset your password: <a href="${url}">${url}</a>`
+            subject: "Kitchen Catalogue: Password Reset",
+            html: emailBody
           });
           res.json({msg: "A password reset email has been sent to your email address"});
           

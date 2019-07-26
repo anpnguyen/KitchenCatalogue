@@ -77,12 +77,22 @@ router.post(
         (err, registerToken) => {
           if (err) throw err;
 
-          const url = `http://localhost:3000/confirm/${registerToken}`;
+          const url = `${process.env.LOCAL_HOST}/confirm/${registerToken}`;
+
+          const emailBody =` 
+          <div style={text-align: left; style={color:black}}>
+          <p style={color:black}>Hello,</p>
+          <p style={color:black}>Welcome to Kitchen Catalogue. Please click on the following link to confirm your email address.</p>
+          <a href="${url}">${url}</a>
+
+          <p>Thank you, </p>                                              
+          <p>Kitchen Catalogue</p>
+          </div>`
 
           transporter.sendMail({
             to: user.email,
-            subject: "Please Confirm Email - Kitchen Catalogue",
-            html: `Please click this email to confirm your email: <a href="${url}">${url}</a>`
+            subject: "Kitchen Catalogue: Please Confirm Email",
+            html: emailBody
           });
           res.json({
             msg: "A confirmation email has been sent to your email address"
@@ -152,7 +162,7 @@ router.post("/resendConfirmation", async (req, res) => {
         (err, registerToken) => {
           if (err) throw err;
 
-          const url = `http://localhost:3000/confirm/${registerToken}`;
+          const url = `${process.env.LOCAL_HOST}confirm/${registerToken}`;
 
           transporter.sendMail({
             to: user.email,
