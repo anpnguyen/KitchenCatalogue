@@ -36,7 +36,7 @@ router.post(
     }
 
     const { username, email, password } = req.body;
-    console.log(req.body);
+    
 
     try {
       let user = await User.findOne({ email });
@@ -101,7 +101,7 @@ router.post(
         }
       );
     } catch (err) {
-      console.log(err);
+      
       res.status(500).send("Server error");
     }
   }
@@ -113,7 +113,7 @@ router.get("/:emailToken", async (req, res) => {
       req.params.emailToken,
       process.env.REGISTER_SECRET
     );
-    console.log(decoded);
+    
 
     const confirmedUser = await User.findOneAndUpdate(
       { _id: decoded.user.id },
@@ -122,32 +122,32 @@ router.get("/:emailToken", async (req, res) => {
     );
     res.json({ msg: "Your account has been verified" });
   } catch (e) {
-    console.log(e);
+    
     res.send("error");
   }
 });
 
 router.post("/resendConfirmation", async (req, res) => {
   const { email } = req.body;
-  console.log(email);
+  
   try {
     const user = await User.findOne({ email: email });
 
-    console.log(user);
+    
 
     if (!user) {
-      console.log("this called");
+      
       return res.status(400).json({
         msg: "This email does not exist - please register first"
       });
     }
     if (user && user.confirmed) {
-      console.log("1");
+      
       return res
         .status(400)
         .json({ msg: "This email address has already been registered" });
     } else {
-      console.log(user)
+      
       const payload = {
         user: {
           id: user.id
@@ -172,7 +172,7 @@ router.post("/resendConfirmation", async (req, res) => {
           res.json({
             msg: "A confirmation email has been sent to your email address"
           });
-          console.log("register email sent");
+          
         }
       );
 
@@ -181,7 +181,7 @@ router.post("/resendConfirmation", async (req, res) => {
       });
     }
   } catch (err) {
-    console.log(err);
+    
     res.send("error");
   }
 });

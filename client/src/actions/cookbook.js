@@ -16,7 +16,7 @@ import {
   RENAME_COOKBOOK_ERROR
 } from "../actions/types";
 
-// GET the all the users recipes
+// *** GET the all the users recipes ***
 export const getCookbooks = () => async dispatch => {
   try {
     const res = await axios.get("/api/cookbook");
@@ -35,7 +35,7 @@ export const getCookbooks = () => async dispatch => {
   }
 };
 
-// If the user refreshes, this will update the state from local storage
+// **** Update the state from local storage ***
 export const updateCookbookFromLS = oldState => async dispatch => {
   try {
     dispatch({
@@ -53,7 +53,7 @@ export const updateCookbookFromLS = oldState => async dispatch => {
   }
 };
 
-// add recipe/s to cookbooks
+// *** add recipe/s to cookbooks ***
 export const addRecipeToCookbook = data => async dispatch => {
   try {
     const config = {
@@ -82,7 +82,7 @@ export const addRecipeToCookbook = data => async dispatch => {
   }
 };
 
-// create new cookbook
+// *** create new cookbook ***
 
 export const createNewCookbook = cookbookTitle => async dispatch => {
   try {
@@ -112,6 +112,8 @@ export const createNewCookbook = cookbookTitle => async dispatch => {
   }
 };
 
+// *** Delete a cookbook ***
+
 export const deleteCookbook = cookbook_id => async dispatch => {
   try {
     const res = await axios.delete(`/api/cookbook/${cookbook_id}`);
@@ -134,6 +136,7 @@ export const deleteCookbook = cookbook_id => async dispatch => {
   }
 };
 
+// *** Rename a cookobook ***
 export const renameCookbookById = data => async dispatch => {
   const config = {
     headers: {
@@ -156,7 +159,6 @@ export const renameCookbookById = data => async dispatch => {
 
     dispatch(setAlert("cookbook Updated", "RecipeEditSuccess"));
   } catch (err) {
-    console.log(err);
     dispatch({
       type: RENAME_COOKBOOK_ERROR,
       payload: { msg: "renameCOokbook", status: "server error" }

@@ -25,13 +25,14 @@ const PasswordReset = props => {
 
    const handleRegister = e => {
     e.preventDefault();
+    setIsLogin()
    
   };
 
   const handleSubmit = (e) => {
     e.preventDefault()
     if(password !== password2){
-      // setFormData(initialData);
+      
       clearAlerts();
       setAlert("Your passwords are not the same", 'LoginDanger')
     }

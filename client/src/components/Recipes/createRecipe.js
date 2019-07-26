@@ -26,8 +26,7 @@ const CreateRecipe = props => {
     history,
     option,
     createRecipe,
-    match,
-    individualRecipe,
+    match,    
     updateRecipe_LS,
     getRecipeById,
     auth

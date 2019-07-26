@@ -24,8 +24,7 @@ const Login = props => {
     clearLS,
     match,
     confirmUser,
-    passwordResetEmail,
-    history,
+    passwordResetEmail,    
     resendConfirmation
   } = props;
 
@@ -108,7 +107,7 @@ const Login = props => {
   useEffect(() => {
     match.params.register_token &&
       confirmUser({ register_token: match.params.register_token });
-    console.log(match.params.register_token);
+    
   }, []);
 
   if (props.isAuthenticated) {

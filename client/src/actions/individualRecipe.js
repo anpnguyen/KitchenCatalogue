@@ -101,7 +101,7 @@ export const editRecipePut = (
       payload: res.data
     });
     
-    console.log('called from action edit')
+    
     dispatch(setAlert("Recipe Sucessfully Edited", "RecipeEditSuccess"));
     dispatch(getRecipes())
     history.push(`/recipe/${recipeId}`);
@@ -143,7 +143,7 @@ export const deleteRecipe = (history, recipeId) => async dispatch => {
 
     dispatch(setAlert("Recipe Sucessfully Deleted", "RecipeEditSuccess"));
     
-    console.log(history)
+    
     history.goBack()
 
   } catch (err) {

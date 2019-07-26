@@ -98,7 +98,7 @@ router.post(
     
     
     const { email} = req.body;
-    console.log(email)
+    
 
     try {
       let user = await User.findOne({ email });
@@ -134,7 +134,7 @@ router.post(
           
           
           
-          const url = `http://localhost:3000/forgot/${passwordToken}`;
+          const url = `${process.env.LOCAL_HOST}forgot/${passwordToken}`;
           const emailBody =` 
           <div style={text-align: left; color:black}>
           <p style={color:black}>Hello,</p>
@@ -184,7 +184,7 @@ router.post('/forgot/:password_token',[
  async (req,res)=>{
 
   const errors = validationResult(req);
-  console.log(errors.array())
+  
  
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
@@ -201,12 +201,12 @@ router.post('/forgot/:password_token',[
 
   try{
     const decoded = jwt.verify(req.params.password_token, process.env.PASSWORD_SECRET)
-    console.log(decoded)
+    
 
     await User.findOneAndUpdate({email: decoded.user.email}, {password: hashedPassword})
     res.json({msg: "Password Changes, please login"})
 }catch (e) {
-    console.log(e)
+    
     res.send('error');
   }
 })

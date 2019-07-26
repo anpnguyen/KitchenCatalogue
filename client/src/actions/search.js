@@ -1,6 +1,7 @@
 import { SEARCH_ERROR, GET_SEARCH_RECIPES } from "./types";
 import axios from "axios";
 
+// *** GET recipes with search params ***
 export const getSearchRecipes = (searchParams, history) => async dispatch => {
   try {
     const config = {
@@ -15,7 +16,6 @@ export const getSearchRecipes = (searchParams, history) => async dispatch => {
       searchRecipes: res.data,
       searchData: searchParams
     };
-    console.log(searchState);
 
     localStorage.setItem("searchState", JSON.stringify(searchState));
 
@@ -26,17 +26,15 @@ export const getSearchRecipes = (searchParams, history) => async dispatch => {
     });
 
     history.push(`/recipe/search`);
-    // history.push('/d');
   } catch (err) {
-    console.log(err);
     dispatch({
       type: SEARCH_ERROR,
       payload: { msg: "server error", status: "server error" }
     });
-
-    // history.push(`/recipe`);
   }
 };
+
+// *** Update state from LS ***
 
 export const updateFromSearchLS = oldState => async dispatch => {
   try {

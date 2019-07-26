@@ -10,7 +10,7 @@ import {
   CLEAR_ERROR
 } from "../actions/types";
 
-// GET the all the users recipes
+// ***  GET the all the users recipes ***
 export const getRecipes = searchParams => async dispatch => {
   try {
     const config = {
@@ -27,7 +27,6 @@ export const getRecipes = searchParams => async dispatch => {
     });
 
     localStorage.setItem("recipeState", JSON.stringify(res.data));
-    console.log('getREcipes called')
   } catch (err) {
     dispatch({
       type: GET_RECIPES_ERROR,
@@ -36,7 +35,7 @@ export const getRecipes = searchParams => async dispatch => {
   }
 };
 
-// will take the state from LS and reset it
+//  *** Update  state from LS and reset it ****
 export const updateFromLS = oldState => async dispatch => {
   try {
     dispatch({
@@ -51,7 +50,7 @@ export const updateFromLS = oldState => async dispatch => {
   }
 };
 
-// Clear Recipe from State ie set to load again
+// *** Clear Recipe from State ie set to load again ***
 export const clearRecipe = () => async dispatch => {
   try {
     dispatch({
