@@ -106,17 +106,15 @@ router.post(
       if (!user) {
         return res
           .status(400)
-          .json({
-            errors: [{ msg: "Invalid Credentials - please try again" }]
-          });
+          .json({ msg: "Invalid Credentials - please try again" }
+          );
       }
 
       if (!user.confirmed) {
         return res
           .status(400)
-          .json({
-            errors: [{ msg: "Invalid Credentials - please try again" }]
-          });
+          .json({ msg: "Please validate your email address first" }
+          );
       }
 
 
@@ -144,7 +142,7 @@ router.post(
             html: `Please click this email to reset your password: <a href="${url}">${url}</a>`
           });
           res.json({msg: "A password reset email has been sent to your email address"});
-          console.log('password reset email sent')
+          
         }
       );
     } catch (err) {
@@ -166,11 +164,30 @@ router.post(
 //   }
 // })
 
-router.post('/forgot/:password_token', async (req,res)=>{
+router.post('/forgot/:password_token',[
+
+  check(
+    "password",
+    "Please enter a password with 8 or more characters"
+  ).isLength({ min: 8 })
+],
+ async (req,res)=>{
+
+  const errors = validationResult(req);
+  console.log(errors.array())
+ 
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+
 
   const {password} = req.body
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
+
+
+
 
   try{
     const decoded = jwt.verify(req.params.password_token, process.env.PASSWORD_SECRET)

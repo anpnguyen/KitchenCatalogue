@@ -31,7 +31,7 @@
   overflow: hidden;
   width: 766px;
   max-width: 100%;
-  min-height: 480px;
+  min-height: 560px;
   
 }
 
@@ -145,6 +145,11 @@
   box-sizing: border-box;
 }
 
+.loginForm h2{
+  margin-bottom: 15px
+
+}
+
 .loginInput {
   background-color: #eee;
   border: none;
@@ -164,7 +169,7 @@
 
   letter-spacing: 1px;
    transition: transform 80ms ease-in;
-  margin-top: 10px;
+  margin-top: 12px;
   -webkit-box-shadow: 3px 3px 2px 0px rgba(184, 184, 184, 1);
   -moz-box-shadow: 3px 3px 2px 0px rgba(184, 184, 184, 1);
   box-shadow: 3px 3px 2px 0px rgba(184, 184, 184, 1);

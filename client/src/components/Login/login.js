@@ -5,7 +5,14 @@ import Alert from "../Layout/alert";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { setAlert, clearAlerts } from "../../actions/alert";
-import { login, register, clearLS, confirmUser, passwordResetEmail, resendConfirmation } from "../../actions/auth";
+import {
+  login,
+  register,
+  clearLS,
+  confirmUser,
+  passwordResetEmail,
+  resendConfirmation
+} from "../../actions/auth";
 import "./login.css";
 
 const Login = props => {
@@ -20,7 +27,6 @@ const Login = props => {
     passwordResetEmail,
     history,
     resendConfirmation
-    
   } = props;
 
   const initialData = {
@@ -32,7 +38,7 @@ const Login = props => {
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState(initialData);
   const [isForgotPassword, setIsForgotPassword] = useState(false);
-  const [isResendConfirmation, setIsResendConfirmation]= useState(false);
+  const [isResendConfirmation, setIsResendConfirmation] = useState(false);
   const { username, email, password, password2 } = formData;
 
   const handleClick = () => {
@@ -49,14 +55,21 @@ const Login = props => {
     login({ email, password });
   };
 
+
+  const resetState = ()=>{
+    setIsLogin(true);
+    setFormData(initialData);
+    setIsForgotPassword(false);
+    setIsResendConfirmation(false)
+  }
+
   const handleRegister = e => {
     e.preventDefault();
     if (password !== password2) {
       clearAlerts();
       setAlert("Passwords to not match", "LoginDanger");
     } else {
-      register({ username, email, password }, history);
-      
+      register({ username, email, password }, resetState);
     }
   };
 
@@ -69,15 +82,24 @@ const Login = props => {
     setIsForgotPassword(!isForgotPassword);
   };
 
-  const handlePasswordResetClick = (e) => {
-    e.preventDefault()
-    passwordResetEmail({email:email})
+  const handlePasswordResetClick = e => {
+    e.preventDefault();
+
+    if (email) {
+      passwordResetEmail({ email: email },resetState);
+    } else {
+      clearAlerts();
+      setAlert("Please enter an email address", "LoginDanger");
+    }
   };
 
-  const handleResendEmail = (e) =>{
-    e.preventDefault()
-    resendConfirmation({email:email})
-  }
+  const handleResendEmail = e => {
+    e.preventDefault();
+    email ? resendConfirmation({ email: email },resetState) : clearAlerts();
+    setAlert("Please enter an email address", "LoginDanger");
+  };
+
+ 
 
   useEffect(() => {
     clearLS();
@@ -158,38 +180,37 @@ const Login = props => {
                   {" "}
                   here
                 </span>{" "}
-                to register
+                to create an account.
               </p>
             )}
 
-            {isForgotPassword?
-            <p className="loginP signInP">
-            Press{" "}
-            <span
-              onClick={handleForgotPasswordClick}
-              className=" blue"
-              id="span_register"
-            >
-              {" "}
-              here
-            </span>{" "}
-            to return to login page
-          </p>
-: 
-            <p className="loginP signInP">
-              Forgot your password? Press{" "}
-              <span
-                onClick={handleForgotPasswordClick}
-                className=" blue"
-                id="span_register"
-              >
-                {" "}
-                here
-              </span>{" "}
-              to reset your password
-            </p>
-
-          }
+            {isForgotPassword ? (
+              <p className="loginP signInP">
+                Press{" "}
+                <span
+                  onClick={handleForgotPasswordClick}
+                  className=" blue"
+                  id="span_register"
+                >
+                  {" "}
+                  here
+                </span>{" "}
+                to return to login page
+              </p>
+            ) : (
+              <p className="loginP signInP">
+                Forgot your password? Press{" "}
+                <span
+                  onClick={handleForgotPasswordClick}
+                  className=" blue"
+                  id="span_register"
+                >
+                  {" "}
+                  here
+                </span>{" "}
+                to reset your password
+              </p>
+            )}
           </form>
         </div>
 
@@ -200,16 +221,21 @@ const Login = props => {
         >
           <form className="loginForm" onSubmit={handleRegister}>
             <h1 className="LoginLogo register">Kitchen Catalogue</h1>
-            <h2 className="register">{isResendConfirmation? "Resend Confirmation Email": "Create Account" }</h2>
-            {!isResendConfirmation &&
-            <input
-              className="loginInput"
-              type="text"
-              placeholder="Username"
-              name="username"
-              value={username}
-              onChange={handleChange}
-            />}
+            <h2 className="register">
+              {isResendConfirmation
+                ? "Resend Confirmation Email"
+                : "Create Account"}
+            </h2>
+            {!isResendConfirmation && (
+              <input
+                className="loginInput"
+                type="text"
+                placeholder="Username"
+                name="username"
+                value={username}
+                onChange={handleChange}
+              />
+            )}
             <input
               className="loginInput"
               type="email"
@@ -218,61 +244,71 @@ const Login = props => {
               value={email}
               onChange={handleChange}
             />
-            {!isResendConfirmation &&
-            <>
-            <input
-              className="loginInput"
-              type="password"
-              placeholder="Password"
-              name="password"
-              value={password}
-              onChange={handleChange}
-            />
-            <input
-              className="loginInput"
-              type="password"
-              placeholder="Please re-enter password"
-              name="password2"
-              value={password2}
-              onChange={handleChange}
-            />
-            </>
-            }
-            {!isResendConfirmation?
-            <button className="loginButton">Sign Up</button>:
-            <button className="loginButton" onClick={handleResendEmail}>Resend</button>
-            }
-            
-            {!isResendConfirmation&&
-            <p className="register loginP">
-              Already a member? Click {" "}
-              <span onClick={handleClick} className=" blue" id="span_login">
-                {" "}
-                here{" "}
-              </span>
-              to continue to Kitchen Catalogue
-            </p>
-            }
-            {!isResendConfirmation ?
-            <p className="register loginP">
-              Didn't recieve your confirmation email? Click{" "}
-              <span onClick={()=>setIsResendConfirmation(!isResendConfirmation)} className=" blue" id="span_login">
-                {" "}
-                here{" "}
-              </span>
-              to resend confirmation email.
-            </p>:
-            <p className="register loginP">
-            Click{" "}
-            <span onClick={()=>setIsResendConfirmation(!isResendConfirmation)} className=" blue" id="span_login">
-              {" "}
-              here{" "}
-            </span>
-            to return to register.
-          </p>
-            
-            
-            }
+            {!isResendConfirmation && (
+              <>
+                <input
+                  className="loginInput"
+                  type="password"
+                  placeholder="Password"
+                  name="password"
+                  value={password}
+                  onChange={handleChange}
+                />
+                <input
+                  className="loginInput"
+                  type="password"
+                  placeholder="Please re-enter password"
+                  name="password2"
+                  value={password2}
+                  onChange={handleChange}
+                />
+              </>
+            )}
+            {!isResendConfirmation ? (
+              <button className="loginButton">Sign Up</button>
+            ) : (
+              <button className="loginButton" onClick={handleResendEmail}>
+                Resend
+              </button>
+            )}
+
+            {!isResendConfirmation && (
+              <p className="register loginP">
+                Already a member? Click{" "}
+                <span onClick={handleClick} className=" blue" id="span_login">
+                  {" "}
+                  here{" "}
+                </span>
+                to login.
+              </p>
+            )}
+            {!isResendConfirmation ? (
+              <p className="register loginP">
+                Didn't recieve your confirmation email? Click{" "}
+                <span
+                  onClick={() => setIsResendConfirmation(!isResendConfirmation)}
+                  className=" blue"
+                  id="span_login"
+                >
+                  {" "}
+                  here{" "}
+                </span>
+                to resend confirmation email.
+              </p>
+            ) : (
+              <p className="register loginP">
+                Click{" "}
+                <span
+                  onClick={() => setIsResendConfirmation(!isResendConfirmation)}
+                  className=" blue"
+                  id="span_login"
+                >
+                  {" "}
+                  here{" "}
+                </span>
+                to return to create account.
+              </p>
+            )}
           </form>
         </div>
 
@@ -280,9 +316,10 @@ const Login = props => {
           <div className="loginOverlay">
             <div className="loginOverlay-panel loginOverlay-left">
               <h1 className="pacifico">Kitchen Catalogue</h1>
-              <p className="loginP">Welcome to Kitchen Catalogue! An online database for all your custom cooking recipes.</p>
-              
-             
+              <p className="loginP">
+                Welcome to Kitchen Catalogue! An online database for all your
+                custom cooking recipes.
+              </p>
             </div>
             <div
               className={`loginOverlay-panel loginOverlay-right ${
@@ -315,5 +352,14 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { setAlert, register, login, clearAlerts, clearLS, confirmUser, passwordResetEmail,resendConfirmation }
+  {
+    setAlert,
+    register,
+    login,
+    clearAlerts,
+    clearLS,
+    confirmUser,
+    passwordResetEmail,
+    resendConfirmation
+  }
 )(Login);

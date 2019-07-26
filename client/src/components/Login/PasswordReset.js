@@ -9,7 +9,7 @@ import {  clearLS, passwordReset } from "../../actions/auth";
 import "./login.css";
 
 const PasswordReset = props => {
-  const {  login, setAlert, clearAlerts, clearLS, passwordReset, match} = props;
+  const {  login, setAlert, clearAlerts, clearLS, passwordReset, match, history} = props;
 
   const initialData = {
     
@@ -31,13 +31,18 @@ const PasswordReset = props => {
   const handleSubmit = (e) => {
     e.preventDefault()
     if(password !== password2){
-      setFormData(initialData);
+      // setFormData(initialData);
       clearAlerts();
-      setAlert("Your passwords are not the same")
+      setAlert("Your passwords are not the same", 'LoginDanger')
     }
-    
-    passwordReset({password:password, password_token: match.params.password_token})
 
+    else{
+
+      // need to invalidate token
+      // check the password is more than 8 characters
+    
+    passwordReset({password:password, password_token: match.params.password_token}, history)
+    }
   };
 
   const handleChange = e => {
@@ -185,8 +190,7 @@ const PasswordReset = props => {
 
 PasswordReset.propTypes = {
   setAlert: PropTypes.func.isRequired,
-  register: PropTypes.func.isRequired,
-  login: PropTypes.func.isRequired,
+
   isAuthenticated: PropTypes.bool.isRequired
 };
 

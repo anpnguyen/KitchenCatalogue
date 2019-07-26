@@ -32,13 +32,13 @@ export const loadUser = () => async dispatch => {
 };
 
 // *** REGISTER A USER ***
-export const register = ({ username, email, password }, history) => async dispatch => {
+export const register = ({ username, email, password }, resetState) => async dispatch => {
   const config = {
     headers: {
       "Content-Type": "application/json"
     }
   };
-  const body = JSON.stringify({ username, email, password });
+  const body = JSON.stringify({ username, email, password } );
   try {
     const res = await axios.post("/api/registerUser", body, config);
 
@@ -48,12 +48,14 @@ export const register = ({ username, email, password }, history) => async dispat
     });
     dispatch(setAlert(res.data.msg, 'RecipeEditSuccess'))
 
-    history.push('/login')
-    // dispatch(loadUser());
+    resetState()
+    
   } catch (err) {
-    const errors = err.response.data.errors;
+    
 
-    if (errors) {
+    if (err) {
+      console.dir(err)
+      const errors = err.response.data.errors;
       dispatch(clearAlerts());
       errors.forEach(error => dispatch(setAlert(error.msg, "LoginDanger")));
     }
@@ -112,20 +114,32 @@ export const confirmUser =  (register_token) => async dispatch=> {
 }
 
 // send password reset email
-export const passwordResetEmail = (email) => async dispatch => {
+export const passwordResetEmail = (email, resetState) => async dispatch => {
+
+  try{
   const config = {
     headers: {
       "Content-Type": "application/json"
     }
   };
+  const res = await axios.post(`/api/authUser/forgot`, email, config);
 
-  await axios.post(`/api/authUser/forgot`, email, config);
+  dispatch(setAlert(res.data.msg, 'RecipeEditSuccess'))
   dispatch({type: 'PASSWORD_RESET_SENT'})
+  resetState()
+
+ }catch(err){
   
+  err &&  dispatch(setAlert(err.response.data.msg, "LoginDanger"))
+  dispatch({type: 'PASSWORD_RESET_ERROR'})
+
+ }
 }
 
 export const passwordReset = (data,history) => async dispatch => {
   const {password_token} = data;
+
+  try{
   const config = {
     headers: {
       "Content-Type": "application/json"
@@ -133,15 +147,22 @@ export const passwordReset = (data,history) => async dispatch => {
   };
   
   await axios.post(`/api/authUser/forgot/${password_token}`, data, config);
+  dispatch(setAlert('Password successfully changed', 'RecipeEditSuccess'))
   dispatch({type: 'PASSWORD_RESET'})
   
   history.push('/login')
+
+ }catch(err){
+   console.dir(err)
+   let errors = err.response.data.errors
+   errors.map(err => dispatch(setAlert(err.msg, 'LoginDanger')))
+ }
 };
 
 // resend confirmation email
 
 
-export const resendConfirmation = (email) => async dispatch =>{
+export const resendConfirmation = (email, resetState) => async dispatch =>{
 
   try{
 
@@ -155,8 +176,16 @@ export const resendConfirmation = (email) => async dispatch =>{
 
   console.log(res.data)
   dispatch(setAlert(res.data.msg, 'RecipeEditSuccess' ))
+
+  resetState()
+
   }catch(err){
-    dispatch ('RESEND_ERROR')
+    dispatch(clearAlerts())
+    dispatch(setAlert(err.response.data.msg, 'LoginDanger'))
+    
+    dispatch({
+      type: 'RESEND_ERROR'
+    });
   }
 }
 
