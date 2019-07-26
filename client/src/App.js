@@ -52,13 +52,13 @@ const App = () => {
               exact
               path="/recipe/search"
               component={MySearchRecipes}
-              // option="search"
+              option="search"
             />
             <PrivateRoute
               exact
               path="/recipe/search/page/:page_number"
               component={MySearchRecipes}
-              // option="search"
+              option="search"
               // nav="searchNavigation"
             />
 
@@ -66,7 +66,7 @@ const App = () => {
               exact
               path="/recipe/new"
               component={CreateRecipe}
-              // option="newRecipe"
+              option="newRecipe"
             />
 
             <PrivateRoute
@@ -79,7 +79,7 @@ const App = () => {
               exact
               path="/recipe/:recipe_id/edit"
               component={EditIndividualRecipe}
-              // option="edit"
+              option="edit"
             />
 
             <PrivateRoute exact path="/cookbook" component={MyCookbooks} />
