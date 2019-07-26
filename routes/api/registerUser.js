@@ -77,7 +77,7 @@ router.post(
         (err, registerToken) => {
           if (err) throw err;
 
-          const url = `${process.env.LOCAL_HOST}/confirm/${registerToken}`;
+          const url = `${process.env.LOCAL_HOST}confirm/${registerToken}`;
 
           const emailBody =` 
           <div style={text-align: left; style={color:black}}>
