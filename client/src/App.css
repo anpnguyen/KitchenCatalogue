@@ -20,7 +20,9 @@ body,
 
 .wrapper{
   overflow-x: hidden;
+  /* height:100%  */
 }
+
 figure {
   margin: 0;
   overflow: hidden;
