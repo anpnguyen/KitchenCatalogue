@@ -8,13 +8,14 @@ import {
 import { withRouter } from "react-router-dom";
 import { removeRecipeFromCookbook } from "../../actions/individualCookbook";
 import { connect } from "react-redux";
+import {resetRecipe} from '../../actions/individualRecipe'
 import "./recipeCard.css";
 
 import ConfirmModal from "./confirmModal";
 import CardSettingMenu from "../cookbook/cardSettingsMenu";
 
 const RecipeCard = props => {
-  const { match, removeRecipeFromCookbook, option } = props;
+  const { match, removeRecipeFromCookbook, option , resetRecipe} = props;
   const { title, imageUrl, _id, servings, time } = props.recipe;
 
   const [settingsMenu, setSettingsMenu] = useState(false);
@@ -25,6 +26,7 @@ const RecipeCard = props => {
   const settingsMenuRef = useRef();
 
   const handleClicker = () => {
+    resetRecipe()
     props.history.push(`/recipe/${_id}`);
   };
   const removeFromCookbook = e => {
@@ -160,6 +162,6 @@ const RecipeCard = props => {
 export default withRouter(
   connect(
     null,
-    { removeRecipeFromCookbook }
+    { removeRecipeFromCookbook, resetRecipe }
   )(RecipeCard)
 );

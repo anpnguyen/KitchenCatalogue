@@ -153,3 +153,19 @@ export const deleteRecipe = (history, recipeId) => async dispatch => {
     });
   }
 };
+
+export const resetRecipe = () => async dispatch => {
+ 
+    
+    
+    dispatch({
+      type: "RESET_RECIPE"
+    });
+
+    
+    
+    
+    
+
+  
+};

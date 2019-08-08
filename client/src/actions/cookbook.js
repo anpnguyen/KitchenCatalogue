@@ -100,7 +100,7 @@ export const createNewCookbook = cookbookTitle => async dispatch => {
       payload: res.data
     });
 
-    dispatch(setAlert("Recipe Sucessfully Added", "RecipeEditSuccess"));
+    dispatch(setAlert("Cookbook successfully created", "RecipeEditSuccess"));
   } catch (err) {
     dispatch({
       type: CREATE_COOKBOOK_ERROR,
@@ -124,7 +124,7 @@ export const deleteCookbook = cookbook_id => async dispatch => {
     });
     localStorage.removeItem("cookbookState");
     dispatch(getCookbooks())
-    dispatch(setAlert("Cookbook Deleted", "RecipeEditSuccess"));
+    dispatch(setAlert("Cookbook deleted", "RecipeEditSuccess"));
   } catch (err) {
     dispatch({
       type: DELETE_COOKBOOK_ERROR,
@@ -157,11 +157,11 @@ export const renameCookbookById = data => async dispatch => {
       payload: res.data
     });
 
-    dispatch(setAlert("cookbook Updated", "RecipeEditSuccess"));
+    dispatch(setAlert("Cookbook updated", "RecipeEditSuccess"));
   } catch (err) {
     dispatch({
       type: RENAME_COOKBOOK_ERROR,
-      payload: { msg: "renameCOokbook", status: "server error" }
+      payload: { msg: "renameCookbook", status: "server error" }
     });
   }
 };

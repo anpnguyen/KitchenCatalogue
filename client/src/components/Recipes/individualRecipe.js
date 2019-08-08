@@ -14,7 +14,7 @@ import {
 } from "../../actions/individualRecipe";
 import { addRecipeToCookbook } from "../../actions/cookbook";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Prompt } from "react-router-dom";
 import "./individualRecipe.css";
 
 const IndividualRecipe = props => {
@@ -34,7 +34,7 @@ const IndividualRecipe = props => {
   const [addedCookbooks, setAddedCookbooks] = useState([]);
   const deleteModalRef = useRef();
   const addTofavRef = useRef();
-  const topPage = useRef()
+  const topPage = useRef();
 
   let {
     title,
@@ -48,8 +48,6 @@ const IndividualRecipe = props => {
   } = individualRecipe.recipe;
 
   useEffect(() => {
-
-
     var localRecipes = JSON.parse(localStorage.getItem("recipeState"));
 
     if (!localRecipes) {
@@ -64,26 +62,23 @@ const IndividualRecipe = props => {
       if (!foundRecipe) {
         history.push("/recipe");
       } else {
-        console.log(foundRecipe)
+        
         updateRecipe_LS(foundRecipe);
       }
     }
-    
   }, []);
 
+  useEffect(()=>{
+    window.addEventListener('click', ()=> console.log('yay'))
+    window.addEventListener('beforeunload', ()=> console.log('woot'))
+  },[])
+
  
-  
-    
-    
-  
-  
   useEffect(() => {
     const handleClickOutsideSettings = e => {
       e.stopPropagation();
-      
-      if (
-        deleteModalRef.current.contains(e.target)        
-      ) {
+
+      if (deleteModalRef.current.contains(e.target)) {
         return;
       } else {
         setIsDelete(false);
@@ -104,10 +99,8 @@ const IndividualRecipe = props => {
   useEffect(() => {
     const handleClickOutsideSettings = e => {
       e.stopPropagation();
-      
-      if (
-        addTofavRef.current.contains(e.target)        
-      ) {
+
+      if (addTofavRef.current.contains(e.target)) {
         return;
       } else {
         setIsFavourite(false);
@@ -124,8 +117,6 @@ const IndividualRecipe = props => {
       document.removeEventListener("mousedown", handleClickOutsideSettings);
     };
   }, [isFavourite]);
-
-
 
   const handleDelete = () => {
     setIsDelete(true);
@@ -180,6 +171,7 @@ const IndividualRecipe = props => {
               />
 
               <div className="contentBoxContent ">
+              
                 <ConfirmModal
                   confirmAction={handleAddToCookbook}
                   closeAction={() => setIsFavourite(false)}
@@ -233,7 +225,6 @@ const IndividualRecipe = props => {
               </div>
             </div>
           </div>
-          
         </main>
       )}
     </Content>

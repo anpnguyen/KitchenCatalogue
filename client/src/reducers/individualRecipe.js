@@ -77,6 +77,11 @@ export default function(state = initialState, action) {
         ...state,
         loading: false
       };
+    case "RESET_RECIPE":
+      return {
+        ...state,
+        loading: true
+      };
 
 
     default:
