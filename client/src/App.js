@@ -16,6 +16,7 @@ import MySearchRecipes from "./components/Layout/MySearchRecipes";
 import CreateRecipe from "./components/Recipes/createRecipe";
 import "./App.css";
 import PasswordReset from "./components/Login/PasswordReset";
+import ScrollToTop from './components/routing/ScrollToTop'
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -27,9 +28,11 @@ const App = () => {
   }, []);
 
   return (
+    
     <div className="App">
       <Provider store={store}>
         <BrowserRouter>
+        <ScrollToTop>      
           <Switch>
             <Route exact path="/" render={(routeProps)=><Login {...routeProps}/>} />
             <Route exact path="/login" render={(routeProps)=><Login {...routeProps}/>} />
@@ -103,9 +106,11 @@ const App = () => {
 
             <PrivateRoute path="*" component={NotFound} />
           </Switch>
+          </ScrollToTop>
         </BrowserRouter>
       </Provider>
     </div>
+    
   );
 };
 

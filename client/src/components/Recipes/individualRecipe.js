@@ -34,6 +34,7 @@ const IndividualRecipe = props => {
   const [addedCookbooks, setAddedCookbooks] = useState([]);
   const deleteModalRef = useRef();
   const addTofavRef = useRef();
+  const topPage = useRef()
 
   let {
     title,
@@ -47,6 +48,8 @@ const IndividualRecipe = props => {
   } = individualRecipe.recipe;
 
   useEffect(() => {
+
+
     var localRecipes = JSON.parse(localStorage.getItem("recipeState"));
 
     if (!localRecipes) {
@@ -61,10 +64,18 @@ const IndividualRecipe = props => {
       if (!foundRecipe) {
         history.push("/recipe");
       } else {
+        console.log(foundRecipe)
         updateRecipe_LS(foundRecipe);
       }
     }
-  }, [match.params.recipe_id, history, getRecipeById, updateRecipe_LS]);
+    
+  }, []);
+
+ 
+  
+    
+    
+  
   
   useEffect(() => {
     const handleClickOutsideSettings = e => {
@@ -116,17 +127,6 @@ const IndividualRecipe = props => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   const handleDelete = () => {
     setIsDelete(true);
   };
@@ -165,7 +165,7 @@ const IndividualRecipe = props => {
       {loading || title === undefined ? (
         <Spinner />
       ) : (
-        <main className="content">
+        <main className="content" ref={topPage}>
           <div className="contentContainer">
             <div className="contentBox ">
               <ConfirmModal
@@ -233,6 +233,7 @@ const IndividualRecipe = props => {
               </div>
             </div>
           </div>
+          
         </main>
       )}
     </Content>
