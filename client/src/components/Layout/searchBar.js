@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import SearchBack from "../../images/searchback_crop.jpg";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-
 import { getSearchRecipes } from "../../actions/search";
 import "./searchBar.css";
 
@@ -46,7 +45,8 @@ const SearchBar = props => {
 };
 
 SearchBar.propTypes = {
-  getSearchRecipes: PropTypes.func.isRequired
+  getSearchRecipes: PropTypes.func.isRequired,
+  
 };
 
 const mapStateToProps = state => ({

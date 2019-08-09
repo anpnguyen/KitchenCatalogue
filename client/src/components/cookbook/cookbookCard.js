@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, memo } from "react";
+import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { loadCookbookRecipes } from "../../actions/individualCookbook";
@@ -210,7 +211,13 @@ function CookbookCard(props) {
     </>
   );
 }
-
+Content.propTypes = {
+  cookbook: PropTypes.object.isRequired,
+  recipe: PropTypes.object.isRequired,
+  loadCookbookRecipes: PropTypes.func.isRequired,
+  deleteCookbook: PropTypes.func.isRequired,
+  renameCookbookById: PropTypes.func.isRequired
+};
 const mapStateToProps = state => ({
   cookbook: state.cookbook,
   recipe: state.recipe

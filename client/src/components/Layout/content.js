@@ -37,7 +37,7 @@ function Content(props) {
       let oldState = JSON.parse(localStorage.getItem("cookbookState"));
       updateCookbookFromLS(oldState);
     }
-  }, [getRecipes,getCookbooks, recipe.loading, cookbook.loading, updateFromLS, updateCookbookFromLS ]);
+  }, []);
 
   useEffect(() => {
     !localStorage.searchState && getSearchRecipes(search.searchData);
@@ -67,10 +67,15 @@ function Content(props) {
 Content.propTypes = {
   auth: PropTypes.object.isRequired,
   getRecipes: PropTypes.func.isRequired,
-  getCookbooks: PropTypes.func.isRequired
+  getCookbooks: PropTypes.func.isRequired,
+  getCookbookById:PropTypes.func.isRequired,
+  clearRecipe: PropTypes.func.isRequired,
+  updateFromLS: PropTypes.func.isRequired,
+  updateCookbookFromLS: PropTypes.func.isRequired,
+  updateFromSearchLS: PropTypes.func.isRequired,
+
 };
 
-// this is the state that the current component has available to it
 const mapStateToProps = state => ({
   auth: state.auth,
   recipe: state.recipe,

@@ -6,16 +6,16 @@ import {
   faTrash
 } from "@fortawesome/free-solid-svg-icons";
 import { withRouter } from "react-router-dom";
-import { removeRecipeFromCookbook } from "../../actions/individualCookbook";
 import { connect } from "react-redux";
-import {resetRecipe} from '../../actions/individualRecipe'
-import "./recipeCard.css";
-
+import { removeRecipeFromCookbook } from "../../actions/individualCookbook";
+import { resetRecipe } from "../../actions/individualRecipe";
 import ConfirmModal from "./confirmModal";
 import CardSettingMenu from "../cookbook/cardSettingsMenu";
+import PropTypes from "prop-types";
+import "./recipeCard.css";
 
 const RecipeCard = props => {
-  const { match, removeRecipeFromCookbook, option , resetRecipe} = props;
+  const { match, removeRecipeFromCookbook, option, resetRecipe } = props;
   const { title, imageUrl, _id, servings, time } = props.recipe;
 
   const [settingsMenu, setSettingsMenu] = useState(false);
@@ -26,7 +26,7 @@ const RecipeCard = props => {
   const settingsMenuRef = useRef();
 
   const handleClicker = () => {
-    resetRecipe()
+    resetRecipe();
     props.history.push(`/recipe/${_id}`);
   };
   const removeFromCookbook = e => {
@@ -157,6 +157,11 @@ const RecipeCard = props => {
       </div>
     </>
   );
+};
+
+RecipeCard.propTypes = {
+  removeRecipeFromCookbook: PropTypes.func.isRequired,
+  resetRecipe: PropTypes.func.isRequired
 };
 
 export default withRouter(

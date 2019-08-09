@@ -14,7 +14,7 @@ import {
 } from "../../actions/individualRecipe";
 import { addRecipeToCookbook } from "../../actions/cookbook";
 import { connect } from "react-redux";
-import { Link, Prompt } from "react-router-dom";
+import { Link} from "react-router-dom";
 import "./individualRecipe.css";
 
 const IndividualRecipe = props => {

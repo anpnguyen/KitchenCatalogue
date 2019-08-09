@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Select from "react-select";
@@ -25,13 +26,18 @@ const AddToCookbookSelect = props => {
     selectOptions !== undefined && (
       <div className="favouriteSelect">
         <Select
-          closeMenuOnSelect={true}          
+          closeMenuOnSelect={true}
           options={selectOptions}
           onChange={e => handleSelectChange(e)}
         />
       </div>
     )
   );
+};
+
+IndividualRecipe.propTypes = {
+  AddToCookbookSelect: PropTypes.func.isRequired,
+  cookbook: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({

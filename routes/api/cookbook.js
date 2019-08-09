@@ -45,7 +45,7 @@ router.post(
   }
 );
 
-// *** get all cookbooks *** working
+// *** get all cookbooks *** 
 router.get("/", authMiddleware, async (req, res) => {
   try {
     const cookbooks = await Cookbook.find({ user: req.user.id }).populate("savedRecipes", ["imageUrl"]);
@@ -55,7 +55,7 @@ router.get("/", authMiddleware, async (req, res) => {
   }
 });
 
-// ** get an individual cookbook *** working
+// ** get an individual cookbook *** 
 router.get("/:cookbook_id", authMiddleware, async (req, res) => {
   try {
     const cookbook = await Cookbook.findOne({
@@ -76,13 +76,13 @@ router.get("/:cookbook_id", authMiddleware, async (req, res) => {
   }
 });
 
-// Edit a Cookbook -
+// *** Edit a Cookbook ***
 
 router.put("/:cookbook_id", authMiddleware, async (req, res) => {
   const { cookbookId, recipeId, newCookbookTitle } = req.body;
 
   try {
-    // this will a remove a recipe from a cookbook
+    
     if (!newCookbookTitle) {
       let cookbook = await Cookbook.findOneAndUpdate(
         { _id: cookbookId },
@@ -91,7 +91,7 @@ router.put("/:cookbook_id", authMiddleware, async (req, res) => {
 
       res.json({ recipeDeleted: recipeId });
     }
-    //  this will rename a cookbook
+    
     else {
       let cookbookUpdated = await Cookbook.findOneAndUpdate(
         { _id: cookbookId },
@@ -106,7 +106,7 @@ router.put("/:cookbook_id", authMiddleware, async (req, res) => {
   }
 });
 
-//  **** delete a cook book *** working
+//  **** delete a cook book *** 
 
 router.delete("/:cookbook_id", authMiddleware, async (req, res) => {
   try {
@@ -117,7 +117,7 @@ router.delete("/:cookbook_id", authMiddleware, async (req, res) => {
   }
 });
 
-// this will update multiple cookbooks
+// ***  update multiple cookbooks ***
 router.put("/", authMiddleware, async (req, res) => {
   const { cookbookId, recipeId } = req.body;
 
@@ -139,7 +139,7 @@ router.put("/", authMiddleware, async (req, res) => {
   }
 });
 
-// this fire when a recipe gets delete, it will remove this entry from all coook books
+// *** When a recipe gets delete, it will remove this entry from all cookbooks ***
 
 router.put("/deleteRecipe/deleteRecipe", authMiddleware, async (req, res) => {
   const { recipeToDelete } = req.body;

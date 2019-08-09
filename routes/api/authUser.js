@@ -4,9 +4,10 @@ const bcrypt = require("bcryptjs");
 const authMiddleware = require("../../middleware/authMiddleware");
 const jwt = require("jsonwebtoken");
 const { check, validationResult } = require("express-validator/check");
-const nodemailer = require('nodemailer')
+const nodemailer = require("nodemailer");
 const User = require("../../models/User");
 
+// *** transporter for sending emails ***
 const transporter = nodemailer.createTransport({
   service: "Gmail",
   auth: {
@@ -39,34 +40,27 @@ router.post(
     }
 
     const { email, password } = req.body;
-
     try {
       let user = await User.findOne({ email });
 
       if (!user) {
-        return res
-          .status(400)
-          .json({
-            errors: [{ msg: "Invalid Credentials - please try again" }]
-          });
+        return res.status(400).json({
+          errors: [{ msg: "Invalid Credentials - please try again" }]
+        });
       }
 
       if (!user.confirmed) {
-        return res
-          .status(400)
-          .json({
-            errors: [{ msg: "Please validate your account first" }]
-          });
+        return res.status(400).json({
+          errors: [{ msg: "Please validate your account first" }]
+        });
       }
 
       const isMatch = await bcrypt.compare(password, user.password);
 
       if (!isMatch) {
-        return res
-          .status(400)
-          .json({
-            errors: [{ msg: "Invalid Credentials - please try again" }]
-          });
+        return res.status(400).json({
+          errors: [{ msg: "Invalid Credentials - please try again" }]
+        });
       }
 
       const payload = {
@@ -91,14 +85,12 @@ router.post(
   }
 );
 
+// *** Forgot password - send email ***
 router.post(
   "/forgot/",
-  
+
   async (req, res) => {
-    
-    
-    const { email} = req.body;
-    
+    const { email } = req.body;
 
     try {
       let user = await User.findOne({ email });
@@ -106,17 +98,14 @@ router.post(
       if (!user) {
         return res
           .status(400)
-          .json({ msg: "Invalid Credentials - please try again" }
-          );
+          .json({ msg: "Invalid Credentials - please try again" });
       }
 
       if (!user.confirmed) {
         return res
           .status(400)
-          .json({ msg: "Please validate your email address first" }
-          );
+          .json({ msg: "Please validate your email address first" });
       }
-
 
       const payload = {
         user: {
@@ -131,11 +120,9 @@ router.post(
         { expiresIn: 3600 },
         (err, passwordToken) => {
           if (err) throw err;
-          
-          
-          
+
           const url = `${process.env.LOCAL_HOST}forgot/${passwordToken}`;
-          const emailBody =` 
+          const emailBody = ` 
           <div style={text-align: left; color:black}>
           <p style={color:black}>Hello,</p>
           <p style={color:black}>We received a request to reset your password.Please click on the following link to be taken to the reset password page.</p>
@@ -143,16 +130,16 @@ router.post(
 
           <p >Thank you, </p>                                              
           <p >Kitchen Catalogue</p>
-          </div>`
-          
+          </div>`;
 
           transporter.sendMail({
             to: user.email,
             subject: "Kitchen Catalogue: Password Reset",
             html: emailBody
           });
-          res.json({msg: "A password reset email has been sent to your email address"});
-          
+          res.json({
+            msg: "A password reset email has been sent to your email address"
+          });
         }
       );
     } catch (err) {
@@ -161,55 +148,41 @@ router.post(
   }
 );
 
-// router.get('/forgot/:password_token', async (req,res)=>{
-//   try{
-//     const decoded = jwt.verify(req.params.password_token, process.env.PASSWORD_SECRET)
-//     console.log(decoded)
+// *** Forgot password - reset password ***
+router.post(
+  "/forgot/:password_token",
+  [
+    check(
+      "password",
+      "Please enter a password with 8 or more characters"
+    ).isLength({ min: 8 })
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
 
-//     await User.findOne({email: decoded.user.email})
-//     res.json({msg: "Plese enter your new password"})
-// }catch (e) {
-//     console.log(e)
-//     res.send('error');
-//   }
-// })
-
-router.post('/forgot/:password_token',[
-
-  check(
-    "password",
-    "Please enter a password with 8 or more characters"
-  ).isLength({ min: 8 })
-],
- async (req,res)=>{
-
-  const errors = validationResult(req);
-  
- 
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
 
+    const { password } = req.body;
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
 
+    try {
+      const decoded = jwt.verify(
+        req.params.password_token,
+        process.env.PASSWORD_SECRET
+      );
 
-  const {password} = req.body
-  const salt = await bcrypt.genSalt(10);
-  const hashedPassword = await bcrypt.hash(password, salt);
-
-
-
-
-  try{
-    const decoded = jwt.verify(req.params.password_token, process.env.PASSWORD_SECRET)
-    
-
-    await User.findOneAndUpdate({email: decoded.user.email}, {password: hashedPassword})
-    res.json({msg: "Password Changes, please login"})
-}catch (e) {
-    
-    res.send('error');
+      await User.findOneAndUpdate(
+        { email: decoded.user.email },
+        { password: hashedPassword }
+      );
+      res.json({ msg: "Password Changed, please login" });
+    } catch (e) {
+      res.send("error");
+    }
   }
-})
-
+);
 
 module.exports = router;

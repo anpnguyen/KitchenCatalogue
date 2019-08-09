@@ -62,7 +62,7 @@ router.post(
   }
 );
 
-//  *** get all users recipes *** working
+//  *** get all users recipes *** 
 router.get("/", authMiddleware, async (req, res) => {
   try {
     if (req.query.search) {
@@ -80,18 +80,8 @@ router.get("/", authMiddleware, async (req, res) => {
   }
 });
 
-//  *** get a number to  ***   UNUSED
-router.get("/set/:setNumber", authMiddleware, async (req, res) => {
-  try {
-    let num = parseInt(req.params.setNumber);
-    const recipes = await Recipe.find({ user: req.user.id }).limit(num);
-    res.json(recipes);
-  } catch (err) {
-    res.status(500).send("Server Error - cannot fetch user recipes");
-  }
-});
 
-// *** get individual recipe *** working
+// *** get individual recipe *** 
 router.get("/:recipe_id", authMiddleware, async (req, res) => {
   try {
     const recipe = await Recipe.findOne({
@@ -178,7 +168,7 @@ router.put(
   }
 );
 
-//  *** Delete Route - unused **  NEED TO CHANGE
+//  *** Delete Route - unused ** 
 
 router.delete("/:recipe_id", authMiddleware, async (req, res) => {
   try {
@@ -189,7 +179,7 @@ router.delete("/:recipe_id", authMiddleware, async (req, res) => {
   }
 });
 
-// Get recipe favourites
+// *** Get recipe favourites ***
 
 router.get("/", authMiddleware, async (req, res) => {
   try {
@@ -208,12 +198,13 @@ router.get("/favourite", authMiddleware, async (req, res) => {
 
     res.json(favRecipes.favouriteRecipes);
 
-    // res.json({ msg: 'recipe added to favourites' });
+    
   } catch (err) {
     res.status(500).send("Server Error - cannot add to favourite");
   }
 });
-// add recupe to favourite
+
+// *** add recipe to favourite ****
 
 router.put(
   "/favourite",

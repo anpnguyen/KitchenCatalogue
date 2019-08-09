@@ -1,15 +1,13 @@
-require('dotenv').config();
+require("dotenv").config();
 const express = require("express");
 const connectDB = require("./config/db");
 const app = express();
 const cors = require("cors");
 const path = require("path");
 
-
 connectDB();
 
 app.use(express.json({ extended: false }));
-
 app.use(cors());
 
 app.use("/api/registerUser", require("./routes/api/registerUser.js"));
