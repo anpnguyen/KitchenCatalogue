@@ -1,4 +1,4 @@
-**Kitchen Catalogue**
+#Kitchen Catalogue#
 
 An online database to help you create, view and organise all your cooking recipes.
 
