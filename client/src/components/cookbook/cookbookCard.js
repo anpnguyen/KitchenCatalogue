@@ -211,7 +211,7 @@ function CookbookCard(props) {
     </>
   );
 }
-Content.propTypes = {
+CookbookCard.propTypes = {
   cookbook: PropTypes.object.isRequired,
   recipe: PropTypes.object.isRequired,
   loadCookbookRecipes: PropTypes.func.isRequired,

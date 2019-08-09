@@ -35,7 +35,7 @@ const AddToCookbookSelect = props => {
   );
 };
 
-IndividualRecipe.propTypes = {
+AddToCookbookSelect.propTypes = {
   AddToCookbookSelect: PropTypes.func.isRequired,
   cookbook: PropTypes.object.isRequired
 };
