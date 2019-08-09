@@ -14,7 +14,7 @@ import {
 } from "../../actions/individualRecipe";
 import { addRecipeToCookbook } from "../../actions/cookbook";
 import { connect } from "react-redux";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./individualRecipe.css";
 
 const IndividualRecipe = props => {
@@ -62,18 +62,16 @@ const IndividualRecipe = props => {
       if (!foundRecipe) {
         history.push("/recipe");
       } else {
-        
         updateRecipe_LS(foundRecipe);
       }
     }
   }, []);
 
-  useEffect(()=>{
-    window.addEventListener('click', ()=> console.log('yay'))
-    window.addEventListener('beforeunload', ()=> console.log('woot'))
-  },[])
+  useEffect(() => {
+    window.addEventListener("click", () => console.log("yay"));
+    window.addEventListener("beforeunload", () => console.log("woot"));
+  }, []);
 
- 
   useEffect(() => {
     const handleClickOutsideSettings = e => {
       e.stopPropagation();
@@ -171,7 +169,6 @@ const IndividualRecipe = props => {
               />
 
               <div className="contentBoxContent ">
-              
                 <ConfirmModal
                   confirmAction={handleAddToCookbook}
                   closeAction={() => setIsFavourite(false)}

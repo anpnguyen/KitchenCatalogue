@@ -23,6 +23,4 @@ function RecipeDetailTitle(props) {
   );
 }
 
-RecipeDetailTitle.propTypes = {};
-
 export default memo(RecipeDetailTitle);

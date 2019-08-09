@@ -1,9 +1,7 @@
-import React, {memo} from "react";
-
+import React, { memo } from "react";
 
 function RecipeDetailServings(props) {
-
-    const {servings, handleDetailChange} = props
+  const { servings, handleDetailChange } = props;
 
   return (
     <div className="recipeDetailsItem">
@@ -24,7 +22,5 @@ function RecipeDetailServings(props) {
     </div>
   );
 }
-
-
 
 export default memo(RecipeDetailServings);

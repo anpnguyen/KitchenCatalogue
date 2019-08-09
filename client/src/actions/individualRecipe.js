@@ -1,6 +1,6 @@
 import axios from "axios";
 import { setAlert } from "../actions/alert";
-import {getRecipes} from '../actions/recipe'
+import { getRecipes } from "../actions/recipe";
 
 import {
   GET_RECIPE,
@@ -16,12 +16,12 @@ import {
   //   UPDATE_RECIPES_LS
 } from "../actions/types";
 
+
+// *** Get Recipe by ID ***
 export const getRecipeById = (recipeId, history) => async dispatch => {
   try {
     const res = await axios.get(`/api/recipe/${recipeId}`);
-    // this saves the recipe to local storage - so on edit refresh, it desont need to send another request
-    // localStorage.setItem("recipe", JSON.stringify(res.data))
-
+   
     dispatch({
       type: GET_RECIPE,
       payload: res.data
@@ -34,6 +34,8 @@ export const getRecipeById = (recipeId, history) => async dispatch => {
     history.push("/recipe");
   }
 };
+
+// *** Update the state from local storage ***
 export const updateRecipe_LS = foundRecipe => async dispatch => {
   try {
     dispatch({
@@ -47,6 +49,7 @@ export const updateRecipe_LS = foundRecipe => async dispatch => {
   }
 };
 
+// ** Create a recipe ***
 export const createRecipe = (formData, history) => async dispatch => {
   try {
     const config = {
@@ -54,17 +57,15 @@ export const createRecipe = (formData, history) => async dispatch => {
         "Content-Type": "application/json"
       }
     };
-
     const res = await axios.post("/api/recipe", formData, config);
 
-    // clears the local stoage, so home page rerenders
     localStorage.removeItem("recipeState");
-    dispatch(getRecipes())
+    dispatch(getRecipes());
     dispatch({
       type: CREATE_RECIPE,
       payload: res.data
     });
-    getRecipes()
+    getRecipes();
     dispatch(setAlert("Recipe Created", "RecipeEditSuccess"));
 
     history.push(`/recipe/${res.data._id}`);
@@ -80,6 +81,8 @@ export const createRecipe = (formData, history) => async dispatch => {
     });
   }
 };
+
+// *** Edit a Recipe ***
 
 export const editRecipePut = (
   formData,
@@ -100,10 +103,9 @@ export const editRecipePut = (
       type: EDIT_RECIPE,
       payload: res.data
     });
-    
-    
+
     dispatch(setAlert("Recipe Sucessfully Edited", "RecipeEditSuccess"));
-    dispatch(getRecipes())
+    dispatch(getRecipes());
     history.push(`/recipe/${recipeId}`);
   } catch (err) {
     const errors = err.response.data;
@@ -119,7 +121,7 @@ export const editRecipePut = (
   }
 };
 
-// Delete A Recipe
+// *** Delete A Recipe ***
 
 export const deleteRecipe = (history, recipeId) => async dispatch => {
   try {
@@ -133,19 +135,17 @@ export const deleteRecipe = (history, recipeId) => async dispatch => {
     await axios.delete(`/api/recipe/${recipeId}`);
     await axios.put("/api/cookbook/deleteRecipe/deleteRecipe", data, config);
 
-    // clears the local stoage, so home page rerenders
+    
     localStorage.removeItem("recipeState");
-    dispatch(getRecipes)
+    dispatch(getRecipes);
 
     dispatch({
       type: DELETE_RECIPE
     });
 
     dispatch(setAlert("Recipe Sucessfully Deleted", "RecipeEditSuccess"));
-    
-    
-    history.goBack()
 
+    history.goBack();
   } catch (err) {
     dispatch({
       type: DELETE_RECIPE_ERROR,
@@ -154,18 +154,9 @@ export const deleteRecipe = (history, recipeId) => async dispatch => {
   }
 };
 
+// *** Puts Recipe state to loading ***
 export const resetRecipe = () => async dispatch => {
- 
-    
-    
-    dispatch({
-      type: "RESET_RECIPE"
-    });
-
-    
-    
-    
-    
-
-  
+  dispatch({
+    type: "RESET_RECIPE"
+  });
 };

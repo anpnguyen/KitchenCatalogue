@@ -12,7 +12,7 @@ function ViewRecipeIngredients(props) {
           </li>
           {ingredients.map((ingredient, index) => (
             <Fragment key={ingredient + index}>
-              {/* <li> {`${ingredient.quantity} ${ingredient.unit} of ${ingredient.ingredientName}`}</li> */}
+            
               <li>{ingredient}</li>
             </Fragment>
           ))}

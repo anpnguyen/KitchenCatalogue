@@ -10,8 +10,7 @@ import {
   REMOVE_RECIPE_ERROR
 } from "../actions/types";
 
-// GET cookbook by ID  - if refresh
-// this should be in individual cookbook
+// ***  GET cookbook by ID  - if refresh ***
 
 export const getCookbookById = cookbook_id => async dispatch => {
   try {
@@ -29,8 +28,8 @@ export const getCookbookById = cookbook_id => async dispatch => {
   }
 };
 
-// Load the users selected cookbook
-// this is in individualCookbook
+//  *** Load the users selected cookbook *** 
+
 export const loadCookbookRecipes = (
   selectedCookbook,
   history
@@ -40,9 +39,8 @@ export const loadCookbookRecipes = (
       type: LOAD_COOKBOOK_RECIPES,
       payload: selectedCookbook
     });
-    // localStorage.setItem('selectedcookbook', JSON.stringify(selectedCookbook))
+
     history.push(`/cookbook/${selectedCookbook._id}`);
-    
   } catch (err) {
     dispatch({
       type: LOAD_COOKBOOK_RECIPES_ERROR,
@@ -51,7 +49,7 @@ export const loadCookbookRecipes = (
   }
 };
 
-//   REMOVE a recipe from a cookbook
+//  ***   REMOVE a recipe from a cookbook ***
 export const removeRecipeFromCookbook = data => async dispatch => {
   const config = {
     headers: {
