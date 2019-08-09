@@ -7,9 +7,9 @@ An online database to help you create, view and organise all your cooking recipe
 
 **Features added**
 
--User registration and login, add recipe, edit recipe, delete recipes and search recipes by title.
--Add feature to create cookbooks, add recipes to cookbooks, delete cookbook and rename cookbook
--Add nodemailer to allow email confirmation and password reset
+- User registration and login, add recipe, edit recipe, delete recipes and search recipes by title.
+- Add feature to create cookbooks, add recipes to cookbooks, delete cookbook and rename cookbook
+- Add nodemailer to allow email confirmation and password reset
 
 **Features to be added**
 - Advance search for ingredients
