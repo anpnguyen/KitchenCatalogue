@@ -21,3 +21,6 @@ An online database to help you create, view and organise all your cooking recipe
 - Add recipe posts
 - edit user profile name and password whilst logged in
 - allow private/public recipes
+
+**Images**
+![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
