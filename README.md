@@ -22,5 +22,5 @@ An online database to help you create, view and organise all your cooking recipe
 - edit user profile name and password whilst logged in
 - allow private/public recipes
 
-**Images**
+
 ![alt text](https://github.com/PleatherShaman/portfolio/blob/master/images/tester.png "Logo Title Text 1")
