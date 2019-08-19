@@ -12,11 +12,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  border-radius: 5px;
-  /* transform: scale(0); */
-  /* transform: translateY(0);  */
+  border-radius: 5px; 
   transition: all ease-in-out 0.3s;
   opacity: 0;
+  
 }
 
 .confirmModal.confirmModalShowing {
@@ -27,7 +26,7 @@
 }
 
 .confirmOverlay.confirmModalShowing {
-  transform: scale(1) !important;
+  transform: scale(1) !important;  
 }
 
 .confirmModal .confirmModalTitle {

@@ -17,6 +17,7 @@ import CreateRecipe from "./components/Recipes/createRecipe";
 import "./App.css";
 import PasswordReset from "./components/Login/PasswordReset";
 import ScrollToTop from './components/routing/ScrollToTop'
+import Landing from './components/Landing/Landing'
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
