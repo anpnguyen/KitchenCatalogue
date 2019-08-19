@@ -17,45 +17,15 @@
   font-weight: bold;
   z-index: 5;
   color: #f8f8f8;
-  justify-content: space-between;
+  justify-content: center;
 }
 
-/* .navBar button {
-  background: none;
-  color: white;
-  border: 2px solid white;
-  border-radius: 20px;
-  height: 40px;
-  width: 100px;
-  margin-right: 20px;
-  font-size: 0.8rem;
-  font-family: inherit;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  transition: all 0.1s ease-in-out;
-} */
-
-/* .navBar button {
-  background: none;
-  color: white;
-  border: 2px solid white;
-  border-radius: 20px;
-  height: 40px;
-  width: 100px;
-  margin-right: 20px;
-  font-size: 0.8rem;
-  font-family: inherit;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  transition: all 0.1s ease-in-out;
-} */
-
-/* .navBar button:hover {
-  color: #dddddd;
-  border: 2px solid #dddddd;  */
-/* } */
+.navBarAllContainer{
+  flex-basis: 1000px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start
+}
 
 .navBarLogo {
   min-width: 280px;
@@ -73,7 +43,7 @@
 .navBarContainer {
   height: 60px;
   max-height: 60px;
-  width: 100%;
+  width: 70%;
   z-index: 5;
   display: flex;
   flex-direction: column;
@@ -112,10 +82,11 @@
   -webkit-user-select: none;
   -o-user-select: none;
   user-select: none;
-  /* box-sizing: border-box; */
   opacity: 1;
   transition: opacity 1s ease-in-out;
 }
+
+
 
 ul.slide li {
   

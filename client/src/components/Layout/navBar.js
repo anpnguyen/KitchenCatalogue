@@ -59,6 +59,7 @@ const NavBar = props => {
 
   return (
     <nav className="navBar">
+      <div className="navBarAllContainer">
       <div className="navBarLogo">
         <p className="navBarLogoText">
           <Link to="/">Kitchen Catalogue</Link>
@@ -101,6 +102,7 @@ const NavBar = props => {
           </ul>
           
         </div>
+      </div>
       </div>
     </nav>
   );
