@@ -1,6 +1,6 @@
 .content {
   width: 100%;
-  min-height:600px;
+  min-height:80vh;
   display: flex;
   justify-content: center;
 }

@@ -27,11 +27,11 @@ ul{
 }
 
 
-/* .wrapper{ */
+.wrapper{ 
   /* overflow-x: hidden !important; */
   
-  /* height:100%  */
-/* } */
+  height:100% 
+ } 
 
 figure {
   margin: 0;
