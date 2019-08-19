@@ -173,8 +173,8 @@ function CookbookCard(props) {
         </form>
       </ConfirmModal>
 
-      <article
-        className="recipeCard cookbook"
+      <div
+        className="cookbookCard"
         onClick={e => handleCookbookClicker(e)}
         onMouseOver={handleMouseOver}
         onMouseLeave={handleMouseLeave}
@@ -194,7 +194,7 @@ function CookbookCard(props) {
           </span>
         </CardSettingsMenu>
 
-        <div className="recipeCardImage cookbook">
+        <div className="cookbookCardImage ">
           {savedRecipes[0] !== undefined &&
           savedRecipes[0].imageUrl !== undefined ? (
             <img className="" src={savedRecipes[0].imageUrl} alt="" />
@@ -202,12 +202,12 @@ function CookbookCard(props) {
             <div className="fillerImg cookbook"> </div>
           )}
         </div>
-        <div className="recipeCardText cookbook ">
-          <div className="recipeCardTextTitle cookbook">
+        <div className="cookbookCardText ">
+          
             <h3>{cookbookTitle}</h3>
-          </div>
+          
         </div>
-      </article>
+      </div>
     </>
   );
 }

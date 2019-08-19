@@ -8,13 +8,13 @@ const CreateCookbook = props => {
   };
 
   return (
-    <div className="recipeCard cookbook" onClick={handleClicker}>     
-      <div className="recipeCardImage cookbook">
-        <div className="fillerImgCreate cookbook"> + </div>
+    <div className="cookbookCard" onClick={handleClicker}>     
+      <div className="cookbookCardImage">
+        <div className="fillerImg cookbook create "> + </div>
       </div>
 
-      <div className="recipeCardText cookbook ">
-        <div className="recipeCardTextTitle cookbook">
+      <div className="cookbookCardText ">
+        <div className="cookbookCardTextTitle">
           <h3>Create A New Cookbook</h3>
         </div>
       </div>

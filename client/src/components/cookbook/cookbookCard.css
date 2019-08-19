@@ -1,12 +1,11 @@
-.recipeCard.cookbook {
+.cookbookCard{
   width: 23%;
   margin: 0 1%;
   padding: 10px;
   overflow: hidden;
   margin-bottom: 30px;
   box-sizing: border-box;
-  min-height: 200px;
-  max-height: 230px;
+  min-height: 200px;  
   border: 1px solid #f3f3f3;
   border-radius: 10px;
   -webkit-box-shadow: 3px 3px 5px -1px rgba(207, 195, 207, 1);
@@ -15,9 +14,11 @@
   box-sizing: border-box;
   transition: all 0.15s ease-in-out;
   position: relative;
+  display:flex;
+  flex-direction: column
 }
 
-.recipeCard:hover {
+.cookbookCard:hover {
   transform: scale(0.99);
   -webkit-box-shadow: 1px 1px 3px -1px rgba(207, 195, 207, 1);
   -moz-box-shadow: 1px 1px 3px -1px rgba(207, 195, 207, 1);
@@ -25,11 +26,11 @@
   cursor: pointer;
 }
 
-.recipeCardImage.cookbook {
+.cookbookCardImage {
   border-radius: 10px;
   width: 100%;
-  min-height: 60%;
-  max-height: 60%;
+  height:180px;
+  
   box-sizing: border-box;
   overflow: hidden;
   margin-bottom: 15px;
@@ -38,53 +39,42 @@
   align-content: center;
 }
 
-.recipeCardImage img {
+.cookbookCardImage img {
   border-radius: 10px;
-  max-height: 180px;
-  max-width: 100%;
+  /* min-height: 180px;
+  max-height: 180px; */
+  height:180px;
   box-sizing: border-box;
 }
 
+
 .fillerImg.cookbook {
   min-height: 180px;
-  min-width: 100%;
+  max-height: 180px;
   max-width: 100%;
   background: #f8f8f8 !important;
   border-radius: 10px 10px 0 0;
 }
 
-.recipeCardText.cookbook {
-  min-height: 30%;
-  box-sizing: border-box;
-  margin-bottom: 10px;
-  border-radius: 0 0 10px 10px;
-}
 
-.recipeCardText.cookbook {
-  margin: 0;
-  font-size: 0.8rem;
-  padding-left: 10px;
-  text-align: left;
-}
 
-.recipeCardText.cookbook h3 {
-  font-size: 1.17rem;
-}
-
-.recipeCardText svg {
-  color: #8cc700;
-  margin-right: 5px;
-}
-
-.recipeCardTextTitle {
-  height: 70px;
+.cookbookCardText {
+  margin: 0;    
   text-align: center;
+  flex-grow: 2;
+  box-sizing: border-box;  
+  border-radius: 0 0 10px 10px;  
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-content: center
 }
 
-.fillerImgCreate {
+.cookbookCardText h3 {
+  font-size: 1.17rem;
+  margin: auto
+  
+}
+
+.fillerImg.cookbook.create{
   width: 100%;
   min-height: 100%;
   display: flex;
@@ -94,6 +84,10 @@
   color: rgb(153, 153, 153);
   background: white;
 }
+
+
+
+
 
 .lowOpacity {
   opacity: 0;
@@ -143,39 +137,39 @@
 }
 
 @media only screen and (max-width: 1000px) {
-  .recipeCard.cookbook {
+  .cookbookCard {
     width: 31%;
   }
 }
 
 @media only screen and (max-width: 768px) {
-  .recipeCard.cookbook {
+  .cookbookCard {
     width: 48%;
   }
-  .recipeCardImage.cookbook img {
+  .cookbookCardImage img {
     max-height: 180px;
   }
 }
 
 @media only screen and (max-width: 480px) {
-  .recipeCard.cookbook {
+  .cookbookCard {
     width: 96%;
     margin: 0px 2% 10px 2%;
   }
-  .recipeCardText.cookbook {
-    min-height: 30%;
+  .cookbookCardText{
+    
     justify-content: flex-start;
   }
-  .recipeCardImage.cookbook {
+  .cookbookCardImage {
     max-height: 300px;
     border-radius: 10px !important;
   }
 
-  .recipeCardImage.cookbook img {
+  .cookbookCardImage.cookbook img {
     max-height: 150px;
   }
 
-  .recipeCardTextTitle.cookbook {
+  .cookbookCardTextTitle {
     height: 30px;
     padding-top: 0;
     box-shadow: none;
