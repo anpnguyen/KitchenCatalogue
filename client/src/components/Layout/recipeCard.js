@@ -118,7 +118,7 @@ const RecipeCard = props => {
             ref={settingsMenuRef}
             isShowing={settingsMenu}
             id="cookbookCogRecipe"
-            isOpacity={mouseOver}
+            isOpacity={true}
           >
             <span onClick={() => setDeleteRecipeModal(true)}>
               <FontAwesomeIcon icon={faTrash} />

@@ -184,7 +184,7 @@ function CookbookCard(props) {
           ref={settingCogRef}
           isShowing={settingsMenu}
           id="cookbookCog"
-          isOpacity={mouseOver}
+          isOpacity={true}
         >
           <span onClick={() => setRenameModal(true)}>
             <FontAwesomeIcon icon={faPencilAlt} />

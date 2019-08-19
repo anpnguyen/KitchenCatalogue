@@ -9,7 +9,7 @@ const ConfirmModal = React.forwardRef((props, ref) => {
 
   useEffect(()=>{
     if(isShowing){
-      document.body.style.overflow = "hidden"
+      document.body.style.overflow = "scroll"
     } else{
       document.body.style.overflow = ""
     }
