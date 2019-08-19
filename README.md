@@ -2,6 +2,8 @@
 
 An online database to help you create, view and organise all your cooking recipes.
 
+[Live demo](https://kitchencatalogue.theaspiringwebdeveloper.com "Kitchen Catalogue")
+
 **Technologies**: React, Redux, Express, NodeJS, MongoDB
 
 
@@ -19,3 +21,6 @@ An online database to help you create, view and organise all your cooking recipe
 - Add recipe posts
 - edit user profile name and password whilst logged in
 - allow private/public recipes
+
+
+![alt text](https://github.com/PleatherShaman/portfolio/blob/master/images/tester.png "Logo Title Text 1")
