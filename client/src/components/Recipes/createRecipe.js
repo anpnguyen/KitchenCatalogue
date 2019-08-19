@@ -103,7 +103,7 @@ const CreateRecipe = props => {
                     {option === "edit" ? (
                       <h1 className="text-center">Edit Recipe</h1>
                     ) : (
-                      <h1 className="text-center">New Recipe</h1>
+                      <h1 className="text-center">Create Recipe</h1>
                     )}
 
                     <hr className="width80" />
