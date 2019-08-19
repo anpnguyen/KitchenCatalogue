@@ -36,7 +36,7 @@ const AddToCookbookSelect = props => {
 };
 
 AddToCookbookSelect.propTypes = {
-  AddToCookbookSelect: PropTypes.func.isRequired,
+  
   cookbook: PropTypes.object.isRequired
 };
 

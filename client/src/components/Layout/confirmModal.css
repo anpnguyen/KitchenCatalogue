@@ -3,7 +3,7 @@
   z-index: -10;
   width: 450px;
   background: #f8f8f8;
-  top: 500px;
+  top: 30%;
   left: 0;
   right: 0;
   margin: auto;
@@ -12,30 +12,26 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  border-radius: 5px; 
+  border-radius: 5px;
   transition: all ease-in-out 0.3s;
   opacity: 0;
-  
 }
 
-.confirmModal.confirmModalShowing {
-  transform: translateY(-200px);
+.confirmModal.confirmModalShowing { 
+  
+  
   opacity: 1;
-  /* transform: scale(1) !important; */
   z-index: 10;
 }
 
 .confirmOverlay.confirmModalShowing {
-  transform: scale(2) !important;  
+  transform: scale(2) !important;
 }
 
 .confirmModal .confirmModalTitle {
   width: 100%;
   margin-left: 0px;
-  /* margin-top: -20px; */
-  /* background: */
-  /* background:rgb(50, 119, 231); */
-  /* border-radius: 8px 8px 0  0 */
+
 }
 .confirmModal h2 {
   margin: 10px 0;
@@ -66,6 +62,10 @@
   margin: 20px 10px;
 }
 
+.confirmButton {
+  background: #d8d8d8
+}
+
 .confirmOverlay {
   position: absolute;
   height: 100vh;
@@ -93,7 +93,7 @@
   border: 1px solid #e8e8e8;
 }
 @media only screen and (max-width: 481px) {
-    .confirmModal {
-    width: 300px;}
-
+  .confirmModal {
+    width: 300px;
+  }
 }
