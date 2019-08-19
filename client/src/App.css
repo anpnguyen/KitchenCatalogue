@@ -17,16 +17,21 @@ body,
   
 }
 
+body{
+  overflow-x: hidden;
+}
+
+
 ul{
   margin:0 
 }
 
 
-.wrapper{
-  overflow-x: hidden;
+/* .wrapper{ */
+  /* overflow-x: hidden !important; */
   
   /* height:100%  */
-}
+/* } */
 
 figure {
   margin: 0;
