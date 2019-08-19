@@ -14,17 +14,20 @@ const NavBar = props => {
   const { logout, clearRecipe } = props;
   const [showMenu, setShowMenu] = useState(false);
   const [showMenuActive, setShowMenuActive] = useState(false);
+  const [buttonTimeout, setButtonTimeout] = useState(false);
 
   const handleToggle = () => {
-    if (!showMenu) {
+    if (!buttonTimeout) {
       setShowMenu(!showMenu);
-
+      setButtonTimeout(true);
       setTimeout(() => {
         setShowMenuActive(!showMenuActive);
       }, 0);
+      setTimeout(() => {
+        setButtonTimeout(false);
+      }, 200);
     } else {
-      setShowMenu(!showMenu);
-      setShowMenuActive(!showMenuActive);
+      return;
     }
   };
 
