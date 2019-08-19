@@ -13,14 +13,20 @@ const NavBar = props => {
   const node = useRef();
   const { logout, clearRecipe } = props;
   const [showMenu, setShowMenu] = useState(false);
-  
+  const [showMenuActive, setShowMenuActive] = useState(false);
 
   const handleToggle = () => {
-    setShowMenu(!showMenu);
-  }
- 
+    if (!showMenu) {
+      setShowMenu(!showMenu);
 
-
+      setTimeout(() => {
+        setShowMenuActive(!showMenuActive);
+      }, 0);
+    } else {
+      setShowMenu(!showMenu);
+      setShowMenuActive(!showMenuActive);
+    }
+  };
 
   const handleLogout = () => {
     clearRecipe();
@@ -78,7 +84,11 @@ const NavBar = props => {
             )}
           </div>
           <div className="navBarList">
-            <ul className={`NavList ${showMenu ? "active" : ""} `}>
+            <ul
+              className={`NavList ${showMenu ? "active" : ""} ${
+                showMenuActive ? "transition" : ""
+              } `}
+            >
               {/* <hr className="navBarDivider" /> */}
               <li
                 className={`${match.url.startsWith("/recipe") &&

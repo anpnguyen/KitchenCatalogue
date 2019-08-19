@@ -7,7 +7,7 @@
     rgba(218, 35, 35, 1) 0%,
     rgba(215, 131, 71, 1) 100%
   ) !important;
-  width: 100vw;
+  width: 100%;
   background: #f3f3f3;
   margin: 0;
   height: 60px;
@@ -19,6 +19,7 @@
   color: #f8f8f8;
   justify-content: center;
   overflow: hidden;
+  box-sizing: border-box
 }
 
 .navBarContainer{
@@ -146,7 +147,8 @@
   }
   .navBarContainer{
     width:100%;
-    padding: 0 1rem
+    padding: 0 20px ;
+    
   }
 
   .NavList{
@@ -162,7 +164,7 @@
     opacity: 0;
     border-radius: 0px 0px 10px 10px;
     transition: transform 0.2s ease-in-out;
-    transform: translateX(0px);
+    transform: translateX(500px);
     display: none;
     flex-direction: column;
     align-content: center;
@@ -171,13 +173,16 @@
 
   }
 
-
   .NavList.active{
 
     opacity: 1;
     display:flex;
-    transform: translateX(0px);
     
+    
+  }
+
+  .NavList.active.transition{
+     transform: translateX(0px);   
   }
 
   
