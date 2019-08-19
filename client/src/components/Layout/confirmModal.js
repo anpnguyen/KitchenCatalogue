@@ -6,13 +6,13 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 const ConfirmModal = React.forwardRef((props, ref) => {
   const { closeAction, confirmAction, title, text, confirmationText, isShowing} = props;
   
-  if(isShowing ===true){
-    document.body.style.overflowY = "hidden"
+  if(title){
+    document.body.style.overflow = "hidden"
   } else{
-    document.body.style.overflowY = "scroll"
+    document.body.style.overflow = ""
   }
 
-  return (
+   return (
     <>
       <div className={`confirmModal ${isShowing? " confirmModalShowing": ""}`} ref={ref}>
         <div className="confirmModalTitle">

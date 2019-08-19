@@ -26,7 +26,7 @@
 }
 
 .confirmOverlay.confirmModalShowing {
-  transform: scale(1) !important;  
+  transform: scale(2) !important;  
 }
 
 .confirmModal .confirmModalTitle {

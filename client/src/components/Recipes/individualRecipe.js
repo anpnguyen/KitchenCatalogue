@@ -67,10 +67,7 @@ const IndividualRecipe = props => {
     }
   }, []);
 
-  useEffect(() => {
-    window.addEventListener("click", () => console.log("yay"));
-    window.addEventListener("beforeunload", () => console.log("woot"));
-  }, []);
+
 
   useEffect(() => {
     const handleClickOutsideSettings = e => {
