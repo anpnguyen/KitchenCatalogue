@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "./confirmModal.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
@@ -6,12 +6,17 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 const ConfirmModal = React.forwardRef((props, ref) => {
   const { closeAction, confirmAction, title, text, confirmationText, isShowing} = props;
   
-  if(title){
-    document.body.style.overflow = "hidden"
-  } else{
-    document.body.style.overflow = ""
-  }
 
+  useEffect(()=>{
+    if(isShowing){
+      document.body.style.overflow = "hidden"
+    } else{
+      document.body.style.overflow = ""
+    }
+  },[isShowing])
+ 
+
+  
    return (
     <>
       <div className={`confirmModal ${isShowing? " confirmModalShowing": ""}`} ref={ref}>
