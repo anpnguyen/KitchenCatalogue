@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { logout } from "../../actions/auth";
 import { clearRecipe } from "../../actions/recipe";
@@ -9,6 +9,7 @@ import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import "./navBar.css";
 
 const NavBar = props => {
+  const {match} = props
   const node = useRef();
   const { logout, clearRecipe } = props;
   const [showMenu, setShowMenu] = useState(false);
@@ -73,34 +74,32 @@ const NavBar = props => {
         </div>
         <div className="navBarListContainer">
           <ul className={`NavList ${!showMenu ? "slide" : ""}`}>
-            {/* <li className="">
-              <h2 className="pacifico">Kitchen Catalogue</h2>
-            </li>
-            <hr className="navBarDivider" /> */}
-          
-            <li className="">
-              <Link to="/recipe/new" onClick={() => setShowMenu(false)}>
-                Create A Recipe
-              </Link>
-            </li>
-            <hr className="navBarDivider" />
-            <li className="">
+             
+           
+            {/* <hr className="navBarDivider" /> */}
+            <li className={`${match.url.startsWith('/recipe') && match.url !=='/recipe/new' && 'active'} `}>
               <Link to="/recipe" onClick={() => setShowMenu(false)}>
-                View All Recipes
+                Recipes
               </Link>
             </li>
-            <li className="">
+            <li className={`${match.url.startsWith('/cookbook')  && 'active'} `}>
               <Link to="/cookbook" onClick={() => setShowMenu(false)}>
-                View All Cookbooks
+                Cookbooks
               </Link>
             </li>
-            <hr className="navBarDivider" />
+            <li className={`${match.url === '/recipe/new' && 'active'} `}>
+              <Link to="/recipe/new" onClick={() => setShowMenu(false)}>
+                Create Recipe
+              </Link>
+            </li>
+            {/* <hr className="navBarDivider" /> */}
             <li className="navBarListItem" onClick={handleLogout}>
               <Link to="/login" onClick={() => setShowMenu(false)}>
                 LOGOUT
               </Link>
             </li>
           </ul>
+          
         </div>
       </div>
     </nav>
@@ -117,7 +116,7 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   { logout, clearRecipe }
-)(NavBar);
+)(NavBar));

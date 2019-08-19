@@ -17,9 +17,10 @@ body,
   
 }
 
-/* body{
-  overflow-y: hidden;
-} */
+ul{
+  margin:0 
+}
+
 
 .wrapper{
   overflow-x: hidden;
