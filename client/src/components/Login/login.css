@@ -160,13 +160,10 @@
 }
 
 .loginButton {
-
-  border: 1px solid rgb(50, 119, 231);
-  background-color: rgb(50, 119, 231);
+  /* border: 1px solid rgb(50, 119, 231); */
+  background: rgb(39, 93, 179);
   color: #ffffff;
   margin-left: 10px;
-
-
   letter-spacing: 1px;
    transition: transform 80ms ease-in;
   margin-top: 12px;
@@ -374,7 +371,7 @@ button:hover {
     margin-top: 40px;
   }
 
-  .signInP {
-    margin-bottom: 40px;
-  }
+  /* .signInP { */
+    /* margin-bottom: 40px; */
+  /* } */
 }

@@ -7,7 +7,7 @@ const authMiddleware = (req, res, next) => {
   if (!token) {
     return res
       .status(401)
-      .json({ msg: "No token is present, please loging first" });
+      // .json({ msg: "No token is present, please loging first" });
   }
 
   try {

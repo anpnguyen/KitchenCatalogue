@@ -174,7 +174,7 @@ const Login = props => {
                 <span
                   onClick={handleClick}
                   className=" blue"
-                  id="span_register"
+                  // id="span_register"
                 >
                   {" "}
                   here
@@ -189,7 +189,7 @@ const Login = props => {
                 <span
                   onClick={handleForgotPasswordClick}
                   className=" blue"
-                  id="span_register"
+                  // id="span_register"
                 >
                   {" "}
                   here
@@ -202,7 +202,7 @@ const Login = props => {
                 <span
                   onClick={handleForgotPasswordClick}
                   className=" blue"
-                  id="span_register"
+                  // id="span_register"
                 >
                   {" "}
                   here
@@ -245,6 +245,7 @@ const Login = props => {
             />
             {!isResendConfirmation && (
               <>
+              
                 <input
                   className="loginInput"
                   type="password"
@@ -252,6 +253,7 @@ const Login = props => {
                   name="password"
                   value={password}
                   onChange={handleChange}
+                  id='password'
                 />
                 <input
                   className="loginInput"
@@ -274,7 +276,9 @@ const Login = props => {
             {!isResendConfirmation && (
               <p className="register loginP">
                 Already a member? Click{" "}
-                <span onClick={handleClick} className=" blue" id="span_login">
+                <span onClick={handleClick} className=" blue" 
+                // id="span_login"
+                >
                   {" "}
                   here{" "}
                 </span>
@@ -287,7 +291,7 @@ const Login = props => {
                 <span
                   onClick={() => setIsResendConfirmation(!isResendConfirmation)}
                   className=" blue"
-                  id="span_login"
+                  // id="span_login"
                 >
                   {" "}
                   here{" "}
@@ -300,7 +304,7 @@ const Login = props => {
                 <span
                   onClick={() => setIsResendConfirmation(!isResendConfirmation)}
                   className=" blue"
-                  id="span_login"
+                  // id="span_login"
                 >
                   {" "}
                   here{" "}
