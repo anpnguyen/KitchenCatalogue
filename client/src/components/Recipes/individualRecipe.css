@@ -274,4 +274,9 @@
   .individualRecipeListInstructions {
     padding: 15px 0px 15px 0 !important;
   }
+
+  .saveButton .blueButton{
+    width:100px;
+    margin: 0 5px
+  }
 }
