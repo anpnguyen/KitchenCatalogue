@@ -72,10 +72,7 @@ const Login = props => {
     }
   };
 
-  const handleDemoLogin = e => {
-    e.preventDefault();
-    login({ email: "demonstration@gmail.com", password: "12345678" });
-  };
+  
 
   const handleForgotPasswordClick = () => {
     setIsForgotPassword(!isForgotPassword);
@@ -154,9 +151,7 @@ const Login = props => {
               {!isForgotPassword ? (
                 <>
                   <button className="loginButton">Sign In</button>
-                  <button className="loginButton" onClick={handleDemoLogin}>
-                    Demo{" "}
-                  </button>
+             
                 </>
               ) : (
                 <button
