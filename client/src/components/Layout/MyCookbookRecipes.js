@@ -1,7 +1,7 @@
 import React from "react";
 import HomePage from "./homePage";
 import Content from "./content";
-import SearchBar from "./searchBar";
+import SearchBar from "./searchBar/searchBar";
 import { connect } from "react-redux";
 import Spinner from "../Layout/spinner";
 
