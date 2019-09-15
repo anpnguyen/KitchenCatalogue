@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import Login from "./components/Login/login";
 import PrivateRoute from "./components/routing/PrivateRoute";
-import IndividualRecipe from "./components/Recipes/individualRecipe";
-import EditIndividualRecipe from "./components/Recipes/EditIndividualRecipe";
+import IndividualRecipe from "./components/Recipes/individualRecipe/individualRecipe";
+import EditIndividualRecipe from "./components/Recipes/editIndividualRecipe/EditIndividualRecipe";
 import NotFound from "./components/Layout/notFound";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
@@ -13,7 +13,7 @@ import MyRecipes from "./components/Layout/MyRecipes";
 import MyCookbooks from "./components/Layout/MyCookbooks";
 import MyCookbookRecipes from "./components/Layout/MyCookbookRecipes";
 import MySearchRecipes from "./components/Layout/MySearchRecipes";
-import CreateRecipe from "./components/Recipes/createRecipe";
+import CreateRecipe from "./components/Recipes/createRecipe/createRecipe";
 import "./App.css";
 import PasswordReset from "./components/Login/PasswordReset";
 import ScrollToTop from './components/routing/ScrollToTop'

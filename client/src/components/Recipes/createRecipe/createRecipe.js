@@ -1,34 +1,35 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import ContentContainer from "../Layout/contentContainer/contentContainer";
-import Spinner from "../Layout/spinner";
+import ContentContainer from "../../Layout/contentContainer/contentContainer";
+import Spinner from "../../Layout/spinner";
 import {
   editRecipePut,
   getRecipeById,
   createRecipe,
   updateRecipe_LS
-} from "../../actions/individualRecipe";
+} from "../../../actions/individualRecipe";
 import { connect } from "react-redux";
-import PreviewContainer from "./previewContainer";
-import RecipeDetails from "./receipeDetails";
-import RecipeIngredients from "./recipeIngredients";
-import RecipeInstructions from "./recipeInstructions";
-import PreviewUsername from "./PreviewUsername";
-import PreviewText from "./PreviewText";
-import PreviewImage from "./PreviewImage";
-import PreviewTitle from "./PreviewTitle";
-import "./EditIndividualRecipe.css";
+import RecipeDetails from "../receipeDetails";
+import RecipeIngredients from "../recipeIngredients";
+import RecipeInstructions from "../recipeInstructions";
+import PreviewContainer from "../previewRecipe/previewContainer";
+import PreviewUsername from "../previewRecipe/PreviewUsername";
+import PreviewText from "../previewRecipe/PreviewText";
+import PreviewImage from "../previewRecipe/PreviewImage";
+import PreviewTitle from "../previewRecipe/PreviewTitle";
+import "../editIndividualRecipe/EditIndividualRecipe.css";
 
-const EditIndividualRecipe = props => {
+
+const CreateRecipe = props => {
   const {
     editRecipePut,
     history,
     option,
     createRecipe,
-    match,
-    individualRecipe,
+    match,    
     updateRecipe_LS,
-    getRecipeById
+    getRecipeById,
+    auth
   } = props;
 
   const initialData = {
@@ -39,57 +40,30 @@ const EditIndividualRecipe = props => {
     user: ""
   };
 
+  const user = auth.user
+
   const [recipeDetails, setRecipeDetails] = useState(initialData);
-  const { title, imageUrl, servings, time, user } = recipeDetails;
+  const { title, imageUrl, servings, time } = recipeDetails;
   const [recipeIngredients, setRecipeIngredients] = useState([""]);
   const [recipeInstructions, setRecipeInstructions] = useState([""]);
   const [newRecipeStage, setNewRecipeStage] = useState(1);
 
   // if item is in local storage
 
-  
   useEffect(() => {
-    if (option === "edit") {
-      var localRecipes = JSON.parse(localStorage.getItem("recipeState"));
-      if (localRecipes === null) {
-        getRecipeById(match.params.recipe_id);
-      } else {
-        var foundRecipe = localRecipes.find(
-          recipe => recipe._id === match.params.recipe_id
-        );
-
-        if (!foundRecipe) {
-          getRecipeById(match.params.recipe_id);
-        } else {
-          let {
-            title,
-            servings,
-            imageUrl,
-            time,
-            ingredients,
-            instructions,
-            user
-          } = foundRecipe;
-          setRecipeDetails({ title, servings, imageUrl, time, user });
-          setRecipeIngredients(ingredients);
-          setRecipeInstructions(instructions);
-          updateRecipe_LS(foundRecipe);
-        }
-      }
-    }
-
+    
     if (option === "newRecipe") {
-      setRecipeDetails({
+      setRecipeDetails({...recipeDetails,
         title: "",
         imageUrl: "",
         servings: "",
-        time: "",
-        user: ""
+        time: ""
+        
       });
       setRecipeIngredients([""]);
       setRecipeInstructions([""]);
     }
-  }, [getRecipeById, updateRecipe_LS, match.params.recipe_id, option ]);
+  }, [getRecipeById, updateRecipe_LS, match.params.recipe_id, option]);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -118,7 +92,7 @@ const EditIndividualRecipe = props => {
   return (
     <>
       <ContentContainer {...props}>
-        {individualRecipe.loading === true && option === "edit" ? (
+        {auth.loading? (
           <Spinner />
         ) : (
           <main className="content">
@@ -129,7 +103,7 @@ const EditIndividualRecipe = props => {
                     {option === "edit" ? (
                       <h1 className="text-center">Edit Recipe</h1>
                     ) : (
-                      <h1 className="text-center">New Recipe</h1>
+                      <h1 className="text-center">Create Recipe</h1>
                     )}
 
                     <hr className="width80" />
@@ -144,7 +118,7 @@ const EditIndividualRecipe = props => {
                       <form onSubmit={handleSubmit}>
                         <RecipeDetails
                           newRecipeStage={newRecipeStage}
-                          user={user}
+                          user={user.username}
                           title={title}
                           servings={servings}
                           time={time}
@@ -191,7 +165,7 @@ const EditIndividualRecipe = props => {
   );
 };
 
-EditIndividualRecipe.propTypes = {
+CreateRecipe.propTypes = {
   auth: PropTypes.object.isRequired,
   recipe: PropTypes.object.isRequired,
   editRecipePut: PropTypes.func.isRequired,
@@ -206,4 +180,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { editRecipePut, getRecipeById, createRecipe, updateRecipe_LS }
-)(EditIndividualRecipe);
+)(CreateRecipe);

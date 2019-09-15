@@ -1,18 +1,18 @@
 import React, { useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
-import ContentContainer from "../Layout/contentContainer/contentContainer";
-import Spinner from "../Layout/spinner";
+import ContentContainer from "../../Layout/contentContainer/contentContainer";
+import Spinner from "../../Layout/spinner";
 import AddToCookbookSelect from "./addToCookbookSelect";
 import ViewRecipeDetails from "./viewRecipeDetails";
 import ViewRecipeIngredients from "./viewRecipeIngredients";
 import ViewRecipeInstructions from "./viewRecipeInstructions";
-import ConfirmModal from "../Layout/confirmModal";
+import ConfirmModal from "../../Layout/confirmModal";
 import {
   getRecipeById,
   deleteRecipe,
   updateRecipe_LS
-} from "../../actions/individualRecipe";
-import { addRecipeToCookbook } from "../../actions/cookbook";
+} from "../../../actions/individualRecipe";
+import { addRecipeToCookbook } from "../../../actions/cookbook";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import "./individualRecipe.css";
