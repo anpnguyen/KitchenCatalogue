@@ -36,7 +36,7 @@ function HomePage(props) {
   }, [match.params, pageLimit]);
 
   return (
-    // <Content>
+  
     <>
       <main className="content">
         <div className="contentContainer">

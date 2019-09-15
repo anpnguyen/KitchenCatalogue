@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect } from "react";
-import NavBar from "../navBar/navBar";
+import NavBar from "./navBar/navBar";
 import Footer from "../footer/footer";
 import Alert from "../alert/alert";
 import { connect } from "react-redux";
