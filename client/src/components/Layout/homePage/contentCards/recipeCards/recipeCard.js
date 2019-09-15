@@ -7,10 +7,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { removeRecipeFromCookbook } from "../../actions/individualCookbook";
-import { resetRecipe } from "../../actions/individualRecipe";
-import ConfirmModal from "./confirmModal";
-import CardSettingMenu from "../cookbook/cardSettingsMenu";
+import { removeRecipeFromCookbook } from "../../../../../actions/individualCookbook";
+import { resetRecipe } from "../../../../../actions/individualRecipe";
+import ConfirmModal from "../../../confirmModal";
+import CardSettingMenu from "../../../../cookbook/cardSettingsMenu";
 import PropTypes from "prop-types";
 import "./recipeCard.css";
 

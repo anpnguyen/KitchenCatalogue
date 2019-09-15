@@ -1,11 +1,11 @@
 import React, { useState, memo } from "react";
 import { connect } from "react-redux";
-import RecipeCard from "./recipeCard";
-import CookbookCard from "../cookbook/cookbookCard";
-import CreateNewRecipeCard from "./createNewRecipeCard";
-import CreateCookbook from "../cookbook/createCookbook";
-import ConfirmModal from "./confirmModal";
-import { createNewCookbook } from "../../actions/cookbook";
+import RecipeCard from "./recipeCards/recipeCard";
+import CookbookCard from "../../../cookbook/cookbookCard";
+import CreateNewRecipeCard from "./recipeCards/createNewRecipeCard";
+import CreateCookbook from "../../../cookbook/createCookbook";
+import ConfirmModal from "../../confirmModal";
+import { createNewCookbook } from "../../../../actions/cookbook";
 import "./contentCards.css";
 
 function ContentCards(props) {

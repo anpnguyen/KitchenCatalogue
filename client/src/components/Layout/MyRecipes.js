@@ -1,5 +1,5 @@
 import React from "react";
-import HomePage from "./homePage";
+import HomePage from "./homePage/homePage";
 import ContentContainer from "./contentContainer/contentContainer";
 import SearchBar from "./searchBar/searchBar";
 import { connect } from "react-redux";

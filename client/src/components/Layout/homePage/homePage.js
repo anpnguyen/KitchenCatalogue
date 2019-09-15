@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import ContentSelect from "./contentSelect";
-import PageNavigation from "./pageNavigation";
-import ContentCards from "./contentCards";
-import "./content.css";
+import ContentSelect from "./contentSelect/contentSelect";
+import PageNavigation from "./pageNavigation/pageNavigation";
+import ContentCards from "./contentCards/contentCards";
+import "./homepage.css";
 
 function HomePage(props) {
   const { title, searchParams, arr, option, match } = props;
