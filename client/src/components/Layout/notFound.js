@@ -1,5 +1,5 @@
 import React from "react";
-import NavBar from "./navBar";
+import NavBar from "./navBar/navBar";
 import { Link } from "react-router-dom";
 import "./notFound.css";
 import notFound from "../../images/404.jpg";
