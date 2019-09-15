@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import backgroundImage from "../../images/background.jpg";
-import Alert from "../Layout/alert/alert";
+import Alert from '../Layout/contentContainer/alert/alert'
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { setAlert, clearAlerts } from "../../actions/alert";
