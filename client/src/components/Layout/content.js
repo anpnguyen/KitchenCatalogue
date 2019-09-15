@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect } from "react";
 import NavBar from "./navBar/navBar";
-import Footer from "./footer";
+import Footer from "./footer/footer";
 import Alert from "./alert";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
