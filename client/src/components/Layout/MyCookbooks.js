@@ -1,6 +1,6 @@
 import React from "react";
 import HomePage from "./homePage";
-import Content from "./content";
+import ContentContainer from "./contentContainer/contentContainer";
 import SearchBar from "./searchBar/searchBar";
 import { connect } from "react-redux";
 import { getCookbooks } from "../../actions/cookbook";
@@ -10,7 +10,7 @@ function MyCookbooks(props) {
   const { cookbook, match, nav } = props;
 
   return (
-    <Content {...props}>
+    <ContentContainer {...props}>
       <SearchBar />
       {cookbook.loading ? (
          <Spinner/>
@@ -19,7 +19,7 @@ function MyCookbooks(props) {
           
         </HomePage>
       )}
-    </Content>
+    </ContentContainer>
   );
 }
 

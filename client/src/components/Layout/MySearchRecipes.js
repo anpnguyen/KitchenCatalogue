@@ -1,6 +1,6 @@
 import React from "react";
 import HomePage from "./homePage";
-import Content from "./content";
+import ContentContainer from "./contentContainer/contentContainer";
 import SearchBar from "./searchBar/searchBar";
 import { connect } from "react-redux";
 import Spinner from '../Layout/spinner'
@@ -9,7 +9,7 @@ function MySearchRecipes(props) {
   const { search, match , nav} = props;
 
   return (
-    <Content {...props}>
+    <ContentContainer {...props}>
       <SearchBar />
       {search.loading ? (
          <Spinner/>
@@ -18,7 +18,7 @@ function MySearchRecipes(props) {
           
         </HomePage>
       )}
-    </Content>
+    </ContentContainer>
   );
 }
 

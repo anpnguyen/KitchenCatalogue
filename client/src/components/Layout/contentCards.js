@@ -13,10 +13,9 @@ function ContentCards(props) {
     data,
     navigation,
     totalItems,
-    // pageLimit,
     option,
     createNewCookbook
-    // match
+    
   } = props;
 
   const [createCookbookModal, setCreateCookbookModal] = useState(false);

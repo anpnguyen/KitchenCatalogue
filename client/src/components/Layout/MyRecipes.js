@@ -1,6 +1,6 @@
 import React from "react";
 import HomePage from "./homePage";
-import Content from "./content";
+import ContentContainer from "./contentContainer/contentContainer";
 import SearchBar from "./searchBar/searchBar";
 import { connect } from "react-redux";
 import Spinner from '../Layout/spinner'
@@ -11,7 +11,7 @@ function MyRecipes(props) {
 
  
   return (
-    <Content {...props}>
+    <ContentContainer {...props}>
       <SearchBar />
       {recipe.loading ? (
          <Spinner/>
@@ -20,7 +20,7 @@ function MyRecipes(props) {
                    
         </HomePage>
       )}
-    </Content>
+    </ContentContainer>
   );
 }
 

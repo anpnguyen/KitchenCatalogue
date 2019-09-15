@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import Content from "../Layout/content";
+import ContentContainer from "../Layout/contentContainer/contentContainer";
 import Spinner from "../Layout/spinner";
 import {
   editRecipePut,
@@ -91,7 +91,7 @@ const CreateRecipe = props => {
   };
   return (
     <>
-      <Content {...props}>
+      <ContentContainer {...props}>
         {auth.loading? (
           <Spinner />
         ) : (
@@ -160,7 +160,7 @@ const CreateRecipe = props => {
             </div>
           </main>
         )}
-      </Content>
+      </ContentContainer>
     </>
   );
 };

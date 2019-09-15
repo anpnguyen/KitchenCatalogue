@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
-import Content from "../Layout/content";
+import ContentContainer from "../Layout/contentContainer/contentContainer";
 import Spinner from "../Layout/spinner";
 import AddToCookbookSelect from "./addToCookbookSelect";
 import ViewRecipeDetails from "./viewRecipeDetails";
@@ -147,7 +147,7 @@ const IndividualRecipe = props => {
   };
 
   return (
-    <Content {...props}>
+    <ContentContainer {...props}>
       {loading || title === undefined ? (
         <Spinner />
       ) : (
@@ -221,7 +221,7 @@ const IndividualRecipe = props => {
           </div>
         </main>
       )}
-    </Content>
+    </ContentContainer>
   );
 };
 

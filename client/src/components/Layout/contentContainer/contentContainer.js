@@ -1,15 +1,15 @@
 import React, { Fragment, useEffect } from "react";
-import NavBar from "./navBar/navBar";
-import Footer from "./footer/footer";
-import Alert from "./alert/alert";
+import NavBar from "../navBar/navBar";
+import Footer from "../footer/footer";
+import Alert from "../alert/alert";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { getRecipes, clearRecipe, updateFromLS } from "../../actions/recipe";
-import { getCookbooks, updateCookbookFromLS } from "../../actions/cookbook";
-import { getCookbookById } from "../../actions/individualCookbook";
-import { getSearchRecipes, updateFromSearchLS } from "../../actions/search";
+import { getRecipes, clearRecipe, updateFromLS } from "../../../actions/recipe";
+import { getCookbooks, updateCookbookFromLS } from "../../../actions/cookbook";
+import { getCookbookById } from "../../../actions/individualCookbook";
+import { getSearchRecipes, updateFromSearchLS } from "../../../actions/search";
 
-function Content(props) {
+function ContentContainer(props) {
   const {
     match,
     recipe,
@@ -64,7 +64,7 @@ function Content(props) {
     </Fragment>
   );
 }
-Content.propTypes = {
+ContentContainer.propTypes = {
   auth: PropTypes.object.isRequired,
   getRecipes: PropTypes.func.isRequired,
   getCookbooks: PropTypes.func.isRequired,
@@ -96,4 +96,4 @@ export default connect(
     updateCookbookFromLS,
     updateFromSearchLS
   }
-)(Content);
+)(ContentContainer);

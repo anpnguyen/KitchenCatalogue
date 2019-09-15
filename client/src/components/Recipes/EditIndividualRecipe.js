@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import Content from "../Layout/content";
+import ContentContainer from "../Layout/contentContainer/contentContainer";
 import Spinner from "../Layout/spinner";
 import {
   editRecipePut,
@@ -117,7 +117,7 @@ const EditIndividualRecipe = props => {
   };
   return (
     <>
-      <Content {...props}>
+      <ContentContainer {...props}>
         {individualRecipe.loading === true && option === "edit" ? (
           <Spinner />
         ) : (
@@ -186,7 +186,7 @@ const EditIndividualRecipe = props => {
             </div>
           </main>
         )}
-      </Content>
+      </ContentContainer>
     </>
   );
 };
