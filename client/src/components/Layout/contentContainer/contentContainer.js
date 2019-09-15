@@ -24,6 +24,7 @@ function ContentContainer(props) {
     updateFromSearchLS
   } = props;
 
+  // checks if there is localStorage State, if so it will load it to the redux store. If noting, it will make a get request
   useEffect(() => {
     !localStorage.recipeState && getRecipes();
     !localStorage.cookbookState && getCookbooks();  
@@ -49,8 +50,7 @@ function ContentContainer(props) {
   }, [updateFromSearchLS, search.loading, search.searchData  ]);
 
   if (individualCookbook.loading && match.params.cookbook_id !== undefined) {
-    console.log("individual recipe calling");
-    getCookbookById(match.params.cookbook_id);
+      getCookbookById(match.params.cookbook_id);
   }
 
   return (

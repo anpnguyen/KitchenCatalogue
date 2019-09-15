@@ -12,8 +12,7 @@ function ContentSelect(props) {
           
           {option === 'cookbook'? selectTextCookbook : selectTextRecipe}
           
-            
-          
+                      
           {searchParams && ` for ${searchParams}`}
         </p>
       </div>

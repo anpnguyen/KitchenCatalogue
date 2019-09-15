@@ -8,6 +8,8 @@ import { setAlert, clearAlerts } from "../../actions/alert";
 import {  clearLS, passwordReset } from "../../actions/auth";
 import "./login.css";
 
+// this will allow the user to resent their password
+
 const PasswordReset = props => {
   const {  login, setAlert, clearAlerts, clearLS, passwordReset, match, history} = props;
 
@@ -119,49 +121,7 @@ const PasswordReset = props => {
           }`}
         >
           <form className="loginForm" onSubmit={handleRegister}>
-            {/* <h1 className="LoginLogo register">Kitchen Catalogue</h1>
-            <h2 className="register">Create Account</h2>
-            <input
-              className="loginInput"
-              type="text"
-              placeholder="Username"
-              name="username"
-              value={username}
-              onChange={handleChange}
-            />
-            <input
-              className="loginInput"
-              type="email"
-              placeholder="Email"
-              name="email"
-              value={email}
-              onChange={handleChange}
-            />
-            <input
-              className="loginInput"
-              type="password"
-              placeholder="Password"
-              name="password"
-              value={password}
-              onChange={handleChange}
-            />
-            <input
-              className="loginInput"
-              type="password"
-              placeholder="Please re-enter password"
-              name="password2"
-              value={password2}
-              onChange={handleChange}
-            />
-            <button className="loginButton">Sign Up</button>
-            <p className="register loginP">
-              Already a member? Press{" "}
-              <span onClick={handleClick} className=" blue" id="span_login">
-                {" "}
-                here{" "}
-              </span>
-              to continue to Kitchen Catalogue
-            </p> */}
+           
           </form>
         </div>
 

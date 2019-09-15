@@ -40,21 +40,25 @@ const Login = props => {
   const [isResendConfirmation, setIsResendConfirmation] = useState(false);
   const { username, email, password, password2 } = formData;
 
+
+  // Switches between login and register
   const handleClick = () => {
     setFormData(initialData);
     setIsLogin(!isLogin);
   };
 
+  // handles form input 
   const handleChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // sends Login action
   const handleLogin = e => {
     e.preventDefault();
     login({ email, password });
   };
 
-
+// resets the state - used when switching between login and register
   const resetState = ()=>{
     setIsLogin(true);
     setFormData(initialData);
@@ -62,6 +66,7 @@ const Login = props => {
     setIsResendConfirmation(false)
   }
 
+  // sends Register Action
   const handleRegister = e => {
     e.preventDefault();
     if (password !== password2) {
@@ -73,11 +78,12 @@ const Login = props => {
   };
 
   
-
+// Sets mode to forgotten password
   const handleForgotPasswordClick = () => {
     setIsForgotPassword(!isForgotPassword);
   };
 
+  // sends reset password Action
   const handlePasswordResetClick = e => {
     e.preventDefault();
 
@@ -89,6 +95,7 @@ const Login = props => {
     }
   };
 
+  // sends resends reset password email
   const handleResendEmail = e => {
     e.preventDefault();
     email ? resendConfirmation({ email: email },resetState) : clearAlerts();
@@ -96,11 +103,12 @@ const Login = props => {
   };
 
  
-
+// on load, clears the local Storage of recipes - if there were previous users that have recipes in LS 
   useEffect(() => {
     clearLS();
   }, []);
 
+  // on load, 
   useEffect(() => {
     match.params.register_token &&
       confirmUser({ register_token: match.params.register_token });
