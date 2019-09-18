@@ -15,6 +15,9 @@ import {
 } from "../../actions/auth";
 import "./login.css";
 
+// This Login Page was adapted from a code epn by Florin Pop
+// https://codepen.io/FlorinPop17/pen/vPKWjd
+
 const Login = props => {
   const {
     register,
